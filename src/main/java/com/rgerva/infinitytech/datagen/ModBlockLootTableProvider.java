@@ -26,7 +26,15 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
+        add(ModBlocks.TITANIUM_ORE.get(),
+                block -> createOreDrop(ModBlocks.TITANIUM_ORE.get(), ModItems.TITANIUM_RAW.get()));
+        add(ModBlocks.TITANIUM_DEEPSLATE_ORE.get(),
+                block -> createOreDrop(ModBlocks.TITANIUM_DEEPSLATE_ORE.get(), ModItems.TITANIUM_RAW.get()));
+        add(ModBlocks.TITANIUM_END_ORE.get(),
+                block -> createMultipleOreDrops(ModBlocks.TITANIUM_END_ORE.get(), ModItems.TITANIUM_RAW.get(), 2F, 3F));
 
+        dropSelf(ModBlocks.TITANIUM_BLOCK.get());
+        dropSelf(ModBlocks.TITANIUM_RAW_BLOCK.get());
     }
 
     protected LootTable.Builder createMultipleOreDrops(Block pBlock, Item item, float minDrops, float maxDrops) {

@@ -1,0 +1,23 @@
+{
+  "name.infinity_tech.name": "Infinity Tech",
+
+  "item.infinity_tech.titanium_ingot": "Titanium Ingot",
+  "item.infinity_tech.titanium_raw": "Titanium Raw",
+  "item.infinity_tech.titanium_nugget": "Titanium Nugget",
+  "item.infinity_tech.titanium_sword": "Titanium Sword",
+  "item.infinity_tech.titanium_pickaxe": "Titanium Pickaxe",
+  "item.infinity_tech.titanium_shovel": "Titanium Shovel",
+  "item.infinity_tech.titanium_axe": "Titanium Axe",
+  "item.infinity_tech.titanium_hoe": "Titanium Hoe",
+  "item.infinity_tech.titanium_helmet": "Titanium Helmet",
+  "item.infinity_tech.titanium_chestplate": "Titanium Chestplate",
+  "item.infinity_tech.titanium_leggings": "Titanium Leggings",
+  "item.infinity_tech.titanium_boots": "Titanium Boots",
+  "item.infinity_tech.titanium_horse_armor": "Titanium Horse Armor",
+
+  "block.infinity_tech.titanium_ore": "Titanium Ore",
+  "block.infinity_tech.titanium_deepslate_ore": "Deepslate Titanium Ore",
+  "block.infinity_tech.titanium_end_ore": "End Titanium Ore",
+  "block.infinity_tech.titanium_block": "Titanium Block",
+  "block.infinity_tech.titanium_raw_block": "Raw Titanium Block"
+}

@@ -1,0 +1,19 @@
+{
+  "layers": {
+    "horse_body": [
+      {
+        "texture": "infinity_tech:titanium"
+      }
+    ],
+    "humanoid": [
+      {
+        "texture": "infinity_tech:titanium"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "infinity_tech:titanium"
+      }
+    ]
+  }
+}

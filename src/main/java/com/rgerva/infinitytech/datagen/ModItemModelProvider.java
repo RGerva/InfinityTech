@@ -10,7 +10,6 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.equipment.trim.TrimMaterial;
 import net.minecraft.world.item.equipment.trim.TrimMaterials;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.model.generators.ItemModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -41,7 +40,28 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        basicItem(ModItems.TITANIUM_INGOT.get());
+        basicItem(ModItems.TITANIUM_RAW.get());
+        basicItem(ModItems.TITANIUM_NUGGET.get());
 
+        handheldItem(ModItems.TITANIUM_SWORD.get());
+        handheldItem(ModItems.TITANIUM_PICKAXE.get());
+        handheldItem(ModItems.TITANIUM_SHOVEL.get());
+        handheldItem(ModItems.TITANIUM_AXE.get());
+        handheldItem(ModItems.TITANIUM_HOE.get());
+
+        trimmedArmorItem(ModItems.TITANIUM_HELMET);
+        trimmedArmorItem(ModItems.TITANIUM_CHESTPLATE);
+        trimmedArmorItem(ModItems.TITANIUM_LEGGINGS);
+        trimmedArmorItem(ModItems.TITANIUM_BOOTS);
+
+        basicItem(ModItems.TITANIUM_HORSE_ARMOR.get());
+    }
+
+    private ItemModelBuilder saplingItem(DeferredBlock<Block> item) {
+        return withExistingParent(item.getId().getPath(),
+                ResourceLocation.parse("item/generated")).texture("layer0",
+                ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID,"block/" + item.getId().getPath()));
     }
 
     private void trimmedArmorItem(DeferredItem<ArmorItem> itemDeferredItem) {
