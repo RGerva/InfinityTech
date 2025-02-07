@@ -3,7 +3,6 @@ package com.rgerva.infinitytech.item;
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.item.custom.ModArmorMaterials;
 import com.rgerva.infinitytech.item.custom.ModToolTiers;
-import net.minecraft.client.renderer.entity.layers.HorseArmorLayer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -12,7 +11,6 @@ import net.minecraft.world.item.equipment.ArmorType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import org.checkerframework.checker.units.qual.A;
 
 public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(InfinityTech.MOD_ID);

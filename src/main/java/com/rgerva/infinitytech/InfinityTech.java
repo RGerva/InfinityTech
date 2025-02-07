@@ -2,7 +2,11 @@ package com.rgerva.infinitytech;
 
 import com.mojang.logging.LogUtils;
 import com.rgerva.infinitytech.block.ModBlocks;
+import com.rgerva.infinitytech.blockentity.ModBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.SolarPanelBlockEntity;
 import com.rgerva.infinitytech.crative.ModCreativeTab;
+import com.rgerva.infinitytech.gui.ModGUI;
+import com.rgerva.infinitytech.gui.screen.SolarPanelScreen;
 import com.rgerva.infinitytech.item.ModItems;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
@@ -12,6 +16,9 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.slf4j.Logger;
@@ -28,8 +35,11 @@ public class InfinityTech {
 
         ModBlocks.register(modEventBus);
         ModItems.register(modEventBus);
+        ModBlockEntity.register(modEventBus);
+        ModGUI.register(modEventBus);
 
         modEventBus.addListener(ModCreativeTab::addCreative);
+        modEventBus.addListener(this::registerCapabilities);
     }
 
     @SubscribeEvent
@@ -44,5 +54,17 @@ public class InfinityTech {
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
         }
+
+        @SubscribeEvent
+        public static void onRegisterMenuScreens(RegisterMenuScreensEvent event){
+            event.register(ModGUI.SOLAR_PANEL_MENU.get(), SolarPanelScreen::new);
+        }
     }
+
+    public void registerCapabilities(RegisterCapabilitiesEvent event){
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
+                ModBlockEntity.SOLAR_PANEL_ENTITY.get(), SolarPanelBlockEntity::getEnergyStorageCapability);
+    }
+
+
 }

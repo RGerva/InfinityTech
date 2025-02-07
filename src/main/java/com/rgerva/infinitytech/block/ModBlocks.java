@@ -1,6 +1,7 @@
 package com.rgerva.infinitytech.block;
 
 import com.rgerva.infinitytech.InfinityTech;
+import com.rgerva.infinitytech.block.custom.SolarPanelBlock;
 import com.rgerva.infinitytech.item.ModItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -58,6 +59,16 @@ public class ModBlocks {
                     .strength(1f)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.GRAVEL)));
+
+
+    public static final DeferredBlock<SolarPanelBlock> SOLAR_PANEL = registerBlock("solar_panel",
+            () -> new SolarPanelBlock(128,128 * 4,128 * 20 * 2,
+                    BlockBehaviour.Properties.of().
+                            requiresCorrectToolForDrops()
+                            .strength(4.0f, 5.0f)
+                            .sound(SoundType.METAL)
+                            .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "solar_panel_top")))));
+
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

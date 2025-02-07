@@ -2,14 +2,19 @@ package com.rgerva.infinitytech.datagen;
 
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.block.ModBlocks;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.client.model.generators.ModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
+
+import java.util.Objects;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
@@ -23,6 +28,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.TITANIUM_END_ORE);
         blockWithItem(ModBlocks.TITANIUM_BLOCK);
         blockWithItem(ModBlocks.TITANIUM_RAW_BLOCK);
+
+        solarPanelBlockWithItem(ModBlocks.SOLAR_PANEL);
     }
 
     private void saplingBlock(DeferredBlock<Block> blockRegistryObject) {
@@ -89,5 +96,38 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private void blockItem(DeferredBlock<?> deferredBlock, String appendix) {
         simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("infinity_tech:block/" + deferredBlock.getId().getPath() + appendix));
+    }
+
+    private void solarPanelBlockWithItem(Holder<? extends Block> block) {
+        ModelFile solarPanelTemplate = models().
+                withExistingParent("solar_panel_template", ModelProvider.BLOCK_FOLDER + "/thin_block").
+                element().from(0, 0, 0).to(16, 4, 16).
+                face(Direction.DOWN).uvs(0, 0, 16, 16).cullface(Direction.DOWN).texture("#side").end().
+                face(Direction.UP).uvs(0, 0, 16, 16).texture("#top").end().
+                face(Direction.NORTH).uvs(0, 12, 16, 16).cullface(Direction.NORTH).texture("#side").end().
+                face(Direction.SOUTH).uvs(0, 12, 16, 16).cullface(Direction.SOUTH).texture("#side").end().
+                face(Direction.WEST).uvs(0, 12, 16, 16).cullface(Direction.WEST).texture("#side").end().
+                face(Direction.EAST).uvs(0, 12, 16, 16).cullface(Direction.EAST).texture("#side").end().
+                end();
+
+        ResourceLocation blockId = Objects.requireNonNull(block.getKey()).location();
+
+        ModelFile solarPanel = models().
+                getBuilder(blockId.getPath()).parent(solarPanelTemplate).
+                texture("particle", "#top").
+                texture("top", getBlockTexture(block, "_top")).
+                texture("side", getBlockTexture(block, "_side"));
+
+        getVariantBuilder(block.value()).partialState().
+                modelForState().modelFile(solarPanel).addModel();
+
+        simpleBlockItem(block.value(), solarPanel);
+    }
+
+    private ResourceLocation getBlockTexture(Holder<? extends Block> block, String pathSuffix) {
+        ResourceLocation blockId = Objects.requireNonNull(block.getKey()).location();
+
+        return ResourceLocation.fromNamespaceAndPath(blockId.getNamespace(),
+                ModelProvider.BLOCK_FOLDER + "/" + blockId.getPath() + pathSuffix);
     }
 }
