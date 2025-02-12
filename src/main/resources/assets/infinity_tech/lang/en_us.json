@@ -20,5 +20,19 @@
   "block.infinity_tech.titanium_end_ore": "End Titanium Ore",
   "block.infinity_tech.titanium_block": "Titanium Block",
   "block.infinity_tech.titanium_raw_block": "Raw Titanium Block",
-  "block.infinity_tech.solar_panel": "Solar Panel"
+  "block.infinity_tech.battery_box": "Battery",
+  "block.infinity_tech.creative_battery_box": "Creative Battery",
+  "block.infinity_tech.solar_panel": "Solar Panel",
+
+  "machine.infinity_tech.battery_block": "Battery",
+  "machine.infinity_tech.creative_battery": "Creative Battery",
+  "machine.infinity_tech.solar_panel": "Solar Panel",
+
+  "tooltip.infinity_tech.shift_details": "Press [SHIFT] for details",
+  "tooltip.infinity_tech.capacity": "Capacity: %s",
+  "tooltip.infinity_tech.infinite": "Infinite",
+  "tooltip.infinity_tech.transfer_rate": "Transfer rate: %s/t",
+  "tooltip.infinity_tech.energy_meter": "%s / %s",
+  "tooltip.infinity_tech.solar_panel.produces": "This block produces up to %s/t.",
+  "tooltip.infinity_tech.solar_panel.info": "The efficiency depends on the current time"
 }

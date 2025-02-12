@@ -1,6 +1,8 @@
 package com.rgerva.infinitytech.block;
 
 import com.rgerva.infinitytech.InfinityTech;
+import com.rgerva.infinitytech.block.custom.BatteryBlock;
+import com.rgerva.infinitytech.block.custom.CreativeBatteryBlock;
 import com.rgerva.infinitytech.block.custom.SolarPanelBlock;
 import com.rgerva.infinitytech.item.ModItems;
 import net.minecraft.core.registries.Registries;
@@ -60,14 +62,23 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.GRAVEL)));
 
+    public static final DeferredBlock<Block> CREATIVE_BATTERY = registerBlock("creative_battery_box",
+            () -> new CreativeBatteryBlock(BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "creative_battery_box_side")))
+                    .strength(-1f, 3600000.f)
+                    .noLootTable()));
 
-    public static final DeferredBlock<SolarPanelBlock> SOLAR_PANEL = registerBlock("solar_panel",
-            () -> new SolarPanelBlock(128,128 * 4,128 * 20 * 2,
-                    BlockBehaviour.Properties.of().
-                            requiresCorrectToolForDrops()
-                            .strength(4.0f, 5.0f)
-                            .sound(SoundType.METAL)
-                            .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "solar_panel_top")))));
+    public static final DeferredBlock<Block> BATTERY_BLOCK = registerBlock("battery_box",
+            () -> new BatteryBlock(BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "battery_box")))
+                    .strength(5.0F, 6.0F)
+                    .sound(SoundType.METAL)));
+
+    public static final DeferredBlock<Block> SOLAR_PANEL = registerBlock("solar_panel",
+            () -> new SolarPanelBlock(BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "solar_panel")))
+                    .strength(4.0F, 5.0F)
+                    .sound(SoundType.METAL)));
 
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

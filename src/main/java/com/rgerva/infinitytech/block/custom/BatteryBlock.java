@@ -2,7 +2,7 @@ package com.rgerva.infinitytech.block.custom;
 
 import com.mojang.serialization.MapCodec;
 import com.rgerva.infinitytech.blockentity.ModBlockEntities;
-import com.rgerva.infinitytech.blockentity.custom.SolarPanelBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.BatteryBlockEntity;
 import com.rgerva.infinitytech.energy.ModEnergyUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -13,32 +13,23 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class SolarPanelBlock extends BaseEntityBlock {
-    public static final MapCodec<SolarPanelBlock> CODEC = simpleCodec(SolarPanelBlock::new);
-    private static final VoxelShape SHAPE = Block.box(0.d, 0.d, 0.d, 16.d, 4.d, 16.d);
+public class BatteryBlock extends BaseEntityBlock {
+    public static final MapCodec<BatteryBlock> CODEC = simpleCodec(BatteryBlock::new);
 
-    public SolarPanelBlock(Properties properties) {
+    public BatteryBlock(Properties properties) {
         super(properties);
-    }
-
-    public static int getPeakFePerTick(){
-        return 128;
     }
 
     @Override
@@ -47,13 +38,8 @@ public class SolarPanelBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return SHAPE;
-    }
-
-    @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new SolarPanelBlockEntity(blockPos, blockState);
+        return new BatteryBlockEntity(blockPos, blockState);
     }
 
     @Override
@@ -62,30 +48,47 @@ public class SolarPanelBlock extends BaseEntityBlock {
     }
 
     @Override
+    protected boolean hasAnalogOutputSignal(BlockState state) {
+        return true;
+    }
+
+    @Override
+    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos blockPos) {
+        BlockEntity blockEntity = level.getBlockEntity(blockPos);
+        if(!(blockEntity instanceof BatteryBlockEntity batteryBoxBlockEntity))
+            return super.getAnalogOutputSignal(state, level, blockPos);
+
+        return batteryBoxBlockEntity.getRedstoneOutput();
+    }
+
+    @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos blockPos, Player player, BlockHitResult hitResult) {
         if(level.isClientSide())
             return InteractionResult.SUCCESS;
 
         BlockEntity blockEntity = level.getBlockEntity(blockPos);
-        if(!(blockEntity instanceof SolarPanelBlockEntity))
+        if(!(blockEntity instanceof BatteryBlockEntity))
             throw new IllegalStateException("Container is invalid");
 
-        player.openMenu((SolarPanelBlockEntity)blockEntity, blockPos);
+        player.openMenu((BatteryBlockEntity)blockEntity, blockPos);
 
         return InteractionResult.SUCCESS;
     }
 
     @Override
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, ModBlockEntities.SOLAR_PANEL.get(), SolarPanelBlockEntity::tick);
+        return createTickerHelper(blockEntityType, ModBlockEntities.BATTERY_BOX_ENTITY.get(), BatteryBlockEntity::tick);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         if(Screen.hasShiftDown()) {
-            tooltipComponents.add(Component.translatable("tooltip.infinity_tech.solar_panel.produces",
-                    ModEnergyUtils.getEnergyWithPrefix(getPeakFePerTick())).withStyle(ChatFormatting.GRAY));
-            tooltipComponents.add(Component.translatable("tooltip.infinity_tech.solar_panel.info").withStyle(ChatFormatting.GRAY));
+            tooltipComponents.add(Component.translatable("tooltip.infinity_tech.capacity",
+                            ModEnergyUtils.getEnergyWithPrefix(BatteryBlockEntity.CAPACITY)).
+                    withStyle(ChatFormatting.GRAY));
+            tooltipComponents.add(Component.translatable("tooltip.infinity_tech.transfer_rate",
+                            ModEnergyUtils.getEnergyWithPrefix(BatteryBlockEntity.MAX_TRANSFER)).
+                    withStyle(ChatFormatting.GRAY));
         }else {
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.shift_details").withStyle(ChatFormatting.YELLOW));
         }

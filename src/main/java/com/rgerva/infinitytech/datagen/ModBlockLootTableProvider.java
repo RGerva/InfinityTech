@@ -35,6 +35,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         dropSelf(ModBlocks.TITANIUM_BLOCK.get());
         dropSelf(ModBlocks.TITANIUM_RAW_BLOCK.get());
+        dropSelf(ModBlocks.BATTERY_BLOCK.get());
         dropSelf(ModBlocks.SOLAR_PANEL.get());
     }
 

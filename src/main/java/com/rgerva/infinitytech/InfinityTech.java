@@ -2,12 +2,16 @@ package com.rgerva.infinitytech;
 
 import com.mojang.logging.LogUtils;
 import com.rgerva.infinitytech.block.ModBlocks;
-import com.rgerva.infinitytech.blockentity.ModBlockEntity;
+import com.rgerva.infinitytech.blockentity.ModBlockEntities;
+import com.rgerva.infinitytech.blockentity.custom.BatteryBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.CreativeBatteryBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.SolarPanelBlockEntity;
 import com.rgerva.infinitytech.crative.ModCreativeTab;
 import com.rgerva.infinitytech.gui.ModGUI;
+import com.rgerva.infinitytech.gui.screen.BatteryScreen;
 import com.rgerva.infinitytech.gui.screen.SolarPanelScreen;
 import com.rgerva.infinitytech.item.ModItems;
+import com.rgerva.infinitytech.network.ModMessages;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -23,6 +27,8 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.slf4j.Logger;
 
+import static com.rgerva.infinitytech.blockentity.ModBlockEntities.*;
+
 @Mod(InfinityTech.MOD_ID)
 public class InfinityTech {
     public static final String MOD_ID = "infinity_tech";
@@ -35,11 +41,12 @@ public class InfinityTech {
 
         ModBlocks.register(modEventBus);
         ModItems.register(modEventBus);
-        ModBlockEntity.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
         ModGUI.register(modEventBus);
 
         modEventBus.addListener(ModCreativeTab::addCreative);
         modEventBus.addListener(this::registerCapabilities);
+        modEventBus.addListener(ModMessages::register);
     }
 
     @SubscribeEvent
@@ -57,14 +64,19 @@ public class InfinityTech {
 
         @SubscribeEvent
         public static void onRegisterMenuScreens(RegisterMenuScreensEvent event){
-            event.register(ModGUI.SOLAR_PANEL_MENU.get(), SolarPanelScreen::new);
+            event.register(ModGUI.BATTERY_BOX_MENU.get(), BatteryScreen::new);
+            event.register(ModGUI.SOLAR_PENEL_MENU.get(), SolarPanelScreen::new);
         }
     }
 
-    public void registerCapabilities(RegisterCapabilitiesEvent event){
+    public void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                ModBlockEntity.SOLAR_PANEL_ENTITY.get(), SolarPanelBlockEntity::getEnergyStorageCapability);
+                CREATIVE_BATTERY_ENTITY.get(), CreativeBatteryBlockEntity::getEnergyStorageCapability);
+
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
+                BATTERY_BOX_ENTITY.get(), BatteryBlockEntity::getEnergyStorageCapability);
+
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
+                SOLAR_PANEL.get(), SolarPanelBlockEntity::getEnergyStorageCapability);
     }
-
-
 }

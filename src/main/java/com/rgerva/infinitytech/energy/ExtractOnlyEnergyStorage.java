@@ -3,16 +3,12 @@ package com.rgerva.infinitytech.energy;
 import net.minecraft.nbt.IntTag;
 import net.minecraft.nbt.Tag;
 
-public class ModExtractEnergyStorage implements IModEnergyStorage {
+public class ExtractOnlyEnergyStorage implements IModEnergyStorage {
     protected int energy;
     protected int capacity;
     protected int maxExtract;
 
-    protected void onChange(){}
-
-    public ModExtractEnergyStorage() {}
-
-    public ModExtractEnergyStorage(int energy, int capacity, int maxExtract) {
+    public ExtractOnlyEnergyStorage(int energy, int capacity, int maxExtract) {
         this.energy = energy;
         this.capacity = capacity;
         this.maxExtract = maxExtract;
@@ -50,14 +46,20 @@ public class ModExtractEnergyStorage implements IModEnergyStorage {
         this.capacity = capacity;
     }
 
-    public int getMaxExtract(){
+    public int getMaxExtract() {
         return maxExtract;
     }
 
-    public void setMaxExtract(int maxExtract){
+    public void setMaxExtract(int maxExtract) {
         this.maxExtract = maxExtract;
         onChange();
     }
+
+    public void setMaxExtractWithoutUpdate(int maxExtract) {
+        this.maxExtract = maxExtract;
+    }
+
+    protected void onChange() {}
 
     @Override
     public Tag saveNBT() {
@@ -66,8 +68,9 @@ public class ModExtractEnergyStorage implements IModEnergyStorage {
 
     @Override
     public void loadNBT(Tag tag) {
-        if(!(tag instanceof IntTag)){
+        if(!(tag instanceof IntTag)) {
             energy = 0;
+
             return;
         }
 
@@ -81,15 +84,16 @@ public class ModExtractEnergyStorage implements IModEnergyStorage {
 
     @Override
     public int extractEnergy(int maxExtract, boolean simulate) {
-        if(!canExtract()){
+        if(!canExtract())
             return 0;
-        }
 
         int extracted = Math.min(energy, Math.min(getMaxExtract(), maxExtract));
-        if(!simulate){
+
+        if(!simulate) {
             energy -= extracted;
             onChange();
         }
+
         return extracted;
     }
 

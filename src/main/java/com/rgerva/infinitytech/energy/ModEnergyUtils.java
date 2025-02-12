@@ -5,7 +5,7 @@ import net.neoforged.neoforge.energy.IEnergyStorage;
 
 import java.util.Locale;
 
-public class EnergyToolTips {
+public class ModEnergyUtils {
     private static final String[] ENERGY_PREFIXES = new String[] {
             "", "k", "M", "G", "T", "P"
     };

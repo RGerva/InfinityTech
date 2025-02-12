@@ -44,6 +44,8 @@ public class ModCreativeTab {
 
                         output.accept(ModItems.TITANIUM_HORSE_ARMOR.get());
 
+                        output.accept(ModBlocks.CREATIVE_BATTERY.get());
+                        output.accept(ModBlocks.BATTERY_BLOCK.get());
                         output.accept(ModBlocks.SOLAR_PANEL.get());
 
                     }).build());

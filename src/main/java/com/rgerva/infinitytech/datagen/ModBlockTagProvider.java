@@ -24,12 +24,16 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.TITANIUM_END_ORE.get())
                 .add(ModBlocks.TITANIUM_BLOCK.get())
                 .add(ModBlocks.TITANIUM_RAW_BLOCK.get())
+                .add(ModBlocks.CREATIVE_BATTERY.get())
+                .add(ModBlocks.BATTERY_BLOCK.get())
                 .add(ModBlocks.SOLAR_PANEL.get());
 
         tag(BlockTags.MINEABLE_WITH_SHOVEL)
                 .add(ModBlocks.TITANIUM_RAW_BLOCK.get());
 
         tag(BlockTags.NEEDS_STONE_TOOL)
+                .add(ModBlocks.CREATIVE_BATTERY.get())
+                .add(ModBlocks.BATTERY_BLOCK.get())
                 .add(ModBlocks.SOLAR_PANEL.get());
 
         tag(BlockTags.NEEDS_IRON_TOOL)

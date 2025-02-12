@@ -1,13 +1,13 @@
 package com.rgerva.infinitytech.blockentity.custom;
 
-import com.rgerva.infinitytech.energy.ModExtractEnergyStorage;
-import com.rgerva.infinitytech.energy.base.ModEnergyStorageBlockEntity;
+import com.rgerva.infinitytech.block.custom.SolarPanelBlock;
+import com.rgerva.infinitytech.blockentity.ModBlockEntities;
+import com.rgerva.infinitytech.blockentity.custom.base.MenuEnergyStorageBlockEntity;
+import com.rgerva.infinitytech.energy.ExtractOnlyEnergyStorage;
 import com.rgerva.infinitytech.gui.menu.SolarPanelMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
-import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -18,26 +18,24 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.IEnergyStorage;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class SolarPanelBlockEntity extends ModEnergyStorageBlockEntity<ModExtractEnergyStorage> implements MenuProvider {
-
-    public SolarPanelBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState, int baseEnergyCapacity, int baseEnergyTransferRate) {
-        super(type, pos, blockState, baseEnergyCapacity, baseEnergyTransferRate);
+public class SolarPanelBlockEntity extends MenuEnergyStorageBlockEntity<ExtractOnlyEnergyStorage> {
+    public SolarPanelBlockEntity(BlockPos blockPos, BlockState blockState) {
+        super(ModBlockEntities.SOLAR_PANEL.get(), blockPos, blockState, "solar_panel", 128 * 20 * 2, 128 * 4);
     }
 
     @Override
-    protected ModExtractEnergyStorage initEnergyStorage() {
-        return new ModExtractEnergyStorage(0,baseEnergyCapacity, baseEnergyTransferRate){
+    protected ExtractOnlyEnergyStorage initEnergyStorage() {
+        return new ExtractOnlyEnergyStorage(0, baseEnergyCapacity, baseEnergyTransferRate) {
             @Override
             public int getCapacity() {
-                return Math.max(1, (int) (double) capacity);
+                return Math.max(1, capacity);
             }
 
             @Override
             public int getMaxExtract() {
-                return Math.max(1, (int) (double) maxExtract);
+                return Math.max(1, maxExtract);
             }
 
             @Override
@@ -46,11 +44,6 @@ public class SolarPanelBlockEntity extends ModEnergyStorageBlockEntity<ModExtrac
                 syncEnergyToPlayers(32);
             }
         };
-    }
-
-    @Override
-    public @NotNull Component getDisplayName() {
-        return Component.literal("Solar Panel");
     }
 
     @Override
@@ -75,8 +68,7 @@ public class SolarPanelBlockEntity extends ModEnergyStorageBlockEntity<ModExtrac
 
         i = Mth.clamp(i, 0, 60);
 
-        int energyProduction = (int)(i/60.f * blockEntity.getEnergy());
-
+        int energyProduction = (int)(i/60.f * SolarPanelBlock.getPeakFePerTick());
 
         blockEntity.energyStorage.setEnergy(Math.min(blockEntity.energyStorage.getCapacity(),
                 blockEntity.energyStorage.getEnergy() + energyProduction));

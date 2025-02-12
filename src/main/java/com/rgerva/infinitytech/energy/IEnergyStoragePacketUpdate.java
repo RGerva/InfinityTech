@@ -1,9 +1,10 @@
-package com.rgerva.infinitytech.energy.base;
+package com.rgerva.infinitytech.energy;
 
 /**
  * Used for EnergySyncS2CPacket
  */
-public interface IModEnergyStoragePacketUpdate {
+
+public interface IEnergyStoragePacketUpdate {
     void setEnergy(int energy);
     void setCapacity(int capacity);
 }

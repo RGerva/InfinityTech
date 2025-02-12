@@ -29,6 +29,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.TITANIUM_BLOCK);
         blockWithItem(ModBlocks.TITANIUM_RAW_BLOCK);
 
+        horizontalBlockWithItem(ModBlocks.CREATIVE_BATTERY, true);
+        horizontalBlockWithItem(ModBlocks.BATTERY_BLOCK, true);
+
         solarPanelBlockWithItem(ModBlocks.SOLAR_PANEL);
     }
 
@@ -122,6 +125,22 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 modelForState().modelFile(solarPanel).addModel();
 
         simpleBlockItem(block.value(), solarPanel);
+    }
+
+    private void horizontalBlockWithItem(Holder<? extends Block> block, boolean uniqueBottomTexture) {
+        ResourceLocation blockId = Objects.requireNonNull(block.getKey()).location();
+
+        ModelFile model = models().
+                withExistingParent(blockId.getPath(), ModelProvider.BLOCK_FOLDER + "/cube").
+                texture("particle", "#up").
+                texture("up", getBlockTexture(block, "_top")).
+                texture("down", getBlockTexture(block, uniqueBottomTexture?"_bottom":"_top")).
+                texture("north", getBlockTexture(block, "_side")).
+                texture("south", getBlockTexture(block, "_side")).
+                texture("east", getBlockTexture(block, "_side")).
+                texture("west", getBlockTexture(block, "_side"));
+
+        simpleBlockWithItem(block.value(), model);
     }
 
     private ResourceLocation getBlockTexture(Holder<? extends Block> block, String pathSuffix) {
