@@ -38,13 +38,17 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         }
     }
 
-    List<ItemLike> SMELTABLES = List.of(ModItems.TITANIUM_RAW.get(), ModBlocks.TITANIUM_ORE.get(),
+    List<ItemLike> SMELTABLES_TITANIUM = List.of(ModItems.TITANIUM_RAW.get(), ModBlocks.TITANIUM_ORE.get(),
             ModBlocks.TITANIUM_DEEPSLATE_ORE.get(), ModBlocks.TITANIUM_END_ORE.get());
+
+    List<ItemLike> SMELTABLES_STEEL = List.of(Items.IRON_INGOT);
 
     @Override
     protected void buildRecipes() {
-        oreSmelting(this.output, SMELTABLES, RecipeCategory.MISC, ModItems.TITANIUM_INGOT.get(), 0.25f, 200,"titanium");
-        oreBlasting(this.output, SMELTABLES, RecipeCategory.MISC, ModItems.TITANIUM_INGOT.get(), 0.25f, 100,"titanium");
+        oreSmelting(this.output, SMELTABLES_TITANIUM, RecipeCategory.MISC, ModItems.TITANIUM_INGOT.get(), 0.25f, 200,"titanium");
+        oreSmelting(this.output, SMELTABLES_STEEL, RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 0.25f, 200,"steel");
+        oreBlasting(this.output, SMELTABLES_TITANIUM, RecipeCategory.MISC, ModItems.TITANIUM_INGOT.get(), 0.25f, 100,"titanium");
+        oreBlasting(this.output, SMELTABLES_STEEL, RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), 0.25f, 100,"steel");
 
         shapeless(RecipeCategory.MISC, ModItems.TITANIUM_RAW.get(), 9)
                 .requires(ModBlocks.TITANIUM_RAW_BLOCK)

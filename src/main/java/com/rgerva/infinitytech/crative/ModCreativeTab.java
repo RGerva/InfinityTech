@@ -30,6 +30,7 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.TITANIUM_BLOCK.get());
                         output.accept(ModItems.TITANIUM_INGOT.get());
                         output.accept(ModItems.TITANIUM_NUGGET.get());
+                        output.accept(ModItems.STEEL_INGOT.get());
 
                         output.accept(ModItems.TITANIUM_SWORD.get());
                         output.accept(ModItems.TITANIUM_PICKAXE.get());
@@ -55,6 +56,7 @@ public class ModCreativeTab {
             event.accept(ModItems.TITANIUM_INGOT.get());
             event.accept(ModItems.TITANIUM_RAW.get());
             event.accept(ModItems.TITANIUM_NUGGET.get());
+            event.accept(ModItems.STEEL_INGOT.get());
         }
 
         if(event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS){

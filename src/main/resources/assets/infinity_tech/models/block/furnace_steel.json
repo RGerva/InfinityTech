@@ -1,8 +1,0 @@
-{
-  "parent": "block/orientable",
-  "textures": {
-    "top": "infinity_tech:block/furnace_steel_top",
-    "side": "infinity_tech:block/furnace_steel_side",
-    "front": "infinity_tech:block/furnace_steel_front"
-  }
-}

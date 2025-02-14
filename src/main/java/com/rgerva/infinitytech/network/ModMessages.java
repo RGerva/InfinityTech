@@ -13,8 +13,7 @@ public class ModMessages {
     public static void register(final RegisterPayloadHandlersEvent event) {
         final PayloadRegistrar registrar = event.registrar("1.0");
 
-        registrar.playToClient(EnergySyncS2CPacket.ID, EnergySyncS2CPacket.STREAM_CODEC,
-                EnergySyncS2CPacket::handle);
+        registrar.playToClient(EnergySyncS2CPacket.ID, EnergySyncS2CPacket.STREAM_CODEC, EnergySyncS2CPacket::handle);
     }
 
     public static void sendToServer(CustomPacketPayload message) {

@@ -5,7 +5,6 @@ import com.rgerva.infinitytech.blockentity.custom.base.MenuEnergyStorageBlockEnt
 import com.rgerva.infinitytech.energy.InfinityEnergyStorage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -18,9 +17,6 @@ import org.jetbrains.annotations.Nullable;
 
 public class CreativeBatteryBlockEntity extends MenuEnergyStorageBlockEntity<InfinityEnergyStorage> {
 
-    private boolean energyProduction = true;
-    private boolean energyConsumption;
-
     public CreativeBatteryBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(ModBlockEntities.CREATIVE_BATTERY_ENTITY.get(), blockPos, blockState, "creative_battery", Integer.MAX_VALUE, Integer.MAX_VALUE);
     }
@@ -30,12 +26,12 @@ public class CreativeBatteryBlockEntity extends MenuEnergyStorageBlockEntity<Inf
         return new InfinityEnergyStorage() {
             @Override
             public int extractEnergy(int i, boolean b) {
-                return energyProduction?super.extractEnergy(i, b):0;
+                return super.extractEnergy(i, b);
             }
 
             @Override
             public int receiveEnergy(int i, boolean b) {
-                return energyConsumption?super.receiveEnergy(i, b):0;
+                return super.receiveEnergy(i, b);
             }
 
             @Override
@@ -63,9 +59,6 @@ public class CreativeBatteryBlockEntity extends MenuEnergyStorageBlockEntity<Inf
 
     private static void transferInfiniteEnergy(Level level, BlockPos blockPos, BlockState state, CreativeBatteryBlockEntity blockEntity) {
         if(level.isClientSide)
-            return;
-
-        if(!blockEntity.energyProduction)
             return;
 
         for(Direction direction:Direction.values()) {

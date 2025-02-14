@@ -13,6 +13,7 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 public record EnergySyncS2CPacket(int energy, int capacity, BlockPos pos) implements CustomPacketPayload {
     public static final Type<EnergySyncS2CPacket> ID =
             new Type<>(ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID,"energy_sync"));
+
     public static final StreamCodec<RegistryFriendlyByteBuf, EnergySyncS2CPacket> STREAM_CODEC =
             StreamCodec.ofMember(EnergySyncS2CPacket::write, EnergySyncS2CPacket::new);
 

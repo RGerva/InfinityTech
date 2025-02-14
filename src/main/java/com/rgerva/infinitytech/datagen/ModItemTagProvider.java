@@ -50,7 +50,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
         this.tag(ItemTags.TRIM_MATERIALS)
                 .add(ModItems.TITANIUM_INGOT.get())
                 .add(ModItems.TITANIUM_RAW.get())
-                .add(ModItems.TITANIUM_NUGGET.get());
+                .add(ModItems.TITANIUM_NUGGET.get())
+                .add(ModItems.STEEL_INGOT.get());
 
         this.tag(ModTags.Items.TITANIUM_REPAIR)
                 .add(ModItems.TITANIUM_INGOT.get());
