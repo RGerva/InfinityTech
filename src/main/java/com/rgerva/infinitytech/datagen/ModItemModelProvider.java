@@ -44,6 +44,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.TITANIUM_RAW.get());
         basicItem(ModItems.TITANIUM_NUGGET.get());
         basicItem(ModItems.STEEL_INGOT.get());
+        basicItem(ModItems.STEEL_NUGGET.get());
 
         handheldItem(ModItems.TITANIUM_SWORD.get());
         handheldItem(ModItems.TITANIUM_PICKAXE.get());
@@ -57,6 +58,22 @@ public class ModItemModelProvider extends ItemModelProvider {
         trimmedArmorItem(ModItems.TITANIUM_BOOTS);
 
         basicItem(ModItems.TITANIUM_HORSE_ARMOR.get());
+
+        basicItem(ModItems.LEAD_INGOT.get());
+        basicItem(ModItems.LEAD_NUGGET.get());
+        basicItem(ModItems.LEAD_RAW.get());
+
+        basicItem(ModItems.ALUMINUM_INGOT.get());
+        basicItem(ModItems.ALUMINUM_NUGGET.get());
+        basicItem(ModItems.ALUMINUM_RAW.get());
+
+        basicItem(ModItems.NICKEL_INGOT.get());
+        basicItem(ModItems.NICKEL_NUGGET.get());
+        basicItem(ModItems.NICKEL_RAW.get());
+
+        basicItem(ModItems.PLATINUM_INGOT.get());
+        basicItem(ModItems.PLATINUM_NUGGET.get());
+        basicItem(ModItems.PLATINUM_RAW.get());
     }
 
     private ItemModelBuilder saplingItem(DeferredBlock<Block> item) {

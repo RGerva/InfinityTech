@@ -22,6 +22,10 @@ public class ModCreativeTab {
             () -> CreativeModeTab.builder().icon(()-> new ItemStack(ModItems.TITANIUM_INGOT.get()))
                     .title(Component.translatable("name.infinity_tech.name"))
                     .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ModBlocks.CREATIVE_BATTERY.get());
+                        output.accept(ModBlocks.BATTERY_BLOCK.get());
+                        output.accept(ModBlocks.SOLAR_PANEL.get());
+
                         output.accept(ModBlocks.TITANIUM_ORE.get());
                         output.accept(ModBlocks.TITANIUM_DEEPSLATE_ORE.get());
                         output.accept(ModBlocks.TITANIUM_END_ORE.get());
@@ -30,7 +34,46 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.TITANIUM_BLOCK.get());
                         output.accept(ModItems.TITANIUM_INGOT.get());
                         output.accept(ModItems.TITANIUM_NUGGET.get());
-                        output.accept(ModItems.STEEL_INGOT.get());
+
+                        output.accept(ModBlocks.LEAD_ORE.get());
+                        output.accept(ModBlocks.LEAD_DEEPSLATE_ORE.get());
+                        output.accept(ModBlocks.LEAD_NETHER_ORE.get());
+                        output.accept(ModBlocks.LEAD_END_ORE.get());
+                        output.accept(ModItems.LEAD_RAW.get());
+                        output.accept(ModBlocks.LEAD_RAW_BLOCK.get());
+                        output.accept(ModBlocks.LEAD_BLOCK.get());
+                        output.accept(ModItems.LEAD_INGOT.get());
+                        output.accept(ModItems.LEAD_NUGGET.get());
+
+                        output.accept(ModBlocks.ALUMINUM_ORE.get());
+                        output.accept(ModBlocks.ALUMINUM_DEEPSLATE_ORE.get());
+                        output.accept(ModBlocks.ALUMINUM_NETHER_ORE.get());
+                        output.accept(ModBlocks.ALUMINUM_END_ORE.get());
+                        output.accept(ModItems.ALUMINUM_RAW.get());
+                        output.accept(ModBlocks.ALUMINUM_RAW_BLOCK.get());
+                        output.accept(ModBlocks.ALUMINUM_BLOCK.get());
+                        output.accept(ModItems.ALUMINUM_INGOT.get());
+                        output.accept(ModItems.ALUMINUM_NUGGET.get());
+
+                        output.accept(ModBlocks.NICKEL_ORE.get());
+                        output.accept(ModBlocks.NICKEL_DEEPSLATE_ORE.get());
+                        output.accept(ModBlocks.NICKEL_NETHER_ORE.get());
+                        output.accept(ModBlocks.NICKEL_END_ORE.get());
+                        output.accept(ModItems.NICKEL_RAW.get());
+                        output.accept(ModBlocks.NICKEL_RAW_BLOCK.get());
+                        output.accept(ModBlocks.NICKEL_BLOCK.get());
+                        output.accept(ModItems.NICKEL_INGOT.get());
+                        output.accept(ModItems.NICKEL_NUGGET.get());
+
+                        output.accept(ModBlocks.PLATINUM_ORE.get());
+                        output.accept(ModBlocks.PLATINUM_DEEPSLATE_ORE.get());
+                        output.accept(ModBlocks.PLATINUM_NETHER_ORE.get());
+                        output.accept(ModBlocks.PLATINUM_END_ORE.get());
+                        output.accept(ModItems.PLATINUM_RAW.get());
+                        output.accept(ModBlocks.PLATINUM_RAW_BLOCK.get());
+                        output.accept(ModBlocks.PLATINUM_BLOCK.get());
+                        output.accept(ModItems.PLATINUM_INGOT.get());
+                        output.accept(ModItems.PLATINUM_NUGGET.get());
 
                         output.accept(ModItems.TITANIUM_SWORD.get());
                         output.accept(ModItems.TITANIUM_PICKAXE.get());
@@ -45,9 +88,9 @@ public class ModCreativeTab {
 
                         output.accept(ModItems.TITANIUM_HORSE_ARMOR.get());
 
-                        output.accept(ModBlocks.CREATIVE_BATTERY.get());
-                        output.accept(ModBlocks.BATTERY_BLOCK.get());
-                        output.accept(ModBlocks.SOLAR_PANEL.get());
+                        output.accept(ModItems.STEEL_INGOT.get());
+                        output.accept(ModItems.STEEL_NUGGET.get());
+                        output.accept(ModBlocks.STEEL_BLOCK.get());
 
                     }).build());
 
@@ -56,7 +99,25 @@ public class ModCreativeTab {
             event.accept(ModItems.TITANIUM_INGOT.get());
             event.accept(ModItems.TITANIUM_RAW.get());
             event.accept(ModItems.TITANIUM_NUGGET.get());
+
+            event.accept(ModItems.LEAD_INGOT.get());
+            event.accept(ModItems.LEAD_RAW.get());
+            event.accept(ModItems.LEAD_NUGGET.get());
+
+            event.accept(ModItems.ALUMINUM_INGOT.get());
+            event.accept(ModItems.ALUMINUM_RAW.get());
+            event.accept(ModItems.ALUMINUM_NUGGET.get());
+
+            event.accept(ModItems.NICKEL_INGOT.get());
+            event.accept(ModItems.NICKEL_RAW.get());
+            event.accept(ModItems.NICKEL_NUGGET.get());
+
+            event.accept(ModItems.PLATINUM_INGOT.get());
+            event.accept(ModItems.PLATINUM_RAW.get());
+            event.accept(ModItems.PLATINUM_NUGGET.get());
+
             event.accept(ModItems.STEEL_INGOT.get());
+            event.accept(ModItems.STEEL_NUGGET.get());
         }
 
         if(event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS){
@@ -64,10 +125,39 @@ public class ModCreativeTab {
             event.accept(ModBlocks.TITANIUM_END_ORE.get());
             event.accept(ModBlocks.TITANIUM_ORE.get());
             event.accept(ModBlocks.TITANIUM_RAW_BLOCK.get());
+
+            event.accept(ModBlocks.LEAD_NETHER_ORE.get());
+            event.accept(ModBlocks.LEAD_DEEPSLATE_ORE.get());
+            event.accept(ModBlocks.LEAD_END_ORE.get());
+            event.accept(ModBlocks.LEAD_ORE.get());
+            event.accept(ModBlocks.LEAD_RAW_BLOCK.get());
+
+            event.accept(ModBlocks.ALUMINUM_NETHER_ORE.get());
+            event.accept(ModBlocks.ALUMINUM_DEEPSLATE_ORE.get());
+            event.accept(ModBlocks.ALUMINUM_END_ORE.get());
+            event.accept(ModBlocks.ALUMINUM_ORE.get());
+            event.accept(ModBlocks.ALUMINUM_RAW_BLOCK.get());
+
+            event.accept(ModBlocks.NICKEL_NETHER_ORE.get());
+            event.accept(ModBlocks.NICKEL_DEEPSLATE_ORE.get());
+            event.accept(ModBlocks.NICKEL_END_ORE.get());
+            event.accept(ModBlocks.NICKEL_ORE.get());
+            event.accept(ModBlocks.NICKEL_RAW_BLOCK.get());
+
+            event.accept(ModBlocks.PLATINUM_NETHER_ORE.get());
+            event.accept(ModBlocks.PLATINUM_DEEPSLATE_ORE.get());
+            event.accept(ModBlocks.PLATINUM_END_ORE.get());
+            event.accept(ModBlocks.PLATINUM_ORE.get());
+            event.accept(ModBlocks.PLATINUM_RAW_BLOCK.get());
         }
 
         if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS){
             event.accept(ModBlocks.TITANIUM_BLOCK.get());
+            event.accept(ModBlocks.STEEL_BLOCK.get());
+            event.accept(ModBlocks.LEAD_BLOCK.get());
+            event.accept(ModBlocks.ALUMINUM_BLOCK.get());
+            event.accept(ModBlocks.NICKEL_BLOCK.get());
+            event.accept(ModBlocks.PLATINUM_BLOCK.get());
         }
 
         if(event.getTabKey() == CreativeModeTabs.COMBAT){

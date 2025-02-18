@@ -26,17 +26,60 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        add(ModBlocks.TITANIUM_ORE.get(),
-                block -> createOreDrop(ModBlocks.TITANIUM_ORE.get(), ModItems.TITANIUM_RAW.get()));
-        add(ModBlocks.TITANIUM_DEEPSLATE_ORE.get(),
-                block -> createOreDrop(ModBlocks.TITANIUM_DEEPSLATE_ORE.get(), ModItems.TITANIUM_RAW.get()));
-        add(ModBlocks.TITANIUM_END_ORE.get(),
-                block -> createMultipleOreDrops(ModBlocks.TITANIUM_END_ORE.get(), ModItems.TITANIUM_RAW.get(), 2F, 3F));
+        LootTableOre(ModBlocks.TITANIUM_ORE.get(), ModItems.TITANIUM_RAW.get(), 0, 0);
+        LootTableOre(ModBlocks.TITANIUM_DEEPSLATE_ORE.get(), ModItems.TITANIUM_RAW.get(), 0, 0);
+        LootTableOre(ModBlocks.TITANIUM_END_ORE.get(), ModItems.TITANIUM_RAW.get(), 2.0F, 3.0F);
 
         dropSelf(ModBlocks.TITANIUM_BLOCK.get());
         dropSelf(ModBlocks.TITANIUM_RAW_BLOCK.get());
+
+        dropSelf(ModBlocks.STEEL_BLOCK.get());
+
+        LootTableOre(ModBlocks.LEAD_ORE.get(), ModItems.LEAD_RAW.get(), 0, 0);
+        LootTableOre(ModBlocks.LEAD_DEEPSLATE_ORE.get(), ModItems.LEAD_RAW.get(), 0, 0);
+        LootTableOre(ModBlocks.LEAD_NETHER_ORE.get(), ModItems.LEAD_RAW.get(), 2.0F, 3.0F);
+        LootTableOre(ModBlocks.LEAD_END_ORE.get(), ModItems.LEAD_RAW.get(), 2.0F, 3.0F);
+
+        dropSelf(ModBlocks.LEAD_BLOCK.get());
+        dropSelf(ModBlocks.LEAD_RAW_BLOCK.get());
+
+        LootTableOre(ModBlocks.ALUMINUM_ORE.get(), ModItems.ALUMINUM_RAW.get(), 0, 0);
+        LootTableOre(ModBlocks.ALUMINUM_DEEPSLATE_ORE.get(), ModItems.ALUMINUM_RAW.get(), 0, 0);
+        LootTableOre(ModBlocks.ALUMINUM_NETHER_ORE.get(), ModItems.ALUMINUM_RAW.get(), 2.0F, 3.0F);
+        LootTableOre(ModBlocks.ALUMINUM_END_ORE.get(), ModItems.ALUMINUM_RAW.get(), 2.0F, 3.0F);
+
+        dropSelf(ModBlocks.ALUMINUM_BLOCK.get());
+        dropSelf(ModBlocks.ALUMINUM_RAW_BLOCK.get());
+
+        LootTableOre(ModBlocks.NICKEL_ORE.get(), ModItems.NICKEL_RAW.get(), 0, 0);
+        LootTableOre(ModBlocks.NICKEL_DEEPSLATE_ORE.get(), ModItems.NICKEL_RAW.get(), 0, 0);
+        LootTableOre(ModBlocks.NICKEL_NETHER_ORE.get(), ModItems.NICKEL_RAW.get(), 2.0F, 3.0F);
+        LootTableOre(ModBlocks.NICKEL_END_ORE.get(), ModItems.NICKEL_RAW.get(), 2.0F, 3.0F);
+
+        dropSelf(ModBlocks.NICKEL_BLOCK.get());
+        dropSelf(ModBlocks.NICKEL_RAW_BLOCK.get());
+
+        LootTableOre(ModBlocks.PLATINUM_ORE.get(), ModItems.PLATINUM_RAW.get(), 0, 0);
+        LootTableOre(ModBlocks.PLATINUM_DEEPSLATE_ORE.get(), ModItems.PLATINUM_RAW.get(), 0, 0);
+        LootTableOre(ModBlocks.PLATINUM_NETHER_ORE.get(), ModItems.PLATINUM_RAW.get(), 2.0F, 3.0F);
+        LootTableOre(ModBlocks.PLATINUM_END_ORE.get(), ModItems.PLATINUM_RAW.get(), 2.0F, 3.0F);
+
+        dropSelf(ModBlocks.PLATINUM_BLOCK.get());
+        dropSelf(ModBlocks.PLATINUM_RAW_BLOCK.get());
+
         dropSelf(ModBlocks.BATTERY_BLOCK.get());
         dropSelf(ModBlocks.SOLAR_PANEL.get());
+    }
+
+    protected void LootTableOre(Block pInput, Item pOutput, float minDrops, float maxDrops){
+        if(minDrops == 0 && maxDrops == 0){
+            add(pInput,
+                    block -> createOreDrop(pInput, pOutput));
+        }else{
+            add(pInput,
+                    block -> createMultipleOreDrops(pInput, pOutput, minDrops, maxDrops));
+
+        }
     }
 
     protected LootTable.Builder createMultipleOreDrops(Block pBlock, Item item, float minDrops, float maxDrops) {

@@ -27,14 +27,14 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.slf4j.Logger;
 
-import static com.rgerva.infinitytech.blockentity.ModBlockEntities.*;
-
 @Mod(InfinityTech.MOD_ID)
 public class InfinityTech {
     public static final String MOD_ID = "infinity_tech";
     private static final Logger LOGGER = LogUtils.getLogger();
 
     public InfinityTech(IEventBus modEventBus, ModContainer modContainer) {
+        LOGGER.debug("START REGISTERING >> {}", InfinityTech.MOD_ID);
+
         NeoForge.EVENT_BUS.register(this);
 
         ModCreativeTab.register(modEventBus);
@@ -47,6 +47,8 @@ public class InfinityTech {
         modEventBus.addListener(ModCreativeTab::addCreative);
         modEventBus.addListener(this::registerCapabilities);
         modEventBus.addListener(ModMessages::register);
+
+        LOGGER.debug("END REGISTERING >> {}", InfinityTech.MOD_ID);
     }
 
     @SubscribeEvent
@@ -71,12 +73,12 @@ public class InfinityTech {
 
     public void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                CREATIVE_BATTERY_ENTITY.get(), CreativeBatteryBlockEntity::getEnergyStorageCapability);
+                ModBlockEntities.CREATIVE_BATTERY_ENTITY.get(), CreativeBatteryBlockEntity::getEnergyStorageCapability);
 
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                BATTERY_BOX_ENTITY.get(), BatteryBlockEntity::getEnergyStorageCapability);
+                ModBlockEntities.BATTERY_BOX_ENTITY.get(), BatteryBlockEntity::getEnergyStorageCapability);
 
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                SOLAR_PANEL.get(), SolarPanelBlockEntity::getEnergyStorageCapability);
+                ModBlockEntities.SOLAR_PANEL.get(), SolarPanelBlockEntity::getEnergyStorageCapability);
     }
 }

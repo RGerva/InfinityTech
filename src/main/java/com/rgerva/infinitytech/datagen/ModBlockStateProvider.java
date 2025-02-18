@@ -29,6 +29,36 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.TITANIUM_BLOCK);
         blockWithItem(ModBlocks.TITANIUM_RAW_BLOCK);
 
+        blockWithItem(ModBlocks.STEEL_BLOCK);
+
+        blockWithItem(ModBlocks.LEAD_ORE);
+        blockWithItem(ModBlocks.LEAD_DEEPSLATE_ORE);
+        blockWithItem(ModBlocks.LEAD_NETHER_ORE);
+        blockWithItem(ModBlocks.LEAD_END_ORE);
+        blockWithItem(ModBlocks.LEAD_BLOCK);
+        blockWithItem(ModBlocks.LEAD_RAW_BLOCK);
+
+        blockWithItem(ModBlocks.ALUMINUM_ORE);
+        blockWithItem(ModBlocks.ALUMINUM_DEEPSLATE_ORE);
+        blockWithItem(ModBlocks.ALUMINUM_NETHER_ORE);
+        blockWithItem(ModBlocks.ALUMINUM_END_ORE);
+        blockWithItem(ModBlocks.ALUMINUM_BLOCK);
+        blockWithItem(ModBlocks.ALUMINUM_RAW_BLOCK);
+
+        blockWithItem(ModBlocks.NICKEL_ORE);
+        blockWithItem(ModBlocks.NICKEL_DEEPSLATE_ORE);
+        blockWithItem(ModBlocks.NICKEL_NETHER_ORE);
+        blockWithItem(ModBlocks.NICKEL_END_ORE);
+        blockWithItem(ModBlocks.NICKEL_BLOCK);
+        blockWithItem(ModBlocks.NICKEL_RAW_BLOCK);
+
+        blockWithItem(ModBlocks.PLATINUM_ORE);
+        blockWithItem(ModBlocks.PLATINUM_DEEPSLATE_ORE);
+        blockWithItem(ModBlocks.PLATINUM_NETHER_ORE);
+        blockWithItem(ModBlocks.PLATINUM_END_ORE);
+        blockWithItem(ModBlocks.PLATINUM_BLOCK);
+        blockWithItem(ModBlocks.PLATINUM_RAW_BLOCK);
+
         horizontalBlockWithItem(ModBlocks.CREATIVE_BATTERY, true);
         horizontalBlockWithItem(ModBlocks.BATTERY_BLOCK, true);
 
