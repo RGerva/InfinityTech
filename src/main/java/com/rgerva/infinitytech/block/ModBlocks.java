@@ -53,6 +53,14 @@ public class ModBlocks {
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.GILDED_BLACKSTONE)));
 
+    public static final DeferredBlock<Block> TITANIUM_NETHER_ORE = registerBlock("titanium_nether_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2, 4),
+                    BlockBehaviour.Properties.of()
+                            .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "titanium_nether_ore")))
+                            .strength(3.5F)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.NETHER_ORE)));
+
     //LEAD
     public static final DeferredBlock<Block> LEAD_ORE = registerBlock("lead_ore",
             () -> new DropExperienceBlock(UniformInt.of(2, 4),
@@ -184,6 +192,138 @@ public class ModBlocks {
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.DRIPSTONE_BLOCK)));
 
+    //SILVER
+    public static final DeferredBlock<Block> SILVER_ORE = registerBlock("silver_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2, 4),
+                    BlockBehaviour.Properties.of()
+                            .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "silver_ore")))
+                            .strength(3.0F)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.STONE)));
+
+    public static final DeferredBlock<Block> SILVER_DEEPSLATE_ORE = registerBlock("silver_deepslate_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2, 4),
+                    BlockBehaviour.Properties.of()
+                            .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "silver_deepslate_ore")))
+                            .strength(3.0F)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.DEEPSLATE)));
+
+    public static final DeferredBlock<Block> SILVER_NETHER_ORE = registerBlock("silver_nether_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2, 4),
+                    BlockBehaviour.Properties.of()
+                            .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "silver_nether_ore")))
+                            .strength(3.5F)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.NETHER_ORE)));
+
+    public static final DeferredBlock<Block> SILVER_END_ORE = registerBlock("silver_end_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2, 4),
+                    BlockBehaviour.Properties.of()
+                            .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "silver_end_ore")))
+                            .strength(3.5F)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.DRIPSTONE_BLOCK)));
+
+    //TIN
+    public static final DeferredBlock<Block> TIN_ORE = registerBlock("tin_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2, 4),
+                    BlockBehaviour.Properties.of()
+                            .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "tin_ore")))
+                            .strength(3.0F)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.STONE)));
+
+    public static final DeferredBlock<Block> TIN_DEEPSLATE_ORE = registerBlock("tin_deepslate_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2, 4),
+                    BlockBehaviour.Properties.of()
+                            .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "tin_deepslate_ore")))
+                            .strength(3.0F)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.DEEPSLATE)));
+
+    public static final DeferredBlock<Block> TIN_NETHER_ORE = registerBlock("tin_nether_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2, 4),
+                    BlockBehaviour.Properties.of()
+                            .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "tin_nether_ore")))
+                            .strength(3.5F)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.NETHER_ORE)));
+
+    public static final DeferredBlock<Block> TIN_END_ORE = registerBlock("tin_end_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2, 4),
+                    BlockBehaviour.Properties.of()
+                            .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "tin_end_ore")))
+                            .strength(3.5F)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.DRIPSTONE_BLOCK)));
+
+    //URANIUM
+    public static final DeferredBlock<Block> URANIUM_ORE = registerBlock("uranium_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2, 4),
+                    BlockBehaviour.Properties.of()
+                            .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "uranium_ore")))
+                            .strength(3.0F)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.STONE)));
+
+    public static final DeferredBlock<Block> URANIUM_DEEPSLATE_ORE = registerBlock("uranium_deepslate_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2, 4),
+                    BlockBehaviour.Properties.of()
+                            .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "uranium_deepslate_ore")))
+                            .strength(3.0F)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.DEEPSLATE)));
+
+    public static final DeferredBlock<Block> URANIUM_NETHER_ORE = registerBlock("uranium_nether_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2, 4),
+                    BlockBehaviour.Properties.of()
+                            .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "uranium_nether_ore")))
+                            .strength(3.5F)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.NETHER_ORE)));
+
+    public static final DeferredBlock<Block> URANIUM_END_ORE = registerBlock("uranium_end_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2, 4),
+                    BlockBehaviour.Properties.of()
+                            .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "uranium_end_ore")))
+                            .strength(3.5F)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.DRIPSTONE_BLOCK)));
+
+    //ZINC
+    public static final DeferredBlock<Block> ZINC_ORE = registerBlock("zinc_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2, 4),
+                    BlockBehaviour.Properties.of()
+                            .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "zinc_ore")))
+                            .strength(3.0F)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.STONE)));
+
+    public static final DeferredBlock<Block> ZINC_DEEPSLATE_ORE = registerBlock("zinc_deepslate_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2, 4),
+                    BlockBehaviour.Properties.of()
+                            .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "zinc_deepslate_ore")))
+                            .strength(3.0F)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.DEEPSLATE)));
+
+    public static final DeferredBlock<Block> ZINC_NETHER_ORE = registerBlock("zinc_nether_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2, 4),
+                    BlockBehaviour.Properties.of()
+                            .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "zinc_nether_ore")))
+                            .strength(3.5F)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.NETHER_ORE)));
+
+    public static final DeferredBlock<Block> ZINC_END_ORE = registerBlock("zinc_end_ore",
+            () -> new DropExperienceBlock(UniformInt.of(2, 4),
+                    BlockBehaviour.Properties.of()
+                            .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "zinc_end_ore")))
+                            .strength(3.5F)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.DRIPSTONE_BLOCK)));
+
     //======
     //BLOCKS
     //======
@@ -261,6 +401,62 @@ public class ModBlocks {
     public static final DeferredBlock<Block> PLATINUM_RAW_BLOCK = registerBlock("platinum_raw_block",
             () -> new Block(BlockBehaviour.Properties.of()
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "platinum_raw_block")))
+                    .strength(1f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.GRAVEL)));
+
+    public static final DeferredBlock<Block> SILVER_BLOCK = registerBlock("silver_block",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "silver_block")))
+                    .strength(3.0F)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.METAL)));
+
+    public static final DeferredBlock<Block> SILVER_RAW_BLOCK = registerBlock("silver_raw_block",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "silver_raw_block")))
+                    .strength(1f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.GRAVEL)));
+
+    public static final DeferredBlock<Block> TIN_BLOCK = registerBlock("tin_block",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "tin_block")))
+                    .strength(3.0F)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.METAL)));
+
+    public static final DeferredBlock<Block> TIN_RAW_BLOCK = registerBlock("tin_raw_block",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "tin_raw_block")))
+                    .strength(1f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.GRAVEL)));
+
+    public static final DeferredBlock<Block> URANIUM_BLOCK = registerBlock("uranium_block",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "uranium_block")))
+                    .strength(3.0F)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.METAL)));
+
+    public static final DeferredBlock<Block> URANIUM_RAW_BLOCK = registerBlock("uranium_raw_block",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "uranium_raw_block")))
+                    .strength(1f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.GRAVEL)));
+
+    public static final DeferredBlock<Block> ZINC_BLOCK = registerBlock("zinc_block",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "zinc_block")))
+                    .strength(3.0F)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.METAL)));
+
+    public static final DeferredBlock<Block> ZINC_RAW_BLOCK = registerBlock("zinc_raw_block",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "zinc_raw_block")))
                     .strength(1f)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.GRAVEL)));

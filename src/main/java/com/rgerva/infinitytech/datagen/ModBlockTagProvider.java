@@ -22,6 +22,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.TITANIUM_ORE.get())
                 .add(ModBlocks.TITANIUM_DEEPSLATE_ORE.get())
+                .add(ModBlocks.TITANIUM_NETHER_ORE.get())
                 .add(ModBlocks.TITANIUM_END_ORE.get())
                 .add(ModBlocks.TITANIUM_BLOCK.get())
                 .add(ModBlocks.TITANIUM_RAW_BLOCK.get())
@@ -56,6 +57,34 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.PLATINUM_BLOCK.get())
                 .add(ModBlocks.PLATINUM_RAW_BLOCK.get())
 
+                .add(ModBlocks.SILVER_ORE.get())
+                .add(ModBlocks.SILVER_DEEPSLATE_ORE.get())
+                .add(ModBlocks.SILVER_NETHER_ORE.get())
+                .add(ModBlocks.SILVER_END_ORE.get())
+                .add(ModBlocks.SILVER_BLOCK.get())
+                .add(ModBlocks.SILVER_RAW_BLOCK.get())
+
+                .add(ModBlocks.TIN_ORE.get())
+                .add(ModBlocks.TIN_DEEPSLATE_ORE.get())
+                .add(ModBlocks.TIN_NETHER_ORE.get())
+                .add(ModBlocks.TIN_END_ORE.get())
+                .add(ModBlocks.TIN_BLOCK.get())
+                .add(ModBlocks.TIN_RAW_BLOCK.get())
+
+                .add(ModBlocks.URANIUM_ORE.get())
+                .add(ModBlocks.URANIUM_DEEPSLATE_ORE.get())
+                .add(ModBlocks.URANIUM_NETHER_ORE.get())
+                .add(ModBlocks.URANIUM_END_ORE.get())
+                .add(ModBlocks.URANIUM_BLOCK.get())
+                .add(ModBlocks.URANIUM_RAW_BLOCK.get())
+
+                .add(ModBlocks.ZINC_ORE.get())
+                .add(ModBlocks.ZINC_DEEPSLATE_ORE.get())
+                .add(ModBlocks.ZINC_NETHER_ORE.get())
+                .add(ModBlocks.ZINC_END_ORE.get())
+                .add(ModBlocks.ZINC_BLOCK.get())
+                .add(ModBlocks.ZINC_RAW_BLOCK.get())
+
                 .add(ModBlocks.CREATIVE_BATTERY.get())
                 .add(ModBlocks.BATTERY_BLOCK.get())
                 .add(ModBlocks.SOLAR_PANEL.get());
@@ -65,7 +94,11 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.LEAD_RAW_BLOCK.get())
                 .add(ModBlocks.ALUMINUM_RAW_BLOCK.get())
                 .add(ModBlocks.NICKEL_RAW_BLOCK.get())
-                .add(ModBlocks.PLATINUM_RAW_BLOCK.get());
+                .add(ModBlocks.PLATINUM_RAW_BLOCK.get())
+                .add(ModBlocks.SILVER_RAW_BLOCK.get())
+                .add(ModBlocks.TIN_RAW_BLOCK.get())
+                .add(ModBlocks.URANIUM_RAW_BLOCK.get())
+                .add(ModBlocks.ZINC_RAW_BLOCK.get());
 
         tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(ModBlocks.TITANIUM_RAW_BLOCK.get())
@@ -73,6 +106,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.ALUMINUM_RAW_BLOCK.get())
                 .add(ModBlocks.NICKEL_RAW_BLOCK.get())
                 .add(ModBlocks.PLATINUM_RAW_BLOCK.get())
+                .add(ModBlocks.SILVER_RAW_BLOCK.get())
+                .add(ModBlocks.TIN_RAW_BLOCK.get())
+                .add(ModBlocks.URANIUM_RAW_BLOCK.get())
+                .add(ModBlocks.ZINC_RAW_BLOCK.get())
 
                 .add(ModBlocks.CREATIVE_BATTERY.get())
                 .add(ModBlocks.BATTERY_BLOCK.get())
@@ -98,7 +135,23 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
                 .add(ModBlocks.PLATINUM_ORE.get())
                 .add(ModBlocks.PLATINUM_DEEPSLATE_ORE.get())
-                .add(ModBlocks.PLATINUM_BLOCK.get());
+                .add(ModBlocks.PLATINUM_BLOCK.get())
+
+                .add(ModBlocks.SILVER_ORE.get())
+                .add(ModBlocks.SILVER_DEEPSLATE_ORE.get())
+                .add(ModBlocks.SILVER_BLOCK.get())
+
+                .add(ModBlocks.TIN_ORE.get())
+                .add(ModBlocks.TIN_DEEPSLATE_ORE.get())
+                .add(ModBlocks.TIN_BLOCK.get())
+
+                .add(ModBlocks.URANIUM_ORE.get())
+                .add(ModBlocks.URANIUM_DEEPSLATE_ORE.get())
+                .add(ModBlocks.URANIUM_BLOCK.get())
+
+                .add(ModBlocks.ZINC_ORE.get())
+                .add(ModBlocks.ZINC_DEEPSLATE_ORE.get())
+                .add(ModBlocks.ZINC_BLOCK.get());
 
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(ModBlocks.LEAD_NETHER_ORE.get())
@@ -113,7 +166,20 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.PLATINUM_NETHER_ORE.get())
                 .add(ModBlocks.PLATINUM_END_ORE.get())
 
-                .add(ModBlocks.TITANIUM_END_ORE.get());
+                .add(ModBlocks.TITANIUM_NETHER_ORE.get())
+                .add(ModBlocks.TITANIUM_END_ORE.get())
+
+                .add(ModBlocks.SILVER_NETHER_ORE.get())
+                .add(ModBlocks.SILVER_END_ORE.get())
+
+                .add(ModBlocks.TIN_NETHER_ORE.get())
+                .add(ModBlocks.TIN_END_ORE.get())
+
+                .add(ModBlocks.URANIUM_NETHER_ORE.get())
+                .add(ModBlocks.URANIUM_END_ORE.get())
+
+                .add(ModBlocks.ZINC_NETHER_ORE.get())
+                .add(ModBlocks.ZINC_END_ORE.get());
 
         tag(ModTags.Blocks.NEEDS_TITANIUM_TOOL)
                 .add(ModBlocks.STEEL_BLOCK.get());

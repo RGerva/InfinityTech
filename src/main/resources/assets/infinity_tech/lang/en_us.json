@@ -34,6 +34,22 @@
   "item.infinity_tech.platinum_nugget": "Platinum Nugget",
   "item.infinity_tech.platinum_raw": "Platinum Raw",
 
+  "item.infinity_tech.silver_ingot": "Silver Ingot",
+  "item.infinity_tech.silver_nugget": "Silver Nugget",
+  "item.infinity_tech.silver_raw": "Silver Raw",
+
+  "item.infinity_tech.tin_ingot": "Tin Ingot",
+  "item.infinity_tech.tin_nugget": "Tin Nugget",
+  "item.infinity_tech.tin_raw": "Tin Raw",
+
+  "item.infinity_tech.uranium_ingot": "Uranium Ingot",
+  "item.infinity_tech.uranium_nugget": "Uranium Nugget",
+  "item.infinity_tech.uranium_raw": "Uranium Raw",
+
+  "item.infinity_tech.zinc_ingot": "Zinc Ingot",
+  "item.infinity_tech.zinc_nugget": "Zinc Nugget",
+  "item.infinity_tech.zinc_raw": "Zinc Raw",
+
   "block.infinity_tech.steel_block": "Steel Block",
 
   "block.infinity_tech.titanium_ore": "Titanium Ore",
@@ -41,6 +57,7 @@
   "block.infinity_tech.titanium_end_ore": "End Titanium Ore",
   "block.infinity_tech.titanium_block": "Titanium Block",
   "block.infinity_tech.titanium_raw_block": "Raw Titanium Block",
+  "block.infinity_tech.titanium_nether_block": "Nether Titanium Ore",
 
   "block.infinity_tech.lead_block": "Lead Block",
   "block.infinity_tech.lead_raw_block": "Raw Lead Block",
@@ -69,6 +86,34 @@
   "block.infinity_tech.platinum_end_ore": "End Platinum Ore",
   "block.infinity_tech.platinum_nether_ore": "Nether Platinum Ore",
   "block.infinity_tech.platinum_ore": "Platinum Ore",
+
+  "block.infinity_tech.silver_block": "Silver Block",
+  "block.infinity_tech.silver_raw_block": "Raw Silver Block",
+  "block.infinity_tech.silver_deepslate_ore": "Deepslate Silver Ore",
+  "block.infinity_tech.silver_end_ore": "End Silver Ore",
+  "block.infinity_tech.silver_nether_ore": "Nether Silver Ore",
+  "block.infinity_tech.silver_ore": "Silver Ore",
+
+  "block.infinity_tech.tin_block": "Tin Block",
+  "block.infinity_tech.tin_raw_block": "Raw Tin Block",
+  "block.infinity_tech.tin_deepslate_ore": "Deepslate Tin Ore",
+  "block.infinity_tech.tin_end_ore": "End Tin Ore",
+  "block.infinity_tech.tin_nether_ore": "Nether Tin Ore",
+  "block.infinity_tech.tin_ore": "Tin Ore",
+
+  "block.infinity_tech.uranium_block": "Uranium Block",
+  "block.infinity_tech.uranium_raw_block": "Raw Uranium Block",
+  "block.infinity_tech.uranium_deepslate_ore": "Deepslate Uranium Ore",
+  "block.infinity_tech.uranium_end_ore": "End Uranium Ore",
+  "block.infinity_tech.uranium_nether_ore": "Nether Uranium Ore",
+  "block.infinity_tech.uranium_ore": "Uranium Ore",
+
+  "block.infinity_tech.zinc_block": "Zinc Block",
+  "block.infinity_tech.zinc_raw_block": "Raw Zinc Block",
+  "block.infinity_tech.zinc_deepslate_ore": "Deepslate Zinc Ore",
+  "block.infinity_tech.zinc_end_ore": "End Zinc Ore",
+  "block.infinity_tech.zinc_nether_ore": "Nether Zinc Ore",
+  "block.infinity_tech.zinc_ore": "Zinc Ore",
 
   "block.infinity_tech.battery_box": "Battery",
   "block.infinity_tech.creative_battery_box": "Creative Battery",

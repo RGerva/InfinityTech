@@ -25,6 +25,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         blockWithItem(ModBlocks.TITANIUM_ORE);
         blockWithItem(ModBlocks.TITANIUM_DEEPSLATE_ORE);
+        blockWithItem(ModBlocks.TITANIUM_NETHER_ORE);
         blockWithItem(ModBlocks.TITANIUM_END_ORE);
         blockWithItem(ModBlocks.TITANIUM_BLOCK);
         blockWithItem(ModBlocks.TITANIUM_RAW_BLOCK);
@@ -58,6 +59,34 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.PLATINUM_END_ORE);
         blockWithItem(ModBlocks.PLATINUM_BLOCK);
         blockWithItem(ModBlocks.PLATINUM_RAW_BLOCK);
+
+        blockWithItem(ModBlocks.SILVER_ORE);
+        blockWithItem(ModBlocks.SILVER_DEEPSLATE_ORE);
+        blockWithItem(ModBlocks.SILVER_NETHER_ORE);
+        blockWithItem(ModBlocks.SILVER_END_ORE);
+        blockWithItem(ModBlocks.SILVER_BLOCK);
+        blockWithItem(ModBlocks.SILVER_RAW_BLOCK);
+
+        blockWithItem(ModBlocks.TIN_ORE);
+        blockWithItem(ModBlocks.TIN_DEEPSLATE_ORE);
+        blockWithItem(ModBlocks.TIN_NETHER_ORE);
+        blockWithItem(ModBlocks.TIN_END_ORE);
+        blockWithItem(ModBlocks.TIN_BLOCK);
+        blockWithItem(ModBlocks.TIN_RAW_BLOCK);
+
+        blockWithItem(ModBlocks.URANIUM_ORE);
+        blockWithItem(ModBlocks.URANIUM_DEEPSLATE_ORE);
+        blockWithItem(ModBlocks.URANIUM_NETHER_ORE);
+        blockWithItem(ModBlocks.URANIUM_END_ORE);
+        blockWithItem(ModBlocks.URANIUM_BLOCK);
+        blockWithItem(ModBlocks.URANIUM_RAW_BLOCK);
+
+        blockWithItem(ModBlocks.ZINC_ORE);
+        blockWithItem(ModBlocks.ZINC_DEEPSLATE_ORE);
+        blockWithItem(ModBlocks.ZINC_NETHER_ORE);
+        blockWithItem(ModBlocks.ZINC_END_ORE);
+        blockWithItem(ModBlocks.ZINC_BLOCK);
+        blockWithItem(ModBlocks.ZINC_RAW_BLOCK);
 
         horizontalBlockWithItem(ModBlocks.CREATIVE_BATTERY, true);
         horizontalBlockWithItem(ModBlocks.BATTERY_BLOCK, true);

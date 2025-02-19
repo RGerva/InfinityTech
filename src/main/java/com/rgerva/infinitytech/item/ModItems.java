@@ -43,6 +43,22 @@ public class ModItems {
             () -> new Item(new Item.Properties()
                     .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "platinum_ingot")))));
 
+    public static final DeferredItem<Item> SILVER_INGOT = ITEMS.register("silver_ingot",
+            () -> new Item(new Item.Properties()
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "silver_ingot")))));
+
+    public static final DeferredItem<Item> TIN_INGOT = ITEMS.register("tin_ingot",
+            () -> new Item(new Item.Properties()
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "tin_ingot")))));
+
+    public static final DeferredItem<Item> URANIUM_INGOT = ITEMS.register("uranium_ingot",
+            () -> new Item(new Item.Properties()
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "uranium_ingot")))));
+
+    public static final DeferredItem<Item> ZINC_INGOT = ITEMS.register("zinc_ingot",
+            () -> new Item(new Item.Properties()
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "zinc_ingot")))));
+
     //======
     //NUGGET
     //======
@@ -71,6 +87,22 @@ public class ModItems {
             () -> new Item(new Item.Properties()
                     .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "platinum_nugget")))));
 
+    public static final DeferredItem<Item> SILVER_NUGGET = ITEMS.register("silver_nugget",
+            () -> new Item(new Item.Properties()
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "silver_nugget")))));
+
+    public static final DeferredItem<Item> TIN_NUGGET = ITEMS.register("tin_nugget",
+            () -> new Item(new Item.Properties()
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "tin_nugget")))));
+
+    public static final DeferredItem<Item> URANIUM_NUGGET = ITEMS.register("uranium_nugget",
+            () -> new Item(new Item.Properties()
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "uranium_nugget")))));
+
+    public static final DeferredItem<Item> ZINC_NUGGET = ITEMS.register("zinc_nugget",
+            () -> new Item(new Item.Properties()
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "zinc_nugget")))));
+
     //===
     //RAW
     //===
@@ -94,6 +126,22 @@ public class ModItems {
     public static final DeferredItem<Item> PLATINUM_RAW = ITEMS.register("platinum_raw",
             () -> new Item(new Item.Properties()
                     .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "platinum_raw")))));
+
+    public static final DeferredItem<Item> SILVER_RAW = ITEMS.register("silver_raw",
+            () -> new Item(new Item.Properties()
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "silver_raw")))));
+
+    public static final DeferredItem<Item> TIN_RAW = ITEMS.register("tin_raw",
+            () -> new Item(new Item.Properties()
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "tin_raw")))));
+
+    public static final DeferredItem<Item> URANIUM_RAW = ITEMS.register("uranium_raw",
+            () -> new Item(new Item.Properties()
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "uranium_raw")))));
+
+    public static final DeferredItem<Item> ZINC_RAW = ITEMS.register("zinc_raw",
+            () -> new Item(new Item.Properties()
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "zinc_raw")))));
 
     //=====
     //TOOLS

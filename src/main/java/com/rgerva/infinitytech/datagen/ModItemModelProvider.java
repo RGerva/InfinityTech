@@ -74,6 +74,22 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.PLATINUM_INGOT.get());
         basicItem(ModItems.PLATINUM_NUGGET.get());
         basicItem(ModItems.PLATINUM_RAW.get());
+
+        basicItem(ModItems.SILVER_INGOT.get());
+        basicItem(ModItems.SILVER_NUGGET.get());
+        basicItem(ModItems.SILVER_RAW.get());
+
+        basicItem(ModItems.TIN_INGOT.get());
+        basicItem(ModItems.TIN_NUGGET.get());
+        basicItem(ModItems.TIN_RAW.get());
+
+        basicItem(ModItems.URANIUM_INGOT.get());
+        basicItem(ModItems.URANIUM_NUGGET.get());
+        basicItem(ModItems.URANIUM_RAW.get());
+
+        basicItem(ModItems.ZINC_INGOT.get());
+        basicItem(ModItems.ZINC_NUGGET.get());
+        basicItem(ModItems.ZINC_RAW.get());
     }
 
     private ItemModelBuilder saplingItem(DeferredBlock<Block> item) {

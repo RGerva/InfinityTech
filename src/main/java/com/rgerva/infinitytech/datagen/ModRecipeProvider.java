@@ -77,6 +77,34 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     ModBlocks.NICKEL_NETHER_ORE.get(),
                     ModBlocks.NICKEL_END_ORE.get());
 
+    List<ItemLike> SMELLABLE_SILVER =
+            List.of(ModItems.SILVER_RAW.get(),
+                    ModBlocks.SILVER_ORE.get(),
+                    ModBlocks.SILVER_DEEPSLATE_ORE.get(),
+                    ModBlocks.SILVER_NETHER_ORE.get(),
+                    ModBlocks.SILVER_END_ORE.get());
+
+    List<ItemLike> SMELLABLE_TIN =
+            List.of(ModItems.TIN_RAW.get(),
+                    ModBlocks.TIN_ORE.get(),
+                    ModBlocks.TIN_DEEPSLATE_ORE.get(),
+                    ModBlocks.TIN_NETHER_ORE.get(),
+                    ModBlocks.TIN_END_ORE.get());
+
+    List<ItemLike> SMELLABLE_URANIUM =
+            List.of(ModItems.URANIUM_RAW.get(),
+                    ModBlocks.URANIUM_ORE.get(),
+                    ModBlocks.URANIUM_DEEPSLATE_ORE.get(),
+                    ModBlocks.URANIUM_NETHER_ORE.get(),
+                    ModBlocks.URANIUM_END_ORE.get());
+
+    List<ItemLike> SMELLABLE_ZINC =
+            List.of(ModItems.ZINC_RAW.get(),
+                    ModBlocks.ZINC_ORE.get(),
+                    ModBlocks.ZINC_DEEPSLATE_ORE.get(),
+                    ModBlocks.ZINC_NETHER_ORE.get(),
+                    ModBlocks.ZINC_END_ORE.get());
+
     List<ItemLike> TITANIUM_TOOLS =
             List.of(ModItems.TITANIUM_SWORD,
                     ModItems.TITANIUM_PICKAXE,
@@ -142,6 +170,38 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         oreCook(this.output, SMELLABLE_PLATINUM, RecipeCategory.MISC, ModItems.PLATINUM_INGOT.get(), "platinum");
         customNuggetRecipe(ModItems.PLATINUM_NUGGET, ModItems.PLATINUM_INGOT,"platinum");
         customBlockToIngotRecipe(ModBlocks.PLATINUM_BLOCK, ModItems.PLATINUM_INGOT, "platinum");
+
+        //==================
+        //  SILVER RECIPES
+        //==================
+
+        oreCook(this.output, SMELLABLE_SILVER, RecipeCategory.MISC, ModItems.SILVER_INGOT.get(), "silver");
+        customNuggetRecipe(ModItems.SILVER_NUGGET, ModItems.SILVER_INGOT,"silver");
+        customBlockToIngotRecipe(ModBlocks.SILVER_BLOCK, ModItems.SILVER_INGOT, "silver");
+
+        //===============
+        //  TIN RECIPES
+        //===============
+
+        oreCook(this.output, SMELLABLE_TIN, RecipeCategory.MISC, ModItems.TIN_INGOT.get(), "tin");
+        customNuggetRecipe(ModItems.TIN_NUGGET, ModItems.TIN_INGOT,"tin");
+        customBlockToIngotRecipe(ModBlocks.TIN_BLOCK, ModItems.TIN_INGOT, "tin");
+
+        //===================
+        //  URANIUM RECIPES
+        //===================
+
+        oreCook(this.output, SMELLABLE_URANIUM, RecipeCategory.MISC, ModItems.URANIUM_INGOT.get(), "uranium");
+        customNuggetRecipe(ModItems.URANIUM_NUGGET, ModItems.URANIUM_INGOT,"uranium");
+        customBlockToIngotRecipe(ModBlocks.URANIUM_BLOCK, ModItems.URANIUM_INGOT, "uranium");
+
+        //================
+        //  ZINC RECIPES
+        //================
+
+        oreCook(this.output, SMELLABLE_ZINC, RecipeCategory.MISC, ModItems.ZINC_INGOT.get(), "zinc");
+        customNuggetRecipe(ModItems.ZINC_NUGGET, ModItems.ZINC_INGOT,"zinc");
+        customBlockToIngotRecipe(ModBlocks.ZINC_BLOCK, ModItems.ZINC_INGOT, "zinc");
 
 
     }

@@ -29,6 +29,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         LootTableOre(ModBlocks.TITANIUM_ORE.get(), ModItems.TITANIUM_RAW.get(), 0, 0);
         LootTableOre(ModBlocks.TITANIUM_DEEPSLATE_ORE.get(), ModItems.TITANIUM_RAW.get(), 0, 0);
         LootTableOre(ModBlocks.TITANIUM_END_ORE.get(), ModItems.TITANIUM_RAW.get(), 2.0F, 3.0F);
+        LootTableOre(ModBlocks.TITANIUM_NETHER_ORE.get(), ModItems.TITANIUM_RAW.get(), 2.0F, 3.0F);
 
         dropSelf(ModBlocks.TITANIUM_BLOCK.get());
         dropSelf(ModBlocks.TITANIUM_RAW_BLOCK.get());
@@ -66,6 +67,38 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         dropSelf(ModBlocks.PLATINUM_BLOCK.get());
         dropSelf(ModBlocks.PLATINUM_RAW_BLOCK.get());
+
+        LootTableOre(ModBlocks.SILVER_ORE.get(), ModItems.SILVER_RAW.get(), 0, 0);
+        LootTableOre(ModBlocks.SILVER_DEEPSLATE_ORE.get(), ModItems.SILVER_RAW.get(), 0, 0);
+        LootTableOre(ModBlocks.SILVER_NETHER_ORE.get(), ModItems.SILVER_RAW.get(), 2.0F, 3.0F);
+        LootTableOre(ModBlocks.SILVER_END_ORE.get(), ModItems.SILVER_RAW.get(), 2.0F, 3.0F);
+
+        dropSelf(ModBlocks.SILVER_BLOCK.get());
+        dropSelf(ModBlocks.SILVER_RAW_BLOCK.get());
+
+        LootTableOre(ModBlocks.TIN_ORE.get(), ModItems.TIN_RAW.get(), 0, 0);
+        LootTableOre(ModBlocks.TIN_DEEPSLATE_ORE.get(), ModItems.TIN_RAW.get(), 0, 0);
+        LootTableOre(ModBlocks.TIN_NETHER_ORE.get(), ModItems.TIN_RAW.get(), 2.0F, 3.0F);
+        LootTableOre(ModBlocks.TIN_END_ORE.get(), ModItems.TIN_RAW.get(), 2.0F, 3.0F);
+
+        dropSelf(ModBlocks.TIN_BLOCK.get());
+        dropSelf(ModBlocks.TIN_RAW_BLOCK.get());
+
+        LootTableOre(ModBlocks.URANIUM_ORE.get(), ModItems.URANIUM_RAW.get(), 0, 0);
+        LootTableOre(ModBlocks.URANIUM_DEEPSLATE_ORE.get(), ModItems.URANIUM_RAW.get(), 0, 0);
+        LootTableOre(ModBlocks.URANIUM_NETHER_ORE.get(), ModItems.URANIUM_RAW.get(), 2.0F, 3.0F);
+        LootTableOre(ModBlocks.URANIUM_END_ORE.get(), ModItems.URANIUM_RAW.get(), 2.0F, 3.0F);
+
+        dropSelf(ModBlocks.URANIUM_BLOCK.get());
+        dropSelf(ModBlocks.URANIUM_RAW_BLOCK.get());
+
+        LootTableOre(ModBlocks.ZINC_ORE.get(), ModItems.ZINC_RAW.get(), 0, 0);
+        LootTableOre(ModBlocks.ZINC_DEEPSLATE_ORE.get(), ModItems.ZINC_RAW.get(), 0, 0);
+        LootTableOre(ModBlocks.ZINC_NETHER_ORE.get(), ModItems.ZINC_RAW.get(), 2.0F, 3.0F);
+        LootTableOre(ModBlocks.ZINC_END_ORE.get(), ModItems.ZINC_RAW.get(), 2.0F, 3.0F);
+
+        dropSelf(ModBlocks.ZINC_BLOCK.get());
+        dropSelf(ModBlocks.ZINC_RAW_BLOCK.get());
 
         dropSelf(ModBlocks.BATTERY_BLOCK.get());
         dropSelf(ModBlocks.SOLAR_PANEL.get());

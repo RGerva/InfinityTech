@@ -30,7 +30,7 @@ import org.slf4j.Logger;
 @Mod(InfinityTech.MOD_ID)
 public class InfinityTech {
     public static final String MOD_ID = "infinity_tech";
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public InfinityTech(IEventBus modEventBus, ModContainer modContainer) {
         LOGGER.debug("START REGISTERING >> {}", InfinityTech.MOD_ID);
