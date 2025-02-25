@@ -8,7 +8,6 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -17,49 +16,41 @@ import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguratio
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
-import net.neoforged.fml.common.Mod;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
 
 public class ModConfiguredFeatures {
 
+    public static List<ResourceKey<ConfiguredFeature<?,?>>> ORE_KEY = new ArrayList<>();
+
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
-        RuleTest stoneReplaceables = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
+        ModUtils.setOresProperties();
+        registerAllKey();
+
+        RuleTest stoneReplacebles = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
         RuleTest deepslateReplaceables = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
         RuleTest netherrackReplaceables = new BlockMatchTest(Blocks.NETHERRACK);
         RuleTest endReplaceables = new BlockMatchTest(Blocks.END_STONE);
 
-        if(ModUtils.getOres().size() != ModUtils.getDeepslateOre().size()){
-            InfinityTech.LOGGER.error("Ores and Deepslate Ores are different");
-            return;
-        }
-
         for(int x = 0; x < ModUtils.getOres().size(); x++){
-            List<OreConfiguration.TargetBlockState> overworldOres = List.of(
-                    OreConfiguration.target(stoneReplaceables, ModUtils.getOres().get(x).defaultBlockState()),
-                    OreConfiguration.target(deepslateReplaceables, ModUtils.getDeepslateOre().get(x).defaultBlockState())
-            );
-            register(context, registerKey(BuiltInRegistries.ITEM.getKey(ModUtils.getOres().get(x).asItem()).getPath()), Feature.ORE, new OreConfiguration(overworldOres, 9));
+            List<OreConfiguration.TargetBlockState> Ores = List.of(
+                    OreConfiguration.target(stoneReplacebles, ModUtils.getOres().get(x).defaultBlockState()),
+                    OreConfiguration.target(deepslateReplaceables, ModUtils.getDeepslateOre().get(x).defaultBlockState()),
+                    OreConfiguration.target(netherrackReplaceables, ModUtils.getNetherOre().get(x).defaultBlockState()),
+                    OreConfiguration.target(endReplaceables, ModUtils.getEndOre().get(x).defaultBlockState()));
+
+            register(context, ORE_KEY.get(x), Feature.ORE, new OreConfiguration(Ores,
+                    ModUtils.ModProperties.getProperties(ModUtils.getOres().get(x)).veinSize()));
+
         }
 
-        for(int x = 0; x < ModUtils.getNetherOre().size(); x++){
+    }
 
-            List<OreConfiguration.TargetBlockState> netherOres = List.of(
-                    OreConfiguration.target(netherrackReplaceables, ModUtils.getNetherOre().get(x).defaultBlockState())
-            );
-            register(context, registerKey(BuiltInRegistries.ITEM.getKey(ModUtils.getNetherOre().get(x).asItem()).getPath()), Feature.ORE, new OreConfiguration(netherOres, 9));
+    private static void registerAllKey(){
+        for(int x = 0; x < ModUtils.getOres().size(); x++){
+            ORE_KEY.add(registerKey(BuiltInRegistries.ITEM.getKey(ModUtils.getOres().get(x).asItem()).getPath()));
         }
-
-        for(int x = 0; x < ModUtils.getEndOre().size(); x++){
-
-            List<OreConfiguration.TargetBlockState> endOres = List.of(
-                    OreConfiguration.target(endReplaceables, ModUtils.getEndOre().get(x).defaultBlockState())
-            );
-            register(context, registerKey(BuiltInRegistries.ITEM.getKey(ModUtils.getEndOre().get(x).asItem()).getPath()), Feature.ORE, new OreConfiguration(endOres, 9));
-        }
-
 
     }
 

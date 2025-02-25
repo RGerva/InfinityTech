@@ -1,0 +1,24 @@
+package com.rgerva.infinitytech.config;
+
+import com.rgerva.infinitytech.InfinityTech;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.config.ModConfigEvent;
+import net.neoforged.neoforge.common.ModConfigSpec;
+
+@EventBusSubscriber(modid = InfinityTech.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+public class ModConfiguration {
+
+    public static ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
+
+    public static final ModConfigSpec.IntValue MAGIC_NUM = BUILDER
+            .defineInRange("magicNum", 50, 0, Integer.MAX_VALUE);
+
+    public static ModConfigSpec CONFIG = BUILDER.build();
+
+    @SubscribeEvent
+    public static void onConfigLoad(final ModConfigEvent event){
+        InfinityTech.LOGGER.debug("Magic Number: {}", MAGIC_NUM.get());
+    }
+
+}

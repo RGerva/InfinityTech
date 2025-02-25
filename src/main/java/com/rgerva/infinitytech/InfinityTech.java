@@ -6,6 +6,7 @@ import com.rgerva.infinitytech.blockentity.ModBlockEntities;
 import com.rgerva.infinitytech.blockentity.custom.BatteryBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.CreativeBatteryBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.SolarPanelBlockEntity;
+import com.rgerva.infinitytech.config.ModConfiguration;
 import com.rgerva.infinitytech.crative.ModCreativeTab;
 import com.rgerva.infinitytech.gui.ModGUI;
 import com.rgerva.infinitytech.gui.screen.BatteryScreen;
@@ -19,6 +20,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
@@ -47,6 +49,7 @@ public class InfinityTech {
         modEventBus.addListener(ModCreativeTab::addCreative);
         modEventBus.addListener(this::registerCapabilities);
         modEventBus.addListener(ModMessages::register);
+        modContainer.registerConfig(ModConfig.Type.COMMON, ModConfiguration.CONFIG);
 
         LOGGER.debug("END REGISTERING >> {}", InfinityTech.MOD_ID);
     }

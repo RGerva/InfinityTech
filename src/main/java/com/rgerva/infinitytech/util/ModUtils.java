@@ -1,15 +1,47 @@
 package com.rgerva.infinitytech.util;
 
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.rgerva.infinitytech.block.ModBlocks.*;
-import static com.rgerva.infinitytech.block.ModBlocks.TITANIUM_END_ORE;
 
 public class ModUtils {
+
+    public static class ModProperties {
+        public record ModBlockVeinProperties(int veinSize, int minY, int maxY, int count){}
+
+        private static final Map<Block, ModBlockVeinProperties> blockPropertiesMap = new HashMap<>();
+
+        public static void addProperties(Block block, int veinSize, int minY, int maxY, int count) {
+            ModBlockVeinProperties properties = new ModBlockVeinProperties(veinSize, minY, maxY, count);
+            blockPropertiesMap.put(block, properties);
+        }
+
+        public static ModBlockVeinProperties getProperties(Block block){
+            ModBlockVeinProperties test = blockPropertiesMap.get(block);
+            return blockPropertiesMap.get(block);
+        }
+
+        public static boolean hasProperties(Block block) {
+            return blockPropertiesMap.containsKey(block);
+        }
+    }
+
+    public static void setOresProperties(){
+        ModProperties.addProperties(ALUMINUM_ORE.get(), 24, -64, 320, 4);
+        ModProperties.addProperties(LEAD_ORE.get(), 24, -64, 56, 3);
+        ModProperties.addProperties(NICKEL_ORE.get(), 24, -64, 56, 3);
+        ModProperties.addProperties(PLATINUM_ORE.get(), 24, -64, 36, 1);
+        ModProperties.addProperties(SILVER_ORE.get(), 24, -64, 56, 3);
+        ModProperties.addProperties(TIN_ORE.get(), 24, -64, 196, 4);
+        ModProperties.addProperties(TITANIUM_ORE.get(), 24, -64, 56, 1);
+        ModProperties.addProperties(URANIUM_ORE.get(), 24, -64, 16, 2);
+        ModProperties.addProperties(ZINC_ORE.get(), 24, -64, 126, 3);
+    }
+
     public static List<Block> getOres(){
         return List.of(
                 ALUMINUM_ORE.get(),
@@ -61,4 +93,6 @@ public class ModUtils {
                 URANIUM_END_ORE.get(),
                 ZINC_END_ORE.get());
     }
+
+
 }
