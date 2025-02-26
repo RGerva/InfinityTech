@@ -3,6 +3,7 @@ package com.rgerva.infinitytech.item;
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.item.custom.ModArmorMaterials;
 import com.rgerva.infinitytech.item.custom.ModToolTiers;
+import com.rgerva.infinitytech.item.custom.WrenchItem;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -146,6 +147,12 @@ public class ModItems {
     //=====
     //TOOLS
     //=====
+
+    public static final DeferredItem<Item> WRENCH = ITEMS.register("wrench",
+            () -> new WrenchItem(new Item.Properties()
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "wrench")))
+                    .stacksTo(1)
+                    .rarity(Rarity.COMMON)));
 
     public static final DeferredItem<SwordItem> TITANIUM_SWORD = ITEMS.register("titanium_sword",
             () -> new SwordItem(ModToolTiers.TITANIUM, 3.0F, -2.4F, new Item.Properties()

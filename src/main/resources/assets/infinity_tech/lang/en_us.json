@@ -117,11 +117,23 @@
 
   "block.infinity_tech.battery_box": "Battery",
   "block.infinity_tech.creative_battery_box": "Creative Battery",
-  "block.infinity_tech.solar_panel": "Solar Panel",
+  "block.infinity_tech.solar_panel_1": "Solar Panel (Power I)",
+  "block.infinity_tech.solar_panel_2": "Solar Panel (Power II)",
+  "block.infinity_tech.solar_panel_3": "Solar Panel (Power III)",
+  "block.infinity_tech.solar_panel_4": "Solar Panel (Power IV)",
+  "block.infinity_tech.solar_panel_5": "Solar Panel (Power V)",
+  "block.infinity_tech.solar_panel_6": "Solar Panel (Power VI)",
+  "block.infinity_tech.cable_copper": "Copper Cable",
+  "item.infinity_tech.wrench": "Wrench",
 
   "machine.infinity_tech.battery_block": "Battery",
   "machine.infinity_tech.creative_battery": "Creative Battery",
-  "machine.infinity_tech.solar_panel": "Solar Panel",
+  "machine.infinity_tech.solar_panel_1": "Solar Panel (Power I)",
+  "machine.infinity_tech.solar_panel_2": "Solar Panel (Power II)",
+  "machine.infinity_tech.solar_panel_3": "Solar Panel (Power III)",
+  "machine.infinity_tech.solar_panel_4": "Solar Panel (Power IV)",
+  "machine.infinity_tech.solar_panel_5": "Solar Panel (Power V)",
+  "machine.infinity_tech.solar_panel_6": "Solar Panel (Power VI)",
 
   "tooltip.infinity_tech.shift_details": "Press [SHIFT] for details",
   "tooltip.infinity_tech.capacity": "Capacity: %s",
@@ -129,5 +141,8 @@
   "tooltip.infinity_tech.transfer_rate": "Transfer rate: %s/t",
   "tooltip.infinity_tech.energy_meter": "%s / %s",
   "tooltip.infinity_tech.solar_panel.produces": "This block produces up to %s/t.",
-  "tooltip.infinity_tech.solar_panel.info": "The efficiency depends on the current time"
+  "tooltip.infinity_tech.solar_panel.info": "The efficiency depends on the current time",
+  "tooltip.infinity_tech.cable.transfer_rate": "This cable can transfer %s/t.",
+  "tooltip.infinity_tech.cable.info": "Wrench can be used to break cables instantly.",
+  "tooltip.infinity_tech.wrench.info": "Wrench can be used to drop blocks instantly."
 }

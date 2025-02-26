@@ -21,7 +21,6 @@ public class ModUtils {
         }
 
         public static ModBlockVeinProperties getProperties(Block block){
-            ModBlockVeinProperties test = blockPropertiesMap.get(block);
             return blockPropertiesMap.get(block);
         }
 
@@ -93,6 +92,5 @@ public class ModUtils {
                 URANIUM_END_ORE.get(),
                 ZINC_END_ORE.get());
     }
-
 
 }

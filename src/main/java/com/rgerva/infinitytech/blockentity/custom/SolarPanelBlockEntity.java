@@ -1,5 +1,6 @@
 package com.rgerva.infinitytech.blockentity.custom;
 
+import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.block.custom.SolarPanelBlock;
 import com.rgerva.infinitytech.blockentity.ModBlockEntities;
 import com.rgerva.infinitytech.blockentity.custom.base.MenuEnergyStorageBlockEntity;
@@ -7,21 +8,25 @@ import com.rgerva.infinitytech.energy.ExtractOnlyEnergyStorage;
 import com.rgerva.infinitytech.gui.menu.SolarPanelMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import org.jetbrains.annotations.Nullable;
 
 public class SolarPanelBlockEntity extends MenuEnergyStorageBlockEntity<ExtractOnlyEnergyStorage> {
+
     public SolarPanelBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(ModBlockEntities.SOLAR_PANEL.get(), blockPos, blockState, "solar_panel", 128 * 20 * 2, 128 * 4);
+        super(SolarPanelBlock.getType() , blockPos, blockState, SolarPanelBlock.getMachineName(), SolarPanelBlock.getCapacity(), SolarPanelBlock.getPeakFePerTick());
     }
 
     @Override
@@ -43,6 +48,26 @@ public class SolarPanelBlockEntity extends MenuEnergyStorageBlockEntity<ExtractO
                 syncEnergyToPlayers(32);
             }
         };
+    }
+
+    public static Block getBlock(){
+        if(SolarPanelBlock.getType() == ModBlockEntities.SOLAR_PANEL_ENTITY_1.get()){
+            return ModBlocks.SOLAR_PANEL_1.get();
+
+        } else if (SolarPanelBlock.getType() == ModBlockEntities.SOLAR_PANEL_ENTITY_2.get()) {
+            return ModBlocks.SOLAR_PANEL_2.get();
+
+        } else if (SolarPanelBlock.getType() == ModBlockEntities.SOLAR_PANEL_ENTITY_3.get()) {
+            return ModBlocks.SOLAR_PANEL_3.get();
+        } else if (SolarPanelBlock.getType() == ModBlockEntities.SOLAR_PANEL_ENTITY_4.get()) {
+            return ModBlocks.SOLAR_PANEL_4.get();
+        } else if (SolarPanelBlock.getType() == ModBlockEntities.SOLAR_PANEL_ENTITY_5.get()) {
+            return ModBlocks.SOLAR_PANEL_5.get();
+        } else if (SolarPanelBlock.getType() == ModBlockEntities.SOLAR_PANEL_ENTITY_6.get()) {
+            return ModBlocks.SOLAR_PANEL_6.get();
+        }else{
+            return null;
+        }
     }
 
     @Override

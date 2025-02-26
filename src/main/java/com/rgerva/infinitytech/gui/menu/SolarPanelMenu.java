@@ -9,6 +9,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
 public class SolarPanelMenu extends EnergyStorageMenu<SolarPanelBlockEntity> {
@@ -18,7 +19,7 @@ public class SolarPanelMenu extends EnergyStorageMenu<SolarPanelBlockEntity> {
     }
 
     public SolarPanelMenu(int id, Inventory inv, BlockEntity blockEntity) {
-        super(ModGUI.SOLAR_PENEL_MENU.get(), id, inv, blockEntity, ModBlocks.SOLAR_PANEL.get());
+        super(ModGUI.SOLAR_PENEL_MENU.get(), id, inv, blockEntity, SolarPanelBlockEntity.getBlock());
     }
 
     @Override

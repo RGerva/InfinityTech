@@ -1,12 +1,14 @@
 package com.rgerva.infinitytech.block.custom;
 
 import com.mojang.serialization.MapCodec;
+import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.blockentity.ModBlockEntities;
 import com.rgerva.infinitytech.blockentity.custom.SolarPanelBlockEntity;
 import com.rgerva.infinitytech.energy.ModEnergyUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -33,12 +35,41 @@ public class SolarPanelBlock extends BaseEntityBlock {
     public static final MapCodec<SolarPanelBlock> CODEC = simpleCodec(SolarPanelBlock::new);
     private static final VoxelShape SHAPE = Block.box(0.d, 0.d, 0.d, 16.d, 4.d, 16.d);
 
+    private static int CAPACITY;
+    private static int TRANSFER_RATE;
+    private static int PEAK_PRODUCTION;
+    private static BlockEntityType<?> type;
+    private static String machineName;
+
+    public SolarPanelBlock(Properties properties, int capacity, int transferRate, int peakProduction) {
+        this(properties);
+        CAPACITY = capacity;
+        TRANSFER_RATE = transferRate;
+        PEAK_PRODUCTION = peakProduction;
+    }
+
     public SolarPanelBlock(Properties properties) {
         super(properties);
     }
 
     public static int getPeakFePerTick(){
-        return 128;
+        return PEAK_PRODUCTION;
+    }
+
+    public static int getCapacity(){
+        return CAPACITY;
+    }
+
+    public static int getTransferRate(){
+        return TRANSFER_RATE;
+    }
+
+    public static BlockEntityType<?> getType(){
+        return type;
+    }
+
+    public static String getMachineName(){
+        return machineName;
     }
 
     @Override
@@ -53,7 +84,36 @@ public class SolarPanelBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+        if(blockState.getBlock() == ModBlocks.SOLAR_PANEL_1.get()){
+            type = ModBlockEntities.SOLAR_PANEL_ENTITY_1.get();
+            machineName = BuiltInRegistries.BLOCK.getKey(ModBlocks.SOLAR_PANEL_1.get()).getPath();
+
+        } else if (blockState.getBlock() == ModBlocks.SOLAR_PANEL_2.get()) {
+            type = ModBlockEntities.SOLAR_PANEL_ENTITY_2.get();
+            machineName = BuiltInRegistries.BLOCK.getKey(ModBlocks.SOLAR_PANEL_2.get()).getPath();
+
+        }else if (blockState.getBlock() == ModBlocks.SOLAR_PANEL_3.get()) {
+            type = ModBlockEntities.SOLAR_PANEL_ENTITY_3.get();
+            machineName = BuiltInRegistries.BLOCK.getKey(ModBlocks.SOLAR_PANEL_3.get()).getPath();
+
+        }else if (blockState.getBlock() == ModBlocks.SOLAR_PANEL_4.get()) {
+            type = ModBlockEntities.SOLAR_PANEL_ENTITY_4.get();
+            machineName = BuiltInRegistries.BLOCK.getKey(ModBlocks.SOLAR_PANEL_4.get()).getPath();
+
+        }else if (blockState.getBlock() == ModBlocks.SOLAR_PANEL_5.get()) {
+            type = ModBlockEntities.SOLAR_PANEL_ENTITY_5.get();
+            machineName = BuiltInRegistries.BLOCK.getKey(ModBlocks.SOLAR_PANEL_5.get()).getPath();
+
+        }else if (blockState.getBlock() == ModBlocks.SOLAR_PANEL_6.get()) {
+            type = ModBlockEntities.SOLAR_PANEL_ENTITY_6.get();
+            machineName = BuiltInRegistries.BLOCK.getKey(ModBlocks.SOLAR_PANEL_6.get()).getPath();
+
+        }else{
+            return null;
+        }
+
         return new SolarPanelBlockEntity(blockPos, blockState);
+
     }
 
     @Override
@@ -77,7 +137,7 @@ public class SolarPanelBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, ModBlockEntities.SOLAR_PANEL.get(), SolarPanelBlockEntity::tick);
+        return createTickerHelper(blockEntityType, ModBlockEntities.SOLAR_PANEL_ENTITY_1.get(), SolarPanelBlockEntity::tick);
     }
 
     @Override

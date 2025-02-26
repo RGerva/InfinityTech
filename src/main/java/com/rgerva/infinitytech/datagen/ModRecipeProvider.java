@@ -203,6 +203,18 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         customNuggetRecipe(ModItems.ZINC_NUGGET, ModItems.ZINC_INGOT,"zinc");
         customBlockToIngotRecipe(ModBlocks.ZINC_BLOCK, ModItems.ZINC_INGOT, "zinc");
 
+        //==================
+        //  CUSTOM RECIPES
+        //==================
+
+        this.shaped(RecipeCategory.TOOLS, ModItems.WRENCH.get())
+                .pattern(" I ")
+                .pattern(" NI")
+                .pattern("N  ")
+                .define('I', Items.IRON_INGOT)
+                .define('N', Items.IRON_NUGGET)
+                .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                .save(this.output);
 
     }
 

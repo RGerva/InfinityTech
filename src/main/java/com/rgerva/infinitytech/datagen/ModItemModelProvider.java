@@ -90,6 +90,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.ZINC_INGOT.get());
         basicItem(ModItems.ZINC_NUGGET.get());
         basicItem(ModItems.ZINC_RAW.get());
+
+        basicItem(ModItems.WRENCH.get());
     }
 
     private ItemModelBuilder saplingItem(DeferredBlock<Block> item) {

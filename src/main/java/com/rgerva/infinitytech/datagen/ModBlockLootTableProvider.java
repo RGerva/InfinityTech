@@ -101,7 +101,13 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.ZINC_RAW_BLOCK.get());
 
         dropSelf(ModBlocks.BATTERY_BLOCK.get());
-        dropSelf(ModBlocks.SOLAR_PANEL.get());
+        dropSelf(ModBlocks.SOLAR_PANEL_1.get());
+        dropSelf(ModBlocks.SOLAR_PANEL_2.get());
+        dropSelf(ModBlocks.SOLAR_PANEL_3.get());
+        dropSelf(ModBlocks.SOLAR_PANEL_4.get());
+        dropSelf(ModBlocks.SOLAR_PANEL_5.get());
+        dropSelf(ModBlocks.SOLAR_PANEL_6.get());
+        dropSelf(ModBlocks.COPPER_CABLE.get());
     }
 
     protected void LootTableOre(Block pInput, Item pOutput, float minDrops, float maxDrops){

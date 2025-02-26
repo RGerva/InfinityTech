@@ -130,9 +130,18 @@ public class ModCreativeTab {
                         output.accept(ModItems.STEEL_NUGGET.get());
                         output.accept(ModBlocks.STEEL_BLOCK.get());
 
+                        output.accept(ModItems.WRENCH.get());
+
                         output.accept(ModBlocks.CREATIVE_BATTERY.get());
                         output.accept(ModBlocks.BATTERY_BLOCK.get());
-                        output.accept(ModBlocks.SOLAR_PANEL.get());
+                        output.accept(ModBlocks.SOLAR_PANEL_1.get());
+                        output.accept(ModBlocks.SOLAR_PANEL_2.get());
+                        output.accept(ModBlocks.SOLAR_PANEL_3.get());
+                        output.accept(ModBlocks.SOLAR_PANEL_4.get());
+                        output.accept(ModBlocks.SOLAR_PANEL_5.get());
+                        output.accept(ModBlocks.SOLAR_PANEL_6.get());
+
+                        output.accept(ModBlocks.COPPER_CABLE.get());
 
                     }).build());
 
@@ -261,11 +270,18 @@ public class ModCreativeTab {
             event.accept(ModItems.TITANIUM_SHOVEL.get());
             event.accept(ModItems.TITANIUM_AXE.get());
             event.accept(ModItems.TITANIUM_HOE.get());
+            event.accept(ModItems.WRENCH.get());
         }
 
         if(event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS){
-            event.accept(ModBlocks.SOLAR_PANEL.get());
+            event.accept(ModBlocks.SOLAR_PANEL_1.get());
+            event.accept(ModBlocks.SOLAR_PANEL_2.get());
+            event.accept(ModBlocks.SOLAR_PANEL_3.get());
+            event.accept(ModBlocks.SOLAR_PANEL_4.get());
+            event.accept(ModBlocks.SOLAR_PANEL_5.get());
+            event.accept(ModBlocks.SOLAR_PANEL_6.get());
             event.accept(ModBlocks.BATTERY_BLOCK.get());
+            event.accept(ModBlocks.COPPER_CABLE.get());
         }
 
         if(event.getTabKey() == CreativeModeTabs.OP_BLOCKS){
