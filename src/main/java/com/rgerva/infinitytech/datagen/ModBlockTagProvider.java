@@ -141,7 +141,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.SOLAR_PANEL_4.get())
                 .add(ModBlocks.SOLAR_PANEL_5.get())
                 .add(ModBlocks.SOLAR_PANEL_6.get())
-                .add(ModBlocks.COPPER_CABLE.get());
+                .add(ModBlocks.TIN_CABLE.get())
+                .add(ModBlocks.COPPER_CABLE.get())
+                .add(ModBlocks.GOLD_CABLE.get());
 
         tag(BlockTags.MINEABLE_WITH_SHOVEL)
                 .add(ModBlocks.TITANIUM_RAW_BLOCK.get())
@@ -212,7 +214,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.ZINC_DEEPSLATE_ORE.get())
                 .add(ModBlocks.ZINC_BLOCK.get())
 
-                .add(ModBlocks.COPPER_CABLE.get());
+                .add(ModBlocks.TIN_CABLE.get())
+                .add(ModBlocks.COPPER_CABLE.get())
+                .add(ModBlocks.GOLD_CABLE.get());
 
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(ModBlocks.LEAD_NETHER_ORE.get())

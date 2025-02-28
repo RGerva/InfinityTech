@@ -141,7 +141,9 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.SOLAR_PANEL_5.get());
                         output.accept(ModBlocks.SOLAR_PANEL_6.get());
 
+                        output.accept(ModBlocks.TIN_CABLE.get());
                         output.accept(ModBlocks.COPPER_CABLE.get());
+                        output.accept(ModBlocks.GOLD_CABLE.get());
 
                     }).build());
 
@@ -281,7 +283,9 @@ public class ModCreativeTab {
             event.accept(ModBlocks.SOLAR_PANEL_5.get());
             event.accept(ModBlocks.SOLAR_PANEL_6.get());
             event.accept(ModBlocks.BATTERY_BLOCK.get());
+            event.accept(ModBlocks.TIN_CABLE.get());
             event.accept(ModBlocks.COPPER_CABLE.get());
+            event.accept(ModBlocks.GOLD_CABLE.get());
         }
 
         if(event.getTabKey() == CreativeModeTabs.OP_BLOCKS){

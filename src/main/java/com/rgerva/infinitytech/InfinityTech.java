@@ -101,7 +101,13 @@ public class InfinityTech {
                 ModBlockEntities.SOLAR_PANEL_ENTITY_6.get(), SolarPanelBlockEntity::getEnergyStorageCapability);
 
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
+                ModBlockEntities.TIN_CABLE_ENTITY.get(), CableBlockEntity::getEnergyStorageCapability);
+
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
                 ModBlockEntities.COPPER_CABLE_ENTITY.get(), CableBlockEntity::getEnergyStorageCapability);
+
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
+                ModBlockEntities.GOLD_CABLE_ENTITY.get(), CableBlockEntity::getEnergyStorageCapability);
 
     }
 }

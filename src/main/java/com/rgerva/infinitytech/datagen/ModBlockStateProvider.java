@@ -99,7 +99,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
         solarPanelBlockWithItem(ModBlocks.SOLAR_PANEL_4);
         solarPanelBlockWithItem(ModBlocks.SOLAR_PANEL_5);
         solarPanelBlockWithItem(ModBlocks.SOLAR_PANEL_6);
+
+        cableBlockWithItem(ModBlocks.TIN_CABLE);
         cableBlockWithItem(ModBlocks.COPPER_CABLE);
+        cableBlockWithItem(ModBlocks.GOLD_CABLE);
     }
 
     private void saplingBlock(DeferredBlock<Block> blockRegistryObject) {

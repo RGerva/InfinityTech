@@ -6,6 +6,7 @@ import com.rgerva.infinitytech.block.custom.CableBlock;
 import com.rgerva.infinitytech.block.custom.CreativeBatteryBlock;
 import com.rgerva.infinitytech.block.custom.SolarPanelBlock;
 import com.rgerva.infinitytech.item.ModItems;
+import com.rgerva.infinitytech.util.ModUtils;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -480,47 +481,67 @@ public class ModBlocks {
                     .sound(SoundType.METAL)));
 
     public static final DeferredBlock<Block> SOLAR_PANEL_1 = registerBlock("solar_panel_1",
-            () -> new SolarPanelBlock(BlockBehaviour.Properties.of()
+            () -> new SolarPanelBlock(ModUtils.eSolarPanelConfigs.solar_panel_1,
+                    BlockBehaviour.Properties.of()
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "solar_panel_1")))
                     .strength(4.0F, 5.0F)
-                    .sound(SoundType.METAL),80, 8, 2));
+                    .sound(SoundType.METAL)));
 
     public static final DeferredBlock<Block> SOLAR_PANEL_2 = registerBlock("solar_panel_2",
-            () -> new SolarPanelBlock(BlockBehaviour.Properties.of()
+            () -> new SolarPanelBlock(ModUtils.eSolarPanelConfigs.solar_panel_2,
+                    BlockBehaviour.Properties.of()
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "solar_panel_2")))
                     .strength(4.0F, 5.0F)
-                    .sound(SoundType.METAL),16 * 20 * 2, 16 * 4, 16));
+                    .sound(SoundType.METAL)));
 
     public static final DeferredBlock<Block> SOLAR_PANEL_3 = registerBlock("solar_panel_3",
-            () -> new SolarPanelBlock(BlockBehaviour.Properties.of()
+            () -> new SolarPanelBlock(ModUtils.eSolarPanelConfigs.solar_panel_3,
+                    BlockBehaviour.Properties.of()
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "solar_panel_3")))
                     .strength(4.0F, 5.0F)
-                    .sound(SoundType.METAL),128 * 20 * 2, 128 * 4, 128));
+                    .sound(SoundType.METAL)));
 
     public static final DeferredBlock<Block> SOLAR_PANEL_4 = registerBlock("solar_panel_4",
-            () -> new SolarPanelBlock(BlockBehaviour.Properties.of()
+            () -> new SolarPanelBlock(ModUtils.eSolarPanelConfigs.solar_panel_4,
+                    BlockBehaviour.Properties.of()
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "solar_panel_4")))
                     .strength(4.0F, 5.0F)
-                    .sound(SoundType.METAL),2048 * 20 * 2, 2048 * 4, 2048));
+                    .sound(SoundType.METAL)));
 
     public static final DeferredBlock<Block> SOLAR_PANEL_5 = registerBlock("solar_panel_5",
-            () -> new SolarPanelBlock(BlockBehaviour.Properties.of()
+            () -> new SolarPanelBlock(ModUtils.eSolarPanelConfigs.solar_panel_5,
+                    BlockBehaviour.Properties.of()
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "solar_panel_5")))
                     .strength(4.0F, 5.0F)
-                    .sound(SoundType.METAL),16384 * 20, 16384 * 8, 16384));
+                    .sound(SoundType.METAL)));
 
     public static final DeferredBlock<Block> SOLAR_PANEL_6 = registerBlock("solar_panel_6",
-            () -> new SolarPanelBlock(BlockBehaviour.Properties.of()
+            () -> new SolarPanelBlock(ModUtils.eSolarPanelConfigs.solar_panel_6,
+                    BlockBehaviour.Properties.of()
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "solar_panel_6")))
                     .strength(4.0F, 5.0F)
-                    .sound(SoundType.METAL),131072 * 8, 131072 * 4, 131072));
+                    .sound(SoundType.METAL)));
+
+    public static final DeferredBlock<Block> TIN_CABLE = registerBlock("cable_tin",
+            () -> new CableBlock(ModUtils.eCablesConfigs.TIN, BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "cable_tin")))
+                    .strength(5.0F)
+                    .sound(SoundType.WOOL)
+                    .mapColor(MapColor.COLOR_GRAY)));
 
     public static final DeferredBlock<Block> COPPER_CABLE = registerBlock("cable_copper",
-            () -> new CableBlock(BlockBehaviour.Properties.of()
+            () -> new CableBlock(ModUtils.eCablesConfigs.COPPER, BlockBehaviour.Properties.of()
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "cable_copper")))
                     .strength(5.0F)
                     .sound(SoundType.WOOL)
-                    .mapColor(MapColor.COLOR_GRAY), 16384));
+                    .mapColor(MapColor.COLOR_GRAY)));
+
+    public static final DeferredBlock<Block> GOLD_CABLE = registerBlock("cable_gold",
+            () -> new CableBlock(ModUtils.eCablesConfigs.GOLD, BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "cable_gold")))
+                    .strength(5.0F)
+                    .sound(SoundType.WOOL)
+                    .mapColor(MapColor.COLOR_GRAY)));
 
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

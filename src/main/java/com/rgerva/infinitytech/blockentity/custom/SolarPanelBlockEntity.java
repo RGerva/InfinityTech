@@ -1,21 +1,18 @@
 package com.rgerva.infinitytech.blockentity.custom;
 
-import com.rgerva.infinitytech.block.ModBlocks;
-import com.rgerva.infinitytech.block.custom.SolarPanelBlock;
 import com.rgerva.infinitytech.blockentity.ModBlockEntities;
 import com.rgerva.infinitytech.blockentity.custom.base.MenuEnergyStorageBlockEntity;
 import com.rgerva.infinitytech.energy.ExtractOnlyEnergyStorage;
 import com.rgerva.infinitytech.gui.menu.SolarPanelMenu;
+import com.rgerva.infinitytech.util.ModUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LightLayer;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -25,8 +22,22 @@ import org.jetbrains.annotations.Nullable;
 
 public class SolarPanelBlockEntity extends MenuEnergyStorageBlockEntity<ExtractOnlyEnergyStorage> {
 
-    public SolarPanelBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(SolarPanelBlock.getType() , blockPos, blockState, SolarPanelBlock.getMachineName(), SolarPanelBlock.getCapacity(), SolarPanelBlock.getPeakFePerTick());
+    private final ModUtils.eSolarPanelConfigs eSolarPanelConfigs;
+
+    public SolarPanelBlockEntity(BlockPos blockPos, BlockState blockState, ModUtils.eSolarPanelConfigs eSolarPanelConfigs) {
+        super(getEntityType(eSolarPanelConfigs) , blockPos, blockState, eSolarPanelConfigs.name(), eSolarPanelConfigs.getCapacity(), eSolarPanelConfigs.getMaxTransfer());
+        this.eSolarPanelConfigs = eSolarPanelConfigs;
+    }
+
+    public static BlockEntityType<SolarPanelBlockEntity> getEntityType(ModUtils.eSolarPanelConfigs eSolarPanelConfigs) {
+        return switch(eSolarPanelConfigs) {
+            case solar_panel_1 -> ModBlockEntities.SOLAR_PANEL_ENTITY_1.get();
+            case solar_panel_2 -> ModBlockEntities.SOLAR_PANEL_ENTITY_2.get();
+            case solar_panel_3 -> ModBlockEntities.SOLAR_PANEL_ENTITY_3.get();
+            case solar_panel_4 -> ModBlockEntities.SOLAR_PANEL_ENTITY_4.get();
+            case solar_panel_5 -> ModBlockEntities.SOLAR_PANEL_ENTITY_5.get();
+            case solar_panel_6 -> ModBlockEntities.SOLAR_PANEL_ENTITY_6.get();
+        };
     }
 
     @Override
@@ -50,31 +61,17 @@ public class SolarPanelBlockEntity extends MenuEnergyStorageBlockEntity<ExtractO
         };
     }
 
-    public static Block getBlock(){
-        if(SolarPanelBlock.getType() == ModBlockEntities.SOLAR_PANEL_ENTITY_1.get()){
-            return ModBlocks.SOLAR_PANEL_1.get();
-
-        } else if (SolarPanelBlock.getType() == ModBlockEntities.SOLAR_PANEL_ENTITY_2.get()) {
-            return ModBlocks.SOLAR_PANEL_2.get();
-
-        } else if (SolarPanelBlock.getType() == ModBlockEntities.SOLAR_PANEL_ENTITY_3.get()) {
-            return ModBlocks.SOLAR_PANEL_3.get();
-        } else if (SolarPanelBlock.getType() == ModBlockEntities.SOLAR_PANEL_ENTITY_4.get()) {
-            return ModBlocks.SOLAR_PANEL_4.get();
-        } else if (SolarPanelBlock.getType() == ModBlockEntities.SOLAR_PANEL_ENTITY_5.get()) {
-            return ModBlocks.SOLAR_PANEL_5.get();
-        } else if (SolarPanelBlock.getType() == ModBlockEntities.SOLAR_PANEL_ENTITY_6.get()) {
-            return ModBlocks.SOLAR_PANEL_6.get();
-        }else{
-            return null;
-        }
-    }
 
     @Override
     public @Nullable AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
         syncEnergyToPlayer(player);
         return new SolarPanelMenu(i, inventory, this);
     }
+
+    public ModUtils.eSolarPanelConfigs geteSolarPanelConfigs() {
+        return eSolarPanelConfigs;
+    }
+
 
     public static void tick(Level level, BlockPos blockPos, BlockState state, SolarPanelBlockEntity blockEntity) {
         if(level.isClientSide)
@@ -92,7 +89,7 @@ public class SolarPanelBlockEntity extends MenuEnergyStorageBlockEntity<ExtractO
 
         i = Mth.clamp(i, 0, 60);
 
-        int energyProduction = (int)(i/60.f * SolarPanelBlock.getPeakFePerTick());
+        int energyProduction = (int)(i/60.f * blockEntity.geteSolarPanelConfigs().getPeakFePerTick());
 
         blockEntity.energyStorage.setEnergy(Math.min(blockEntity.energyStorage.getCapacity(),
                 blockEntity.energyStorage.getEnergy() + energyProduction));

@@ -1,15 +1,17 @@
 package com.rgerva.infinitytech.block.custom;
 
 import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.blockentity.ModBlockEntities;
 import com.rgerva.infinitytech.blockentity.custom.SolarPanelBlockEntity;
 import com.rgerva.infinitytech.energy.ModEnergyUtils;
+import com.rgerva.infinitytech.util.ModUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -32,44 +34,34 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class SolarPanelBlock extends BaseEntityBlock {
-    public static final MapCodec<SolarPanelBlock> CODEC = simpleCodec(SolarPanelBlock::new);
+    public static final MapCodec<SolarPanelBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> {
+        return instance.group(ExtraCodecs.NON_EMPTY_STRING.xmap(ModUtils.eSolarPanelConfigs::valueOf, ModUtils.eSolarPanelConfigs::toString).fieldOf("SolarPanelConfigs").
+                                forGetter(SolarPanelBlock::geteSolarPanelConfigs),
+                        Properties.CODEC.fieldOf("properties").forGetter(Block::properties)).
+                apply(instance, SolarPanelBlock::new);
+    });
+
     private static final VoxelShape SHAPE = Block.box(0.d, 0.d, 0.d, 16.d, 4.d, 16.d);
+    private final ModUtils.eSolarPanelConfigs eSolarPanelConfigs;
 
-    private static int CAPACITY;
-    private static int TRANSFER_RATE;
-    private static int PEAK_PRODUCTION;
-    private static BlockEntityType<?> type;
-    private static String machineName;
-
-    public SolarPanelBlock(Properties properties, int capacity, int transferRate, int peakProduction) {
-        this(properties);
-        CAPACITY = capacity;
-        TRANSFER_RATE = transferRate;
-        PEAK_PRODUCTION = peakProduction;
-    }
-
-    public SolarPanelBlock(Properties properties) {
+    public SolarPanelBlock(ModUtils.eSolarPanelConfigs eSolarPanelConfigs, Properties properties) {
         super(properties);
+        this.eSolarPanelConfigs = eSolarPanelConfigs;
     }
 
-    public static int getPeakFePerTick(){
-        return PEAK_PRODUCTION;
+    public static Block getBlockFromPanelConfigs(ModUtils.eSolarPanelConfigs geteSolarPanelConfigs) {
+        return switch(geteSolarPanelConfigs) {
+            case solar_panel_1 -> ModBlocks.SOLAR_PANEL_1.get();
+            case solar_panel_2 -> ModBlocks.SOLAR_PANEL_2.get();
+            case solar_panel_3 -> ModBlocks.SOLAR_PANEL_3.get();
+            case solar_panel_4 -> ModBlocks.SOLAR_PANEL_4.get();
+            case solar_panel_5 -> ModBlocks.SOLAR_PANEL_5.get();
+            case solar_panel_6 -> ModBlocks.SOLAR_PANEL_6.get();
+        };
     }
 
-    public static int getCapacity(){
-        return CAPACITY;
-    }
-
-    public static int getTransferRate(){
-        return TRANSFER_RATE;
-    }
-
-    public static BlockEntityType<?> getType(){
-        return type;
-    }
-
-    public static String getMachineName(){
-        return machineName;
+    public ModUtils.eSolarPanelConfigs geteSolarPanelConfigs(){
+        return eSolarPanelConfigs;
     }
 
     @Override
@@ -84,35 +76,7 @@ public class SolarPanelBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        if(blockState.getBlock() == ModBlocks.SOLAR_PANEL_1.get()){
-            type = ModBlockEntities.SOLAR_PANEL_ENTITY_1.get();
-            machineName = BuiltInRegistries.BLOCK.getKey(ModBlocks.SOLAR_PANEL_1.get()).getPath();
-
-        } else if (blockState.getBlock() == ModBlocks.SOLAR_PANEL_2.get()) {
-            type = ModBlockEntities.SOLAR_PANEL_ENTITY_2.get();
-            machineName = BuiltInRegistries.BLOCK.getKey(ModBlocks.SOLAR_PANEL_2.get()).getPath();
-
-        }else if (blockState.getBlock() == ModBlocks.SOLAR_PANEL_3.get()) {
-            type = ModBlockEntities.SOLAR_PANEL_ENTITY_3.get();
-            machineName = BuiltInRegistries.BLOCK.getKey(ModBlocks.SOLAR_PANEL_3.get()).getPath();
-
-        }else if (blockState.getBlock() == ModBlocks.SOLAR_PANEL_4.get()) {
-            type = ModBlockEntities.SOLAR_PANEL_ENTITY_4.get();
-            machineName = BuiltInRegistries.BLOCK.getKey(ModBlocks.SOLAR_PANEL_4.get()).getPath();
-
-        }else if (blockState.getBlock() == ModBlocks.SOLAR_PANEL_5.get()) {
-            type = ModBlockEntities.SOLAR_PANEL_ENTITY_5.get();
-            machineName = BuiltInRegistries.BLOCK.getKey(ModBlocks.SOLAR_PANEL_5.get()).getPath();
-
-        }else if (blockState.getBlock() == ModBlocks.SOLAR_PANEL_6.get()) {
-            type = ModBlockEntities.SOLAR_PANEL_ENTITY_6.get();
-            machineName = BuiltInRegistries.BLOCK.getKey(ModBlocks.SOLAR_PANEL_6.get()).getPath();
-
-        }else{
-            return null;
-        }
-
-        return new SolarPanelBlockEntity(blockPos, blockState);
+        return new SolarPanelBlockEntity(blockPos, blockState, eSolarPanelConfigs);
 
     }
 
@@ -137,14 +101,15 @@ public class SolarPanelBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, ModBlockEntities.SOLAR_PANEL_ENTITY_1.get(), SolarPanelBlockEntity::tick);
+        return createTickerHelper(blockEntityType, SolarPanelBlockEntity.getEntityType(eSolarPanelConfigs), SolarPanelBlockEntity::tick);
     }
+
 
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         if(Screen.hasShiftDown()) {
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.solar_panel.produces",
-                    ModEnergyUtils.getEnergyWithPrefix(getPeakFePerTick())).withStyle(ChatFormatting.GRAY));
+                    ModEnergyUtils.getEnergyWithPrefix(eSolarPanelConfigs.getPeakFePerTick())).withStyle(ChatFormatting.GRAY));
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.solar_panel.info").withStyle(ChatFormatting.GRAY));
         }else {
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.shift_details").withStyle(ChatFormatting.YELLOW));

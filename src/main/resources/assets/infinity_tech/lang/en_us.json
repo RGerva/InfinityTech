@@ -123,7 +123,11 @@
   "block.infinity_tech.solar_panel_4": "Solar Panel (Power IV)",
   "block.infinity_tech.solar_panel_5": "Solar Panel (Power V)",
   "block.infinity_tech.solar_panel_6": "Solar Panel (Power VI)",
+
+  "block.infinity_tech.cable_tin": "Tin Cable",
   "block.infinity_tech.cable_copper": "Copper Cable",
+  "block.infinity_tech.cable_gold": "Gold Cable",
+
   "item.infinity_tech.wrench": "Wrench",
 
   "machine.infinity_tech.battery_block": "Battery",

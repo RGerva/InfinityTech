@@ -1,6 +1,7 @@
 package com.rgerva.infinitytech.gui.menu;
 
 import com.rgerva.infinitytech.block.ModBlocks;
+import com.rgerva.infinitytech.block.custom.SolarPanelBlock;
 import com.rgerva.infinitytech.blockentity.custom.SolarPanelBlockEntity;
 import com.rgerva.infinitytech.gui.ModGUI;
 import com.rgerva.infinitytech.gui.base.EnergyStorageMenu;
@@ -19,7 +20,7 @@ public class SolarPanelMenu extends EnergyStorageMenu<SolarPanelBlockEntity> {
     }
 
     public SolarPanelMenu(int id, Inventory inv, BlockEntity blockEntity) {
-        super(ModGUI.SOLAR_PENEL_MENU.get(), id, inv, blockEntity, SolarPanelBlockEntity.getBlock());
+        super(ModGUI.SOLAR_PENEL_MENU.get(), id, inv, blockEntity, SolarPanelBlock.getBlockFromPanelConfigs(((SolarPanelBlockEntity)blockEntity).geteSolarPanelConfigs()));
     }
 
     @Override

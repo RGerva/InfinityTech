@@ -1,15 +1,18 @@
 package com.rgerva.infinitytech.block.custom;
 
 import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.blockentity.ModBlockEntities;
 import com.rgerva.infinitytech.blockentity.custom.CableBlockEntity;
 import com.rgerva.infinitytech.energy.ModEnergyUtils;
+import com.rgerva.infinitytech.util.ModUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.ExtraCodecs;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -40,7 +43,12 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class CableBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
-    public static final MapCodec<CableBlock> CODEC = simpleCodec(CableBlock::new);
+    public static final MapCodec<CableBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> {
+        return instance.group(ExtraCodecs.NON_EMPTY_STRING.xmap(ModUtils.eCablesConfigs::valueOf, ModUtils.eCablesConfigs::toString).fieldOf("eCablesConfigs").
+                                forGetter(CableBlock::geteCablesConfigs),
+                        Properties.CODEC.fieldOf("properties").forGetter(Block::properties)).
+                apply(instance, CableBlock::new);
+    });
 
     public static final BooleanProperty UP = BlockStateProperties.UP;
     public static final BooleanProperty DOWN = BlockStateProperties.DOWN;
@@ -58,19 +66,20 @@ public class CableBlock extends BaseEntityBlock implements SimpleWaterloggedBloc
     private static final VoxelShape SHAPE_EAST = Block.box(10.d, 6.d, 6.d, 16.d, 10.d, 10.d);
     private static final VoxelShape SHAPE_WEST = Block.box(0.d, 6.d, 6.d, 6.d, 10.d, 10.d);
 
-    protected static int MAX_TRANSFER;
+    private final ModUtils.eCablesConfigs eCablesConfigs;
 
-    public CableBlock(Properties properties, int maxTransfer) {
-        this(properties);
-        MAX_TRANSFER = maxTransfer;
-    }
-
-    private CableBlock(Properties properties) {
+    public CableBlock(ModUtils.eCablesConfigs eCablesConfigs, Properties properties) {
         super(properties);
+
+        this.registerDefaultState(this.stateDefinition.any().setValue(UP, false).setValue(DOWN, false).
+                setValue(NORTH, false).setValue(SOUTH, false).setValue(EAST, false).setValue(WEST, false).
+                setValue(WATERLOGGED, false));
+
+        this.eCablesConfigs = eCablesConfigs;
     }
 
-    public static int getMaxTransfer(){
-        return MAX_TRANSFER;
+    public ModUtils.eCablesConfigs geteCablesConfigs(){
+        return eCablesConfigs;
     }
 
     @Override
@@ -97,6 +106,9 @@ public class CableBlock extends BaseEntityBlock implements SimpleWaterloggedBloc
     private boolean shouldConnectTo(Level level, BlockPos selfPos, Direction direction) {
         BlockPos toPos = selfPos.relative(direction);
         BlockEntity blockEntity = level.getBlockEntity(toPos);
+
+        if(blockEntity instanceof CableBlockEntity cableBlockEntity && cableBlockEntity.getCableConfigs() != this.geteCablesConfigs())
+            return false;
 
         IEnergyStorage energyStorage = level.getCapability(Capabilities.EnergyStorage.BLOCK,
                 toPos, level.getBlockState(toPos), blockEntity, direction.getOpposite());
@@ -140,7 +152,7 @@ public class CableBlock extends BaseEntityBlock implements SimpleWaterloggedBloc
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new CableBlockEntity(blockPos, blockState);
+        return new CableBlockEntity(blockPos, blockState, eCablesConfigs);
     }
 
     @Override
@@ -227,20 +239,14 @@ public class CableBlock extends BaseEntityBlock implements SimpleWaterloggedBloc
 
     @Override
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-
-        if(state.getBlock() == ModBlocks.COPPER_CABLE.get()){
-            return createTickerHelper(blockEntityType, ModBlockEntities.COPPER_CABLE_ENTITY.get(), CableBlockEntity::tick);
-        }else{
-            return super.getTicker(level, state, blockEntityType);
-        }
-
+        return createTickerHelper(blockEntityType, CableBlockEntity.getEntityType(eCablesConfigs), CableBlockEntity::tick);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         if(Screen.hasShiftDown()) {
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.cable.transfer_rate",
-                    ModEnergyUtils.getEnergyWithPrefix(MAX_TRANSFER)).withStyle(ChatFormatting.GRAY));
+                    ModEnergyUtils.getEnergyWithPrefix(eCablesConfigs.getMaxTransfer())).withStyle(ChatFormatting.GRAY));
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.cable.info").
                     withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
         }else {
