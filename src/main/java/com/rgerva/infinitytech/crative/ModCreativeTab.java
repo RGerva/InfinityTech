@@ -144,6 +144,7 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.TIN_CABLE.get());
                         output.accept(ModBlocks.COPPER_CABLE.get());
                         output.accept(ModBlocks.GOLD_CABLE.get());
+                        output.accept(ModBlocks.IRON_CHEST.get());
 
                     }).build());
 

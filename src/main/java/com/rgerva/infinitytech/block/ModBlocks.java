@@ -1,10 +1,8 @@
 package com.rgerva.infinitytech.block;
 
 import com.rgerva.infinitytech.InfinityTech;
-import com.rgerva.infinitytech.block.custom.BatteryBlock;
-import com.rgerva.infinitytech.block.custom.CableBlock;
-import com.rgerva.infinitytech.block.custom.CreativeBatteryBlock;
-import com.rgerva.infinitytech.block.custom.SolarPanelBlock;
+import com.rgerva.infinitytech.block.custom.*;
+import com.rgerva.infinitytech.block.custom.chest.IronChestBlock;
 import com.rgerva.infinitytech.item.ModItems;
 import com.rgerva.infinitytech.util.ModUtils;
 import net.minecraft.core.registries.Registries;
@@ -542,6 +540,13 @@ public class ModBlocks {
                     .strength(5.0F)
                     .sound(SoundType.WOOL)
                     .mapColor(MapColor.COLOR_GRAY)));
+
+    public static final DeferredBlock<Block> IRON_CHEST = registerBlock("chest_iron",
+            () -> new IronChestBlock(BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "chest_iron")))
+                    .strength(3.0F)
+                    .sound(SoundType.METAL)
+                    .mapColor(MapColor.METAL)));
 
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

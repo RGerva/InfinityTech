@@ -128,6 +128,8 @@
   "block.infinity_tech.cable_copper": "Copper Cable",
   "block.infinity_tech.cable_gold": "Gold Cable",
 
+  "block.infinity_tech.cable_item": "Item Cable",
+
   "item.infinity_tech.wrench": "Wrench",
 
   "machine.infinity_tech.battery_block": "Battery",

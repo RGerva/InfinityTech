@@ -7,6 +7,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.models.model.ModelTemplates;
+import net.minecraft.data.models.model.TextureMapping;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.Block;
@@ -103,6 +105,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         cableBlockWithItem(ModBlocks.TIN_CABLE);
         cableBlockWithItem(ModBlocks.COPPER_CABLE);
         cableBlockWithItem(ModBlocks.GOLD_CABLE);
+
+        blockWithItem(ModBlocks.IRON_CHEST);
     }
 
     private void saplingBlock(DeferredBlock<Block> blockRegistryObject) {
@@ -170,6 +174,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     private void blockItem(DeferredBlock<?> deferredBlock, String appendix) {
         simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("infinity_tech:block/" + deferredBlock.getId().getPath() + appendix));
     }
+
 
     private void cableBlockWithItem(Holder<? extends Block> block){
         ResourceLocation blockId = Objects.requireNonNull(block.getKey()).location();
