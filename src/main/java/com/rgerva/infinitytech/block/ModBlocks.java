@@ -1,7 +1,10 @@
 package com.rgerva.infinitytech.block;
 
 import com.rgerva.infinitytech.InfinityTech;
-import com.rgerva.infinitytech.block.custom.*;
+import com.rgerva.infinitytech.block.custom.BatteryBlock;
+import com.rgerva.infinitytech.block.custom.CableBlock;
+import com.rgerva.infinitytech.block.custom.CreativeBatteryBlock;
+import com.rgerva.infinitytech.block.custom.SolarPanelBlock;
 import com.rgerva.infinitytech.block.custom.chest.IronChestBlock;
 import com.rgerva.infinitytech.item.ModItems;
 import com.rgerva.infinitytech.util.ModUtils;
@@ -541,9 +544,9 @@ public class ModBlocks {
                     .sound(SoundType.WOOL)
                     .mapColor(MapColor.COLOR_GRAY)));
 
-    public static final DeferredBlock<Block> IRON_CHEST = registerBlock("chest_iron",
+    public static final DeferredBlock<Block> IRON_CHEST = registerBlock("iron_chest",
             () -> new IronChestBlock(BlockBehaviour.Properties.of()
-                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "chest_iron")))
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "iron_chest")))
                     .strength(3.0F)
                     .sound(SoundType.METAL)
                     .mapColor(MapColor.METAL)));

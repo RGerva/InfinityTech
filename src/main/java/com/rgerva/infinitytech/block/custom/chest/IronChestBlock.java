@@ -5,17 +5,16 @@ import com.rgerva.infinitytech.blockentity.custom.chest.IronChestBlockEntity;
 import com.rgerva.infinitytech.util.types.eChestConfigs;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
-public class IronChestBlock extends ChestBlock{
+public class IronChestBlock extends ModChestBlock {
 
     public static final MapCodec<IronChestBlock> CODEC = simpleCodec(IronChestBlock::new);
 
     public IronChestBlock(Properties properties) {
-        super(properties);
+        super(properties, eChestConfigs.IRON);
     }
 
     @Override

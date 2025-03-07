@@ -3,15 +3,23 @@ package com.rgerva.infinitytech.datagen;
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.block.custom.CableBlock;
+import net.minecraft.client.resources.model.ModelState;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.models.model.ModelTemplates;
-import net.minecraft.data.models.model.TextureMapping;
+import net.minecraft.data.models.BlockModelGenerators;
+import net.minecraft.data.models.ItemModelGenerators;
+import net.minecraft.data.models.blockstates.MultiVariantGenerator;
+import net.minecraft.data.models.blockstates.Variant;
+import net.minecraft.data.models.blockstates.VariantProperties;
+import net.minecraft.data.models.model.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.MinecartItem;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.client.model.generators.ModelProvider;
@@ -19,6 +27,7 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
 import java.util.Objects;
+import java.util.Optional;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
@@ -106,7 +115,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         cableBlockWithItem(ModBlocks.COPPER_CABLE);
         cableBlockWithItem(ModBlocks.GOLD_CABLE);
 
-        blockWithItem(ModBlocks.IRON_CHEST);
     }
 
     private void saplingBlock(DeferredBlock<Block> blockRegistryObject) {
@@ -175,6 +183,52 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("infinity_tech:block/" + deferredBlock.getId().getPath() + appendix));
     }
 
+    private void chestBlockWithItem(Holder<? extends Block> block){
+        ResourceLocation blockId = Objects.requireNonNull(block.getKey()).location();
+
+        ModelFile chestCoreTemplate = models()
+                .withExistingParent("chest_template", ModelProvider.BLOCK_FOLDER + "/thin_block")
+                .element().from(1,0,1).to(15,10,15)
+                .face(Direction.DOWN).uvs(7, 4.75F, 10.5F, 8.25F).texture("#texture").end()
+                .face(Direction.UP).uvs(3.5F, 4.75F, 7, 8.25F).texture("#texture").end()
+                .face(Direction.NORTH).uvs(3.5F, 8.25F, 7, 10.75F).texture("#texture").end()
+                .face(Direction.SOUTH).uvs(10.5F, 8.25F, 14, 10.75F).texture("#texture").end()
+                .face(Direction.WEST).uvs(7, 8.25F, 10.5F, 10.75F).texture("#texture").end()
+                .face(Direction.EAST).uvs(0, 8.25F, 3.5F, 10.75F).texture("#texture").end()
+
+//                .from(1,9,1).to(15,14,15)
+//                .face(Direction.DOWN).uvs(7, 0, 10.5F, 3.5F).cullface(Direction.DOWN).texture("#texture").end()
+//                .face(Direction.UP).uvs(3.5F,0, 7, 3.5F).cullface(Direction.UP).texture("#texture").end()
+//                .face(Direction.NORTH).uvs(3.5F, 3.5F, 7, 4.75F).cullface(Direction.NORTH).texture("#texture").end()
+//                .face(Direction.SOUTH).uvs(10.5F, 3.5F, 14, 4.75F).cullface(Direction.SOUTH).texture("#texture").end()
+//                .face(Direction.WEST).uvs(7, 3.5F, 10.5F, 4.75F).cullface(Direction.WEST).texture("#texture").end()
+//                .face(Direction.EAST).uvs(0, 3.5F, 3.5F,4.75F).cullface(Direction.EAST).texture("#texture").end()
+//
+//                .from(7,7,0).to(9,11,1)
+//                .face(Direction.DOWN).uvs(0, 0.75F, 1.25F, 0.5F).cullface(Direction.DOWN).texture("#texture").end()
+//                .face(Direction.UP).uvs(0, 0.25F, 0.75F, 0.5F).cullface(Direction.UP).texture("#texture").end()
+//                .face(Direction.NORTH).uvs(0.25F, 0.25F, 0.75F, 1.25F).cullface(Direction.NORTH).texture("#texture").end()
+//                .face(Direction.SOUTH).uvs(1, 0.25F, 1.5F, 1.25F).cullface(Direction.SOUTH).texture("#texture").end()
+//                .face(Direction.WEST).uvs(0.75F, 0.25F, 1, 1.25F).cullface(Direction.WEST).texture("#texture").end()
+//                .face(Direction.EAST).uvs(0, 0.25F, 0.25F, 1.25F).cullface(Direction.EAST).texture("#texture").end()
+                .end();
+
+
+//        ModelFile chestCore = models().
+//                getBuilder(blockId.getPath()).parent(chestCoreTemplate).
+//                texture("particle", getBlockTexture(block));
+
+//        ModelFile chestCore = models().
+//                getBuilder(blockId.getPath())
+//                .texture("particle", getBlockTexture(block));
+//
+//        getVariantBuilder(block.value()).partialState()
+//                .modelForState().modelFile(chestCore).addModel();
+//
+//        itemModels().getBuilder(blockId.getPath()).parent(chestCoreTemplate)
+//                .texture("particle", "infinity_tech:block/iron_chest");
+//
+    }
 
     private void cableBlockWithItem(Holder<? extends Block> block){
         ResourceLocation blockId = Objects.requireNonNull(block.getKey()).location();

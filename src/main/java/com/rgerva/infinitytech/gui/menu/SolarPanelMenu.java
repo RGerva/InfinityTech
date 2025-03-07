@@ -1,6 +1,5 @@
 package com.rgerva.infinitytech.gui.menu;
 
-import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.block.custom.SolarPanelBlock;
 import com.rgerva.infinitytech.blockentity.custom.SolarPanelBlockEntity;
 import com.rgerva.infinitytech.gui.ModGUI;
@@ -10,7 +9,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
 public class SolarPanelMenu extends EnergyStorageMenu<SolarPanelBlockEntity> {

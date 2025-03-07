@@ -2,8 +2,6 @@ package com.rgerva.infinitytech.block.custom;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.rgerva.infinitytech.block.ModBlocks;
-import com.rgerva.infinitytech.blockentity.ModBlockEntities;
 import com.rgerva.infinitytech.blockentity.custom.CableBlockEntity;
 import com.rgerva.infinitytech.energy.ModEnergyUtils;
 import com.rgerva.infinitytech.util.ModUtils;

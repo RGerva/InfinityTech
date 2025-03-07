@@ -2,13 +2,14 @@ package com.rgerva.infinitytech.blockentity;
 
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.block.ModBlocks;
-import com.rgerva.infinitytech.blockentity.custom.*;
+import com.rgerva.infinitytech.blockentity.custom.BatteryBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.CableBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.CreativeBatteryBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.SolarPanelBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.IronChestBlockEntity;
 import com.rgerva.infinitytech.util.ModUtils;
-import com.rgerva.infinitytech.util.types.eChestConfigs;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.entity.ConduitBlockEntity;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -60,7 +61,7 @@ public class ModBlockEntities {
             () -> new BlockEntityType<>(((blockPos, blockState) -> new CableBlockEntity(blockPos, blockState,
                     ModUtils.eCablesConfigs.GOLD)), ModBlocks.GOLD_CABLE.get()));
 
-    public static final Supplier<BlockEntityType<IronChestBlockEntity>> IRON_CHEST_ENTITY = BLOCK_ENTITIES.register("chest_iron",
+    public static final Supplier<BlockEntityType<IronChestBlockEntity>> IRON_CHEST_ENTITY = BLOCK_ENTITIES.register("iron_chest",
             () -> new BlockEntityType<>(IronChestBlockEntity::new, ModBlocks.IRON_CHEST.get()));
 
     public static void register(IEventBus eventBus){
