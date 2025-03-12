@@ -1,7 +1,7 @@
 package com.rgerva.infinitytech.gui.menu;
 
-import com.rgerva.infinitytech.block.custom.SolarPanelBlock;
-import com.rgerva.infinitytech.blockentity.custom.SolarPanelBlockEntity;
+import com.rgerva.infinitytech.block.custom.solar_panel.SolarPanelBlock;
+import com.rgerva.infinitytech.blockentity.custom.solar_panel.SolarPanelBlockEntity;
 import com.rgerva.infinitytech.gui.ModGUI;
 import com.rgerva.infinitytech.gui.base.EnergyStorageMenu;
 import net.minecraft.network.FriendlyByteBuf;

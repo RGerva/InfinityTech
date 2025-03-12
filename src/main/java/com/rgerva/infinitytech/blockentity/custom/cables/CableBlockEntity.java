@@ -1,7 +1,7 @@
-package com.rgerva.infinitytech.blockentity.custom;
+package com.rgerva.infinitytech.blockentity.custom.cables;
 
 import com.mojang.datafixers.util.Pair;
-import com.rgerva.infinitytech.block.custom.CableBlock;
+import com.rgerva.infinitytech.block.custom.cables.CableBlock;
 import com.rgerva.infinitytech.blockentity.ModBlockEntities;
 import com.rgerva.infinitytech.config.ModConfiguration;
 import com.rgerva.infinitytech.energy.ReceiveOnlyEnergyStorage;

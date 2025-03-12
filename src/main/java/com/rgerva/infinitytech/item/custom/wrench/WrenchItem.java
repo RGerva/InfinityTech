@@ -1,8 +1,8 @@
-package com.rgerva.infinitytech.item.custom;
+package com.rgerva.infinitytech.item.custom.wrench;
 
-import com.rgerva.infinitytech.block.custom.BatteryBlock;
-import com.rgerva.infinitytech.block.custom.CableBlock;
-import com.rgerva.infinitytech.block.custom.SolarPanelBlock;
+import com.rgerva.infinitytech.block.custom.battery.BatteryBlock;
+import com.rgerva.infinitytech.block.custom.cables.CableBlock;
+import com.rgerva.infinitytech.block.custom.solar_panel.SolarPanelBlock;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;

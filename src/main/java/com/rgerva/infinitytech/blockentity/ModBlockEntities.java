@@ -2,10 +2,10 @@ package com.rgerva.infinitytech.blockentity;
 
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.block.ModBlocks;
-import com.rgerva.infinitytech.blockentity.custom.BatteryBlockEntity;
-import com.rgerva.infinitytech.blockentity.custom.CableBlockEntity;
-import com.rgerva.infinitytech.blockentity.custom.CreativeBatteryBlockEntity;
-import com.rgerva.infinitytech.blockentity.custom.SolarPanelBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.baterry.BatteryBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.cables.CableBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.baterry.CreativeBatteryBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.solar_panel.SolarPanelBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.IronChestBlockEntity;
 import com.rgerva.infinitytech.util.ModUtils;
 import net.minecraft.core.registries.BuiltInRegistries;

@@ -1,7 +1,7 @@
 package com.rgerva.infinitytech.config;
 
 import com.rgerva.infinitytech.InfinityTech;
-import com.rgerva.infinitytech.block.custom.CableBlock;
+import com.rgerva.infinitytech.block.custom.cables.CableBlock;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.config.ModConfigEvent;

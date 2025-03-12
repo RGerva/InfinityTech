@@ -1,9 +1,7 @@
 package com.rgerva.infinitytech.item;
 
 import com.rgerva.infinitytech.InfinityTech;
-import com.rgerva.infinitytech.item.custom.ModArmorMaterials;
-import com.rgerva.infinitytech.item.custom.ModToolTiers;
-import com.rgerva.infinitytech.item.custom.WrenchItem;
+import com.rgerva.infinitytech.item.custom.wrench.WrenchItem;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;

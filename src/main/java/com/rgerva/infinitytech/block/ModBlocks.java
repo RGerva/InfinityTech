@@ -1,10 +1,10 @@
 package com.rgerva.infinitytech.block;
 
 import com.rgerva.infinitytech.InfinityTech;
-import com.rgerva.infinitytech.block.custom.BatteryBlock;
-import com.rgerva.infinitytech.block.custom.CableBlock;
-import com.rgerva.infinitytech.block.custom.CreativeBatteryBlock;
-import com.rgerva.infinitytech.block.custom.SolarPanelBlock;
+import com.rgerva.infinitytech.block.custom.battery.BatteryBlock;
+import com.rgerva.infinitytech.block.custom.cables.CableBlock;
+import com.rgerva.infinitytech.block.custom.battery.CreativeBatteryBlock;
+import com.rgerva.infinitytech.block.custom.solar_panel.SolarPanelBlock;
 import com.rgerva.infinitytech.block.custom.chest.IronChestBlock;
 import com.rgerva.infinitytech.item.ModItems;
 import com.rgerva.infinitytech.util.ModUtils;

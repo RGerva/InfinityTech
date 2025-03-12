@@ -1,4 +1,4 @@
-package com.rgerva.infinitytech.item.custom;
+package com.rgerva.infinitytech.item;
 
 import com.rgerva.infinitytech.util.ModTags;
 import net.minecraft.world.item.ToolMaterial;

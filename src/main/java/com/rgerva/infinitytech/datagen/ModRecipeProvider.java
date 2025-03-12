@@ -213,7 +213,18 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("N  ")
                 .define('I', Items.IRON_INGOT)
                 .define('N', Items.IRON_NUGGET)
+                .group(getItemName(ModItems.WRENCH))
                 .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
+                .save(this.output);
+
+        this.shaped(RecipeCategory.MISC, ModBlocks.IRON_CHEST.get())
+                .pattern("###")
+                .pattern("#C#")
+                .pattern("###")
+                .define('#', Items.IRON_INGOT)
+                .define('C', Ingredient.of(Items.CHEST))
+                .group(getItemName(ModBlocks.IRON_CHEST))
+                .unlockedBy(getHasName(Items.CHEST), has(Items.IRON_INGOT))
                 .save(this.output);
 
     }

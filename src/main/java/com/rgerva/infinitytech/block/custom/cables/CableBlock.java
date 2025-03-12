@@ -1,8 +1,8 @@
-package com.rgerva.infinitytech.block.custom;
+package com.rgerva.infinitytech.block.custom.cables;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.rgerva.infinitytech.blockentity.custom.CableBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.cables.CableBlockEntity;
 import com.rgerva.infinitytech.energy.ModEnergyUtils;
 import com.rgerva.infinitytech.util.ModUtils;
 import net.minecraft.ChatFormatting;

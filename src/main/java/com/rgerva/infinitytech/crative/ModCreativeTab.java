@@ -287,6 +287,11 @@ public class ModCreativeTab {
             event.accept(ModBlocks.TIN_CABLE.get());
             event.accept(ModBlocks.COPPER_CABLE.get());
             event.accept(ModBlocks.GOLD_CABLE.get());
+            event.accept(ModBlocks.IRON_CHEST.get());
+        }
+
+        if(event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS){
+            event.accept(ModBlocks.IRON_CHEST.get());
         }
 
         if(event.getTabKey() == CreativeModeTabs.OP_BLOCKS){

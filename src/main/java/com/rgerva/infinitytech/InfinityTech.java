@@ -3,13 +3,14 @@ package com.rgerva.infinitytech;
 import com.mojang.logging.LogUtils;
 import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.blockentity.ModBlockEntities;
-import com.rgerva.infinitytech.blockentity.custom.BatteryBlockEntity;
-import com.rgerva.infinitytech.blockentity.custom.CableBlockEntity;
-import com.rgerva.infinitytech.blockentity.custom.CreativeBatteryBlockEntity;
-import com.rgerva.infinitytech.blockentity.custom.SolarPanelBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.baterry.BatteryBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.cables.CableBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.baterry.CreativeBatteryBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.solar_panel.SolarPanelBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.ModChestBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.model.ModChestModel;
 import com.rgerva.infinitytech.blockentity.custom.chest.renderer.ModChestRenderer;
+import com.rgerva.infinitytech.capabilities.ModCapabilities;
 import com.rgerva.infinitytech.config.ModConfiguration;
 import com.rgerva.infinitytech.crative.ModCreativeTab;
 import com.rgerva.infinitytech.gui.ModGUI;
@@ -56,7 +57,7 @@ public class InfinityTech {
         ModGUI.register(modEventBus);
 
         modEventBus.addListener(ModCreativeTab::addCreative);
-        modEventBus.addListener(this::registerCapabilities);
+        modEventBus.addListener(ModCapabilities::registerCapabilities);
         modEventBus.addListener(ModMessages::register);
         modContainer.registerConfig(ModConfig.Type.COMMON, ModConfiguration.CONFIG);
 
@@ -92,44 +93,5 @@ public class InfinityTech {
         public static void onRegisterLayer(EntityRenderersEvent.RegisterLayerDefinitions event){
             event.registerLayerDefinition(new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID,"iron_chest"), "main"), ModChestModel::createLayerDefinition);
         }
-    }
-
-    public void registerCapabilities(RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                ModBlockEntities.CREATIVE_BATTERY_ENTITY.get(), CreativeBatteryBlockEntity::getEnergyStorageCapability);
-
-        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                ModBlockEntities.BATTERY_BOX_ENTITY.get(), BatteryBlockEntity::getEnergyStorageCapability);
-
-        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                ModBlockEntities.SOLAR_PANEL_ENTITY_1.get(), SolarPanelBlockEntity::getEnergyStorageCapability);
-
-        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                ModBlockEntities.SOLAR_PANEL_ENTITY_2.get(), SolarPanelBlockEntity::getEnergyStorageCapability);
-
-        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                ModBlockEntities.SOLAR_PANEL_ENTITY_3.get(), SolarPanelBlockEntity::getEnergyStorageCapability);
-
-        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                ModBlockEntities.SOLAR_PANEL_ENTITY_4.get(), SolarPanelBlockEntity::getEnergyStorageCapability);
-
-        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                ModBlockEntities.SOLAR_PANEL_ENTITY_5.get(), SolarPanelBlockEntity::getEnergyStorageCapability);
-
-        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                ModBlockEntities.SOLAR_PANEL_ENTITY_6.get(), SolarPanelBlockEntity::getEnergyStorageCapability);
-
-        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                ModBlockEntities.TIN_CABLE_ENTITY.get(), CableBlockEntity::getEnergyStorageCapability);
-
-        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                ModBlockEntities.COPPER_CABLE_ENTITY.get(), CableBlockEntity::getEnergyStorageCapability);
-
-        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                ModBlockEntities.GOLD_CABLE_ENTITY.get(), CableBlockEntity::getEnergyStorageCapability);
-
-        event.registerBlock(Capabilities.ItemHandler.BLOCK, (level, blockPos, blockState, blockEntity, direction) -> level.getBlockEntity(blockPos) instanceof ModChestBlockEntity chestBlockEntity ? new InvWrapper(chestBlockEntity) : null,
-                ModBlocks.IRON_CHEST.get());
-
     }
 }

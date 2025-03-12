@@ -1,4 +1,4 @@
-package com.rgerva.infinitytech.blockentity.custom;
+package com.rgerva.infinitytech.blockentity.custom.solar_panel;
 
 import com.rgerva.infinitytech.blockentity.ModBlockEntities;
 import com.rgerva.infinitytech.blockentity.custom.base.MenuEnergyStorageBlockEntity;

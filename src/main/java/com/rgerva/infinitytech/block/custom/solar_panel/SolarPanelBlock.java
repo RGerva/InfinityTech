@@ -1,9 +1,9 @@
-package com.rgerva.infinitytech.block.custom;
+package com.rgerva.infinitytech.block.custom.solar_panel;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.rgerva.infinitytech.block.ModBlocks;
-import com.rgerva.infinitytech.blockentity.custom.SolarPanelBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.solar_panel.SolarPanelBlockEntity;
 import com.rgerva.infinitytech.energy.ModEnergyUtils;
 import com.rgerva.infinitytech.util.ModUtils;
 import net.minecraft.ChatFormatting;

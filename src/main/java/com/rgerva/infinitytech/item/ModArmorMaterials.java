@@ -1,4 +1,4 @@
-package com.rgerva.infinitytech.item.custom;
+package com.rgerva.infinitytech.item;
 
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.util.ModTags;

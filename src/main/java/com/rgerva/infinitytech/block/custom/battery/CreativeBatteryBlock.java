@@ -1,8 +1,8 @@
-package com.rgerva.infinitytech.block.custom;
+package com.rgerva.infinitytech.block.custom.battery;
 
 import com.mojang.serialization.MapCodec;
 import com.rgerva.infinitytech.blockentity.ModBlockEntities;
-import com.rgerva.infinitytech.blockentity.custom.CreativeBatteryBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.baterry.CreativeBatteryBlockEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
