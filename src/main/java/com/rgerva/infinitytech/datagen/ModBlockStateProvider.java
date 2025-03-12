@@ -104,7 +104,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         cableBlockWithItem(ModBlocks.COPPER_CABLE);
         cableBlockWithItem(ModBlocks.GOLD_CABLE);
 
-        chestBlockWithItem(ModBlocks.IRON_CHEST);
+        chestBlockWithItem(ModBlocks.CHEST_IRON);
+        chestBlockWithItem(ModBlocks.CHEST_COPPER);
 
     }
 
@@ -179,8 +180,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         ModelFile chestCoreTemplate = models()
                 .withExistingParent("chest_template", ModelProvider.BLOCK_FOLDER + "/block")
-                .texture("texture", getBlockTexture(block))
-                .texture("particle", getBlockParticleTexture(block))
                 .element()
                 .from(1, 0, 1)
                 .to(15, 10, 15)
@@ -227,13 +226,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .end();
 
         ModelFile chestCore = models().
-                getBuilder(blockId.getPath()).parent(chestCoreTemplate).
-                texture("particle", getBlockParticleTexture(block));
+                getBuilder(blockId.getPath()).parent(chestCoreTemplate)
+                .texture("texture", getBlockTexture(block))
+                .texture("particle", getBlockParticleTexture(block));
 
         getVariantBuilder(block.value()).partialState()
                 .modelForState().modelFile(chestCore).addModel();
 
-        itemModels().getBuilder(blockId.getPath()).parent(chestCoreTemplate);
+        itemModels().getBuilder(blockId.getPath()).parent(chestCoreTemplate)
+                .texture("texture", getBlockTexture(block));
 
     }
 

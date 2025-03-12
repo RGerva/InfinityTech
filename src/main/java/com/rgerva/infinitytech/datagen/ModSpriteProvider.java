@@ -2,14 +2,11 @@ package com.rgerva.infinitytech.datagen;
 
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.block.ModBlocks;
-import net.minecraft.client.renderer.texture.atlas.SpriteSource;
-import net.minecraft.client.renderer.texture.atlas.SpriteSourceType;
 import net.minecraft.client.renderer.texture.atlas.sources.SingleFile;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.model.generators.ModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -26,7 +23,8 @@ public class ModSpriteProvider extends SpriteSourceProvider {
 
     @Override
     protected void gather() {
-        chestSprite(ModBlocks.IRON_CHEST);
+        chestSprite(ModBlocks.CHEST_IRON);
+        chestSprite(ModBlocks.CHEST_COPPER);
     }
 
     private void chestSprite(Holder<? extends Block> block){

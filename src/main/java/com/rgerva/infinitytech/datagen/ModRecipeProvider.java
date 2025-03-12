@@ -217,14 +217,24 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
                 .save(this.output);
 
-        this.shaped(RecipeCategory.MISC, ModBlocks.IRON_CHEST.get())
+        this.shaped(RecipeCategory.MISC, ModBlocks.CHEST_IRON.get())
                 .pattern("###")
                 .pattern("#C#")
                 .pattern("###")
                 .define('#', Items.IRON_INGOT)
                 .define('C', Ingredient.of(Items.CHEST))
-                .group(getItemName(ModBlocks.IRON_CHEST))
+                .group(getItemName(ModBlocks.CHEST_IRON))
                 .unlockedBy(getHasName(Items.CHEST), has(Items.IRON_INGOT))
+                .save(this.output);
+
+        this.shaped(RecipeCategory.MISC, ModBlocks.CHEST_COPPER.get())
+                .pattern("###")
+                .pattern("#C#")
+                .pattern("###")
+                .define('#', Items.COPPER_INGOT)
+                .define('C', Ingredient.of(Items.CHEST))
+                .group(getItemName(ModBlocks.CHEST_COPPER))
+                .unlockedBy(getHasName(Items.CHEST), has(Items.COPPER_INGOT))
                 .save(this.output);
 
     }

@@ -5,19 +5,15 @@ import com.rgerva.infinitytech.gui.menu.BatteryMenu;
 import com.rgerva.infinitytech.gui.menu.ModChestMenu;
 import com.rgerva.infinitytech.gui.menu.SolarPanelMenu;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.client.extensions.IMenuProviderExtension;
 import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.neoforged.neoforge.network.IContainerFactory;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.lang.reflect.Constructor;
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class ModGUI {
@@ -30,8 +26,11 @@ public class ModGUI {
     public static final Supplier<MenuType<SolarPanelMenu>> SOLAR_PENEL_MENU =
             registerMenuType("solar_penal", SolarPanelMenu::new);
 
-    public static final DeferredHolder<MenuType<?>, MenuType<ModChestMenu>> IRON_CHEST_MENU =
-            registerMenuTypeChest("iron_chest", ModChestMenu::createIronContainer);
+    public static final DeferredHolder<MenuType<?>, MenuType<ModChestMenu>> CHEST_IRON_MENU =
+            registerMenuTypeChest("chest_iron", ModChestMenu::new);
+
+    public static final DeferredHolder<MenuType<?>, MenuType<ModChestMenu>> CHEST_COPPER_MENU =
+            registerMenuTypeChest("chest_copper", ModChestMenu::createCopperContainer);
 
 
     private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {

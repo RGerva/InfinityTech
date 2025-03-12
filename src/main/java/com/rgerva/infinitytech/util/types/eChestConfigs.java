@@ -11,7 +11,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum eChestConfigs implements StringRepresentable {
-    IRON(54, 9, 184, 222);
+    IRON(54, 9, 184, 222),
+    COPPER(45, 9, 184, 204);
 
     private final String name;
     public final int size;
@@ -43,8 +44,13 @@ public enum eChestConfigs implements StringRepresentable {
 
     public static List<Block> get(eChestConfigs type) {
         return switch (type) {
-            case IRON -> Arrays.asList(ModBlocks.IRON_CHEST.get());
+            case IRON -> Arrays.asList(ModBlocks.CHEST_IRON.get());
+            case COPPER -> Arrays.asList(ModBlocks.CHEST_COPPER.get());
             default -> List.of(Blocks.CHEST);
         };
+    }
+
+    public String getEnumName() {
+        return this.name();
     }
 }

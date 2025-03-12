@@ -144,7 +144,8 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.TIN_CABLE.get());
                         output.accept(ModBlocks.COPPER_CABLE.get());
                         output.accept(ModBlocks.GOLD_CABLE.get());
-                        output.accept(ModBlocks.IRON_CHEST.get());
+                        output.accept(ModBlocks.CHEST_IRON.get());
+                        output.accept(ModBlocks.CHEST_COPPER.get());
 
                     }).build());
 
@@ -287,11 +288,13 @@ public class ModCreativeTab {
             event.accept(ModBlocks.TIN_CABLE.get());
             event.accept(ModBlocks.COPPER_CABLE.get());
             event.accept(ModBlocks.GOLD_CABLE.get());
-            event.accept(ModBlocks.IRON_CHEST.get());
+            event.accept(ModBlocks.CHEST_IRON.get());
+            event.accept(ModBlocks.CHEST_COPPER.get());
         }
 
         if(event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS){
-            event.accept(ModBlocks.IRON_CHEST.get());
+            event.accept(ModBlocks.CHEST_IRON.get());
+            event.accept(ModBlocks.CHEST_COPPER.get());
         }
 
         if(event.getTabKey() == CreativeModeTabs.OP_BLOCKS){

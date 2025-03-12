@@ -112,7 +112,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.COPPER_CABLE.get());
         dropSelf(ModBlocks.GOLD_CABLE.get());
 
-        dropSelf(ModBlocks.IRON_CHEST.get());
+        dropSelf(ModBlocks.CHEST_IRON.get());
+        dropSelf(ModBlocks.CHEST_COPPER.get());
 
     }
 

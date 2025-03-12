@@ -3,11 +3,6 @@ package com.rgerva.infinitytech;
 import com.mojang.logging.LogUtils;
 import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.blockentity.ModBlockEntities;
-import com.rgerva.infinitytech.blockentity.custom.baterry.BatteryBlockEntity;
-import com.rgerva.infinitytech.blockentity.custom.cables.CableBlockEntity;
-import com.rgerva.infinitytech.blockentity.custom.baterry.CreativeBatteryBlockEntity;
-import com.rgerva.infinitytech.blockentity.custom.solar_panel.SolarPanelBlockEntity;
-import com.rgerva.infinitytech.blockentity.custom.chest.ModChestBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.model.ModChestModel;
 import com.rgerva.infinitytech.blockentity.custom.chest.renderer.ModChestRenderer;
 import com.rgerva.infinitytech.capabilities.ModCapabilities;
@@ -30,13 +25,10 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.capabilities.Capabilities;
-import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import net.neoforged.neoforge.items.wrapper.InvWrapper;
 import org.slf4j.Logger;
 
 @Mod(InfinityTech.MOD_ID)
@@ -81,12 +73,14 @@ public class InfinityTech {
         public static void onRegisterMenuScreens(RegisterMenuScreensEvent event){
             event.register(ModGUI.BATTERY_BOX_MENU.get(), BatteryScreen::new);
             event.register(ModGUI.SOLAR_PENEL_MENU.get(), SolarPanelScreen::new);
-            event.register(ModGUI.IRON_CHEST_MENU.get(), ChestScreen::new);
+            event.register(ModGUI.CHEST_IRON_MENU.get(), ChestScreen::new);
+            event.register(ModGUI.CHEST_COPPER_MENU.get(), ChestScreen::new);
         }
 
         @SubscribeEvent
         public static void onRegisterEntityRenderers(EntityRenderersEvent.RegisterRenderers event){
-            event.registerBlockEntityRenderer(ModBlockEntities.IRON_CHEST_ENTITY.get(), ModChestRenderer::new);
+            event.registerBlockEntityRenderer(ModBlockEntities.CHEST_IRON_ENTITY.get(), ModChestRenderer::new);
+            event.registerBlockEntityRenderer(ModBlockEntities.CHEST_COPPER_ENTITY.get(), ModChestRenderer::new);
         }
 
         @SubscribeEvent

@@ -16,8 +16,8 @@ public class ChestScreen extends AbstractContainerScreen<ModChestMenu> implement
     public ChestScreen(ModChestMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
 
-        this.imageWidth = eChestConfigs.IRON.xSize;
-        this.imageHeight = eChestConfigs.IRON.ySize;
+        this.imageWidth = ModChestMenu.getChestConfig().xSize;
+        this.imageHeight = ModChestMenu.getChestConfig().ySize;
     }
 
     @Override
@@ -40,7 +40,7 @@ public class ChestScreen extends AbstractContainerScreen<ModChestMenu> implement
         int y = (this.height - this.imageHeight) / 2;
 
         guiGraphics.blit(RenderType::guiTextured,
-                ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "textures/gui/container/iron_chest.png"),
+                ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "textures/gui/container/chest_" + ModChestMenu.getChestConfig().getEnumName().toLowerCase() + ".png"),
                 x,
                 y,
                 0,
@@ -50,4 +50,5 @@ public class ChestScreen extends AbstractContainerScreen<ModChestMenu> implement
                 256,
                 256);
     }
+
 }

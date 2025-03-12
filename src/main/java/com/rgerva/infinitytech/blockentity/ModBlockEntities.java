@@ -5,6 +5,7 @@ import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.blockentity.custom.baterry.BatteryBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.cables.CableBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.baterry.CreativeBatteryBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.chest.CopperChestBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.solar_panel.SolarPanelBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.IronChestBlockEntity;
 import com.rgerva.infinitytech.util.ModUtils;
@@ -61,8 +62,11 @@ public class ModBlockEntities {
             () -> new BlockEntityType<>(((blockPos, blockState) -> new CableBlockEntity(blockPos, blockState,
                     ModUtils.eCablesConfigs.GOLD)), ModBlocks.GOLD_CABLE.get()));
 
-    public static final Supplier<BlockEntityType<IronChestBlockEntity>> IRON_CHEST_ENTITY = BLOCK_ENTITIES.register("iron_chest",
-            () -> new BlockEntityType<>(IronChestBlockEntity::new, ModBlocks.IRON_CHEST.get()));
+    public static final Supplier<BlockEntityType<IronChestBlockEntity>> CHEST_IRON_ENTITY = BLOCK_ENTITIES.register("chest_iron",
+            () -> new BlockEntityType<>(IronChestBlockEntity::new, ModBlocks.CHEST_IRON.get()));
+
+    public static final Supplier<BlockEntityType<CopperChestBlockEntity>> CHEST_COPPER_ENTITY = BLOCK_ENTITIES.register("chest_copper",
+            () -> new BlockEntityType<>(CopperChestBlockEntity::new, ModBlocks.CHEST_COPPER.get()));
 
     public static void register(IEventBus eventBus){
         BLOCK_ENTITIES.register(eventBus);

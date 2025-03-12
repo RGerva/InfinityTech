@@ -7,6 +7,7 @@ import com.rgerva.infinitytech.blockentity.custom.baterry.CreativeBatteryBlockEn
 import com.rgerva.infinitytech.blockentity.custom.cables.CableBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.ModChestBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.solar_panel.SolarPanelBlockEntity;
+import com.rgerva.infinitytech.util.types.eChestConfigs;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
@@ -49,6 +50,6 @@ public class ModCapabilities {
 
         event.registerBlock(Capabilities.ItemHandler.BLOCK, (level, blockPos, blockState, blockEntity, direction) ->
                         level.getBlockEntity(blockPos) instanceof ModChestBlockEntity chestBlockEntity ? new InvWrapper(chestBlockEntity) : null,
-                ModBlocks.IRON_CHEST.get());
+                ModBlocks.CHEST_IRON.get(), ModBlocks.CHEST_COPPER.get());
     }
 }

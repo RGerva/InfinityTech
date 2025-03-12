@@ -130,7 +130,8 @@
 
   "block.infinity_tech.cable_item": "Item Cable",
 
-  "block.infinity_tech.iron_chest": "Iron Chest",
+  "block.infinity_tech.chest_iron": "Iron Chest",
+  "block.infinity_tech.chest_copper": "Copper Chest",
 
   "item.infinity_tech.wrench": "Wrench",
 

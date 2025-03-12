@@ -37,6 +37,7 @@ import org.joml.Vector3f;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class ModChestRenderer<T extends BlockEntity & LidBlockEntity> implements BlockEntityRenderer<T> {
 
@@ -66,8 +67,10 @@ public class ModChestRenderer<T extends BlockEntity & LidBlockEntity> implements
         Level level = chestBlockEntity.getLevel();
         boolean useTileEntityBlockState = level != null;
 
-        BlockState blockState = useTileEntityBlockState ? chestBlockEntity.getBlockState() : ModBlocks.IRON_CHEST.get().defaultBlockState().setValue(ModChestBlock.FACING, Direction.SOUTH);
+        BlockState blockState = useTileEntityBlockState ? chestBlockEntity.getBlockState() : ModBlocks.CHEST_IRON.get().defaultBlockState().setValue(ModChestBlock.FACING, Direction.SOUTH);
         Block block = blockState.getBlock();
+
+        eChestConfigs configs = Objects.requireNonNull(ModChestBlock.getTypeFromBlock(block));
 
         if (block instanceof ModChestBlock) {
             poseStack.pushPose();
@@ -83,7 +86,7 @@ public class ModChestRenderer<T extends BlockEntity & LidBlockEntity> implements
             openness = 1.0F - openness * openness * openness;
 
 
-            Material material = new Material(Sheets.CHEST_SHEET, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "block/iron_chest"));
+            Material material = new Material(Sheets.CHEST_SHEET, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "block/chest_" + configs.getEnumName().toLowerCase()));
             VertexConsumer vertexConsumer = material.buffer(bufferSource, RenderType::entityCutout);
             this.render(poseStack, vertexConsumer, this.model, openness, packedLight, packedOverlay);
 
