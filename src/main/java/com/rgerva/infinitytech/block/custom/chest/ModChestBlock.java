@@ -34,6 +34,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -52,7 +53,7 @@ public abstract class ModChestBlock extends BaseEntityBlock implements SimpleWat
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess scheduledTickAccess, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
+    protected @NotNull BlockState updateShape(BlockState state, @NotNull LevelReader level, @NotNull ScheduledTickAccess scheduledTickAccess, @NotNull BlockPos pos, @NotNull Direction direction, @NotNull BlockPos neighborPos, @NotNull BlockState neighborState, @NotNull RandomSource random) {
         if (state.getValue(WATERLOGGED)) {
             scheduledTickAccess.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
         }
@@ -61,7 +62,7 @@ public abstract class ModChestBlock extends BaseEntityBlock implements SimpleWat
     }
 
     @Override
-    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return AABB;
     }
 
@@ -74,12 +75,12 @@ public abstract class ModChestBlock extends BaseEntityBlock implements SimpleWat
     }
 
     @Override
-    protected FluidState getFluidState(BlockState state) {
+    protected @NotNull FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
     @Override
-    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
+    protected void onRemove(BlockState state, @NotNull Level level, @NotNull BlockPos pos, BlockState newState, boolean movedByPiston) {
         if (!state.is(newState.getBlock())) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof ModChestBlockEntity) {
@@ -94,7 +95,7 @@ public abstract class ModChestBlock extends BaseEntityBlock implements SimpleWat
     }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+    protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
         if (level.isClientSide) {
             return InteractionResult.SUCCESS;
         } else {
@@ -114,7 +115,7 @@ public abstract class ModChestBlock extends BaseEntityBlock implements SimpleWat
     }
 
     @Override
-    protected @Nullable MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {
+    protected @Nullable MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
         if (isChestBlockedAt(level, pos)){
             return null;
         }
@@ -123,11 +124,6 @@ public abstract class ModChestBlock extends BaseEntityBlock implements SimpleWat
             return chestBlockEntity;
         }
         return null;
-    }
-
-    @Override
-    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        return level.isClientSide ? createTickerHelper(blockEntityType, ModBlockEntities.IRON_CHEST_ENTITY.get(), ModChestBlockEntity::lidAnimateTick) : null;
     }
 
     public static boolean isChestBlockedAt(LevelAccessor level, BlockPos pos) {
@@ -163,12 +159,12 @@ public abstract class ModChestBlock extends BaseEntityBlock implements SimpleWat
     }
 
     @Override
-    protected boolean hasAnalogOutputSignal(BlockState state) {
+    protected boolean hasAnalogOutputSignal(@NotNull BlockState state) {
         return true;
     }
 
     @Override
-    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+    protected int getAnalogOutputSignal(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
         if (!isChestBlockedAt(level, pos) && level.getBlockEntity(pos) instanceof ModChestBlockEntity chestBlockEntity){
             return AbstractContainerMenu.getRedstoneSignalFromContainer(chestBlockEntity);
         }
@@ -176,13 +172,13 @@ public abstract class ModChestBlock extends BaseEntityBlock implements SimpleWat
     }
 
     @Override
-    protected BlockState rotate(BlockState state, Rotation rotation) {
+    protected @NotNull BlockState rotate(BlockState state, Rotation rotation) {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
     @Override
-    protected BlockState mirror(BlockState state, Mirror mirror) {
-        return state.rotate(mirror.getRotation(state.getValue(FACING)));
+    protected @NotNull BlockState mirror(BlockState state, @NotNull Mirror mirror) {
+        return state.setValue(FACING, state.getValue(FACING));
     }
 
     @Override
@@ -191,12 +187,12 @@ public abstract class ModChestBlock extends BaseEntityBlock implements SimpleWat
     }
 
     @Override
-    protected boolean isPathfindable(BlockState state, PathComputationType pathComputationType) {
+    protected boolean isPathfindable(@NotNull BlockState state, @NotNull PathComputationType pathComputationType) {
         return false;
     }
 
     @Override
-    protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    protected void tick(@NotNull BlockState state, ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         BlockEntity blockEntity = level.getBlockEntity(pos);
 
         if (blockEntity instanceof ModChestBlockEntity) {
@@ -212,6 +208,5 @@ public abstract class ModChestBlock extends BaseEntityBlock implements SimpleWat
     private eChestConfigs getType() {
         return this.type;
     }
-
 
 }

@@ -85,8 +85,7 @@ public class InfinityTech {
 
         @SubscribeEvent
         public static void onRegisterEntityRenderers(EntityRenderersEvent.RegisterRenderers event){
-            event.registerBlockEntityRenderer(ModBlockEntities.IRON_CHEST_ENTITY.get(),
-                    ModChestRenderer::new);
+            event.registerBlockEntityRenderer(ModBlockEntities.IRON_CHEST_ENTITY.get(), ModChestRenderer::new);
         }
 
         @SubscribeEvent

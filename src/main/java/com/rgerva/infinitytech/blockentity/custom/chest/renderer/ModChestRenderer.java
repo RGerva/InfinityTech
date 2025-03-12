@@ -9,6 +9,7 @@ import com.rgerva.infinitytech.block.custom.chest.ModChestBlock;
 import com.rgerva.infinitytech.blockentity.custom.chest.ModChestBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.model.ModChestModel;
 import com.rgerva.infinitytech.blockentity.custom.chest.model.ModelItem;
+import com.rgerva.infinitytech.network.base.IChest;
 import com.rgerva.infinitytech.util.types.eChestConfigs;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -31,6 +32,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.LidBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import org.joml.Vector3f;
 
 import java.util.Arrays;
@@ -66,12 +68,6 @@ public class ModChestRenderer<T extends BlockEntity & LidBlockEntity> implements
 
         BlockState blockState = useTileEntityBlockState ? chestBlockEntity.getBlockState() : ModBlocks.IRON_CHEST.get().defaultBlockState().setValue(ModChestBlock.FACING, Direction.SOUTH);
         Block block = blockState.getBlock();
-        eChestConfigs chestType = eChestConfigs.IRON;
-        eChestConfigs actualType = ModChestBlock.getTypeFromBlock(block);
-
-        if (actualType != null) {
-            chestType = actualType;
-        }
 
         if (block instanceof ModChestBlock) {
             poseStack.pushPose();
@@ -87,12 +83,19 @@ public class ModChestRenderer<T extends BlockEntity & LidBlockEntity> implements
             openness = 1.0F - openness * openness * openness;
 
 
-            Material material = new Material(Sheets.CHEST_SHEET, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "iron_chest"));
+            Material material = new Material(Sheets.CHEST_SHEET, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "block/iron_chest"));
             VertexConsumer vertexConsumer = material.buffer(bufferSource, RenderType::entityCutout);
             this.render(poseStack, vertexConsumer, this.model, openness, packedLight, packedOverlay);
 
             poseStack.popPose();
 
+            if (chestBlockEntity instanceof IChest iChest && Vec3.atCenterOf(blockEntity.getBlockPos()).closerThan(this.renderer.camera.getPosition(), 128d)) {
+                float rotation = (float) (360D * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL) - partialTick;
+
+                for (int j = 0; j < MODEL_ITEMS.size() - 1; j++) {
+                    renderItem(poseStack, bufferSource, iChest.getTopItems().get(j), MODEL_ITEMS.get(j), rotation, packedLight);
+                }
+            }
         }
     }
 

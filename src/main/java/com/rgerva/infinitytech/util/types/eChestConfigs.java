@@ -37,6 +37,10 @@ public enum eChestConfigs implements StringRepresentable {
         return this.name;
     }
 
+    public int getRowCount() {
+        return this.size / this.rowLength;
+    }
+
     public static List<Block> get(eChestConfigs type) {
         return switch (type) {
             case IRON -> Arrays.asList(ModBlocks.IRON_CHEST.get());

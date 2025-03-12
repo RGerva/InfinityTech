@@ -111,7 +111,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.TIN_CABLE.get());
         dropSelf(ModBlocks.COPPER_CABLE.get());
         dropSelf(ModBlocks.GOLD_CABLE.get());
+
         dropSelf(ModBlocks.IRON_CHEST.get());
+
     }
 
     protected void LootTableOre(Block pInput, Item pOutput, float minDrops, float maxDrops){

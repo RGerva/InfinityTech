@@ -49,7 +49,7 @@ public abstract class ModChestBlockEntity extends RandomizableContainerBlockEnti
                 return false;
             }else{
                 Container container = ((ModChestMenu) player.containerMenu).getContainer();
-                return container instanceof IronChestBlockEntity || container instanceof CompoundContainer && ((CompoundContainer) container).contains(ModChestBlockEntity.this);
+                return container instanceof ModChestBlockEntity || container instanceof CompoundContainer && ((CompoundContainer) container).contains(ModChestBlockEntity.this);
             }
         }
     };
@@ -68,7 +68,7 @@ public abstract class ModChestBlockEntity extends RandomizableContainerBlockEnti
 
     @Override
     protected Component getDefaultName() {
-        return Component.literal("TESTE");
+        return null;
     }
 
     @Override
@@ -183,5 +183,4 @@ public abstract class ModChestBlockEntity extends RandomizableContainerBlockEnti
         }
         return type;
     }
-
 }

@@ -10,14 +10,14 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
-
 
 public class ChestScreen extends AbstractContainerScreen<ModChestMenu> implements MenuAccess<ModChestMenu> {
 
     public ChestScreen(ModChestMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
+
+        this.imageWidth = eChestConfigs.IRON.xSize;
+        this.imageHeight = eChestConfigs.IRON.ySize;
     }
 
     @Override
@@ -39,6 +39,15 @@ public class ChestScreen extends AbstractContainerScreen<ModChestMenu> implement
         int x = (this.width - this.imageWidth) / 2;
         int y = (this.height - this.imageHeight) / 2;
 
-        guiGraphics.blit(RenderType::guiTextured, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "textures/gui/container/iron_chest.png"), x, y, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
+        guiGraphics.blit(RenderType::guiTextured,
+                ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "textures/gui/container/iron_chest.png"),
+                x,
+                y,
+                0,
+                0,
+                this.imageWidth,
+                this.imageHeight,
+                256,
+                256);
     }
 }

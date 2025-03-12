@@ -1,6 +1,7 @@
 package com.rgerva.infinitytech.network;
 
 import com.rgerva.infinitytech.network.packet.EnergySyncS2CPacket;
+import com.rgerva.infinitytech.network.packet.StacksSyncS2CPacket;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerLevel;
@@ -14,6 +15,7 @@ public class ModMessages {
         final PayloadRegistrar registrar = event.registrar("1.0");
 
         registrar.playToClient(EnergySyncS2CPacket.ID, EnergySyncS2CPacket.STREAM_CODEC, EnergySyncS2CPacket::handle);
+        registrar.playBidirectional(StacksSyncS2CPacket.ID, StacksSyncS2CPacket.STREAM_CODEC, StacksSyncS2CPacket::handle);
     }
 
     public static void sendToServer(CustomPacketPayload message) {
