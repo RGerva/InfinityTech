@@ -8,20 +8,21 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class IronChestBlockEntity extends ModChestBlockEntity {
-    public IronChestBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ModBlockEntities.CHEST_IRON_ENTITY.get(), pos, blockState,eChestConfigs.IRON);
+public class DiamondChestBlockEntity extends ModChestBlockEntity{
+    public DiamondChestBlockEntity(BlockPos pos, BlockState blockState) {
+        super(ModBlockEntities.CHEST_DIAMOND_ENTITY.get(), pos, blockState, eChestConfigs.DIAMOND);
     }
 
     @Override
     protected AbstractContainerMenu createMenu(int i, Inventory inventory) {
-        return new ModChestMenu(ModGUI.CHEST_IRON_MENU.get(), i, inventory, this, eChestConfigs.IRON);
+        return new ModChestMenu(ModGUI.CHEST_DIAMOND_MENU.get(), i, inventory, this, eChestConfigs.DIAMOND);
     }
 
     @Override
     protected Component getDefaultName() {
-        return Component.translatable("block.infinity_tech.chest_iron");
+        return Component.translatable("block.infinity_tech.chest_diamond");
     }
 }

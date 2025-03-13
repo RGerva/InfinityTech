@@ -27,10 +27,16 @@ public class ModGUI {
             registerMenuType("solar_penal", SolarPanelMenu::new);
 
     public static final DeferredHolder<MenuType<?>, MenuType<ModChestMenu>> CHEST_IRON_MENU =
-            registerMenuTypeChest("chest_iron", ModChestMenu::new);
+            registerMenuTypeChest("chest_iron", ModChestMenu::createIronContainer);
 
     public static final DeferredHolder<MenuType<?>, MenuType<ModChestMenu>> CHEST_COPPER_MENU =
             registerMenuTypeChest("chest_copper", ModChestMenu::createCopperContainer);
+
+    public static final DeferredHolder<MenuType<?>, MenuType<ModChestMenu>> CHEST_GOLD_MENU =
+            registerMenuTypeChest("chest_gold", ModChestMenu::createGoldContainer);
+
+    public static final DeferredHolder<MenuType<?>, MenuType<ModChestMenu>> CHEST_DIAMOND_MENU =
+            registerMenuTypeChest("chest_diamond", ModChestMenu::createDiamondContainer);
 
 
     private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {

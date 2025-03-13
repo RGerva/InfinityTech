@@ -132,6 +132,8 @@
 
   "block.infinity_tech.chest_iron": "Iron Chest",
   "block.infinity_tech.chest_copper": "Copper Chest",
+  "block.infinity_tech.chest_gold": "Gold Chest",
+  "block.infinity_tech.chest_diamond": "Diamond Chest",
 
   "item.infinity_tech.wrench": "Wrench",
 

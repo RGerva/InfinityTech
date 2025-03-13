@@ -1,6 +1,5 @@
 package com.rgerva.infinitytech.block.custom.chest;
 
-import com.rgerva.infinitytech.blockentity.ModBlockEntities;
 import com.rgerva.infinitytech.blockentity.custom.chest.ModChestBlockEntity;
 import com.rgerva.infinitytech.util.types.eChestConfigs;
 import net.minecraft.core.BlockPos;
@@ -20,8 +19,6 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -208,5 +205,4 @@ public abstract class ModChestBlock extends BaseEntityBlock implements SimpleWat
     private eChestConfigs getType() {
         return this.type;
     }
-
 }

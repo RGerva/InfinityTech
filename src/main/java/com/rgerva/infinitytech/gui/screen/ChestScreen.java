@@ -2,7 +2,6 @@ package com.rgerva.infinitytech.gui.screen;
 
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.gui.menu.ModChestMenu;
-import com.rgerva.infinitytech.util.types.eChestConfigs;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.MenuAccess;
@@ -13,11 +12,16 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class ChestScreen extends AbstractContainerScreen<ModChestMenu> implements MenuAccess<ModChestMenu> {
 
+    private final int textureXSize;
+    private final int textureYSize;
+
     public ChestScreen(ModChestMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
 
         this.imageWidth = ModChestMenu.getChestConfig().xSize;
         this.imageHeight = ModChestMenu.getChestConfig().ySize;
+        this.textureXSize = ModChestMenu.getChestConfig().textureXSize;
+        this.textureYSize = ModChestMenu.getChestConfig().textureYSize;
     }
 
     @Override
@@ -47,8 +51,8 @@ public class ChestScreen extends AbstractContainerScreen<ModChestMenu> implement
                 0,
                 this.imageWidth,
                 this.imageHeight,
-                256,
-                256);
+                this.textureXSize,
+                this.textureYSize);
     }
 
 }

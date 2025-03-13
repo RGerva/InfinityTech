@@ -75,12 +75,16 @@ public class InfinityTech {
             event.register(ModGUI.SOLAR_PENEL_MENU.get(), SolarPanelScreen::new);
             event.register(ModGUI.CHEST_IRON_MENU.get(), ChestScreen::new);
             event.register(ModGUI.CHEST_COPPER_MENU.get(), ChestScreen::new);
+            event.register(ModGUI.CHEST_GOLD_MENU.get(), ChestScreen::new);
+            event.register(ModGUI.CHEST_DIAMOND_MENU.get(), ChestScreen::new);
         }
 
         @SubscribeEvent
         public static void onRegisterEntityRenderers(EntityRenderersEvent.RegisterRenderers event){
             event.registerBlockEntityRenderer(ModBlockEntities.CHEST_IRON_ENTITY.get(), ModChestRenderer::new);
             event.registerBlockEntityRenderer(ModBlockEntities.CHEST_COPPER_ENTITY.get(), ModChestRenderer::new);
+            event.registerBlockEntityRenderer(ModBlockEntities.CHEST_GOLD_ENTITY.get(), ModChestRenderer::new);
+            event.registerBlockEntityRenderer(ModBlockEntities.CHEST_DIAMOND_ENTITY.get(), ModChestRenderer::new);
         }
 
         @SubscribeEvent

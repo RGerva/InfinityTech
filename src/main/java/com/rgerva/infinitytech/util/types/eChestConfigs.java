@@ -11,25 +11,31 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum eChestConfigs implements StringRepresentable {
-    IRON(54, 9, 184, 222),
-    COPPER(45, 9, 184, 204);
+    IRON(54, 9, 184, 222,256, 256),
+    COPPER(45, 9, 184, 204,256, 256),
+    GOLD(81, 9, 184, 276, 256, 276),
+    DIAMOND(108, 12, 238, 276, 256, 276);
 
     private final String name;
     public final int size;
     public final int rowLength;
     public final int xSize;
     public final int ySize;
+    public final int textureXSize;
+    public final int textureYSize;
 
-    eChestConfigs(int size, int rowLength, int xSize, int ySize){
-        this(null, size, rowLength, xSize, ySize);
+    eChestConfigs(int size, int rowLength, int xSize, int ySize, int textureXSize, int textureYSize){
+        this(null, size, rowLength, xSize, ySize, textureXSize, textureYSize);
     }
 
-    eChestConfigs(@Nullable String name, int size, int rowLength, int xSize, int ySize) {
+    eChestConfigs(@Nullable String name, int size, int rowLength, int xSize, int ySize, int textureXSize, int textureYSize) {
         this.name = name;
         this.size = size;
         this.rowLength = rowLength;
         this.xSize = xSize;
         this.ySize = ySize;
+        this.textureXSize = textureXSize;
+        this.textureYSize = textureYSize;
     }
 
     @Override

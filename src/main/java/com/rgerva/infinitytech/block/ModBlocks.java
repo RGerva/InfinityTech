@@ -2,11 +2,13 @@ package com.rgerva.infinitytech.block;
 
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.block.custom.battery.BatteryBlock;
-import com.rgerva.infinitytech.block.custom.cables.CableBlock;
 import com.rgerva.infinitytech.block.custom.battery.CreativeBatteryBlock;
+import com.rgerva.infinitytech.block.custom.cables.CableBlock;
 import com.rgerva.infinitytech.block.custom.chest.CopperChestBlock;
-import com.rgerva.infinitytech.block.custom.solar_panel.SolarPanelBlock;
+import com.rgerva.infinitytech.block.custom.chest.DiamondChestBlock;
+import com.rgerva.infinitytech.block.custom.chest.GoldChestBlock;
 import com.rgerva.infinitytech.block.custom.chest.IronChestBlock;
+import com.rgerva.infinitytech.block.custom.solar_panel.SolarPanelBlock;
 import com.rgerva.infinitytech.item.ModItems;
 import com.rgerva.infinitytech.util.ModUtils;
 import net.minecraft.core.registries.Registries;
@@ -555,6 +557,20 @@ public class ModBlocks {
     public static final DeferredBlock<Block> CHEST_IRON = registerBlock("chest_iron",
             () -> new IronChestBlock(BlockBehaviour.Properties.of()
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "chest_iron")))
+                    .strength(3.0F)
+                    .sound(SoundType.METAL)
+                    .mapColor(MapColor.METAL)));
+
+    public static final DeferredBlock<Block> CHEST_GOLD = registerBlock("chest_gold",
+            () -> new GoldChestBlock(BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "chest_gold")))
+                    .strength(3.0F)
+                    .sound(SoundType.METAL)
+                    .mapColor(MapColor.METAL)));
+
+    public static final DeferredBlock<Block> CHEST_DIAMOND = registerBlock("chest_diamond",
+            () -> new DiamondChestBlock(BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "chest_diamond")))
                     .strength(3.0F)
                     .sound(SoundType.METAL)
                     .mapColor(MapColor.METAL)));

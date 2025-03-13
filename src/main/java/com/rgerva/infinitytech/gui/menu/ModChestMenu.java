@@ -1,6 +1,5 @@
 package com.rgerva.infinitytech.gui.menu;
 
-import com.rgerva.infinitytech.block.custom.chest.ModChestBlock;
 import com.rgerva.infinitytech.gui.ModGUI;
 import com.rgerva.infinitytech.util.types.eChestConfigs;
 import net.minecraft.world.Container;
@@ -17,26 +16,23 @@ public class ModChestMenu extends AbstractContainerMenu {
     private final Container container;
     private static eChestConfigs eChestConf;
 
-    public ModChestMenu(int containerId, Inventory playerInventory) {
-        this(ModGUI.CHEST_IRON_MENU.get(), containerId, playerInventory, new SimpleContainer(eChestConfigs.IRON.size), eChestConfigs.IRON);
+    public static ModChestMenu createDiamondContainer(int containerId, Inventory plaInventory){
+        return new ModChestMenu(ModGUI.CHEST_DIAMOND_MENU.get(), containerId, plaInventory, new SimpleContainer(eChestConfigs.DIAMOND.size), eChestConfigs.DIAMOND);
+    }
+
+    public static ModChestMenu createGoldContainer(int containerId, Inventory plaInventory){
+        return new ModChestMenu(ModGUI.CHEST_GOLD_MENU.get(), containerId, plaInventory, new SimpleContainer(eChestConfigs.GOLD.size), eChestConfigs.GOLD);
     }
 
     public static ModChestMenu createCopperContainer(int containerId, Inventory plaInventory){
         return new ModChestMenu(ModGUI.CHEST_COPPER_MENU.get(), containerId, plaInventory, new SimpleContainer(eChestConfigs.COPPER.size), eChestConfigs.COPPER);
     }
 
-    public static ModChestMenu createCopperContainer(int containerId, Inventory playerInventory, Container inventory){
-        return new ModChestMenu(ModGUI.CHEST_COPPER_MENU.get(), containerId, playerInventory, inventory, eChestConfigs.COPPER);
-    }
-
     public static ModChestMenu createIronContainer(int containerId, Inventory playerInventory) {
         return new ModChestMenu(ModGUI.CHEST_IRON_MENU.get(), containerId, playerInventory, new SimpleContainer(eChestConfigs.IRON.size), eChestConfigs.IRON);
     }
 
-    public static ModChestMenu createIronContainer(int containerId, Inventory playerInventory, Container inventory) {
-        return new ModChestMenu(ModGUI.CHEST_IRON_MENU.get(), containerId, playerInventory, inventory, eChestConfigs.IRON);
-    }
-
+    
     public ModChestMenu(@Nullable MenuType<?> menuType, int containerId, Inventory playerInventory, Container container, eChestConfigs eChestConfigs) {
         super(menuType, containerId);
         this.container = container;
