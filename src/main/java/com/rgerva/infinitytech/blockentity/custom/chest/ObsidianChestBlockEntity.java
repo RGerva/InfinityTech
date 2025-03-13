@@ -10,18 +10,18 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class GoldChestBlockEntity extends ModChestBlockEntity{
-    public GoldChestBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ModBlockEntities.CHEST_GOLD_ENTITY.get(), pos, blockState, eChestConfigs.GOLD);
+public class ObsidianChestBlockEntity extends ModChestBlockEntity{
+    public ObsidianChestBlockEntity(BlockPos pos, BlockState blockState) {
+        super(ModBlockEntities.CHEST_OBSIDIAN_ENTITY.get(), pos, blockState, eChestConfigs.OBSIDIAN);
     }
 
     @Override
     protected AbstractContainerMenu createMenu(int i, Inventory inventory) {
-        return new ModChestMenu(ModGUI.CHEST_GOLD_MENU.get(), i, inventory, this, eChestConfigs.GOLD);
+        return new ModChestMenu(ModGUI.CHEST_OBSIDIAN_MENU.get(), i, inventory, this, eChestConfigs.OBSIDIAN);
     }
 
     @Override
     protected Component getDefaultName() {
-        return Component.translatable("block.infinity_tech.chest_gold");
+        return Component.translatable("block.infinity_tech.chest_obsidian");
     }
 }

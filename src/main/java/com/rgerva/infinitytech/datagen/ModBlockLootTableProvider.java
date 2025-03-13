@@ -116,6 +116,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.CHEST_COPPER.get());
         dropSelf(ModBlocks.CHEST_GOLD.get());
         dropSelf(ModBlocks.CHEST_DIAMOND.get());
+        dropSelf(ModBlocks.CHEST_OBSIDIAN.get());
+        dropSelf(ModBlocks.CHEST_NETHERITE.get());
 
     }
 

@@ -38,6 +38,12 @@ public class ModGUI {
     public static final DeferredHolder<MenuType<?>, MenuType<ModChestMenu>> CHEST_DIAMOND_MENU =
             registerMenuTypeChest("chest_diamond", ModChestMenu::createDiamondContainer);
 
+    public static final DeferredHolder<MenuType<?>, MenuType<ModChestMenu>> CHEST_OBSIDIAN_MENU =
+            registerMenuTypeChest("chest_obsidian", ModChestMenu::createObsidianContainer);
+
+    public static final DeferredHolder<MenuType<?>, MenuType<ModChestMenu>> CHEST_NETHERITE_MENU =
+            registerMenuTypeChest("chest_netherite", ModChestMenu::createNetheriteContainer);
+
 
     private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));

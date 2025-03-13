@@ -27,6 +27,8 @@ public class ModSpriteProvider extends SpriteSourceProvider {
         chestSprite(ModBlocks.CHEST_COPPER);
         chestSprite(ModBlocks.CHEST_GOLD);
         chestSprite(ModBlocks.CHEST_DIAMOND);
+        chestSprite(ModBlocks.CHEST_OBSIDIAN);
+        chestSprite(ModBlocks.CHEST_NETHERITE);
     }
 
     private void chestSprite(Holder<? extends Block> block){

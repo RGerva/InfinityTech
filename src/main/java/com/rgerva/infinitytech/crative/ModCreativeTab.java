@@ -149,6 +149,8 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.CHEST_COPPER.get());
                         output.accept(ModBlocks.CHEST_GOLD.get());
                         output.accept(ModBlocks.CHEST_DIAMOND.get());
+                        output.accept(ModBlocks.CHEST_OBSIDIAN.get());
+                        output.accept(ModBlocks.CHEST_NETHERITE.get());
 
                     }).build());
 
@@ -295,6 +297,8 @@ public class ModCreativeTab {
             event.accept(ModBlocks.CHEST_COPPER.get());
             event.accept(ModBlocks.CHEST_GOLD.get());
             event.accept(ModBlocks.CHEST_DIAMOND.get());
+            event.accept(ModBlocks.CHEST_OBSIDIAN.get());
+            event.accept(ModBlocks.CHEST_NETHERITE.get());
         }
 
         if(event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS){
@@ -302,6 +306,8 @@ public class ModCreativeTab {
             event.accept(ModBlocks.CHEST_COPPER.get());
             event.accept(ModBlocks.CHEST_GOLD.get());
             event.accept(ModBlocks.CHEST_DIAMOND.get());
+            event.accept(ModBlocks.CHEST_OBSIDIAN.get());
+            event.accept(ModBlocks.CHEST_NETHERITE.get());
         }
 
         if(event.getTabKey() == CreativeModeTabs.OP_BLOCKS){

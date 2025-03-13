@@ -43,7 +43,7 @@ public abstract class ModChestBlock extends BaseEntityBlock implements SimpleWat
     private final eChestConfigs type;
 
     protected ModChestBlock(Properties properties, eChestConfigs type) {
-        super(properties);
+        super(properties.requiresCorrectToolForDrops());
         this.type = type;
 
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, Boolean.FALSE));

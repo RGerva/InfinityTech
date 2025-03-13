@@ -5,10 +5,7 @@ import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.blockentity.custom.baterry.BatteryBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.baterry.CreativeBatteryBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.cables.CableBlockEntity;
-import com.rgerva.infinitytech.blockentity.custom.chest.CopperChestBlockEntity;
-import com.rgerva.infinitytech.blockentity.custom.chest.DiamondChestBlockEntity;
-import com.rgerva.infinitytech.blockentity.custom.chest.GoldChestBlockEntity;
-import com.rgerva.infinitytech.blockentity.custom.chest.IronChestBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.chest.*;
 import com.rgerva.infinitytech.blockentity.custom.solar_panel.SolarPanelBlockEntity;
 import com.rgerva.infinitytech.util.ModUtils;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -75,6 +72,12 @@ public class ModBlockEntities {
 
     public static final Supplier<BlockEntityType<DiamondChestBlockEntity>> CHEST_DIAMOND_ENTITY = BLOCK_ENTITIES.register("chest_diamond",
             () -> new BlockEntityType<>(DiamondChestBlockEntity::new, ModBlocks.CHEST_DIAMOND.get()));
+
+    public static final Supplier<BlockEntityType<ObsidianChestBlockEntity>> CHEST_OBSIDIAN_ENTITY = BLOCK_ENTITIES.register("chest_obsidian",
+            () -> new BlockEntityType<>(ObsidianChestBlockEntity::new, ModBlocks.CHEST_OBSIDIAN.get()));
+
+    public static final Supplier<BlockEntityType<NetheriteChestBlockEntity>> CHEST_NETHERITE_ENTITY = BLOCK_ENTITIES.register("chest_netherite",
+            () -> new BlockEntityType<>(NetheriteChestBlockEntity::new, ModBlocks.CHEST_NETHERITE.get()));
 
     public static void register(IEventBus eventBus){
         BLOCK_ENTITIES.register(eventBus);

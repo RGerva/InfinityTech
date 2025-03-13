@@ -14,7 +14,9 @@ public enum eChestConfigs implements StringRepresentable {
     IRON(54, 9, 184, 222,256, 256),
     COPPER(45, 9, 184, 204,256, 256),
     GOLD(81, 9, 184, 276, 256, 276),
-    DIAMOND(108, 12, 238, 276, 256, 276);
+    DIAMOND(108, 12, 238, 276, 256, 276),
+    OBSIDIAN(108, 12, 238, 276,256, 276),
+    NETHERITE(108, 12, 238, 276, 256, 276);
 
     private final String name;
     public final int size;

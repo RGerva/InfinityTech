@@ -108,6 +108,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         chestBlockWithItem(ModBlocks.CHEST_COPPER);
         chestBlockWithItem(ModBlocks.CHEST_GOLD);
         chestBlockWithItem(ModBlocks.CHEST_DIAMOND);
+        chestBlockWithItem(ModBlocks.CHEST_OBSIDIAN);
+        chestBlockWithItem(ModBlocks.CHEST_NETHERITE);
 
     }
 

@@ -2,7 +2,6 @@ package com.rgerva.infinitytech.block.custom.chest;
 
 import com.mojang.serialization.MapCodec;
 import com.rgerva.infinitytech.blockentity.ModBlockEntities;
-import com.rgerva.infinitytech.blockentity.custom.chest.CopperChestBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.GoldChestBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.ModChestBlockEntity;
 import com.rgerva.infinitytech.util.types.eChestConfigs;

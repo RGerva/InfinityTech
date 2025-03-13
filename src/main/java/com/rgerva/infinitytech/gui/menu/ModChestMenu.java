@@ -16,6 +16,14 @@ public class ModChestMenu extends AbstractContainerMenu {
     private final Container container;
     private static eChestConfigs eChestConf;
 
+    public static ModChestMenu createNetheriteContainer(int containerId, Inventory plaInventory){
+        return new ModChestMenu(ModGUI.CHEST_NETHERITE_MENU.get(), containerId, plaInventory, new SimpleContainer(eChestConfigs.NETHERITE.size), eChestConfigs.NETHERITE);
+    }
+
+    public static ModChestMenu createObsidianContainer(int containerId, Inventory plaInventory){
+        return new ModChestMenu(ModGUI.CHEST_OBSIDIAN_MENU.get(), containerId, plaInventory, new SimpleContainer(eChestConfigs.OBSIDIAN.size), eChestConfigs.OBSIDIAN);
+    }
+
     public static ModChestMenu createDiamondContainer(int containerId, Inventory plaInventory){
         return new ModChestMenu(ModGUI.CHEST_DIAMOND_MENU.get(), containerId, plaInventory, new SimpleContainer(eChestConfigs.DIAMOND.size), eChestConfigs.DIAMOND);
     }

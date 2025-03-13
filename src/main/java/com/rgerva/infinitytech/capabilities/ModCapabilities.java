@@ -50,6 +50,7 @@ public class ModCapabilities {
         event.registerBlock(Capabilities.ItemHandler.BLOCK, (level, blockPos, blockState, blockEntity, direction) ->
                         level.getBlockEntity(blockPos) instanceof ModChestBlockEntity chestBlockEntity ? new InvWrapper(chestBlockEntity) : null,
                 ModBlocks.CHEST_IRON.get(), ModBlocks.CHEST_COPPER.get(),
-                ModBlocks.CHEST_GOLD.get(), ModBlocks.CHEST_DIAMOND.get());
+                ModBlocks.CHEST_GOLD.get(), ModBlocks.CHEST_DIAMOND.get(),
+                ModBlocks.CHEST_OBSIDIAN.get(), ModBlocks.CHEST_NETHERITE.get());
     }
 }

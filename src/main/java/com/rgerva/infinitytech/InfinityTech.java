@@ -77,6 +77,8 @@ public class InfinityTech {
             event.register(ModGUI.CHEST_COPPER_MENU.get(), ChestScreen::new);
             event.register(ModGUI.CHEST_GOLD_MENU.get(), ChestScreen::new);
             event.register(ModGUI.CHEST_DIAMOND_MENU.get(), ChestScreen::new);
+            event.register(ModGUI.CHEST_OBSIDIAN_MENU.get(), ChestScreen::new);
+            event.register(ModGUI.CHEST_NETHERITE_MENU.get(), ChestScreen::new);
         }
 
         @SubscribeEvent
@@ -85,6 +87,8 @@ public class InfinityTech {
             event.registerBlockEntityRenderer(ModBlockEntities.CHEST_COPPER_ENTITY.get(), ModChestRenderer::new);
             event.registerBlockEntityRenderer(ModBlockEntities.CHEST_GOLD_ENTITY.get(), ModChestRenderer::new);
             event.registerBlockEntityRenderer(ModBlockEntities.CHEST_DIAMOND_ENTITY.get(), ModChestRenderer::new);
+            event.registerBlockEntityRenderer(ModBlockEntities.CHEST_OBSIDIAN_ENTITY.get(), ModChestRenderer::new);
+            event.registerBlockEntityRenderer(ModBlockEntities.CHEST_NETHERITE_ENTITY.get(), ModChestRenderer::new);
         }
 
         @SubscribeEvent
