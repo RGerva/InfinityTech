@@ -271,5 +271,22 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.CHEST_DIAMOND.get())
                 .add(ModBlocks.CHEST_OBSIDIAN.get())
                 .add(ModBlocks.CHEST_NETHERITE.get());
+
+        tag(ModTags.Blocks.MOD_ENERGY)
+                .add(ModBlocks.CREATIVE_BATTERY.get())
+                .add(ModBlocks.BATTERY_BLOCK.get())
+                .add(ModBlocks.SOLAR_PANEL_1.get())
+                .add(ModBlocks.SOLAR_PANEL_2.get())
+                .add(ModBlocks.SOLAR_PANEL_3.get())
+                .add(ModBlocks.SOLAR_PANEL_4.get())
+                .add(ModBlocks.SOLAR_PANEL_5.get())
+                .add(ModBlocks.TIN_CABLE.get())
+                .add(ModBlocks.COPPER_CABLE.get())
+                .add(ModBlocks.GOLD_CABLE.get());
+
+        tag(ModTags.Blocks.MOD_ENERGY_CABLES)
+                .add(ModBlocks.TIN_CABLE.get())
+                .add(ModBlocks.COPPER_CABLE.get())
+                .add(ModBlocks.GOLD_CABLE.get());
     }
 }

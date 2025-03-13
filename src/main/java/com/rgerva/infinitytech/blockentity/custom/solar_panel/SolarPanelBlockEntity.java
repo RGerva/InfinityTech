@@ -4,7 +4,7 @@ import com.rgerva.infinitytech.blockentity.ModBlockEntities;
 import com.rgerva.infinitytech.blockentity.custom.base.MenuEnergyStorageBlockEntity;
 import com.rgerva.infinitytech.energy.ExtractOnlyEnergyStorage;
 import com.rgerva.infinitytech.gui.menu.SolarPanelMenu;
-import com.rgerva.infinitytech.util.ModUtils;
+import com.rgerva.infinitytech.util.types.eSolarPanelConfigs;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
@@ -22,14 +22,14 @@ import org.jetbrains.annotations.Nullable;
 
 public class SolarPanelBlockEntity extends MenuEnergyStorageBlockEntity<ExtractOnlyEnergyStorage> {
 
-    private final ModUtils.eSolarPanelConfigs eSolarPanelConfigs;
+    private final eSolarPanelConfigs solarPanelConfigs;
 
-    public SolarPanelBlockEntity(BlockPos blockPos, BlockState blockState, ModUtils.eSolarPanelConfigs eSolarPanelConfigs) {
+    public SolarPanelBlockEntity(BlockPos blockPos, BlockState blockState, eSolarPanelConfigs eSolarPanelConfigs) {
         super(getEntityType(eSolarPanelConfigs) , blockPos, blockState, eSolarPanelConfigs.name(), eSolarPanelConfigs.getCapacity(), eSolarPanelConfigs.getMaxTransfer());
-        this.eSolarPanelConfigs = eSolarPanelConfigs;
+        this.solarPanelConfigs = eSolarPanelConfigs;
     }
 
-    public static BlockEntityType<SolarPanelBlockEntity> getEntityType(ModUtils.eSolarPanelConfigs eSolarPanelConfigs) {
+    public static BlockEntityType<SolarPanelBlockEntity> getEntityType(eSolarPanelConfigs eSolarPanelConfigs) {
         return switch(eSolarPanelConfigs) {
             case solar_panel_1 -> ModBlockEntities.SOLAR_PANEL_ENTITY_1.get();
             case solar_panel_2 -> ModBlockEntities.SOLAR_PANEL_ENTITY_2.get();
@@ -68,8 +68,8 @@ public class SolarPanelBlockEntity extends MenuEnergyStorageBlockEntity<ExtractO
         return new SolarPanelMenu(i, inventory, this);
     }
 
-    public ModUtils.eSolarPanelConfigs geteSolarPanelConfigs() {
-        return eSolarPanelConfigs;
+    public eSolarPanelConfigs geteSolarPanelConfigs() {
+        return solarPanelConfigs;
     }
 
 

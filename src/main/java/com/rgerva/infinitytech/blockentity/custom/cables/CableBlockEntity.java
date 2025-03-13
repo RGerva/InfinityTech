@@ -5,7 +5,7 @@ import com.rgerva.infinitytech.block.custom.cables.CableBlock;
 import com.rgerva.infinitytech.blockentity.ModBlockEntities;
 import com.rgerva.infinitytech.config.ModConfiguration;
 import com.rgerva.infinitytech.energy.ReceiveOnlyEnergyStorage;
-import com.rgerva.infinitytech.util.ModUtils;
+import com.rgerva.infinitytech.util.types.eCablesConfigs;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -26,7 +26,7 @@ import java.util.Map;
 public class CableBlockEntity extends BlockEntity {
     private static final CableBlock.EnergyExtractionMode ENERGY_EXTRACTION_MODE = ModConfiguration.CABLES_ENERGY_EXTRACTION_MODE.get();
 
-    private final ModUtils.eCablesConfigs eCablesConfigs;
+    private final eCablesConfigs cablesConfigs;
     private final ReceiveOnlyEnergyStorage energyStorage;
     private boolean loaded;
 
@@ -34,9 +34,9 @@ public class CableBlockEntity extends BlockEntity {
     private final Map<Pair<BlockPos, Direction>, IEnergyStorage> consumers = new HashMap<>();
     private final List<BlockPos> cableBlocks = new LinkedList<>();
 
-    public CableBlockEntity(BlockPos pos, BlockState blockState, ModUtils.eCablesConfigs eCablesConfigs) {
+    public CableBlockEntity(BlockPos pos, BlockState blockState, eCablesConfigs eCablesConfigs) {
         super(getEntityType(eCablesConfigs), pos, blockState);
-        this.eCablesConfigs = eCablesConfigs;
+        this.cablesConfigs = eCablesConfigs;
 
         if(ENERGY_EXTRACTION_MODE.isPush()){
             energyStorage = new ReceiveOnlyEnergyStorage(0, eCablesConfigs.getMaxTransfer(), eCablesConfigs.getMaxTransfer()){
@@ -60,11 +60,11 @@ public class CableBlockEntity extends BlockEntity {
         }
     }
 
-    public ModUtils.eCablesConfigs getCableConfigs(){
-        return eCablesConfigs;
+    public eCablesConfigs getCableConfigs(){
+        return cablesConfigs;
     }
 
-    public static BlockEntityType<CableBlockEntity> getEntityType(ModUtils.eCablesConfigs eCablesConfigs) {
+    public static BlockEntityType<CableBlockEntity> getEntityType(eCablesConfigs eCablesConfigs) {
         return switch(eCablesConfigs) {
             case TIN -> ModBlockEntities.TIN_CABLE_ENTITY.get();
             case COPPER -> ModBlockEntities.COPPER_CABLE_ENTITY.get();
@@ -163,7 +163,7 @@ public class CableBlockEntity extends BlockEntity {
             blockEntity.loaded = true;
         }
 
-        final int MAX_TRANSFER = blockEntity.eCablesConfigs.getMaxTransfer();
+        final int MAX_TRANSFER = blockEntity.cablesConfigs.getMaxTransfer();
         List<IEnergyStorage> energyProduction = new LinkedList<>();
         List<Integer> energyProductionValues = new LinkedList<>();
 

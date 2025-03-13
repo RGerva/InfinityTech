@@ -4,7 +4,7 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.rgerva.infinitytech.blockentity.custom.cables.CableBlockEntity;
 import com.rgerva.infinitytech.energy.ModEnergyUtils;
-import com.rgerva.infinitytech.util.ModUtils;
+import com.rgerva.infinitytech.util.types.eCablesConfigs;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
@@ -42,7 +42,7 @@ import java.util.List;
 
 public class CableBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
     public static final MapCodec<CableBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> {
-        return instance.group(ExtraCodecs.NON_EMPTY_STRING.xmap(ModUtils.eCablesConfigs::valueOf, ModUtils.eCablesConfigs::toString).fieldOf("eCablesConfigs").
+        return instance.group(ExtraCodecs.NON_EMPTY_STRING.xmap(eCablesConfigs::valueOf, eCablesConfigs::toString).fieldOf("eCablesConfigs").
                                 forGetter(CableBlock::geteCablesConfigs),
                         Properties.CODEC.fieldOf("properties").forGetter(Block::properties)).
                 apply(instance, CableBlock::new);
@@ -64,20 +64,20 @@ public class CableBlock extends BaseEntityBlock implements SimpleWaterloggedBloc
     private static final VoxelShape SHAPE_EAST = Block.box(10.d, 6.d, 6.d, 16.d, 10.d, 10.d);
     private static final VoxelShape SHAPE_WEST = Block.box(0.d, 6.d, 6.d, 6.d, 10.d, 10.d);
 
-    private final ModUtils.eCablesConfigs eCablesConfigs;
+    private final eCablesConfigs cablesConfigs;
 
-    public CableBlock(ModUtils.eCablesConfigs eCablesConfigs, Properties properties) {
+    public CableBlock(eCablesConfigs eCablesConfigs, Properties properties) {
         super(properties);
 
         this.registerDefaultState(this.stateDefinition.any().setValue(UP, false).setValue(DOWN, false).
                 setValue(NORTH, false).setValue(SOUTH, false).setValue(EAST, false).setValue(WEST, false).
                 setValue(WATERLOGGED, false));
 
-        this.eCablesConfigs = eCablesConfigs;
+        this.cablesConfigs = eCablesConfigs;
     }
 
-    public ModUtils.eCablesConfigs geteCablesConfigs(){
-        return eCablesConfigs;
+    public eCablesConfigs geteCablesConfigs(){
+        return cablesConfigs;
     }
 
     @Override
@@ -150,7 +150,7 @@ public class CableBlock extends BaseEntityBlock implements SimpleWaterloggedBloc
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new CableBlockEntity(blockPos, blockState, eCablesConfigs);
+        return new CableBlockEntity(blockPos, blockState, cablesConfigs);
     }
 
     @Override
@@ -237,14 +237,14 @@ public class CableBlock extends BaseEntityBlock implements SimpleWaterloggedBloc
 
     @Override
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, CableBlockEntity.getEntityType(eCablesConfigs), CableBlockEntity::tick);
+        return createTickerHelper(blockEntityType, CableBlockEntity.getEntityType(cablesConfigs), CableBlockEntity::tick);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         if(Screen.hasShiftDown()) {
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.cable.transfer_rate",
-                    ModEnergyUtils.getEnergyWithPrefix(eCablesConfigs.getMaxTransfer())).withStyle(ChatFormatting.GRAY));
+                    ModEnergyUtils.getEnergyWithPrefix(cablesConfigs.getMaxTransfer())).withStyle(ChatFormatting.GRAY));
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.cable.info").
                     withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
         }else {

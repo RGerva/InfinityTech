@@ -5,7 +5,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.blockentity.custom.solar_panel.SolarPanelBlockEntity;
 import com.rgerva.infinitytech.energy.ModEnergyUtils;
-import com.rgerva.infinitytech.util.ModUtils;
+import com.rgerva.infinitytech.util.types.eSolarPanelConfigs;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
@@ -34,21 +34,21 @@ import java.util.List;
 
 public class SolarPanelBlock extends BaseEntityBlock {
     public static final MapCodec<SolarPanelBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> {
-        return instance.group(ExtraCodecs.NON_EMPTY_STRING.xmap(ModUtils.eSolarPanelConfigs::valueOf, ModUtils.eSolarPanelConfigs::toString).fieldOf("SolarPanelConfigs").
+        return instance.group(ExtraCodecs.NON_EMPTY_STRING.xmap(eSolarPanelConfigs::valueOf, eSolarPanelConfigs::toString).fieldOf("SolarPanelConfigs").
                                 forGetter(SolarPanelBlock::geteSolarPanelConfigs),
                         Properties.CODEC.fieldOf("properties").forGetter(Block::properties)).
                 apply(instance, SolarPanelBlock::new);
     });
 
     private static final VoxelShape SHAPE = Block.box(0.d, 0.d, 0.d, 16.d, 4.d, 16.d);
-    private final ModUtils.eSolarPanelConfigs eSolarPanelConfigs;
+    private final eSolarPanelConfigs solarPanelConfigs;
 
-    public SolarPanelBlock(ModUtils.eSolarPanelConfigs eSolarPanelConfigs, Properties properties) {
+    public SolarPanelBlock(eSolarPanelConfigs eSolarPanelConfigs, Properties properties) {
         super(properties);
-        this.eSolarPanelConfigs = eSolarPanelConfigs;
+        this.solarPanelConfigs = eSolarPanelConfigs;
     }
 
-    public static Block getBlockFromPanelConfigs(ModUtils.eSolarPanelConfigs geteSolarPanelConfigs) {
+    public static Block getBlockFromPanelConfigs(eSolarPanelConfigs geteSolarPanelConfigs) {
         return switch(geteSolarPanelConfigs) {
             case solar_panel_1 -> ModBlocks.SOLAR_PANEL_1.get();
             case solar_panel_2 -> ModBlocks.SOLAR_PANEL_2.get();
@@ -59,8 +59,8 @@ public class SolarPanelBlock extends BaseEntityBlock {
         };
     }
 
-    public ModUtils.eSolarPanelConfigs geteSolarPanelConfigs(){
-        return eSolarPanelConfigs;
+    public eSolarPanelConfigs geteSolarPanelConfigs(){
+        return solarPanelConfigs;
     }
 
     @Override
@@ -75,7 +75,7 @@ public class SolarPanelBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new SolarPanelBlockEntity(blockPos, blockState, eSolarPanelConfigs);
+        return new SolarPanelBlockEntity(blockPos, blockState, solarPanelConfigs);
 
     }
 
@@ -100,7 +100,7 @@ public class SolarPanelBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, SolarPanelBlockEntity.getEntityType(eSolarPanelConfigs), SolarPanelBlockEntity::tick);
+        return createTickerHelper(blockEntityType, SolarPanelBlockEntity.getEntityType(solarPanelConfigs), SolarPanelBlockEntity::tick);
     }
 
 
@@ -108,7 +108,7 @@ public class SolarPanelBlock extends BaseEntityBlock {
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         if(Screen.hasShiftDown()) {
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.solar_panel.produces",
-                    ModEnergyUtils.getEnergyWithPrefix(eSolarPanelConfigs.getPeakFePerTick())).withStyle(ChatFormatting.GRAY));
+                    ModEnergyUtils.getEnergyWithPrefix(solarPanelConfigs.getPeakFePerTick())).withStyle(ChatFormatting.GRAY));
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.solar_panel.info").withStyle(ChatFormatting.GRAY));
         }else {
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.shift_details").withStyle(ChatFormatting.YELLOW));
