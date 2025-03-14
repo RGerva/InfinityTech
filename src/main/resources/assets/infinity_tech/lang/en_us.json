@@ -1,9 +1,7 @@
 {
   "name.infinity_tech.name": "Infinity Tech",
-
   "item.infinity_tech.steel_ingot": "Steel Ingot",
   "item.infinity_tech.steel_nugget": "Steel Nugget",
-
   "item.infinity_tech.titanium_ingot": "Titanium Ingot",
   "item.infinity_tech.titanium_raw": "Titanium Raw",
   "item.infinity_tech.titanium_nugget": "Titanium Nugget",
@@ -17,104 +15,85 @@
   "item.infinity_tech.titanium_leggings": "Titanium Leggings",
   "item.infinity_tech.titanium_boots": "Titanium Boots",
   "item.infinity_tech.titanium_horse_armor": "Titanium Horse Armor",
-
   "item.infinity_tech.lead_ingot": "Lead Ingot",
   "item.infinity_tech.lead_nugget": "Lead Nugget",
   "item.infinity_tech.lead_raw": "Lead Raw",
-
   "item.infinity_tech.aluminum_ingot": "Aluminum Ingot",
   "item.infinity_tech.aluminum_nugget": "Aluminum Nugget",
   "item.infinity_tech.aluminum_raw": "Aluminum Raw",
-
   "item.infinity_tech.nickel_ingot": "Nickel Ingot",
   "item.infinity_tech.nickel_nugget": "Nickel Nugget",
   "item.infinity_tech.nickel_raw": "Nickel Raw",
-
   "item.infinity_tech.platinum_ingot": "Platinum Ingot",
   "item.infinity_tech.platinum_nugget": "Platinum Nugget",
   "item.infinity_tech.platinum_raw": "Platinum Raw",
-
   "item.infinity_tech.silver_ingot": "Silver Ingot",
   "item.infinity_tech.silver_nugget": "Silver Nugget",
   "item.infinity_tech.silver_raw": "Silver Raw",
-
   "item.infinity_tech.tin_ingot": "Tin Ingot",
   "item.infinity_tech.tin_nugget": "Tin Nugget",
   "item.infinity_tech.tin_raw": "Tin Raw",
-
   "item.infinity_tech.uranium_ingot": "Uranium Ingot",
   "item.infinity_tech.uranium_nugget": "Uranium Nugget",
   "item.infinity_tech.uranium_raw": "Uranium Raw",
-
   "item.infinity_tech.zinc_ingot": "Zinc Ingot",
   "item.infinity_tech.zinc_nugget": "Zinc Nugget",
   "item.infinity_tech.zinc_raw": "Zinc Raw",
-
   "block.infinity_tech.steel_block": "Steel Block",
-
   "block.infinity_tech.titanium_ore": "Titanium Ore",
   "block.infinity_tech.titanium_deepslate_ore": "Deepslate Titanium Ore",
   "block.infinity_tech.titanium_end_ore": "End Titanium Ore",
   "block.infinity_tech.titanium_block": "Titanium Block",
   "block.infinity_tech.titanium_raw_block": "Raw Titanium Block",
   "block.infinity_tech.titanium_nether_block": "Nether Titanium Ore",
-
   "block.infinity_tech.lead_block": "Lead Block",
   "block.infinity_tech.lead_raw_block": "Raw Lead Block",
   "block.infinity_tech.lead_deepslate_ore": "Deepslate Lead Ore",
   "block.infinity_tech.lead_end_ore": "End Lead Ore",
   "block.infinity_tech.lead_nether_ore": "Nether Lead Ore",
   "block.infinity_tech.lead_ore": "Lead Ore",
-
   "block.infinity_tech.aluminum_block": "Aluminum Block",
   "block.infinity_tech.aluminum_raw_block": "Raw Aluminum Block",
   "block.infinity_tech.aluminum_deepslate_ore": "Deepslate Aluminum Ore",
   "block.infinity_tech.aluminum_end_ore": "End Aluminum Ore",
   "block.infinity_tech.aluminum_nether_ore": "Nether Aluminum Ore",
   "block.infinity_tech.aluminum_ore": "Aluminum Ore",
-
   "block.infinity_tech.nickel_block": "Nickel Block",
   "block.infinity_tech.nickel_raw_block": "Raw Nickel Block",
   "block.infinity_tech.nickel_deepslate_ore": "Deepslate Nickel Ore",
   "block.infinity_tech.nickel_end_ore": "End Nickel Ore",
   "block.infinity_tech.nickel_nether_ore": "Nether Nickel Ore",
   "block.infinity_tech.nickel_ore": "Nickel Ore",
-
   "block.infinity_tech.platinum_block": "Platinum Block",
   "block.infinity_tech.platinum_raw_block": "Raw Platinum Block",
   "block.infinity_tech.platinum_deepslate_ore": "Deepslate Platinum Ore",
   "block.infinity_tech.platinum_end_ore": "End Platinum Ore",
   "block.infinity_tech.platinum_nether_ore": "Nether Platinum Ore",
   "block.infinity_tech.platinum_ore": "Platinum Ore",
-
   "block.infinity_tech.silver_block": "Silver Block",
   "block.infinity_tech.silver_raw_block": "Raw Silver Block",
   "block.infinity_tech.silver_deepslate_ore": "Deepslate Silver Ore",
   "block.infinity_tech.silver_end_ore": "End Silver Ore",
   "block.infinity_tech.silver_nether_ore": "Nether Silver Ore",
   "block.infinity_tech.silver_ore": "Silver Ore",
-
   "block.infinity_tech.tin_block": "Tin Block",
   "block.infinity_tech.tin_raw_block": "Raw Tin Block",
   "block.infinity_tech.tin_deepslate_ore": "Deepslate Tin Ore",
   "block.infinity_tech.tin_end_ore": "End Tin Ore",
   "block.infinity_tech.tin_nether_ore": "Nether Tin Ore",
   "block.infinity_tech.tin_ore": "Tin Ore",
-
   "block.infinity_tech.uranium_block": "Uranium Block",
   "block.infinity_tech.uranium_raw_block": "Raw Uranium Block",
   "block.infinity_tech.uranium_deepslate_ore": "Deepslate Uranium Ore",
   "block.infinity_tech.uranium_end_ore": "End Uranium Ore",
   "block.infinity_tech.uranium_nether_ore": "Nether Uranium Ore",
   "block.infinity_tech.uranium_ore": "Uranium Ore",
-
   "block.infinity_tech.zinc_block": "Zinc Block",
   "block.infinity_tech.zinc_raw_block": "Raw Zinc Block",
   "block.infinity_tech.zinc_deepslate_ore": "Deepslate Zinc Ore",
   "block.infinity_tech.zinc_end_ore": "End Zinc Ore",
   "block.infinity_tech.zinc_nether_ore": "Nether Zinc Ore",
   "block.infinity_tech.zinc_ore": "Zinc Ore",
-
   "block.infinity_tech.battery_box": "Battery",
   "block.infinity_tech.creative_battery_box": "Creative Battery",
   "block.infinity_tech.solar_panel_1": "Solar Panel (Power I)",
@@ -123,22 +102,17 @@
   "block.infinity_tech.solar_panel_4": "Solar Panel (Power IV)",
   "block.infinity_tech.solar_panel_5": "Solar Panel (Power V)",
   "block.infinity_tech.solar_panel_6": "Solar Panel (Power VI)",
-
   "block.infinity_tech.cable_tin": "Tin Cable",
   "block.infinity_tech.cable_copper": "Copper Cable",
   "block.infinity_tech.cable_gold": "Gold Cable",
-
   "block.infinity_tech.cable_item": "Item Cable",
-
   "block.infinity_tech.chest_iron": "Iron Chest",
   "block.infinity_tech.chest_copper": "Copper Chest",
   "block.infinity_tech.chest_gold": "Gold Chest",
   "block.infinity_tech.chest_diamond": "Diamond Chest",
   "block.infinity_tech.chest_obsidian": "Obsidian Chest",
   "block.infinity_tech.chest_netherite": "Netherite Chest",
-
   "item.infinity_tech.wrench": "Wrench",
-
   "machine.infinity_tech.battery_block": "Battery",
   "machine.infinity_tech.creative_battery": "Creative Battery",
   "machine.infinity_tech.solar_panel_1": "Solar Panel (Power I)",
@@ -147,7 +121,6 @@
   "machine.infinity_tech.solar_panel_4": "Solar Panel (Power IV)",
   "machine.infinity_tech.solar_panel_5": "Solar Panel (Power V)",
   "machine.infinity_tech.solar_panel_6": "Solar Panel (Power VI)",
-
   "tooltip.infinity_tech.shift_details": "Press [SHIFT] for details",
   "tooltip.infinity_tech.capacity": "Capacity: %s",
   "tooltip.infinity_tech.infinite": "Infinite",

@@ -126,6 +126,24 @@ dependencies {
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+
+    //JUnit Tests
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.12.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.12.0'
+    testImplementation 'org.junit.platform:junit-platform-launcher:1.12.0'
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+sourceSets {
+    test {
+        java {
+            srcDirs = ['src/test/java', 'com/rgerva/infinitytech']
+        }
+    }
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

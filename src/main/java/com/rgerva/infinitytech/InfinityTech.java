@@ -14,6 +14,7 @@ import com.rgerva.infinitytech.gui.screen.ChestScreen;
 import com.rgerva.infinitytech.gui.screen.SolarPanelScreen;
 import com.rgerva.infinitytech.item.ModItems;
 import com.rgerva.infinitytech.network.ModMessages;
+import com.rgerva.infinitytech.tests.ModGameTest;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.ResourceLocation;
@@ -28,6 +29,7 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.RegisterGameTestsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.slf4j.Logger;
 
@@ -94,6 +96,11 @@ public class InfinityTech {
         @SubscribeEvent
         public static void onRegisterLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
             event.registerLayerDefinition(new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "iron_chest"), "main"), ModChestModel::createLayerDefinition);
+        }
+
+        @SubscribeEvent
+        public static void onRegisterGameTests(RegisterGameTestsEvent event) {
+            event.register(ModGameTest.class);
         }
     }
 }
