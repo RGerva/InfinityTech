@@ -55,7 +55,7 @@ public class BatteryBlock extends BaseEntityBlock {
     @Override
     protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos blockPos) {
         BlockEntity blockEntity = level.getBlockEntity(blockPos);
-        if(!(blockEntity instanceof BatteryBlockEntity batteryBoxBlockEntity))
+        if (!(blockEntity instanceof BatteryBlockEntity batteryBoxBlockEntity))
             return super.getAnalogOutputSignal(state, level, blockPos);
 
         return batteryBoxBlockEntity.getRedstoneOutput();
@@ -63,14 +63,14 @@ public class BatteryBlock extends BaseEntityBlock {
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos blockPos, Player player, BlockHitResult hitResult) {
-        if(level.isClientSide())
+        if (level.isClientSide())
             return InteractionResult.SUCCESS;
 
         BlockEntity blockEntity = level.getBlockEntity(blockPos);
-        if(!(blockEntity instanceof BatteryBlockEntity))
+        if (!(blockEntity instanceof BatteryBlockEntity))
             throw new IllegalStateException("Container is invalid");
 
-        player.openMenu((BatteryBlockEntity)blockEntity, blockPos);
+        player.openMenu((BatteryBlockEntity) blockEntity, blockPos);
 
         return InteractionResult.SUCCESS;
     }
@@ -82,14 +82,14 @@ public class BatteryBlock extends BaseEntityBlock {
 
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        if(Screen.hasShiftDown()) {
+        if (Screen.hasShiftDown()) {
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.capacity",
                             ModEnergyUtils.getEnergyWithPrefix(BatteryBlockEntity.CAPACITY)).
                     withStyle(ChatFormatting.GRAY));
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.transfer_rate",
                             ModEnergyUtils.getEnergyWithPrefix(BatteryBlockEntity.MAX_TRANSFER)).
                     withStyle(ChatFormatting.GRAY));
-        }else {
+        } else {
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.shift_details").withStyle(ChatFormatting.YELLOW));
         }
     }

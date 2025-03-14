@@ -22,7 +22,7 @@ import java.util.List;
 
 public class ModConfiguredFeatures {
 
-    public static List<ResourceKey<ConfiguredFeature<?,?>>> ORE_KEY = new ArrayList<>();
+    public static List<ResourceKey<ConfiguredFeature<?, ?>>> ORE_KEY = new ArrayList<>();
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         ModUtils.setOresProperties();
@@ -33,7 +33,7 @@ public class ModConfiguredFeatures {
         RuleTest netherrackReplaceables = new BlockMatchTest(Blocks.NETHERRACK);
         RuleTest endReplaceables = new BlockMatchTest(Blocks.END_STONE);
 
-        for(int x = 0; x < ModUtils.getOres().size(); x++){
+        for (int x = 0; x < ModUtils.getOres().size(); x++) {
             List<OreConfiguration.TargetBlockState> Ores = List.of(
                     OreConfiguration.target(stoneReplacebles, ModUtils.getOres().get(x).defaultBlockState()),
                     OreConfiguration.target(deepslateReplaceables, ModUtils.getDeepslateOre().get(x).defaultBlockState()),
@@ -47,8 +47,8 @@ public class ModConfiguredFeatures {
 
     }
 
-    private static void registerAllKey(){
-        for(int x = 0; x < ModUtils.getOres().size(); x++){
+    private static void registerAllKey() {
+        for (int x = 0; x < ModUtils.getOres().size(); x++) {
             ORE_KEY.add(registerKey(BuiltInRegistries.ITEM.getKey(ModUtils.getOres().get(x).asItem()).getPath()));
         }
 

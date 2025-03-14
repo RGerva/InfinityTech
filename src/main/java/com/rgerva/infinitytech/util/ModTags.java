@@ -16,7 +16,7 @@ public class ModTags {
         public static final TagKey<Block> MOD_ENERGY = createTag(InfinityTech.MOD_ID + "energy");
         public static final TagKey<Block> MOD_ENERGY_CABLES = createTag(InfinityTech.MOD_ID + "energy_cables");
 
-        private static TagKey<Block> createTag(String name){
+        private static TagKey<Block> createTag(String name) {
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, name));
         }
     }
@@ -25,7 +25,7 @@ public class ModTags {
         public static final TagKey<Item> TRANSFORMABLE_ITEMS = createTag("transformable_items");
         public static final TagKey<Item> TITANIUM_REPAIR = createTag("titanium_repair");
 
-        private static TagKey<Item> createTag(String name){
+        private static TagKey<Item> createTag(String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, name));
         }
     }

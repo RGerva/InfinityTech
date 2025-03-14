@@ -43,14 +43,14 @@ public abstract class EnergyStorageBlockEntity<E extends IModEnergyStorage> exte
 
     protected final void syncEnergyToPlayer(Player player) {
         ModMessages.sendToPlayer(new EnergySyncS2CPacket(energyStorage.getEnergy(), energyStorage.getCapacity(),
-                getBlockPos()), (ServerPlayer)player);
+                getBlockPos()), (ServerPlayer) player);
     }
 
     protected final void syncEnergyToPlayers(int distance) {
-        if(level != null && !level.isClientSide())
+        if (level != null && !level.isClientSide())
             ModMessages.sendToPlayersWithinXBlocks(
                     new EnergySyncS2CPacket(energyStorage.getEnergy(), energyStorage.getCapacity(), getBlockPos()),
-                    getBlockPos(), (ServerLevel)level, distance
+                    getBlockPos(), (ServerLevel) level, distance
             );
     }
 

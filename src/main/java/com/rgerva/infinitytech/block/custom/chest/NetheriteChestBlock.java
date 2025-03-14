@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
-public class NetheriteChestBlock extends ModChestBlock{
+public class NetheriteChestBlock extends ModChestBlock {
     public static final MapCodec<NetheriteChestBlock> CODEC = simpleCodec(NetheriteChestBlock::new);
 
     public NetheriteChestBlock(Properties properties) {

@@ -76,7 +76,7 @@ public class CableBlock extends BaseEntityBlock implements SimpleWaterloggedBloc
         this.cablesConfigs = eCablesConfigs;
     }
 
-    public eCablesConfigs geteCablesConfigs(){
+    public eCablesConfigs geteCablesConfigs() {
         return cablesConfigs;
     }
 
@@ -105,7 +105,7 @@ public class CableBlock extends BaseEntityBlock implements SimpleWaterloggedBloc
         BlockPos toPos = selfPos.relative(direction);
         BlockEntity blockEntity = level.getBlockEntity(toPos);
 
-        if(blockEntity instanceof CableBlockEntity cableBlockEntity && cableBlockEntity.getCableConfigs() != this.geteCablesConfigs())
+        if (blockEntity instanceof CableBlockEntity cableBlockEntity && cableBlockEntity.getCableConfigs() != this.geteCablesConfigs())
             return false;
 
         IEnergyStorage energyStorage = level.getCapability(Capabilities.EnergyStorage.BLOCK,
@@ -157,27 +157,27 @@ public class CableBlock extends BaseEntityBlock implements SimpleWaterloggedBloc
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         VoxelShape shape = SHAPE_CORE;
 
-        if(state.getValue(UP)){
+        if (state.getValue(UP)) {
             shape = Shapes.or(shape, SHAPE_UP);
         }
 
-        if(state.getValue(DOWN)){
+        if (state.getValue(DOWN)) {
             shape = Shapes.or(shape, SHAPE_DOWN);
         }
 
-        if(state.getValue(NORTH)){
+        if (state.getValue(NORTH)) {
             shape = Shapes.or(shape, SHAPE_NORTH);
         }
 
-        if(state.getValue(SOUTH)){
+        if (state.getValue(SOUTH)) {
             shape = Shapes.or(shape, SHAPE_SOUTH);
         }
 
-        if(state.getValue(EAST)){
+        if (state.getValue(EAST)) {
             shape = Shapes.or(shape, SHAPE_EAST);
         }
 
-        if(state.getValue(WEST)){
+        if (state.getValue(WEST)) {
             shape = Shapes.or(shape, SHAPE_WEST);
         }
 
@@ -186,12 +186,12 @@ public class CableBlock extends BaseEntityBlock implements SimpleWaterloggedBloc
 
     @Override
     protected FluidState getFluidState(BlockState state) {
-        return state.getValue(WATERLOGGED)?Fluids.WATER.getSource(false):super.getFluidState(state);
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
     @Override
     protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess scheduledTickAccess, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
-        if(state.getValue(WATERLOGGED))
+        if (state.getValue(WATERLOGGED))
             scheduledTickAccess.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
 
         return super.updateShape(state, level, scheduledTickAccess, pos, direction, neighborPos, neighborState, random);
@@ -206,7 +206,7 @@ public class CableBlock extends BaseEntityBlock implements SimpleWaterloggedBloc
     protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, @Nullable Orientation orientation, boolean movedByPiston) {
         super.neighborChanged(state, level, pos, neighborBlock, orientation, movedByPiston);
 
-        if(level.isClientSide())
+        if (level.isClientSide())
             return;
 
         FluidState fluidState = level.getFluidState(pos);
@@ -224,10 +224,10 @@ public class CableBlock extends BaseEntityBlock implements SimpleWaterloggedBloc
 
 
         BlockEntity blockEntity = level.getBlockEntity(pos);
-        if(!(blockEntity instanceof CableBlockEntity))
+        if (!(blockEntity instanceof CableBlockEntity))
             return;
 
-        CableBlockEntity.updateConnections(level, pos, newState, (CableBlockEntity)blockEntity);
+        CableBlockEntity.updateConnections(level, pos, newState, (CableBlockEntity) blockEntity);
     }
 
     @Override
@@ -242,12 +242,12 @@ public class CableBlock extends BaseEntityBlock implements SimpleWaterloggedBloc
 
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        if(Screen.hasShiftDown()) {
+        if (Screen.hasShiftDown()) {
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.cable.transfer_rate",
                     ModEnergyUtils.getEnergyWithPrefix(cablesConfigs.getMaxTransfer())).withStyle(ChatFormatting.GRAY));
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.cable.info").
                     withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
-        }else {
+        } else {
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.shift_details").withStyle(ChatFormatting.YELLOW));
         }
     }

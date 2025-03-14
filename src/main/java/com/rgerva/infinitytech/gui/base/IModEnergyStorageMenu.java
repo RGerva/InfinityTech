@@ -2,13 +2,14 @@ package com.rgerva.infinitytech.gui.base;
 
 public interface IModEnergyStorageMenu {
     int getEnergy();
+
     int getCapacity();
 
     default int getScaledEnergyMeterPos(int energyMeterHeight) {
         int energy = getEnergy();
         int capacity = getCapacity();
 
-        return (energy == 0 || capacity == 0)?0:Math.max(1, energy * energyMeterHeight / capacity);
+        return (energy == 0 || capacity == 0) ? 0 : Math.max(1, energy * energyMeterHeight / capacity);
     }
 
     default int getEnergyIndicatorBarValue() {

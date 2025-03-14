@@ -15,7 +15,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
-public record StacksSyncS2CPacket(BlockPos blockPos, NonNullList<ItemStack> topItemStacks) implements CustomPacketPayload {
+public record StacksSyncS2CPacket(BlockPos blockPos,
+                                  NonNullList<ItemStack> topItemStacks) implements CustomPacketPayload {
 
     public static final Type<StacksSyncS2CPacket> ID =
             new Type<>(ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "top_stacks"));
@@ -24,7 +25,7 @@ public record StacksSyncS2CPacket(BlockPos blockPos, NonNullList<ItemStack> topI
             CustomPacketPayload.codec(StacksSyncS2CPacket::write, StacksSyncS2CPacket::new);
 
 
-    public StacksSyncS2CPacket(RegistryFriendlyByteBuf buf){
+    public StacksSyncS2CPacket(RegistryFriendlyByteBuf buf) {
         this(buf.readBlockPos(), NonNullList.withSize(ItemStack.OPTIONAL_STREAM_CODEC.apply(ByteBufCodecs.list()).decode(buf).size(), ItemStack.EMPTY));
     }
 

@@ -38,7 +38,8 @@ public class InfinityEnergyStorage implements IModEnergyStorage {
         return Integer.MAX_VALUE;
     }
 
-    protected void onChange() {}
+    protected void onChange() {
+    }
 
     @Override
     public Tag saveNBT() {

@@ -33,13 +33,13 @@ public abstract class EnergyStorageContainerScreen<T extends AbstractContainerMe
     protected final String energyIndicatorBarTooltipComponentID;
 
     public EnergyStorageContainerScreen(T menu, Inventory inventory, Component titleComponent) {
-        this(menu, inventory, titleComponent, (String)null);
+        this(menu, inventory, titleComponent, (String) null);
     }
 
     public EnergyStorageContainerScreen(T menu, Inventory inventory, Component titleComponent,
                                         String energyIndicatorBarTooltipComponentID) {
         this(menu, inventory, titleComponent, energyIndicatorBarTooltipComponentID,
-                ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID,"textures/gui/container/generic_energy.png"));
+                ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "textures/gui/container/generic_energy.png"));
     }
 
     public EnergyStorageContainerScreen(T menu, Inventory inventory, Component titleComponent,
@@ -75,7 +75,7 @@ public abstract class EnergyStorageContainerScreen<T extends AbstractContainerMe
 
     protected void renderEnergyIndicatorBar(GuiGraphics guiGraphics, int x, int y) {
         int pos = menu.getScaledEnergyIndicatorBarPos(energyMeterHeight);
-        if(pos > 0)
+        if (pos > 0)
             guiGraphics.blit(RenderType::guiTextured, TEXTURE, x + energyMeterX, y + energyMeterY + energyMeterHeight - pos, energyMeterU,
                     energyMeterV + energyMeterHeight, energyMeterWidth, 1, 256, 256);
     }
@@ -91,11 +91,11 @@ public abstract class EnergyStorageContainerScreen<T extends AbstractContainerMe
     protected void renderTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY) {
         super.renderTooltip(guiGraphics, mouseX, mouseY);
 
-        if(isHovering(energyMeterX, energyMeterY, energyMeterWidth, energyMeterHeight, mouseX, mouseY)) {
+        if (isHovering(energyMeterX, energyMeterY, energyMeterWidth, energyMeterHeight, mouseX, mouseY)) {
             List<Component> components = new ArrayList<>(2);
             components.add(Component.translatable("tooltip.infinity_tech.energy_meter",
                     ModEnergyUtils.getEnergyWithPrefix(menu.getEnergy()), ModEnergyUtils.getEnergyWithPrefix(menu.getCapacity())));
-            if(menu.getEnergyIndicatorBarValue() > 0 && energyIndicatorBarTooltipComponentID != null) {
+            if (menu.getEnergyIndicatorBarValue() > 0 && energyIndicatorBarTooltipComponentID != null) {
                 components.add(Component.translatable(energyIndicatorBarTooltipComponentID,
                         ModEnergyUtils.getEnergyWithPrefix(menu.getEnergyIndicatorBarValue())).withStyle(ChatFormatting.YELLOW));
             }

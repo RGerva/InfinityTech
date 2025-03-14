@@ -48,14 +48,14 @@ public class CreativeBatteryBlock extends BaseEntityBlock {
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos blockPos, Player player, BlockHitResult hitResult) {
-        if(level.isClientSide())
+        if (level.isClientSide())
             return InteractionResult.SUCCESS;
 
         BlockEntity blockEntity = level.getBlockEntity(blockPos);
-        if(!(blockEntity instanceof CreativeBatteryBlockEntity))
+        if (!(blockEntity instanceof CreativeBatteryBlockEntity))
             throw new IllegalStateException("Container is invalid");
 
-        player.openMenu((CreativeBatteryBlockEntity)blockEntity, blockPos);
+        player.openMenu((CreativeBatteryBlockEntity) blockEntity, blockPos);
 
         return InteractionResult.SUCCESS;
     }
@@ -67,7 +67,7 @@ public class CreativeBatteryBlock extends BaseEntityBlock {
 
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        if(Screen.hasShiftDown()) {
+        if (Screen.hasShiftDown()) {
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.capacity",
                             Component.translatable("tooltip.infinity_tech.infinite").
                                     withStyle(ChatFormatting.LIGHT_PURPLE, ChatFormatting.ITALIC)).
@@ -76,7 +76,7 @@ public class CreativeBatteryBlock extends BaseEntityBlock {
                             Component.translatable("tooltip.infinity_tech.infinite").
                                     withStyle(ChatFormatting.LIGHT_PURPLE, ChatFormatting.ITALIC)).
                     withStyle(ChatFormatting.GRAY));
-        }else {
+        } else {
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.shift_details").withStyle(ChatFormatting.YELLOW));
         }
     }

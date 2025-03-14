@@ -23,7 +23,7 @@ public class ModConfiguration {
     public static ModConfigSpec CONFIG = BUILDER.build();
 
     @SubscribeEvent
-    public static void onConfigLoad(final ModConfigEvent event){
+    public static void onConfigLoad(final ModConfigEvent event) {
         InfinityTech.LOGGER.debug("Magic Number: {}", MAGIC_NUM.get());
         InfinityTech.LOGGER.debug("CABLES_ENERGY_EXTRACTION_MODE: {}", CABLES_ENERGY_EXTRACTION_MODE.get());
     }

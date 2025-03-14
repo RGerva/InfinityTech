@@ -19,7 +19,7 @@ public class ModCreativeTab {
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, InfinityTech.MOD_ID);
 
     public static final Supplier<CreativeModeTab> INFINITY_TECH_ITEM_TAB = CREATIVE_TAB.register("infinity_tech_tab",
-            () -> CreativeModeTab.builder().icon(()-> new ItemStack(ModItems.TITANIUM_INGOT.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.TITANIUM_INGOT.get()))
                     .title(Component.translatable("name.infinity_tech.name"))
                     .displayItems((itemDisplayParameters, output) -> {
 
@@ -154,8 +154,8 @@ public class ModCreativeTab {
 
                     }).build());
 
-    public static void addCreative(BuildCreativeModeTabContentsEvent event){
-        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS){
+    public static void addCreative(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(ModItems.TITANIUM_INGOT.get());
             event.accept(ModItems.TITANIUM_RAW.get());
             event.accept(ModItems.TITANIUM_NUGGET.get());
@@ -196,7 +196,7 @@ public class ModCreativeTab {
             event.accept(ModItems.STEEL_NUGGET.get());
         }
 
-        if(event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS){
+        if (event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
             event.accept(ModBlocks.TITANIUM_NETHER_ORE.get());
             event.accept(ModBlocks.TITANIUM_DEEPSLATE_ORE.get());
             event.accept(ModBlocks.TITANIUM_END_ORE.get());
@@ -252,7 +252,7 @@ public class ModCreativeTab {
             event.accept(ModBlocks.ZINC_RAW_BLOCK.get());
         }
 
-        if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS){
+        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(ModBlocks.TITANIUM_BLOCK.get());
             event.accept(ModBlocks.STEEL_BLOCK.get());
             event.accept(ModBlocks.LEAD_BLOCK.get());
@@ -265,7 +265,7 @@ public class ModCreativeTab {
             event.accept(ModBlocks.ZINC_BLOCK.get());
         }
 
-        if(event.getTabKey() == CreativeModeTabs.COMBAT){
+        if (event.getTabKey() == CreativeModeTabs.COMBAT) {
             event.accept(ModItems.TITANIUM_SWORD.get());
             event.accept(ModItems.TITANIUM_HELMET.get());
             event.accept(ModItems.TITANIUM_CHESTPLATE.get());
@@ -274,7 +274,7 @@ public class ModCreativeTab {
             event.accept(ModItems.TITANIUM_HORSE_ARMOR.get());
         }
 
-        if(event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES){
+        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             event.accept(ModItems.TITANIUM_PICKAXE.get());
             event.accept(ModItems.TITANIUM_SHOVEL.get());
             event.accept(ModItems.TITANIUM_AXE.get());
@@ -282,7 +282,7 @@ public class ModCreativeTab {
             event.accept(ModItems.WRENCH.get());
         }
 
-        if(event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS){
+        if (event.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS) {
             event.accept(ModBlocks.SOLAR_PANEL_1.get());
             event.accept(ModBlocks.SOLAR_PANEL_2.get());
             event.accept(ModBlocks.SOLAR_PANEL_3.get());
@@ -301,7 +301,7 @@ public class ModCreativeTab {
             event.accept(ModBlocks.CHEST_NETHERITE.get());
         }
 
-        if(event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS){
+        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
             event.accept(ModBlocks.CHEST_IRON.get());
             event.accept(ModBlocks.CHEST_COPPER.get());
             event.accept(ModBlocks.CHEST_GOLD.get());
@@ -310,13 +310,13 @@ public class ModCreativeTab {
             event.accept(ModBlocks.CHEST_NETHERITE.get());
         }
 
-        if(event.getTabKey() == CreativeModeTabs.OP_BLOCKS){
+        if (event.getTabKey() == CreativeModeTabs.OP_BLOCKS) {
             event.accept(ModBlocks.CREATIVE_BATTERY.get());
         }
 
     }
 
-    public static void register(IEventBus eventBus){
+    public static void register(IEventBus eventBus) {
         CREATIVE_TAB.register(eventBus);
     }
 }

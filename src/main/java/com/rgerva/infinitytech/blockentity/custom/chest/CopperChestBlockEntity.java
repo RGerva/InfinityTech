@@ -10,9 +10,9 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class CopperChestBlockEntity extends ModChestBlockEntity{
+public class CopperChestBlockEntity extends ModChestBlockEntity {
     public CopperChestBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ModBlockEntities.CHEST_COPPER_ENTITY.get(), pos, blockState,eChestConfigs.COPPER);
+        super(ModBlockEntities.CHEST_COPPER_ENTITY.get(), pos, blockState, eChestConfigs.COPPER);
     }
 
     @Override

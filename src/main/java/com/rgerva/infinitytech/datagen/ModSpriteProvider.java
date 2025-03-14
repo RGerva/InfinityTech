@@ -31,12 +31,12 @@ public class ModSpriteProvider extends SpriteSourceProvider {
         chestSprite(ModBlocks.CHEST_NETHERITE);
     }
 
-    private void chestSprite(Holder<? extends Block> block){
+    private void chestSprite(Holder<? extends Block> block) {
         atlas(CHESTS_ATLAS).addSource(new SingleFile(getBlockTexture(block), Optional.empty()));
         atlas(BLOCKS_ATLAS).addSource(new SingleFile(getBlockParticleTexture(block), Optional.empty()));
     }
 
-    private ResourceLocation getBlockParticleTexture(Holder<? extends Block> block){
+    private ResourceLocation getBlockParticleTexture(Holder<? extends Block> block) {
         ResourceLocation blockId = Objects.requireNonNull(block.getKey()).location();
 
         return ResourceLocation.fromNamespaceAndPath(blockId.getNamespace(),

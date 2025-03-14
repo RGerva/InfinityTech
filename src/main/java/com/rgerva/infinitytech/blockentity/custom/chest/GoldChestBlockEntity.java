@@ -10,7 +10,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class GoldChestBlockEntity extends ModChestBlockEntity{
+public class GoldChestBlockEntity extends ModChestBlockEntity {
     public GoldChestBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.CHEST_GOLD_ENTITY.get(), pos, blockState, eChestConfigs.GOLD);
     }

@@ -30,15 +30,15 @@ public class ModBiomeModifiers {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
         var biomes = context.lookup(Registries.BIOME);
 
-        for(int x = 0; x < ModUtils.getOres().size(); x++){
+        for (int x = 0; x < ModUtils.getOres().size(); x++) {
             context.register(OVERWORLD_ADD_ORE.get(x), new BiomeModifiers.AddFeaturesBiomeModifier(
-               biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
-               HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.ORE_PLACED_KEY.get(x))),
-               GenerationStep.Decoration.UNDERGROUND_ORES
+                    biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                    HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.ORE_PLACED_KEY.get(x))),
+                    GenerationStep.Decoration.UNDERGROUND_ORES
             ));
         }
 
-        for(int x = 0; x < ModUtils.getOres().size(); x++){
+        for (int x = 0; x < ModUtils.getOres().size(); x++) {
             context.register(NETHER_ADD_ORE.get(x), new BiomeModifiers.AddFeaturesBiomeModifier(
                     biomes.getOrThrow(BiomeTags.IS_NETHER),
                     HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.ORE_PLACED_KEY.get(x))),
@@ -46,7 +46,7 @@ public class ModBiomeModifiers {
             ));
         }
 
-        for(int x = 0; x < ModUtils.getOres().size(); x++){
+        for (int x = 0; x < ModUtils.getOres().size(); x++) {
             context.register(END_ADD_ORE.get(x), new BiomeModifiers.AddFeaturesBiomeModifier(
                     biomes.getOrThrow(BiomeTags.IS_END),
                     HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.ORE_PLACED_KEY.get(x))),
@@ -56,16 +56,16 @@ public class ModBiomeModifiers {
 
     }
 
-    private static void registerAllKey(){
-        for(int x = 0; x < ModUtils.getOres().size(); x++){
+    private static void registerAllKey() {
+        for (int x = 0; x < ModUtils.getOres().size(); x++) {
             OVERWORLD_ADD_ORE.add(registerKey("add_".concat(BuiltInRegistries.ITEM.getKey(ModUtils.getOres().get(x).asItem()).getPath())));
         }
 
-        for(int x = 0; x < ModUtils.getOres().size(); x++){
+        for (int x = 0; x < ModUtils.getOres().size(); x++) {
             NETHER_ADD_ORE.add(registerKey("add_".concat(BuiltInRegistries.ITEM.getKey(ModUtils.getNetherOre().get(x).asItem()).getPath())));
         }
 
-        for(int x = 0; x < ModUtils.getOres().size(); x++){
+        for (int x = 0; x < ModUtils.getOres().size(); x++) {
             END_ADD_ORE.add(registerKey("add_".concat(BuiltInRegistries.ITEM.getKey(ModUtils.getEndOre().get(x).asItem()).getPath())));
         }
     }

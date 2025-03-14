@@ -179,7 +179,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("infinity_tech:block/" + deferredBlock.getId().getPath() + appendix));
     }
 
-    private void chestBlockWithItem(Holder<? extends Block> block){
+    private void chestBlockWithItem(Holder<? extends Block> block) {
         ResourceLocation blockId = Objects.requireNonNull(block.getKey()).location();
 
         ModelFile chestCoreTemplate = models()
@@ -188,7 +188,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .from(1, 0, 1)
                 .to(15, 10, 15)
                 .allFaces((direction, faceBuilder) -> {
-                    switch (direction){
+                    switch (direction) {
                         case DOWN -> faceBuilder.uvs(7, 4.75F, 10.5F, 8.25F).texture("#texture").end();
                         case UP -> faceBuilder.uvs(3.5F, 4.75F, 7, 8.25F).texture("#texture").end();
                         case NORTH -> faceBuilder.uvs(3.5F, 8.25F, 7, 10.75F).texture("#texture").end();
@@ -203,7 +203,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .from(1, 9, 1)
                 .to(15, 14, 15)
                 .allFaces((direction, faceBuilder) -> {
-                    switch (direction){
+                    switch (direction) {
                         case DOWN -> faceBuilder.uvs(7, 0, 10.5F, 3.5F).texture("#texture").end();
                         case UP -> faceBuilder.uvs(3.5F, 0, 7, 3.5F).texture("#texture").end();
                         case NORTH -> faceBuilder.uvs(3.5F, 3.5F, 7, 4.75F).texture("#texture").end();
@@ -218,7 +218,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .from(7, 7, 0)
                 .to(9, 11, 1)
                 .allFaces((direction, faceBuilder) -> {
-                    switch (direction){
+                    switch (direction) {
                         case DOWN -> faceBuilder.uvs(0, 0.75F, 1.25F, 0.5F).texture("#texture").end();
                         case UP -> faceBuilder.uvs(0, 0.25F, 0.75F, 0.5F).texture("#texture").end();
                         case NORTH -> faceBuilder.uvs(0.25F, 0.25F, 0.75F, 1.25F).texture("#texture").end();
@@ -242,7 +242,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     }
 
-    private void cableBlockWithItem(Holder<? extends Block> block){
+    private void cableBlockWithItem(Holder<? extends Block> block) {
         ResourceLocation blockId = Objects.requireNonNull(block.getKey()).location();
 
         ModelFile cableCoreTemplate = models().
@@ -331,7 +331,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 withExistingParent(blockId.getPath(), ModelProvider.BLOCK_FOLDER + "/cube").
                 texture("particle", "#up").
                 texture("up", getBlockTexture(block, "_top")).
-                texture("down", getBlockTexture(block, uniqueBottomTexture?"_bottom":"_top")).
+                texture("down", getBlockTexture(block, uniqueBottomTexture ? "_bottom" : "_top")).
                 texture("north", getBlockTexture(block, "_side")).
                 texture("south", getBlockTexture(block, "_side")).
                 texture("east", getBlockTexture(block, "_side")).
@@ -340,14 +340,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(block.value(), model);
     }
 
-    private ResourceLocation getBlockParticleTexture(Holder<? extends Block> block){
+    private ResourceLocation getBlockParticleTexture(Holder<? extends Block> block) {
         ResourceLocation blockId = Objects.requireNonNull(block.getKey()).location();
 
         return ResourceLocation.fromNamespaceAndPath(blockId.getNamespace(),
                 "particle/" + blockId.getPath());
     }
 
-    private ResourceLocation getBlockParticleTexture(Holder<? extends Block> block, String pathSuffix){
+    private ResourceLocation getBlockParticleTexture(Holder<? extends Block> block, String pathSuffix) {
         ResourceLocation blockId = Objects.requireNonNull(block.getKey()).location();
 
         return ResourceLocation.fromNamespaceAndPath(blockId.getNamespace(),

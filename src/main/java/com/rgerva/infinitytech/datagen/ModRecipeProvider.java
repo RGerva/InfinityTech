@@ -15,6 +15,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
 import javax.annotation.Nullable;
@@ -126,7 +127,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         //================
 
         oreCook(this.output, SMELLABLE_TITANIUM, RecipeCategory.MISC, ModItems.TITANIUM_INGOT.get(), "titanium");
-        customNuggetRecipe(ModItems.TITANIUM_NUGGET, ModItems.TITANIUM_INGOT,"titanium");
+        customNuggetRecipe(ModItems.TITANIUM_NUGGET, ModItems.TITANIUM_INGOT, "titanium");
         customBlockToIngotRecipe(ModBlocks.TITANIUM_BLOCK, ModItems.TITANIUM_INGOT, "titanium");
         customDefaultToolRecipe(ModItems.TITANIUM_INGOT, TITANIUM_TOOLS, null);
         customDefaultArmorRecipe(ModItems.TITANIUM_INGOT, TITANIUM_ARMOR);
@@ -136,7 +137,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         //================
 
         oreCook(this.output, List.of(Items.IRON_INGOT), RecipeCategory.MISC, ModItems.STEEL_INGOT.get(), "steel");
-        customNuggetRecipe(ModItems.STEEL_NUGGET, ModItems.STEEL_INGOT,"steel");
+        customNuggetRecipe(ModItems.STEEL_NUGGET, ModItems.STEEL_INGOT, "steel");
         customBlockToIngotRecipe(ModBlocks.STEEL_BLOCK, ModItems.STEEL_INGOT, "steel");
 
         //================
@@ -144,7 +145,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         //================
 
         oreCook(this.output, SMELLABLE_LEAD, RecipeCategory.MISC, ModItems.LEAD_INGOT.get(), "lead");
-        customNuggetRecipe(ModItems.LEAD_NUGGET, ModItems.LEAD_INGOT,"lead");
+        customNuggetRecipe(ModItems.LEAD_NUGGET, ModItems.LEAD_INGOT, "lead");
         customBlockToIngotRecipe(ModBlocks.LEAD_BLOCK, ModItems.LEAD_INGOT, "lead");
 
         //====================
@@ -152,7 +153,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         //====================
 
         oreCook(this.output, SMELLABLE_ALUMINUM, RecipeCategory.MISC, ModItems.ALUMINUM_INGOT.get(), "aluminum");
-        customNuggetRecipe(ModItems.ALUMINUM_NUGGET, ModItems.ALUMINUM_INGOT,"aluminum");
+        customNuggetRecipe(ModItems.ALUMINUM_NUGGET, ModItems.ALUMINUM_INGOT, "aluminum");
         customBlockToIngotRecipe(ModBlocks.ALUMINUM_BLOCK, ModItems.ALUMINUM_INGOT, "aluminum");
 
         //==================
@@ -160,7 +161,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         //==================
 
         oreCook(this.output, SMELLABLE_NICKEL, RecipeCategory.MISC, ModItems.NICKEL_INGOT.get(), "nickel");
-        customNuggetRecipe(ModItems.NICKEL_NUGGET, ModItems.NICKEL_INGOT,"nickel");
+        customNuggetRecipe(ModItems.NICKEL_NUGGET, ModItems.NICKEL_INGOT, "nickel");
         customBlockToIngotRecipe(ModBlocks.NICKEL_BLOCK, ModItems.NICKEL_INGOT, "nickel");
 
         //====================
@@ -168,7 +169,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         //====================
 
         oreCook(this.output, SMELLABLE_PLATINUM, RecipeCategory.MISC, ModItems.PLATINUM_INGOT.get(), "platinum");
-        customNuggetRecipe(ModItems.PLATINUM_NUGGET, ModItems.PLATINUM_INGOT,"platinum");
+        customNuggetRecipe(ModItems.PLATINUM_NUGGET, ModItems.PLATINUM_INGOT, "platinum");
         customBlockToIngotRecipe(ModBlocks.PLATINUM_BLOCK, ModItems.PLATINUM_INGOT, "platinum");
 
         //==================
@@ -176,7 +177,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         //==================
 
         oreCook(this.output, SMELLABLE_SILVER, RecipeCategory.MISC, ModItems.SILVER_INGOT.get(), "silver");
-        customNuggetRecipe(ModItems.SILVER_NUGGET, ModItems.SILVER_INGOT,"silver");
+        customNuggetRecipe(ModItems.SILVER_NUGGET, ModItems.SILVER_INGOT, "silver");
         customBlockToIngotRecipe(ModBlocks.SILVER_BLOCK, ModItems.SILVER_INGOT, "silver");
 
         //===============
@@ -184,7 +185,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         //===============
 
         oreCook(this.output, SMELLABLE_TIN, RecipeCategory.MISC, ModItems.TIN_INGOT.get(), "tin");
-        customNuggetRecipe(ModItems.TIN_NUGGET, ModItems.TIN_INGOT,"tin");
+        customNuggetRecipe(ModItems.TIN_NUGGET, ModItems.TIN_INGOT, "tin");
         customBlockToIngotRecipe(ModBlocks.TIN_BLOCK, ModItems.TIN_INGOT, "tin");
 
         //===================
@@ -192,7 +193,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         //===================
 
         oreCook(this.output, SMELLABLE_URANIUM, RecipeCategory.MISC, ModItems.URANIUM_INGOT.get(), "uranium");
-        customNuggetRecipe(ModItems.URANIUM_NUGGET, ModItems.URANIUM_INGOT,"uranium");
+        customNuggetRecipe(ModItems.URANIUM_NUGGET, ModItems.URANIUM_INGOT, "uranium");
         customBlockToIngotRecipe(ModBlocks.URANIUM_BLOCK, ModItems.URANIUM_INGOT, "uranium");
 
         //================
@@ -200,13 +201,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         //================
 
         oreCook(this.output, SMELLABLE_ZINC, RecipeCategory.MISC, ModItems.ZINC_INGOT.get(), "zinc");
-        customNuggetRecipe(ModItems.ZINC_NUGGET, ModItems.ZINC_INGOT,"zinc");
+        customNuggetRecipe(ModItems.ZINC_NUGGET, ModItems.ZINC_INGOT, "zinc");
         customBlockToIngotRecipe(ModBlocks.ZINC_BLOCK, ModItems.ZINC_INGOT, "zinc");
 
         //==================
         //  CUSTOM RECIPES
         //==================
 
+        customChestRecipe();
+
+        //WRENCH
         this.shaped(RecipeCategory.TOOLS, ModItems.WRENCH.get())
                 .pattern(" I ")
                 .pattern(" NI")
@@ -215,26 +219,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('N', Items.IRON_NUGGET)
                 .group(getItemName(ModItems.WRENCH))
                 .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
-                .save(this.output);
-
-        this.shaped(RecipeCategory.MISC, ModBlocks.CHEST_IRON.get())
-                .pattern("###")
-                .pattern("#C#")
-                .pattern("###")
-                .define('#', Items.IRON_INGOT)
-                .define('C', Ingredient.of(Items.CHEST))
-                .group(getItemName(ModBlocks.CHEST_IRON))
-                .unlockedBy(getHasName(Items.CHEST), has(Items.IRON_INGOT))
-                .save(this.output);
-
-        this.shaped(RecipeCategory.MISC, ModBlocks.CHEST_COPPER.get())
-                .pattern("###")
-                .pattern("#C#")
-                .pattern("###")
-                .define('#', Items.COPPER_INGOT)
-                .define('C', Ingredient.of(Items.CHEST))
-                .group(getItemName(ModBlocks.CHEST_COPPER))
-                .unlockedBy(getHasName(Items.CHEST), has(Items.COPPER_INGOT))
                 .save(this.output);
 
     }
@@ -259,27 +243,90 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     protected <T extends AbstractCookingRecipe> void oreCooking(RecipeOutput recipeOutput, RecipeSerializer<T> pCookingSerializer, AbstractCookingRecipe.Factory<T> factory,
                                                                 List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTime, String pGroup, String pRecipeName) {
-        for(ItemLike itemlike : pIngredients) {
+        for (ItemLike itemlike : pIngredients) {
             SimpleCookingRecipeBuilder.generic(Ingredient.of(itemlike), pCategory, pResult, pExperience, pCookingTime, pCookingSerializer, factory).group(pGroup).unlockedBy(getHasName(itemlike), has(itemlike))
                     .save(recipeOutput, InfinityTech.MOD_ID + ":" + getItemName(pResult) + pRecipeName + "_" + getItemName(itemlike));
         }
     }
 
+    protected void customChestRecipe() {
+
+        //CHEST COPPER
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.CHEST_COPPER)
+                .define('C', Tags.Items.INGOTS_COPPER)
+                .define('W', Tags.Items.CHESTS_WOODEN)
+                .pattern("CCC")
+                .pattern("CWC")
+                .pattern("CCC")
+                .group(getItemName(ModBlocks.CHEST_COPPER))
+                .unlockedBy(getHasName(Items.COPPER_INGOT), has(Items.COPPER_INGOT))
+                .save(this.output, ResourceKey.create(Registries.RECIPE, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, getSimpleRecipeName(ModBlocks.CHEST_COPPER))));
+
+        //CHEST IRON
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.CHEST_IRON)
+                .define('I', Tags.Items.INGOTS_IRON)
+                .define('C', ModBlocks.CHEST_COPPER)
+                .pattern("III")
+                .pattern("ICI")
+                .pattern("III")
+                .group(getItemName(ModBlocks.CHEST_IRON))
+                .unlockedBy(getHasName(Items.IRON_INGOT), has(ModBlocks.CHEST_COPPER))
+                .save(this.output, ResourceKey.create(Registries.RECIPE, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, getSimpleRecipeName(ModBlocks.CHEST_IRON))));
+
+        //CHEST GOLD
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.CHEST_GOLD)
+                .define('I', Tags.Items.INGOTS_GOLD)
+                .define('G', ModBlocks.CHEST_IRON)
+                .pattern("III")
+                .pattern("IGI")
+                .pattern("III")
+                .group(getItemName(ModBlocks.CHEST_GOLD))
+                .unlockedBy(getHasName(Items.GOLD_INGOT), has(ModBlocks.CHEST_IRON))
+                .save(this.output, ResourceKey.create(Registries.RECIPE, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, getSimpleRecipeName(ModBlocks.CHEST_GOLD))));
+
+        //CHEST DIAMOND
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.CHEST_DIAMOND)
+                .define('D', Tags.Items.GEMS_DIAMOND)
+                .define('I', ModBlocks.CHEST_GOLD)
+                .pattern("DDD")
+                .pattern("DID")
+                .pattern("DDD")
+                .group(getItemName(ModBlocks.CHEST_DIAMOND))
+                .unlockedBy(getHasName(Items.DIAMOND), has(ModBlocks.CHEST_GOLD))
+                .save(this.output, ResourceKey.create(Registries.RECIPE, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, getSimpleRecipeName(ModBlocks.CHEST_DIAMOND))));
+
+        //CHEST OBSIDIAN
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.CHEST_OBSIDIAN)
+                .define('B', Tags.Items.OBSIDIANS)
+                .define('C', ModBlocks.CHEST_DIAMOND)
+                .define('D', Tags.Items.GEMS_DIAMOND)
+                .pattern("BBB")
+                .pattern("DCD")
+                .pattern("BBB")
+                .group(getItemName(ModBlocks.CHEST_OBSIDIAN))
+                .unlockedBy(getHasName(Items.OBSIDIAN), has(ModBlocks.CHEST_DIAMOND))
+                .save(this.output, ResourceKey.create(Registries.RECIPE, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, getSimpleRecipeName(ModBlocks.CHEST_OBSIDIAN))));
+
+        //CHEST NETHERITE
+        netheriteSmithing(ModBlocks.CHEST_OBSIDIAN.asItem(), RecipeCategory.DECORATIONS, ModBlocks.CHEST_NETHERITE.asItem());
+
+    }
+
     /**
      * Custom method to generate Nuggets from Ingot Recipe.
      *
-     * @param pInput is main item for recipe
+     * @param pInput  is main item for recipe
      * @param pOutput is the output from recipe
-     * @param pGroup is group name
+     * @param pGroup  is group name
      */
-    protected void customNuggetRecipe(ItemLike pInput, ItemLike pOutput, String pGroup){
+    protected void customNuggetRecipe(ItemLike pInput, ItemLike pOutput, String pGroup) {
         this.shapeless(RecipeCategory.MISC, pInput, 9)
                 .requires(pOutput)
                 .group(pGroup.concat("_nugget"))
                 .unlockedBy(getHasName(pOutput), has(pOutput))
                 .save(this.output, ResourceKey.create(Registries.RECIPE, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, getSimpleRecipeName(pOutput))));
 
-        this.shaped(RecipeCategory.MISC,pOutput)
+        this.shaped(RecipeCategory.MISC, pOutput)
                 .define('#', pInput)
                 .pattern("###")
                 .pattern("###")
@@ -292,11 +339,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     /**
      * Custom method to generate Ingots and Blocks Recipe.
      *
-     * @param pInput is main item for recipe
+     * @param pInput  is main item for recipe
      * @param pOutput is the output from recipe
-     * @param pGroup is group name
+     * @param pGroup  is group name
      */
-    protected void customBlockToIngotRecipe(ItemLike pInput, ItemLike pOutput, String pGroup){
+    protected void customBlockToIngotRecipe(ItemLike pInput, ItemLike pOutput, String pGroup) {
         this.shapeless(RecipeCategory.MISC, pOutput, 9)
                 .requires(pInput)
                 .group(pGroup)
@@ -316,12 +363,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     /**
      * Custom method to generate Tools Recipe.
      *
-     * @param pInput is main item for recipe
-     * @param pOutput is the output from recipe
+     * @param pInput    is main item for recipe
+     * @param pOutput   is the output from recipe
      * @param pOptional is optional input for hand Item
      */
     protected void customDefaultToolRecipe(ItemLike pInput, List<ItemLike> pOutput, @Nullable ItemLike pOptional) throws ArrayIndexOutOfBoundsException {
-        if(pOutput.size() > 5){
+        if (pOutput.size() > 5) {
             throw new ArrayIndexOutOfBoundsException(String.format("Array: %s is Out of Bounds", pOutput.getClass().getName()));
         }
 
@@ -379,11 +426,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     /**
      * Custom method to generate Armor Recipe.
      *
-     * @param pInput is main item for recipe
+     * @param pInput  is main item for recipe
      * @param pOutput is the output from recipe
      */
-    protected void customDefaultArmorRecipe(ItemLike pInput, List<ItemLike> pOutput){
-        if(pOutput.size() > 4){
+    protected void customDefaultArmorRecipe(ItemLike pInput, List<ItemLike> pOutput) {
+        if (pOutput.size() > 4) {
             throw new ArrayIndexOutOfBoundsException(String.format("Array: %s is Out of Bounds", pOutput.getClass().getName()));
         }
 

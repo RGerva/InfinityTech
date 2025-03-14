@@ -28,7 +28,7 @@ public abstract class EnergyStorageMenu<T extends EnergyStorageBlockEntity<?>>
     protected EnergyStorageMenu(@Nullable MenuType<?> menuType, int id, Inventory playerInventory, BlockEntity blockEntity, Block blockType, int playerInventoryX, int playerInventoryY) {
         super(menuType, id);
 
-        this.blockEntity = (T)blockEntity;
+        this.blockEntity = (T) blockEntity;
         this.level = playerInventory.player.level();
         this.blockType = blockType;
 
@@ -52,12 +52,12 @@ public abstract class EnergyStorageMenu<T extends EnergyStorageBlockEntity<?>>
 
     private void addPlayerInventorySlots(Inventory playerInventory, int x, int y) {
         //Player Inventory
-        for(int i = 0;i < 3;i++)
-            for(int j = 0;j < 9;j++)
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 9; j++)
                 addSlot(new Slot(playerInventory, j + i * 9 + 9, x + j * 18, y + i * 18));
 
         //Player Hotbar
-        for(int i = 0;i < 9;i++)
+        for (int i = 0; i < 9; i++)
             addSlot(new Slot(playerInventory, i, x + i * 18, y + 58));
     }
 

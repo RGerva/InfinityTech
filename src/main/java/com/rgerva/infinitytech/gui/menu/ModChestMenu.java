@@ -16,23 +16,23 @@ public class ModChestMenu extends AbstractContainerMenu {
     private final Container container;
     private static eChestConfigs eChestConf;
 
-    public static ModChestMenu createNetheriteContainer(int containerId, Inventory plaInventory){
+    public static ModChestMenu createNetheriteContainer(int containerId, Inventory plaInventory) {
         return new ModChestMenu(ModGUI.CHEST_NETHERITE_MENU.get(), containerId, plaInventory, new SimpleContainer(eChestConfigs.NETHERITE.size), eChestConfigs.NETHERITE);
     }
 
-    public static ModChestMenu createObsidianContainer(int containerId, Inventory plaInventory){
+    public static ModChestMenu createObsidianContainer(int containerId, Inventory plaInventory) {
         return new ModChestMenu(ModGUI.CHEST_OBSIDIAN_MENU.get(), containerId, plaInventory, new SimpleContainer(eChestConfigs.OBSIDIAN.size), eChestConfigs.OBSIDIAN);
     }
 
-    public static ModChestMenu createDiamondContainer(int containerId, Inventory plaInventory){
+    public static ModChestMenu createDiamondContainer(int containerId, Inventory plaInventory) {
         return new ModChestMenu(ModGUI.CHEST_DIAMOND_MENU.get(), containerId, plaInventory, new SimpleContainer(eChestConfigs.DIAMOND.size), eChestConfigs.DIAMOND);
     }
 
-    public static ModChestMenu createGoldContainer(int containerId, Inventory plaInventory){
+    public static ModChestMenu createGoldContainer(int containerId, Inventory plaInventory) {
         return new ModChestMenu(ModGUI.CHEST_GOLD_MENU.get(), containerId, plaInventory, new SimpleContainer(eChestConfigs.GOLD.size), eChestConfigs.GOLD);
     }
 
-    public static ModChestMenu createCopperContainer(int containerId, Inventory plaInventory){
+    public static ModChestMenu createCopperContainer(int containerId, Inventory plaInventory) {
         return new ModChestMenu(ModGUI.CHEST_COPPER_MENU.get(), containerId, plaInventory, new SimpleContainer(eChestConfigs.COPPER.size), eChestConfigs.COPPER);
     }
 
@@ -40,7 +40,7 @@ public class ModChestMenu extends AbstractContainerMenu {
         return new ModChestMenu(ModGUI.CHEST_IRON_MENU.get(), containerId, playerInventory, new SimpleContainer(eChestConfigs.IRON.size), eChestConfigs.IRON);
     }
 
-    
+
     public ModChestMenu(@Nullable MenuType<?> menuType, int containerId, Inventory playerInventory, Container container, eChestConfigs eChestConfigs) {
         super(menuType, containerId);
         this.container = container;
@@ -75,17 +75,17 @@ public class ModChestMenu extends AbstractContainerMenu {
             ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
 
-            if (index < this.eChestConf.size) {
-                if (!this.moveItemStackTo(itemstack1, this.eChestConf.size, this.slots.size(), true)) {
+            if (index < eChestConf.size) {
+                if (!this.moveItemStackTo(itemstack1, eChestConf.size, this.slots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.moveItemStackTo(itemstack1, 0, this.eChestConf.size, false)) {
+            } else if (!this.moveItemStackTo(itemstack1, 0, eChestConf.size, false)) {
                 return ItemStack.EMPTY;
             }
 
             if (itemstack1.isEmpty()) {
                 slot.set(ItemStack.EMPTY);
-            }else{
+            } else {
                 slot.setChanged();
             }
         }

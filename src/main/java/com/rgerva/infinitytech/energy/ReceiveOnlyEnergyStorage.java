@@ -8,9 +8,10 @@ public class ReceiveOnlyEnergyStorage implements IModEnergyStorage {
     protected int capacity;
     protected int maxReceive;
 
-    public ReceiveOnlyEnergyStorage() {}
+    public ReceiveOnlyEnergyStorage() {
+    }
 
-    public ReceiveOnlyEnergyStorage(int energy, int capacity, int maxReceive){
+    public ReceiveOnlyEnergyStorage(int energy, int capacity, int maxReceive) {
         this.energy = energy;
         this.capacity = capacity;
         this.maxReceive = maxReceive;
@@ -61,16 +62,17 @@ public class ReceiveOnlyEnergyStorage implements IModEnergyStorage {
         this.maxReceive = maxReceive;
     }
 
-    protected void onChange() {}
+    protected void onChange() {
+    }
 
     @Override
     public int receiveEnergy(int maxReceive, boolean simulate) {
-        if(!canReceive())
+        if (!canReceive())
             return 0;
 
         int received = Math.min(getMaxEnergyStored() - energy, Math.min(getMaxReceive(), maxReceive));
 
-        if(!simulate) {
+        if (!simulate) {
             energy += received;
             onChange();
         }
@@ -110,12 +112,12 @@ public class ReceiveOnlyEnergyStorage implements IModEnergyStorage {
 
     @Override
     public void loadNBT(Tag tag) {
-        if(!(tag instanceof IntTag)) {
+        if (!(tag instanceof IntTag)) {
             energy = 0;
 
             return;
         }
 
-        energy = ((IntTag)tag).getAsInt();
+        energy = ((IntTag) tag).getAsInt();
     }
 }

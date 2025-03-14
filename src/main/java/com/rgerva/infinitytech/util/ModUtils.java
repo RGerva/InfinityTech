@@ -11,7 +11,8 @@ import static com.rgerva.infinitytech.block.ModBlocks.*;
 public class ModUtils {
 
     public static class ModProperties {
-        public record ModBlockVeinProperties(int veinSize, int minY, int maxY, int count){}
+        public record ModBlockVeinProperties(int veinSize, int minY, int maxY, int count) {
+        }
 
         private static final Map<Block, ModBlockVeinProperties> blockPropertiesMap = new HashMap<>();
 
@@ -20,7 +21,7 @@ public class ModUtils {
             blockPropertiesMap.put(block, properties);
         }
 
-        public static ModBlockVeinProperties getProperties(Block block){
+        public static ModBlockVeinProperties getProperties(Block block) {
             return blockPropertiesMap.get(block);
         }
 
@@ -29,7 +30,7 @@ public class ModUtils {
         }
     }
 
-    public static void setOresProperties(){
+    public static void setOresProperties() {
         ModProperties.addProperties(ALUMINUM_ORE.get(), 24, -64, 320, 4);
         ModProperties.addProperties(LEAD_ORE.get(), 24, -64, 56, 3);
         ModProperties.addProperties(NICKEL_ORE.get(), 24, -64, 56, 3);
@@ -41,7 +42,7 @@ public class ModUtils {
         ModProperties.addProperties(ZINC_ORE.get(), 24, -64, 126, 3);
     }
 
-    public static List<Block> getOres(){
+    public static List<Block> getOres() {
         return List.of(
                 ALUMINUM_ORE.get(),
                 LEAD_ORE.get(),
@@ -54,7 +55,7 @@ public class ModUtils {
                 ZINC_ORE.get());
     }
 
-    public static List<Block> getDeepslateOre(){
+    public static List<Block> getDeepslateOre() {
         return List.of(
                 ALUMINUM_DEEPSLATE_ORE.get(),
                 LEAD_DEEPSLATE_ORE.get(),
@@ -67,7 +68,7 @@ public class ModUtils {
                 ZINC_DEEPSLATE_ORE.get());
     }
 
-    public static List<Block> getNetherOre(){
+    public static List<Block> getNetherOre() {
         return List.of(
                 ALUMINUM_NETHER_ORE.get(),
                 LEAD_NETHER_ORE.get(),
@@ -80,7 +81,7 @@ public class ModUtils {
                 ZINC_NETHER_ORE.get());
     }
 
-    public static List<Block> getEndOre(){
+    public static List<Block> getEndOre() {
         return List.of(
                 ALUMINUM_END_ORE.get(),
                 LEAD_END_ORE.get(),

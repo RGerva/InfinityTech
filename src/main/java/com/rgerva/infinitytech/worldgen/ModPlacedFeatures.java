@@ -27,17 +27,17 @@ public class ModPlacedFeatures {
 
         var configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
 
-        for(int x = 0; x < ModUtils.getOres().size(); x++){
+        for (int x = 0; x < ModUtils.getOres().size(); x++) {
             register(context, ORE_PLACED_KEY.get(x), configuredFeatures.getOrThrow(ModConfiguredFeatures.ORE_KEY.get(x)),
                     ModOrePlacement.commonOrePlacement(ModUtils.ModProperties.getProperties(ModUtils.getOres().get(x)).count(),
-                    HeightRangePlacement.triangle(VerticalAnchor.absolute(ModUtils.ModProperties.getProperties(ModUtils.getOres().get(x)).minY()),
-                            VerticalAnchor.absolute(ModUtils.ModProperties.getProperties(ModUtils.getOres().get(x)).maxY()))));
+                            HeightRangePlacement.triangle(VerticalAnchor.absolute(ModUtils.ModProperties.getProperties(ModUtils.getOres().get(x)).minY()),
+                                    VerticalAnchor.absolute(ModUtils.ModProperties.getProperties(ModUtils.getOres().get(x)).maxY()))));
         }
 
     }
 
-    private static void registerAllKey(){
-        for(int x = 0; x < ModUtils.getOres().size(); x++){
+    private static void registerAllKey() {
+        for (int x = 0; x < ModUtils.getOres().size(); x++) {
             ORE_PLACED_KEY.add(registerKey(BuiltInRegistries.ITEM.getKey(ModUtils.getOres().get(x).asItem()).getPath().concat("_placed")));
         }
     }

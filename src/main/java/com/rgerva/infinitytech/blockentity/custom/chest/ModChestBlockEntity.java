@@ -45,9 +45,9 @@ public abstract class ModChestBlockEntity extends RandomizableContainerBlockEnti
 
         @Override
         protected boolean isOwnContainer(Player player) {
-            if(!(player.containerMenu instanceof ModChestMenu)){
+            if (!(player.containerMenu instanceof ModChestMenu)) {
                 return false;
-            }else{
+            } else {
                 Container container = ((ModChestMenu) player.containerMenu).getContainer();
                 return container instanceof ModChestBlockEntity || container instanceof CompoundContainer && ((CompoundContainer) container).contains(ModChestBlockEntity.this);
             }
@@ -134,8 +134,8 @@ public abstract class ModChestBlockEntity extends RandomizableContainerBlockEnti
     protected void setItems(NonNullList<ItemStack> nonNullList) {
         this.itemStacks = NonNullList.withSize(this.geteChestConfigs().size, ItemStack.EMPTY);
 
-        for(int i = 0; i < nonNullList.size(); i++){
-            if(i < this.itemStacks.size()){
+        for (int i = 0; i < nonNullList.size(); i++) {
+            if (i < this.itemStacks.size()) {
                 this.getItems().set(i, nonNullList.get(i));
             }
         }
@@ -150,7 +150,7 @@ public abstract class ModChestBlockEntity extends RandomizableContainerBlockEnti
         BlockState blockstate = blockGetter.getBlockState(blockPos);
         if (blockstate.hasBlockEntity()) {
             BlockEntity blockentity = blockGetter.getBlockEntity(blockPos);
-            if(blockentity instanceof ModChestBlockEntity){
+            if (blockentity instanceof ModChestBlockEntity) {
                 return ((ModChestBlockEntity) blockentity).openersCounter.getOpenerCount();
             }
         }
@@ -172,12 +172,12 @@ public abstract class ModChestBlockEntity extends RandomizableContainerBlockEnti
 
     }
 
-    public eChestConfigs geteChestConfigs(){
-        eChestConfigs type = eChestConfigs.IRON;
+    public eChestConfigs geteChestConfigs() {
+        eChestConfigs type = com.rgerva.infinitytech.util.types.eChestConfigs.IRON;
 
-        if(this.hasLevel()){
+        if (this.hasLevel()) {
             eChestConfigs typeFromBlock = ModChestBlock.getTypeFromBlock(this.getBlockState().getBlock());
-            if(typeFromBlock != null){
+            if (typeFromBlock != null) {
                 type = typeFromBlock;
             }
         }

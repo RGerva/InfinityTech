@@ -10,7 +10,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class ObsidianChestBlockEntity extends ModChestBlockEntity{
+public class ObsidianChestBlockEntity extends ModChestBlockEntity {
     public ObsidianChestBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.CHEST_OBSIDIAN_ENTITY.get(), pos, blockState, eChestConfigs.OBSIDIAN);
     }

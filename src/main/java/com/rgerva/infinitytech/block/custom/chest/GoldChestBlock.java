@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
-public class GoldChestBlock extends ModChestBlock{
+public class GoldChestBlock extends ModChestBlock {
     public static final MapCodec<GoldChestBlock> CODEC = simpleCodec(GoldChestBlock::new);
 
     public GoldChestBlock(Properties properties) {

@@ -51,24 +51,24 @@ public class CreativeBatteryBlockEntity extends MenuEnergyStorageBlockEntity<Inf
     }
 
     public static void tick(Level level, BlockPos blockPos, BlockState state, CreativeBatteryBlockEntity blockEntity) {
-        if(level.isClientSide)
+        if (level.isClientSide)
             return;
 
         transferInfiniteEnergy(level, blockPos, state, blockEntity);
     }
 
     private static void transferInfiniteEnergy(Level level, BlockPos blockPos, BlockState state, CreativeBatteryBlockEntity blockEntity) {
-        if(level.isClientSide)
+        if (level.isClientSide)
             return;
 
-        for(Direction direction:Direction.values()) {
+        for (Direction direction : Direction.values()) {
             BlockPos testPos = blockPos.relative(direction);
 
             BlockEntity testBlockEntity = level.getBlockEntity(testPos);
 
             IEnergyStorage energyStorage = level.getCapability(Capabilities.EnergyStorage.BLOCK, testPos,
                     level.getBlockState(testPos), testBlockEntity, direction.getOpposite());
-            if(energyStorage == null || !energyStorage.canReceive())
+            if (energyStorage == null || !energyStorage.canReceive())
                 continue;
 
             int received = energyStorage.receiveEnergy(energyStorage.getMaxEnergyStored(), true);

@@ -6,5 +6,6 @@ package com.rgerva.infinitytech.energy;
 
 public interface IEnergyStoragePacketUpdate {
     void setEnergy(int energy);
+
     void setCapacity(int capacity);
 }

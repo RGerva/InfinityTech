@@ -49,7 +49,7 @@ public class SolarPanelBlock extends BaseEntityBlock {
     }
 
     public static Block getBlockFromPanelConfigs(eSolarPanelConfigs geteSolarPanelConfigs) {
-        return switch(geteSolarPanelConfigs) {
+        return switch (geteSolarPanelConfigs) {
             case solar_panel_1 -> ModBlocks.SOLAR_PANEL_1.get();
             case solar_panel_2 -> ModBlocks.SOLAR_PANEL_2.get();
             case solar_panel_3 -> ModBlocks.SOLAR_PANEL_3.get();
@@ -59,7 +59,7 @@ public class SolarPanelBlock extends BaseEntityBlock {
         };
     }
 
-    public eSolarPanelConfigs geteSolarPanelConfigs(){
+    public eSolarPanelConfigs geteSolarPanelConfigs() {
         return solarPanelConfigs;
     }
 
@@ -86,14 +86,14 @@ public class SolarPanelBlock extends BaseEntityBlock {
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos blockPos, Player player, BlockHitResult hitResult) {
-        if(level.isClientSide())
+        if (level.isClientSide())
             return InteractionResult.SUCCESS;
 
         BlockEntity blockEntity = level.getBlockEntity(blockPos);
-        if(!(blockEntity instanceof SolarPanelBlockEntity))
+        if (!(blockEntity instanceof SolarPanelBlockEntity))
             throw new IllegalStateException("Container is invalid");
 
-        player.openMenu((SolarPanelBlockEntity)blockEntity, blockPos);
+        player.openMenu((SolarPanelBlockEntity) blockEntity, blockPos);
 
         return InteractionResult.SUCCESS;
     }
@@ -106,11 +106,11 @@ public class SolarPanelBlock extends BaseEntityBlock {
 
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        if(Screen.hasShiftDown()) {
+        if (Screen.hasShiftDown()) {
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.solar_panel.produces",
                     ModEnergyUtils.getEnergyWithPrefix(solarPanelConfigs.getPeakFePerTick())).withStyle(ChatFormatting.GRAY));
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.solar_panel.info").withStyle(ChatFormatting.GRAY));
-        }else {
+        } else {
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.shift_details").withStyle(ChatFormatting.YELLOW));
         }
     }

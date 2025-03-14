@@ -59,7 +59,8 @@ public class ExtractOnlyEnergyStorage implements IModEnergyStorage {
         this.maxExtract = maxExtract;
     }
 
-    protected void onChange() {}
+    protected void onChange() {
+    }
 
     @Override
     public Tag saveNBT() {
@@ -68,13 +69,13 @@ public class ExtractOnlyEnergyStorage implements IModEnergyStorage {
 
     @Override
     public void loadNBT(Tag tag) {
-        if(!(tag instanceof IntTag)) {
+        if (!(tag instanceof IntTag)) {
             energy = 0;
 
             return;
         }
 
-        energy = ((IntTag)tag).getAsInt();
+        energy = ((IntTag) tag).getAsInt();
     }
 
     @Override
@@ -84,12 +85,12 @@ public class ExtractOnlyEnergyStorage implements IModEnergyStorage {
 
     @Override
     public int extractEnergy(int maxExtract, boolean simulate) {
-        if(!canExtract())
+        if (!canExtract())
             return 0;
 
         int extracted = Math.min(energy, Math.min(getMaxExtract(), maxExtract));
 
-        if(!simulate) {
+        if (!simulate) {
             energy -= extracted;
             onChange();
         }

@@ -25,12 +25,12 @@ public class SolarPanelBlockEntity extends MenuEnergyStorageBlockEntity<ExtractO
     private final eSolarPanelConfigs solarPanelConfigs;
 
     public SolarPanelBlockEntity(BlockPos blockPos, BlockState blockState, eSolarPanelConfigs eSolarPanelConfigs) {
-        super(getEntityType(eSolarPanelConfigs) , blockPos, blockState, eSolarPanelConfigs.name(), eSolarPanelConfigs.getCapacity(), eSolarPanelConfigs.getMaxTransfer());
+        super(getEntityType(eSolarPanelConfigs), blockPos, blockState, eSolarPanelConfigs.name(), eSolarPanelConfigs.getCapacity(), eSolarPanelConfigs.getMaxTransfer());
         this.solarPanelConfigs = eSolarPanelConfigs;
     }
 
     public static BlockEntityType<SolarPanelBlockEntity> getEntityType(eSolarPanelConfigs eSolarPanelConfigs) {
-        return switch(eSolarPanelConfigs) {
+        return switch (eSolarPanelConfigs) {
             case solar_panel_1 -> ModBlockEntities.SOLAR_PANEL_ENTITY_1.get();
             case solar_panel_2 -> ModBlockEntities.SOLAR_PANEL_ENTITY_2.get();
             case solar_panel_3 -> ModBlockEntities.SOLAR_PANEL_ENTITY_3.get();
@@ -74,22 +74,22 @@ public class SolarPanelBlockEntity extends MenuEnergyStorageBlockEntity<ExtractO
 
 
     public static void tick(Level level, BlockPos blockPos, BlockState state, SolarPanelBlockEntity blockEntity) {
-        if(level.isClientSide)
+        if (level.isClientSide)
             return;
 
         int i = 4 * (level.getBrightness(LightLayer.SKY, blockPos) - level.getSkyDarken()); //(0 - 15) * 4 => (0 - 60)
         float f = level.getSunAngle(1.0F);
-        if(i > 0) {
-            float f1 = f < (float)Math.PI ? 0.0F : ((float)Math.PI * 2F);
+        if (i > 0) {
+            float f1 = f < (float) Math.PI ? 0.0F : ((float) Math.PI * 2F);
 
             f += (f1 - f) * 0.2F;
 
-            i = Math.round((float)i * Mth.cos(f));
+            i = Math.round((float) i * Mth.cos(f));
         }
 
         i = Mth.clamp(i, 0, 60);
 
-        int energyProduction = (int)(i/60.f * blockEntity.geteSolarPanelConfigs().getPeakFePerTick());
+        int energyProduction = (int) (i / 60.f * blockEntity.geteSolarPanelConfigs().getPeakFePerTick());
 
         blockEntity.energyStorage.setEnergy(Math.min(blockEntity.energyStorage.getCapacity(),
                 blockEntity.energyStorage.getEnergy() + energyProduction));
@@ -98,7 +98,7 @@ public class SolarPanelBlockEntity extends MenuEnergyStorageBlockEntity<ExtractO
     }
 
     private static void transferEnergy(Level level, BlockPos blockPos, BlockState state, SolarPanelBlockEntity blockEntity) {
-        if(level.isClientSide)
+        if (level.isClientSide)
             return;
 
         BlockPos testPos = blockPos.relative(Direction.DOWN);
@@ -107,16 +107,16 @@ public class SolarPanelBlockEntity extends MenuEnergyStorageBlockEntity<ExtractO
 
         IEnergyStorage energyStorage = level.getCapability(Capabilities.EnergyStorage.BLOCK, testPos,
                 level.getBlockState(testPos), testBlockEntity, Direction.DOWN.getOpposite());
-        if(energyStorage == null || !energyStorage.canReceive())
+        if (energyStorage == null || !energyStorage.canReceive())
             return;
 
         int amount = energyStorage.receiveEnergy(Math.min(blockEntity.energyStorage.getEnergy(), blockEntity.energyStorage.getMaxExtract()), false);
-        if(amount > 0)
+        if (amount > 0)
             blockEntity.energyStorage.extractEnergy(amount, false);
     }
 
     public @Nullable IEnergyStorage getEnergyStorageCapability(@Nullable Direction side) {
-        if(side == null || side == Direction.DOWN)
+        if (side == null || side == Direction.DOWN)
             return energyStorage;
 
         return null;

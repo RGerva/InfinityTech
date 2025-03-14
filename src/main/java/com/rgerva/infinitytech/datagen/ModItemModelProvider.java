@@ -20,7 +20,8 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import java.util.LinkedHashMap;
 
 public class ModItemModelProvider extends ItemModelProvider {
-    private static LinkedHashMap<ResourceKey<TrimMaterial>, Float> trimMaterials = new LinkedHashMap<>();
+    private static final LinkedHashMap<ResourceKey<TrimMaterial>, Float> trimMaterials = new LinkedHashMap<>();
+
     static {
         trimMaterials.put(TrimMaterials.QUARTZ, 0.1F);
         trimMaterials.put(TrimMaterials.IRON, 0.2F);
@@ -97,24 +98,24 @@ public class ModItemModelProvider extends ItemModelProvider {
     private ItemModelBuilder saplingItem(DeferredBlock<Block> item) {
         return withExistingParent(item.getId().getPath(),
                 ResourceLocation.parse("item/generated")).texture("layer0",
-                ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID,"block/" + item.getId().getPath()));
+                ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "block/" + item.getId().getPath()));
     }
 
     private void trimmedArmorItem(DeferredItem<ArmorItem> itemDeferredItem) {
         final String MOD_ID = InfinityTech.MOD_ID; // Change this to your mod id
 
-        if(itemDeferredItem.get() instanceof ArmorItem armorItem) {
+        if (itemDeferredItem.get() instanceof ArmorItem armorItem) {
             trimMaterials.forEach((trimMaterial, value) -> {
                 float trimValue = value;
 
                 String armorType = "";
-                if(armorItem.toString().contains("helmet")) {
+                if (armorItem.toString().contains("helmet")) {
                     armorType = "helmet";
-                } else if(armorItem.toString().contains("chestplate")) {
+                } else if (armorItem.toString().contains("chestplate")) {
                     armorType = "chestplate";
-                } else if(armorItem.toString().contains("leggings")) {
+                } else if (armorItem.toString().contains("leggings")) {
                     armorType = "leggings";
-                } else if(armorItem.toString().contains("boots")) {
+                } else if (armorItem.toString().contains("boots")) {
                     armorType = "boots";
                 }
 
@@ -139,7 +140,7 @@ public class ModItemModelProvider extends ItemModelProvider {
                 this.withExistingParent(itemDeferredItem.getId().getPath(),
                                 mcLoc("item/generated"))
                         .override()
-                        .model(new ModelFile.UncheckedModelFile(trimNameResLoc.getNamespace()  + ":item/" + trimNameResLoc.getPath()))
+                        .model(new ModelFile.UncheckedModelFile(trimNameResLoc.getNamespace() + ":item/" + trimNameResLoc.getPath()))
                         .predicate(mcLoc("trim_type"), trimValue).end()
                         .texture("layer0",
                                 ResourceLocation.fromNamespaceAndPath(MOD_ID,
@@ -150,25 +151,25 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     public void buttonItem(DeferredBlock<?> block, DeferredBlock<Block> baseBlock) {
         this.withExistingParent(block.getId().getPath(), mcLoc("block/button_inventory"))
-                .texture("texture",  ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID,
+                .texture("texture", ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID,
                         "block/" + baseBlock.getId().getPath()));
     }
 
     public void fenceItem(DeferredBlock<?> block, DeferredBlock<Block> baseBlock) {
         this.withExistingParent(block.getId().getPath(), mcLoc("block/fence_inventory"))
-                .texture("texture",  ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID,
+                .texture("texture", ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID,
                         "block/" + baseBlock.getId().getPath()));
     }
 
     public void wallItem(DeferredBlock<?> block, DeferredBlock<Block> baseBlock) {
         this.withExistingParent(block.getId().getPath(), mcLoc("block/wall_inventory"))
-                .texture("wall",  ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID,
+                .texture("wall", ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID,
                         "block/" + baseBlock.getId().getPath()));
     }
 
     private ItemModelBuilder handheldItem(DeferredItem<?> item) {
         return withExistingParent(item.getId().getPath(),
                 ResourceLocation.parse("item/handheld")).texture("layer0",
-                ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID,"item/" + item.getId().getPath()));
+                ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "item/" + item.getId().getPath()));
     }
 }

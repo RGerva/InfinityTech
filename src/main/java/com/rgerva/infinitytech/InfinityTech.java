@@ -70,7 +70,7 @@ public class InfinityTech {
         }
 
         @SubscribeEvent
-        public static void onRegisterMenuScreens(RegisterMenuScreensEvent event){
+        public static void onRegisterMenuScreens(RegisterMenuScreensEvent event) {
             event.register(ModGUI.BATTERY_BOX_MENU.get(), BatteryScreen::new);
             event.register(ModGUI.SOLAR_PENEL_MENU.get(), SolarPanelScreen::new);
             event.register(ModGUI.CHEST_IRON_MENU.get(), ChestScreen::new);
@@ -82,7 +82,7 @@ public class InfinityTech {
         }
 
         @SubscribeEvent
-        public static void onRegisterEntityRenderers(EntityRenderersEvent.RegisterRenderers event){
+        public static void onRegisterEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
             event.registerBlockEntityRenderer(ModBlockEntities.CHEST_IRON_ENTITY.get(), ModChestRenderer::new);
             event.registerBlockEntityRenderer(ModBlockEntities.CHEST_COPPER_ENTITY.get(), ModChestRenderer::new);
             event.registerBlockEntityRenderer(ModBlockEntities.CHEST_GOLD_ENTITY.get(), ModChestRenderer::new);
@@ -92,8 +92,8 @@ public class InfinityTech {
         }
 
         @SubscribeEvent
-        public static void onRegisterLayer(EntityRenderersEvent.RegisterLayerDefinitions event){
-            event.registerLayerDefinition(new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID,"iron_chest"), "main"), ModChestModel::createLayerDefinition);
+        public static void onRegisterLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
+            event.registerLayerDefinition(new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "iron_chest"), "main"), ModChestModel::createLayerDefinition);
         }
     }
 }

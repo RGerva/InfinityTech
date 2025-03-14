@@ -121,11 +121,11 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     }
 
-    protected void LootTableOre(Block pInput, Item pOutput, float minDrops, float maxDrops){
-        if(minDrops == 0 && maxDrops == 0){
+    protected void LootTableOre(Block pInput, Item pOutput, float minDrops, float maxDrops) {
+        if (minDrops == 0 && maxDrops == 0) {
             add(pInput,
                     block -> createOreDrop(pInput, pOutput));
-        }else{
+        } else {
             add(pInput,
                     block -> createMultipleOreDrops(pInput, pOutput, minDrops, maxDrops));
 

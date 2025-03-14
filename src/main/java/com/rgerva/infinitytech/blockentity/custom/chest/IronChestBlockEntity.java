@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class IronChestBlockEntity extends ModChestBlockEntity {
     public IronChestBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ModBlockEntities.CHEST_IRON_ENTITY.get(), pos, blockState,eChestConfigs.IRON);
+        super(ModBlockEntities.CHEST_IRON_ENTITY.get(), pos, blockState, eChestConfigs.IRON);
     }
 
     @Override

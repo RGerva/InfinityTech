@@ -107,17 +107,17 @@ public abstract class ModChestBlock extends BaseEntityBlock implements SimpleWat
         }
     }
 
-    protected Stat<ResourceLocation> getOpenChestStat(){
+    protected Stat<ResourceLocation> getOpenChestStat() {
         return Stats.CUSTOM.get(Stats.OPEN_CHEST);
     }
 
     @Override
     protected @Nullable MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
-        if (isChestBlockedAt(level, pos)){
+        if (isChestBlockedAt(level, pos)) {
             return null;
         }
 
-        if (level.getBlockEntity(pos) instanceof ModChestBlockEntity chestBlockEntity){
+        if (level.getBlockEntity(pos) instanceof ModChestBlockEntity chestBlockEntity) {
             return chestBlockEntity;
         }
         return null;
@@ -162,7 +162,7 @@ public abstract class ModChestBlock extends BaseEntityBlock implements SimpleWat
 
     @Override
     protected int getAnalogOutputSignal(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
-        if (!isChestBlockedAt(level, pos) && level.getBlockEntity(pos) instanceof ModChestBlockEntity chestBlockEntity){
+        if (!isChestBlockedAt(level, pos) && level.getBlockEntity(pos) instanceof ModChestBlockEntity chestBlockEntity) {
             return AbstractContainerMenu.getRedstoneSignalFromContainer(chestBlockEntity);
         }
         return AbstractContainerMenu.getRedstoneSignalFromContainer(null);

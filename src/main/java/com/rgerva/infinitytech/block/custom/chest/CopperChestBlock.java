@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
-public class CopperChestBlock extends ModChestBlock{
+public class CopperChestBlock extends ModChestBlock {
     public static final MapCodec<CopperChestBlock> CODEC = simpleCodec(CopperChestBlock::new);
 
     public CopperChestBlock(Properties properties) {

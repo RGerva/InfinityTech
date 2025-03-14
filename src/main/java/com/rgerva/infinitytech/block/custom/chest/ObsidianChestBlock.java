@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
-public class ObsidianChestBlock extends ModChestBlock{
+public class ObsidianChestBlock extends ModChestBlock {
     public static final MapCodec<ObsidianChestBlock> CODEC = simpleCodec(ObsidianChestBlock::new);
 
     public ObsidianChestBlock(Properties properties) {

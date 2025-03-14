@@ -59,7 +59,8 @@ public class ReceiveAndExtractEnergyStorage implements IModEnergyStorage {
         this.maxTransfer = maxTransfer;
     }
 
-    protected void onChange() {}
+    protected void onChange() {
+    }
 
     @Override
     public Tag saveNBT() {
@@ -68,23 +69,23 @@ public class ReceiveAndExtractEnergyStorage implements IModEnergyStorage {
 
     @Override
     public void loadNBT(Tag tag) {
-        if(!(tag instanceof IntTag)) {
+        if (!(tag instanceof IntTag)) {
             energy = 0;
 
             return;
         }
 
-        energy = ((IntTag)tag).getAsInt();
+        energy = ((IntTag) tag).getAsInt();
     }
 
     @Override
     public int receiveEnergy(int i, boolean b) {
-        if(!canReceive())
+        if (!canReceive())
             return 0;
 
         int received = Math.min(getMaxEnergyStored() - energy, Math.min(getMaxTransfer(), i));
 
-        if(!b) {
+        if (!b) {
             energy += received;
             onChange();
         }
@@ -94,12 +95,12 @@ public class ReceiveAndExtractEnergyStorage implements IModEnergyStorage {
 
     @Override
     public int extractEnergy(int i, boolean b) {
-        if(!canExtract())
+        if (!canExtract())
             return 0;
 
         int extracted = Math.min(energy, Math.min(getMaxTransfer(), i));
 
-        if(!b) {
+        if (!b) {
             energy -= extracted;
             onChange();
         }

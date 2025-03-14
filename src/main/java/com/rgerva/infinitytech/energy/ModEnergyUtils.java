@@ -6,18 +6,18 @@ import net.neoforged.neoforge.energy.IEnergyStorage;
 import java.util.Locale;
 
 public class ModEnergyUtils {
-    private static final String[] ENERGY_PREFIXES = new String[] {
+    private static final String[] ENERGY_PREFIXES = new String[]{
             "", "k", "M", "G", "T", "P"
     };
 
     public static String getEnergyWithPrefix(int energy) {
-        if(energy < 1000)
+        if (energy < 1000)
             return String.format(Locale.ENGLISH, "%d FE", energy);
 
         double energyWithPrefix = energy;
 
         int prefixIndex = 0;
-        while(((int)energyWithPrefix >= 1000) && prefixIndex + 1 < ENERGY_PREFIXES.length) {
+        while (((int) energyWithPrefix >= 1000) && prefixIndex + 1 < ENERGY_PREFIXES.length) {
             energyWithPrefix /= 1000;
 
             prefixIndex++;
@@ -29,6 +29,6 @@ public class ModEnergyUtils {
     public static int getRedstoneSignalFromEnergyStorage(IEnergyStorage energyStorage) {
         boolean isEmptyFlag = energyStorage.getEnergyStored() == 0;
 
-        return Math.min(Mth.floor((float)energyStorage.getEnergyStored() / energyStorage.getMaxEnergyStored() * 14.f) + (isEmptyFlag?0:1), 15);
+        return Math.min(Mth.floor((float) energyStorage.getEnergyStored() / energyStorage.getMaxEnergyStored() * 14.f) + (isEmptyFlag ? 0 : 1), 15);
     }
 }

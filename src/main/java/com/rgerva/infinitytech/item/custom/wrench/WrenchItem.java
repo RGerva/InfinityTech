@@ -33,10 +33,10 @@ public class WrenchItem extends Item {
         Player player = context.getPlayer();
         BlockState blockState = level.getBlockState(pos);
 
-        if(!level.isClientSide && player != null){
+        if (!level.isClientSide && player != null) {
             Block block = blockState.getBlock();
-            if(block instanceof CableBlock || block instanceof SolarPanelBlock || block instanceof BatteryBlock){
-                if(player.isShiftKeyDown()){
+            if (block instanceof CableBlock || block instanceof SolarPanelBlock || block instanceof BatteryBlock) {
+                if (player.isShiftKeyDown()) {
                     level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
                     ItemStack itemStack = new ItemStack(block.asItem());
                     ItemEntity itemEntity = new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), itemStack);
@@ -57,10 +57,10 @@ public class WrenchItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
 
-        if(Screen.hasShiftDown()) {
+        if (Screen.hasShiftDown()) {
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.wrench.info").
                     withStyle(ChatFormatting.GRAY, ChatFormatting.ITALIC));
-        }else {
+        } else {
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.shift_details").withStyle(ChatFormatting.YELLOW));
         }
     }

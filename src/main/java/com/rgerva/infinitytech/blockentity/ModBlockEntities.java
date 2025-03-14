@@ -17,7 +17,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.function.Supplier;
 
 public class ModBlockEntities {
-    public static final DeferredRegister<BlockEntityType<?>>BLOCK_ENTITIES =
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, InfinityTech.MOD_ID);
 
     public static final Supplier<BlockEntityType<CreativeBatteryBlockEntity>> CREATIVE_BATTERY_ENTITY = BLOCK_ENTITIES.register("creative_battery_box",
@@ -80,7 +80,7 @@ public class ModBlockEntities {
     public static final Supplier<BlockEntityType<NetheriteChestBlockEntity>> CHEST_NETHERITE_ENTITY = BLOCK_ENTITIES.register("chest_netherite",
             () -> new BlockEntityType<>(NetheriteChestBlockEntity::new, ModBlocks.CHEST_NETHERITE.get()));
 
-    public static void register(IEventBus eventBus){
+    public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }
 }
