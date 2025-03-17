@@ -1,5 +1,6 @@
 {
   "name.infinity_tech.name": "Infinity Tech",
+
   "item.infinity_tech.steel_ingot": "Steel Ingot",
   "item.infinity_tech.steel_nugget": "Steel Nugget",
   "item.infinity_tech.titanium_ingot": "Titanium Ingot",
@@ -39,6 +40,7 @@
   "item.infinity_tech.zinc_ingot": "Zinc Ingot",
   "item.infinity_tech.zinc_nugget": "Zinc Nugget",
   "item.infinity_tech.zinc_raw": "Zinc Raw",
+
   "block.infinity_tech.steel_block": "Steel Block",
   "block.infinity_tech.titanium_ore": "Titanium Ore",
   "block.infinity_tech.titanium_deepslate_ore": "Deepslate Titanium Ore",
@@ -94,33 +96,43 @@
   "block.infinity_tech.zinc_end_ore": "End Zinc Ore",
   "block.infinity_tech.zinc_nether_ore": "Nether Zinc Ore",
   "block.infinity_tech.zinc_ore": "Zinc Ore",
+
   "block.infinity_tech.battery_box": "Battery",
   "block.infinity_tech.creative_battery_box": "Creative Battery",
+
   "block.infinity_tech.solar_panel_1": "Solar Panel (Power I)",
   "block.infinity_tech.solar_panel_2": "Solar Panel (Power II)",
   "block.infinity_tech.solar_panel_3": "Solar Panel (Power III)",
   "block.infinity_tech.solar_panel_4": "Solar Panel (Power IV)",
   "block.infinity_tech.solar_panel_5": "Solar Panel (Power V)",
   "block.infinity_tech.solar_panel_6": "Solar Panel (Power VI)",
+
   "block.infinity_tech.cable_tin": "Tin Cable",
   "block.infinity_tech.cable_copper": "Copper Cable",
   "block.infinity_tech.cable_gold": "Gold Cable",
   "block.infinity_tech.cable_item": "Item Cable",
+
   "block.infinity_tech.chest_iron": "Iron Chest",
   "block.infinity_tech.chest_copper": "Copper Chest",
   "block.infinity_tech.chest_gold": "Gold Chest",
   "block.infinity_tech.chest_diamond": "Diamond Chest",
   "block.infinity_tech.chest_obsidian": "Obsidian Chest",
   "block.infinity_tech.chest_netherite": "Netherite Chest",
+
+  "block.infinity_tech.coal_generator": "Coal Generator",
+
   "item.infinity_tech.wrench": "Wrench",
+
   "machine.infinity_tech.battery_block": "Battery",
   "machine.infinity_tech.creative_battery": "Creative Battery",
+
   "machine.infinity_tech.solar_panel_1": "Solar Panel (Power I)",
   "machine.infinity_tech.solar_panel_2": "Solar Panel (Power II)",
   "machine.infinity_tech.solar_panel_3": "Solar Panel (Power III)",
   "machine.infinity_tech.solar_panel_4": "Solar Panel (Power IV)",
   "machine.infinity_tech.solar_panel_5": "Solar Panel (Power V)",
   "machine.infinity_tech.solar_panel_6": "Solar Panel (Power VI)",
+
   "tooltip.infinity_tech.shift_details": "Press [SHIFT] for details",
   "tooltip.infinity_tech.capacity": "Capacity: %s",
   "tooltip.infinity_tech.infinite": "Infinite",

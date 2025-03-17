@@ -1,3 +1,11 @@
+/**
+ * Class: ModBlocks
+ * Created by: DRIB934
+ * On: 2024/dec.
+ * GitHub: https://github.com/RGerva
+ * Copyright (c) 2025 @RGerva. All Rights Reserved.
+ */
+
 package com.rgerva.infinitytech.block;
 
 import com.rgerva.infinitytech.InfinityTech;
@@ -5,6 +13,7 @@ import com.rgerva.infinitytech.block.custom.battery.BatteryBlock;
 import com.rgerva.infinitytech.block.custom.battery.CreativeBatteryBlock;
 import com.rgerva.infinitytech.block.custom.cables.CableBlock;
 import com.rgerva.infinitytech.block.custom.chest.*;
+import com.rgerva.infinitytech.block.custom.generator.CoalGeneratorBlock;
 import com.rgerva.infinitytech.block.custom.solar_panel.SolarPanelBlock;
 import com.rgerva.infinitytech.item.ModItems;
 import com.rgerva.infinitytech.util.types.eCablesConfigs;
@@ -591,6 +600,11 @@ public class ModBlocks {
                     .strength(22.5F, 1200.0F)
                     .mapColor(MapColor.COLOR_BLACK)));
 
+    public static final DeferredBlock<Block> COAL_GENERATOR = registerBlock("generic_generator",
+            () -> new CoalGeneratorBlock(BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "generic_generator")))
+                    .strength(3F)
+                    .requiresCorrectToolForDrops()));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

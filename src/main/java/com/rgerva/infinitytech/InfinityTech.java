@@ -11,10 +11,10 @@ import com.rgerva.infinitytech.crative.ModCreativeTab;
 import com.rgerva.infinitytech.gui.ModGUI;
 import com.rgerva.infinitytech.gui.screen.BatteryScreen;
 import com.rgerva.infinitytech.gui.screen.ChestScreen;
+import com.rgerva.infinitytech.gui.screen.CoalGeneratorScreen;
 import com.rgerva.infinitytech.gui.screen.SolarPanelScreen;
 import com.rgerva.infinitytech.item.ModItems;
 import com.rgerva.infinitytech.network.ModMessages;
-import com.rgerva.infinitytech.tests.ModGameTest;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.ResourceLocation;
@@ -81,6 +81,7 @@ public class InfinityTech {
             event.register(ModGUI.CHEST_DIAMOND_MENU.get(), ChestScreen::new);
             event.register(ModGUI.CHEST_OBSIDIAN_MENU.get(), ChestScreen::new);
             event.register(ModGUI.CHEST_NETHERITE_MENU.get(), ChestScreen::new);
+            event.register(ModGUI.COAL_GENERATOR_MENU.get(), CoalGeneratorScreen::new);
         }
 
         @SubscribeEvent
@@ -98,9 +99,5 @@ public class InfinityTech {
             event.registerLayerDefinition(new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "iron_chest"), "main"), ModChestModel::createLayerDefinition);
         }
 
-        @SubscribeEvent
-        public static void onRegisterGameTests(RegisterGameTestsEvent event) {
-            event.register(ModGameTest.class);
-        }
     }
 }

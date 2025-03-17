@@ -152,6 +152,8 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.CHEST_OBSIDIAN.get());
                         output.accept(ModBlocks.CHEST_NETHERITE.get());
 
+                        output.accept(ModBlocks.COAL_GENERATOR.get());
+
                     }).build());
 
     public static void addCreative(BuildCreativeModeTabContentsEvent event) {

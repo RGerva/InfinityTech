@@ -111,6 +111,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         chestBlockWithItem(ModBlocks.CHEST_OBSIDIAN);
         chestBlockWithItem(ModBlocks.CHEST_NETHERITE);
 
+        blockWithItem(ModBlocks.COAL_GENERATOR);
+
     }
 
     private void saplingBlock(DeferredBlock<Block> blockRegistryObject) {

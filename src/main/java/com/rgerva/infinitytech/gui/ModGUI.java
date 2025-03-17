@@ -2,6 +2,7 @@ package com.rgerva.infinitytech.gui;
 
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.gui.menu.BatteryMenu;
+import com.rgerva.infinitytech.gui.menu.CoalGeneratorMenu;
 import com.rgerva.infinitytech.gui.menu.ModChestMenu;
 import com.rgerva.infinitytech.gui.menu.SolarPanelMenu;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -14,6 +15,7 @@ import net.neoforged.neoforge.network.IContainerFactory;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.awt.*;
 import java.util.function.Supplier;
 
 public class ModGUI {
@@ -44,6 +46,8 @@ public class ModGUI {
     public static final DeferredHolder<MenuType<?>, MenuType<ModChestMenu>> CHEST_NETHERITE_MENU =
             registerMenuTypeChest("chest_netherite", ModChestMenu::createNetheriteContainer);
 
+    public static final Supplier<MenuType<CoalGeneratorMenu>> COAL_GENERATOR_MENU =
+            registerMenuType("coal_generator", CoalGeneratorMenu::new);
 
     private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));

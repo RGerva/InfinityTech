@@ -119,6 +119,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.CHEST_OBSIDIAN.get());
         dropSelf(ModBlocks.CHEST_NETHERITE.get());
 
+        dropSelf(ModBlocks.COAL_GENERATOR.get());
+
     }
 
     protected void LootTableOre(Block pInput, Item pOutput, float minDrops, float maxDrops) {

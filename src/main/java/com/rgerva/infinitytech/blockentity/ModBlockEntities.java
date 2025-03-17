@@ -1,3 +1,11 @@
+/**
+ * Class: ModBlockEntities
+ * Created by: DRIB934
+ * On: 2024/dec.
+ * GitHub: https://github.com/RGerva
+ * Copyright (c) 2025 @RGerva. All Rights Reserved.
+ */
+
 package com.rgerva.infinitytech.blockentity;
 
 import com.rgerva.infinitytech.InfinityTech;
@@ -6,6 +14,7 @@ import com.rgerva.infinitytech.blockentity.custom.baterry.BatteryBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.baterry.CreativeBatteryBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.cables.CableBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.*;
+import com.rgerva.infinitytech.blockentity.custom.generator.CoalGeneratorBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.solar_panel.SolarPanelBlockEntity;
 import com.rgerva.infinitytech.util.types.eCablesConfigs;
 import com.rgerva.infinitytech.util.types.eSolarPanelConfigs;
@@ -79,6 +88,9 @@ public class ModBlockEntities {
 
     public static final Supplier<BlockEntityType<NetheriteChestBlockEntity>> CHEST_NETHERITE_ENTITY = BLOCK_ENTITIES.register("chest_netherite",
             () -> new BlockEntityType<>(NetheriteChestBlockEntity::new, ModBlocks.CHEST_NETHERITE.get()));
+
+    public static final Supplier<BlockEntityType<CoalGeneratorBlockEntity>> COAL_GENERATOR_ENTITY = BLOCK_ENTITIES.register("generic_generator",
+            () -> new BlockEntityType<>(CoalGeneratorBlockEntity::new, ModBlocks.COAL_GENERATOR.get()));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
