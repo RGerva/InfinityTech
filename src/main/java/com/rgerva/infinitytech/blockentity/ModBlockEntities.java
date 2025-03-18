@@ -10,8 +10,8 @@ package com.rgerva.infinitytech.blockentity;
 
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.block.ModBlocks;
-import com.rgerva.infinitytech.blockentity.custom.baterry.BatteryBlockEntity;
-import com.rgerva.infinitytech.blockentity.custom.baterry.CreativeBatteryBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.battery.BatteryBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.battery.CreativeBatteryBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.cables.CableBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.*;
 import com.rgerva.infinitytech.blockentity.custom.generator.CoalGeneratorBlockEntity;

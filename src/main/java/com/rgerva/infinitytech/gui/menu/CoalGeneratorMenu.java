@@ -11,6 +11,7 @@ package com.rgerva.infinitytech.gui.menu;
 import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.blockentity.custom.generator.CoalGeneratorBlockEntity;
 import com.rgerva.infinitytech.gui.ModGUI;
+import com.rgerva.infinitytech.gui.base.ModEnergyContainerScreen;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
@@ -22,7 +23,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.items.SlotItemHandler;
 import org.jetbrains.annotations.Nullable;
 
-public class CoalGeneratorMenu extends AbstractContainerMenu {
+public class CoalGeneratorMenu extends AbstractContainerMenu implements ModEnergyContainerScreen.IModMenu {
     private final ContainerData data;
     private final Level level;
     public final CoalGeneratorBlockEntity blockEntity;
@@ -99,5 +100,15 @@ public class CoalGeneratorMenu extends AbstractContainerMenu {
             i = 160;
         }
         return Mth.clamp((float) this.data.get(0) / (float) i, 0.0F, 1.0F);
+    }
+
+    @Override
+    public int getEnergy() {
+        return blockEntity.getEnergy();
+    }
+
+    @Override
+    public int getCapacity() {
+        return blockEntity.getCapacity();
     }
 }

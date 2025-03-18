@@ -12,6 +12,8 @@ import com.rgerva.infinitytech.blockentity.ModBlockEntities;
 import com.rgerva.infinitytech.energy.ModEnergyStorage;
 import com.rgerva.infinitytech.energy.ModEnergyUtils;
 import com.rgerva.infinitytech.gui.menu.CoalGeneratorMenu;
+import com.rgerva.infinitytech.network.base.ModSyncPackages;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -31,7 +33,6 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.items.ItemStackHandler;
@@ -39,7 +40,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
-public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvider {
+public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvider, ModSyncPackages {
 
     private static final int INPUT_SLOT = 0;
     private boolean isBurning = false;
@@ -63,6 +64,7 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
             @Override
             public void onEnergyChanged() {
                 setChanged();
+                syncEnergyToPlayers(32);
                 Objects.requireNonNull(getLevel()).sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
             }
         };
@@ -99,6 +101,14 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
         return this.ENERGY_STORAGE;
     }
 
+    public int getEnergy(){
+        return ENERGY_STORAGE.getEnergy();
+    }
+
+    public int getCapacity(){
+        return ENERGY_STORAGE.getCapacity();
+    }
+
     @Override
     public Component getDisplayName() {
         return Component.translatable("block.infinity_tech.coal_generator");
@@ -106,6 +116,7 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
 
     @Override
     public @Nullable AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
+        syncEnergyToPlayer(player);
         return new CoalGeneratorMenu(i, inventory, this, this.data);
     }
 
@@ -175,5 +186,20 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
     @Override
     public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider lookupProvider) {
         super.onDataPacket(net, pkt, lookupProvider);
+    }
+
+    @Override
+    public BlockEntity getInterfaceSyncBlockEntity() {
+        return this;
+    }
+
+    @Override
+    public int getInterfaceSyncEnergy() {
+        return getEnergy();
+    }
+
+    @Override
+    public int getInterfaceSyncCapacity() {
+        return getCapacity();
     }
 }

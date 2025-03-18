@@ -1,7 +1,7 @@
 package com.rgerva.infinitytech.network.packet;
 
 import com.rgerva.infinitytech.InfinityTech;
-import com.rgerva.infinitytech.network.base.IChest;
+import com.rgerva.infinitytech.network.base.IChestPackageUpdate;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -46,8 +46,8 @@ public record StacksSyncS2CPacket(BlockPos blockPos,
 
                 BlockEntity blockEntity = level.getBlockEntity(data.blockPos);
                 if (blockEntity != null) {
-                    if (blockEntity instanceof IChest) {
-                        ((IChest) blockEntity).receiveMessageFromServer(data.topItemStacks);
+                    if (blockEntity instanceof IChestPackageUpdate) {
+                        ((IChestPackageUpdate) blockEntity).receiveMessageFromServer(data.topItemStacks);
                         Minecraft.getInstance().levelRenderer.blockChanged(null, data.blockPos, null, null, 0);
                     }
                 }

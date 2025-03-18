@@ -1,4 +1,4 @@
-package com.rgerva.infinitytech.blockentity.custom.baterry;
+package com.rgerva.infinitytech.blockentity.custom.battery;
 
 import com.rgerva.infinitytech.blockentity.ModBlockEntities;
 import com.rgerva.infinitytech.blockentity.custom.base.MenuEnergyStorageBlockEntity;

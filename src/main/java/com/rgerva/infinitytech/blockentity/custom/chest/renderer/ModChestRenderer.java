@@ -9,7 +9,7 @@ import com.rgerva.infinitytech.block.custom.chest.ModChestBlock;
 import com.rgerva.infinitytech.blockentity.custom.chest.ModChestBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.model.ModChestModel;
 import com.rgerva.infinitytech.blockentity.custom.chest.model.ModelItem;
-import com.rgerva.infinitytech.network.base.IChest;
+import com.rgerva.infinitytech.network.base.IChestPackageUpdate;
 import com.rgerva.infinitytech.util.types.eChestConfigs;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -92,7 +92,7 @@ public class ModChestRenderer<T extends BlockEntity & LidBlockEntity> implements
 
             poseStack.popPose();
 
-            if (chestBlockEntity instanceof IChest iChest && Vec3.atCenterOf(blockEntity.getBlockPos()).closerThan(this.renderer.camera.getPosition(), 128d)) {
+            if (chestBlockEntity instanceof IChestPackageUpdate iChest && Vec3.atCenterOf(blockEntity.getBlockPos()).closerThan(this.renderer.camera.getPosition(), 128d)) {
                 float rotation = (float) (360D * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL) - partialTick;
 
                 for (int j = 0; j < MODEL_ITEMS.size() - 1; j++) {

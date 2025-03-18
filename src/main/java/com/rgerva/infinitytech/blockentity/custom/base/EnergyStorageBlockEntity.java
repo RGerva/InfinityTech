@@ -1,6 +1,6 @@
 package com.rgerva.infinitytech.blockentity.custom.base;
 
-import com.rgerva.infinitytech.energy.IEnergyStoragePacketUpdate;
+import com.rgerva.infinitytech.network.base.IEnergyStoragePacketUpdate;
 import com.rgerva.infinitytech.energy.IModEnergyStorage;
 import com.rgerva.infinitytech.network.ModMessages;
 import com.rgerva.infinitytech.network.packet.EnergySyncS2CPacket;

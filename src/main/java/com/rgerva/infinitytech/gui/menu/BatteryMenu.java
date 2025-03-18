@@ -1,7 +1,7 @@
 package com.rgerva.infinitytech.gui.menu;
 
 import com.rgerva.infinitytech.block.ModBlocks;
-import com.rgerva.infinitytech.blockentity.custom.baterry.BatteryBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.battery.BatteryBlockEntity;
 import com.rgerva.infinitytech.gui.ModGUI;
 import com.rgerva.infinitytech.gui.base.EnergyStorageMenu;
 import net.minecraft.network.FriendlyByteBuf;

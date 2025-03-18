@@ -8,10 +8,26 @@
 
 package com.rgerva.infinitytech.energy;
 
+import com.rgerva.infinitytech.gui.base.ModEnergyContainerScreen;
+import com.rgerva.infinitytech.network.ModMessages;
+import com.rgerva.infinitytech.network.base.IEnergyStoragePacketUpdate;
+import com.rgerva.infinitytech.network.packet.EnergySyncS2CPacket;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.energy.EnergyStorage;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 
-public abstract class ModEnergyStorage extends EnergyStorage {
+public abstract class ModEnergyStorage extends EnergyStorage implements IEnergyStoragePacketUpdate {
 
+    /**
+     *
+     * @param capacity capacity of entity
+     * @param maxReceive max receive transfer (For Generators = 0)
+     * @param maxExtract max extract transfer (For Machines = 0)
+     * @param energy energy already inside
+     */
     public ModEnergyStorage(int capacity, int maxReceive, int maxExtract, int energy) {
         super(capacity, maxReceive, maxExtract, energy);
     }
@@ -34,18 +50,18 @@ public abstract class ModEnergyStorage extends EnergyStorage {
         return receiveEnergy;
     }
 
-    public int setEnergy(int energy){
-        this.energy = energy;
-        return energy;
-    }
-
     public int getEnergy(){
         return energy;
     }
 
-    public int setCapacity(int capacity){
+    @Override
+    public void setEnergy(int energy) {
+        this.energy = energy;
+    }
+
+    @Override
+    public void setCapacity(int capacity) {
         this.capacity = capacity;
-        return capacity;
     }
 
     public int getCapacity(){
@@ -53,4 +69,5 @@ public abstract class ModEnergyStorage extends EnergyStorage {
     }
 
     public abstract void onEnergyChanged();
+
 }
