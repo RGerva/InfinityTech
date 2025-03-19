@@ -21,7 +21,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.items.SlotItemHandler;
-import org.jetbrains.annotations.Nullable;
 
 public class CoalGeneratorMenu extends AbstractContainerMenu implements ModEnergyContainerScreen.IModMenu {
     private final ContainerData data;
@@ -53,10 +52,11 @@ public class CoalGeneratorMenu extends AbstractContainerMenu implements ModEnerg
     }
 
     private static final int TE_INVENTORY_SLOT_COUNT = 1;
+
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);
-        if (!sourceSlot.hasItem()){
+        if (!sourceSlot.hasItem()) {
             return ItemStack.EMPTY;
         }
         ItemStack sourceStack = sourceSlot.getItem();
@@ -66,11 +66,11 @@ public class CoalGeneratorMenu extends AbstractContainerMenu implements ModEnerg
             if (!moveItemStackTo(sourceStack, 36, 36 + TE_INVENTORY_SLOT_COUNT, false)) {
                 return ItemStack.EMPTY;
             }
-        }else if (pIndex < 36 + TE_INVENTORY_SLOT_COUNT) {
+        } else if (pIndex < 36 + TE_INVENTORY_SLOT_COUNT) {
             if (!moveItemStackTo(sourceStack, 0, 36, false)) {
                 return ItemStack.EMPTY;
             }
-        }else {
+        } else {
             return ItemStack.EMPTY;
         }
 
@@ -96,7 +96,7 @@ public class CoalGeneratorMenu extends AbstractContainerMenu implements ModEnerg
 
     public float getFuelProgress() {
         int i = this.data.get(1);
-        if(i == 0){
+        if (i == 0) {
             i = 160;
         }
         return Mth.clamp((float) this.data.get(0) / (float) i, 0.0F, 1.0F);

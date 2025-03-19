@@ -18,14 +18,17 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 
 public interface ModSyncPackages {
     BlockEntity getInterfaceSyncBlockEntity();
+
     int getInterfaceSyncEnergy();
+
     int getInterfaceSyncCapacity();
 
-    default void syncEnergyToPlayer(Player player){
+    default void syncEnergyToPlayer(Player player) {
         ModMessages.sendToPlayer(new EnergySyncS2CPacket(getInterfaceSyncEnergy(), getInterfaceSyncCapacity(),
                 getInterfaceSyncBlockEntity().getBlockPos()), (ServerPlayer) player);
     }
-    default void syncEnergyToPlayers(int distance){
+
+    default void syncEnergyToPlayers(int distance) {
         Level level = getInterfaceSyncBlockEntity().getLevel();
         if (level != null && !level.isClientSide())
             ModMessages.sendToPlayersWithinXBlocks(

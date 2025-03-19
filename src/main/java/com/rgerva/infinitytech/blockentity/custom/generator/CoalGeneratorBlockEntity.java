@@ -13,7 +13,6 @@ import com.rgerva.infinitytech.energy.ModEnergyStorage;
 import com.rgerva.infinitytech.energy.ModEnergyUtils;
 import com.rgerva.infinitytech.gui.menu.CoalGeneratorMenu;
 import com.rgerva.infinitytech.network.base.ModSyncPackages;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -52,13 +51,14 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
-            if(!level.isClientSide()) {
+            if (!level.isClientSide()) {
                 level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
             }
         }
     };
 
     private final ModEnergyStorage ENERGY_STORAGE = createEnergyStorage();
+
     private ModEnergyStorage createEnergyStorage() {
         return new ModEnergyStorage(64000, 320, 320, 0) {
             @Override
@@ -75,7 +75,7 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
         this.data = new ContainerData() {
             @Override
             public int get(int i) {
-                return switch (i){
+                return switch (i) {
                     case 0 -> CoalGeneratorBlockEntity.this.burnProgress;
                     case 1 -> CoalGeneratorBlockEntity.this.maxBurnProgress;
                     default -> 0;
@@ -84,7 +84,7 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
 
             @Override
             public void set(int i, int i1) {
-                switch (i){
+                switch (i) {
                     case 0 -> CoalGeneratorBlockEntity.this.burnProgress = i1;
                     case 1 -> CoalGeneratorBlockEntity.this.maxBurnProgress = i1;
                 }
@@ -97,15 +97,15 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
         };
     }
 
-    public IEnergyStorage getEnergyStorageCapability(Direction direction){
+    public IEnergyStorage getEnergyStorageCapability(Direction direction) {
         return this.ENERGY_STORAGE;
     }
 
-    public int getEnergy(){
+    public int getEnergy() {
         return ENERGY_STORAGE.getEnergy();
     }
 
-    public int getCapacity(){
+    public int getCapacity() {
         return ENERGY_STORAGE.getCapacity();
     }
 
@@ -121,30 +121,30 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
     }
 
     public static void tick(Level level, BlockPos blockPos, BlockState blockState, CoalGeneratorBlockEntity coalGeneratorBlockEntity) {
-        if(coalGeneratorBlockEntity.itemHandler.getStackInSlot(INPUT_SLOT).is(Items.COAL)){
-            if(!coalGeneratorBlockEntity.isBurning){
+        if (coalGeneratorBlockEntity.itemHandler.getStackInSlot(INPUT_SLOT).is(Items.COAL)) {
+            if (!coalGeneratorBlockEntity.isBurning) {
                 coalGeneratorBlockEntity.itemHandler.extractItem(INPUT_SLOT, 1, false);
                 coalGeneratorBlockEntity.isBurning = true;
             }
         }
 
-        if(coalGeneratorBlockEntity.isBurning){
+        if (coalGeneratorBlockEntity.isBurning) {
             coalGeneratorBlockEntity.burnProgress--;
-            if(coalGeneratorBlockEntity.burnProgress < 0){
+            if (coalGeneratorBlockEntity.burnProgress < 0) {
                 coalGeneratorBlockEntity.isBurning = false;
                 coalGeneratorBlockEntity.burnProgress = coalGeneratorBlockEntity.maxBurnProgress;
             }
             coalGeneratorBlockEntity.ENERGY_STORAGE.receiveEnergy(320, false);
         }
 
-        if(ModEnergyUtils.doesBlockHaveEnergyStorage(coalGeneratorBlockEntity.worldPosition.above(), level)){
+        if (ModEnergyUtils.doesBlockHaveEnergyStorage(coalGeneratorBlockEntity.worldPosition.above(), level)) {
             ModEnergyUtils.move(coalGeneratorBlockEntity.worldPosition, coalGeneratorBlockEntity.worldPosition.above(), 320, level);
         }
     }
 
     public void drops() {
         SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
-        for(int i = 0; i < itemHandler.getSlots(); i++){
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
             inventory.setItem(i, itemHandler.getStackInSlot(i));
         }
 

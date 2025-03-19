@@ -10,7 +10,7 @@ package com.rgerva.infinitytech.util.types;
 
 public enum eBarSideConfigs {
     RIGHT(152, 17),
-    CENTER(8, 17);
+    CENTER(80, 17);
 
     private final int energyMeterX;
     private final int energyMeterY;

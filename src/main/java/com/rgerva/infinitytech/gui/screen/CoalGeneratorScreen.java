@@ -31,14 +31,14 @@ public class CoalGeneratorScreen extends ModEnergyContainerScreen<CoalGeneratorM
         int x = (this.width - this.imageWidth) / 2;
         int y = (this.height - this.imageHeight) / 2;
 
-        if(this.menu.isBurning()){
+        if (this.menu.isBurning()) {
             int l = Mth.ceil(this.menu.getFuelProgress() * 13.0F) + 1;
             guiGraphics.blitSprite(RenderType::guiTextured,
-                    ResourceLocation.fromNamespaceAndPath("minecraft","container/furnace/lit_progress"),
+                    ResourceLocation.fromNamespaceAndPath("minecraft", "container/furnace/lit_progress"),
                     14,
                     14,
                     0,
-                    14 -l,
+                    14 - l,
                     x + 80,
                     y + 18 + 14 - l,
                     14,

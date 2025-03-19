@@ -15,7 +15,6 @@ import net.neoforged.neoforge.network.IContainerFactory;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.awt.*;
 import java.util.function.Supplier;
 
 public class ModGUI {

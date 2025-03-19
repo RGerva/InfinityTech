@@ -39,12 +39,12 @@ public class ModEnergyUtils {
         IEnergyStorage fromStorage = level.getCapability(Capabilities.EnergyStorage.BLOCK, from, null);
         IEnergyStorage toStorage = level.getCapability(Capabilities.EnergyStorage.BLOCK, to, null);
         assert fromStorage != null;
-        if(canEnergyStorageExtractThisAmount(fromStorage, amount)) {
+        if (canEnergyStorageExtractThisAmount(fromStorage, amount)) {
             return false;
         }
 
         assert toStorage != null;
-        if(canEnergyStorageStillReceiveEnergy(toStorage)) {
+        if (canEnergyStorageStillReceiveEnergy(toStorage)) {
             return false;
         }
 

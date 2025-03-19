@@ -9,16 +9,11 @@
 package com.rgerva.infinitytech.block.custom.generator;
 
 import com.mojang.serialization.MapCodec;
-import com.rgerva.infinitytech.block.custom.chest.CopperChestBlock;
 import com.rgerva.infinitytech.blockentity.ModBlockEntities;
 import com.rgerva.infinitytech.blockentity.custom.generator.CoalGeneratorBlockEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
@@ -58,9 +53,9 @@ public class CoalGeneratorBlock extends BaseEntityBlock {
 
     @Override
     protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
-        if(state.getBlock() != newState.getBlock()){
+        if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if(blockEntity instanceof CoalGeneratorBlockEntity coalGeneratorBlockEntity){
+            if (blockEntity instanceof CoalGeneratorBlockEntity coalGeneratorBlockEntity) {
                 coalGeneratorBlockEntity.drops();
             }
         }
@@ -69,9 +64,9 @@ public class CoalGeneratorBlock extends BaseEntityBlock {
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-        if(!level.isClientSide){
+        if (!level.isClientSide) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if(!(blockEntity instanceof CoalGeneratorBlockEntity)){
+            if (!(blockEntity instanceof CoalGeneratorBlockEntity)) {
                 throw new IllegalStateException("Container is invalid");
             }
             player.openMenu((CoalGeneratorBlockEntity) blockEntity, pos);

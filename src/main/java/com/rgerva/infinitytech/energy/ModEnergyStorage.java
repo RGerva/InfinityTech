@@ -8,25 +8,16 @@
 
 package com.rgerva.infinitytech.energy;
 
-import com.rgerva.infinitytech.gui.base.ModEnergyContainerScreen;
-import com.rgerva.infinitytech.network.ModMessages;
 import com.rgerva.infinitytech.network.base.IEnergyStoragePacketUpdate;
-import com.rgerva.infinitytech.network.packet.EnergySyncS2CPacket;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Player;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.energy.EnergyStorage;
-import net.neoforged.neoforge.energy.IEnergyStorage;
 
 public abstract class ModEnergyStorage extends EnergyStorage implements IEnergyStoragePacketUpdate {
 
     /**
-     *
-     * @param capacity capacity of entity
+     * @param capacity   capacity of entity
      * @param maxReceive max receive transfer (For Generators = 0)
      * @param maxExtract max extract transfer (For Machines = 0)
-     * @param energy energy already inside
+     * @param energy     energy already inside
      */
     public ModEnergyStorage(int capacity, int maxReceive, int maxExtract, int energy) {
         super(capacity, maxReceive, maxExtract, energy);
@@ -35,7 +26,7 @@ public abstract class ModEnergyStorage extends EnergyStorage implements IEnergyS
     @Override
     public int extractEnergy(int maxExtract, boolean simulate) {
         int extractedEnergy = super.extractEnergy(maxExtract, simulate);
-        if(extractedEnergy != 0) {
+        if (extractedEnergy != 0) {
             onEnergyChanged();
         }
         return extractedEnergy;
@@ -44,13 +35,13 @@ public abstract class ModEnergyStorage extends EnergyStorage implements IEnergyS
     @Override
     public int receiveEnergy(int maxReceive, boolean simulate) {
         int receiveEnergy = super.receiveEnergy(maxReceive, simulate);
-        if(receiveEnergy != 0) {
+        if (receiveEnergy != 0) {
             onEnergyChanged();
         }
         return receiveEnergy;
     }
 
-    public int getEnergy(){
+    public int getEnergy() {
         return energy;
     }
 
@@ -64,7 +55,7 @@ public abstract class ModEnergyStorage extends EnergyStorage implements IEnergyS
         this.capacity = capacity;
     }
 
-    public int getCapacity(){
+    public int getCapacity() {
         return capacity;
     }
 

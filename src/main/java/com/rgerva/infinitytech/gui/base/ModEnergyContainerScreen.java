@@ -19,13 +19,8 @@ import net.minecraft.client.renderer.CoreShaders;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.MenuType;
-import net.minecraft.world.item.ItemStack;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +55,6 @@ public class ModEnergyContainerScreen<T extends AbstractContainerMenu & ModEnerg
     }
 
     /**
-     *
      * @comment MainContainerScreen
      */
     public ModEnergyContainerScreen(T menu, Inventory playerInventory, Component title, ResourceLocation texture, String energyIndicatorBarTooltipComponentID, eBarSideConfigs configs) {
