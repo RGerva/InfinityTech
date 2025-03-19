@@ -62,41 +62,4 @@ public class InfinityTech {
         LOGGER.info("HELLO from server starting");
     }
 
-    @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientModEvents {
-        @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event) {
-            LOGGER.info("HELLO FROM CLIENT SETUP");
-            LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
-        }
-
-        @SubscribeEvent
-        public static void onRegisterMenuScreens(RegisterMenuScreensEvent event) {
-            event.register(ModGUI.BATTERY_BOX_MENU.get(), BatteryScreen::new);
-            event.register(ModGUI.SOLAR_PENEL_MENU.get(), SolarPanelScreen::new);
-            event.register(ModGUI.CHEST_IRON_MENU.get(), ChestScreen::new);
-            event.register(ModGUI.CHEST_COPPER_MENU.get(), ChestScreen::new);
-            event.register(ModGUI.CHEST_GOLD_MENU.get(), ChestScreen::new);
-            event.register(ModGUI.CHEST_DIAMOND_MENU.get(), ChestScreen::new);
-            event.register(ModGUI.CHEST_OBSIDIAN_MENU.get(), ChestScreen::new);
-            event.register(ModGUI.CHEST_NETHERITE_MENU.get(), ChestScreen::new);
-            event.register(ModGUI.COAL_GENERATOR_MENU.get(), CoalGeneratorScreen::new);
-        }
-
-        @SubscribeEvent
-        public static void onRegisterEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-            event.registerBlockEntityRenderer(ModBlockEntities.CHEST_IRON_ENTITY.get(), ModChestRenderer::new);
-            event.registerBlockEntityRenderer(ModBlockEntities.CHEST_COPPER_ENTITY.get(), ModChestRenderer::new);
-            event.registerBlockEntityRenderer(ModBlockEntities.CHEST_GOLD_ENTITY.get(), ModChestRenderer::new);
-            event.registerBlockEntityRenderer(ModBlockEntities.CHEST_DIAMOND_ENTITY.get(), ModChestRenderer::new);
-            event.registerBlockEntityRenderer(ModBlockEntities.CHEST_OBSIDIAN_ENTITY.get(), ModChestRenderer::new);
-            event.registerBlockEntityRenderer(ModBlockEntities.CHEST_NETHERITE_ENTITY.get(), ModChestRenderer::new);
-        }
-
-        @SubscribeEvent
-        public static void onRegisterLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
-            event.registerLayerDefinition(new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "iron_chest"), "main"), ModChestModel::createLayerDefinition);
-        }
-
-    }
 }
