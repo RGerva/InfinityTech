@@ -19,6 +19,16 @@ group = mod_group_id
 
 repositories {
     mavenLocal()
+    exclusiveContent {
+        forRepository {
+            maven {
+                url "https://cursemaven.com"
+            }
+        }
+        filter {
+            includeGroup "curse.maven"
+        }
+    }
 }
 
 base {
@@ -119,6 +129,7 @@ dependencies {
     // Example mod dependency using a file as dependency
     // implementation files("libs/coolmod-${mc_version}-${coolmod_version}.jar")
     implementation files("libs/Jade-1.21.3-NeoForge-16.0.4.jar")
+    runtimeOnly ("curse.maven:Jade-324717:5846076") //Jade
 
     // Example project dependency using a sister or child project:
     // implementation project(":myproject")

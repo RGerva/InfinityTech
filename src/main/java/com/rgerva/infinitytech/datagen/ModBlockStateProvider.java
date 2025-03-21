@@ -92,6 +92,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         horizontalBlockWithItem(ModBlocks.CREATIVE_BATTERY, true);
         horizontalBlockWithItem(ModBlocks.BATTERY_BLOCK, true);
+        blockWithItem(ModBlocks.INFINITY_BATTERY);
 
         solarPanelBlockWithItem(ModBlocks.SOLAR_PANEL_1);
         solarPanelBlockWithItem(ModBlocks.SOLAR_PANEL_2);

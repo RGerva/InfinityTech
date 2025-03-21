@@ -134,6 +134,8 @@ public class ModCreativeTab {
 
                         output.accept(ModBlocks.CREATIVE_BATTERY.get());
                         output.accept(ModBlocks.BATTERY_BLOCK.get());
+                        output.accept(ModBlocks.INFINITY_BATTERY.get());
+
                         output.accept(ModBlocks.SOLAR_PANEL_1.get());
                         output.accept(ModBlocks.SOLAR_PANEL_2.get());
                         output.accept(ModBlocks.SOLAR_PANEL_3.get());

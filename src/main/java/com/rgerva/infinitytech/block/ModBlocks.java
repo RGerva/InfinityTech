@@ -11,11 +11,13 @@ package com.rgerva.infinitytech.block;
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.block.custom.battery.BatteryBlock;
 import com.rgerva.infinitytech.block.custom.battery.CreativeBatteryBlock;
+import com.rgerva.infinitytech.block.custom.battery.ModBattery;
 import com.rgerva.infinitytech.block.custom.cables.CableBlock;
 import com.rgerva.infinitytech.block.custom.chest.*;
 import com.rgerva.infinitytech.block.custom.generator.CoalGeneratorBlock;
 import com.rgerva.infinitytech.block.custom.solar_panel.SolarPanelBlock;
 import com.rgerva.infinitytech.item.ModItems;
+import com.rgerva.infinitytech.util.types.eBatteryConfigs;
 import com.rgerva.infinitytech.util.types.eCablesConfigs;
 import com.rgerva.infinitytech.util.types.eSolarPanelConfigs;
 import net.minecraft.core.registries.Registries;
@@ -39,9 +41,8 @@ import java.util.function.Supplier;
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(InfinityTech.MOD_ID);
 
-    //====
-    //ORES
-    //====
+
+    //region ORES
 
     //TITANIUM
     public static final DeferredBlock<Block> TITANIUM_ORE = registerBlock("titanium_ore",
@@ -338,10 +339,9 @@ public class ModBlocks {
                             .strength(3.5F)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.DRIPSTONE_BLOCK)));
+    //endregion
 
-    //======
-    //BLOCKS
-    //======
+    //region BLOCKS
 
     public static final DeferredBlock<Block> TITANIUM_BLOCK = registerBlock("titanium_block",
             () -> new Block(BlockBehaviour.Properties.of()
@@ -475,10 +475,9 @@ public class ModBlocks {
                     .strength(1f)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.GRAVEL)));
+    //endregion
 
-    //==============
-    //MACHINE BLOCKS
-    //==============
+    //region BATTERY
 
     public static final DeferredBlock<Block> CREATIVE_BATTERY = registerBlock("creative_battery_box",
             () -> new CreativeBatteryBlock(BlockBehaviour.Properties.of()
@@ -491,6 +490,16 @@ public class ModBlocks {
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "battery_box")))
                     .strength(5.0F, 6.0F)
                     .sound(SoundType.METAL)));
+
+    public static final DeferredBlock<Block> INFINITY_BATTERY = registerBlock("infinity_battery",
+            () -> new ModBattery(eBatteryConfigs.INFINITY, BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "infinity_battery")))
+                    .strength(-1F, Integer.MAX_VALUE)
+                    .noLootTable()));
+
+    //endregion
+
+    //region SOLAR PANEL
 
     public static final DeferredBlock<Block> SOLAR_PANEL_1 = registerBlock("solar_panel_1",
             () -> new SolarPanelBlock(eSolarPanelConfigs.solar_panel_1,
@@ -533,6 +542,9 @@ public class ModBlocks {
                             .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "solar_panel_6")))
                             .strength(4.0F, 5.0F)
                             .sound(SoundType.METAL)));
+    //endregion
+
+    //region CABLES
 
     public static final DeferredBlock<Block> TIN_CABLE = registerBlock("cable_tin",
             () -> new CableBlock(eCablesConfigs.TIN, BlockBehaviour.Properties.of()
@@ -554,6 +566,9 @@ public class ModBlocks {
                     .strength(5.0F)
                     .sound(SoundType.WOOL)
                     .mapColor(MapColor.COLOR_GRAY)));
+    //endregion
+
+    //region CHEST
 
     public static final DeferredBlock<Block> CHEST_COPPER = registerBlock("chest_copper",
             () -> new CopperChestBlock(BlockBehaviour.Properties.of()
@@ -599,12 +614,16 @@ public class ModBlocks {
                     .sound(SoundType.ANCIENT_DEBRIS)
                     .strength(22.5F, 1200.0F)
                     .mapColor(MapColor.COLOR_BLACK)));
+    //endregion
+
+    //region GENERATOR
 
     public static final DeferredBlock<Block> COAL_GENERATOR = registerBlock("generic_generator",
             () -> new CoalGeneratorBlock(BlockBehaviour.Properties.of()
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "generic_generator")))
                     .strength(3F)
                     .requiresCorrectToolForDrops()));
+    //endregion
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

@@ -12,10 +12,12 @@ import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.blockentity.custom.battery.BatteryBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.battery.CreativeBatteryBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.battery.ModBatteryEntity;
 import com.rgerva.infinitytech.blockentity.custom.cables.CableBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.*;
 import com.rgerva.infinitytech.blockentity.custom.generator.CoalGeneratorBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.solar_panel.SolarPanelBlockEntity;
+import com.rgerva.infinitytech.util.types.eBatteryConfigs;
 import com.rgerva.infinitytech.util.types.eCablesConfigs;
 import com.rgerva.infinitytech.util.types.eSolarPanelConfigs;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -29,11 +31,20 @@ public class ModBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, InfinityTech.MOD_ID);
 
+    //region BATTERY
+
     public static final Supplier<BlockEntityType<CreativeBatteryBlockEntity>> CREATIVE_BATTERY_ENTITY = BLOCK_ENTITIES.register("creative_battery_box",
             () -> new BlockEntityType<>(CreativeBatteryBlockEntity::new, ModBlocks.CREATIVE_BATTERY.get()));
 
     public static final Supplier<BlockEntityType<BatteryBlockEntity>> BATTERY_BOX_ENTITY = BLOCK_ENTITIES.register("battery_box",
             () -> new BlockEntityType<>(BatteryBlockEntity::new, ModBlocks.BATTERY_BLOCK.get()));
+
+    public static final Supplier<BlockEntityType<ModBatteryEntity>> INFINITY_BATTERY_ENTITY = BLOCK_ENTITIES.register("infinity_battery",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModBatteryEntity(blockPos, blockState,
+                    eBatteryConfigs.INFINITY)), ModBlocks.INFINITY_BATTERY.get()));
+    //endregion
+
+    //region SOLAR PANEL
 
     public static final Supplier<BlockEntityType<SolarPanelBlockEntity>> SOLAR_PANEL_ENTITY_1 = BLOCK_ENTITIES.register("solar_panel_1",
             () -> new BlockEntityType<>(((blockPos, blockState) -> new SolarPanelBlockEntity(blockPos, blockState,
@@ -58,6 +69,9 @@ public class ModBlockEntities {
     public static final Supplier<BlockEntityType<SolarPanelBlockEntity>> SOLAR_PANEL_ENTITY_6 = BLOCK_ENTITIES.register("solar_panel_6",
             () -> new BlockEntityType<>(((blockPos, blockState) -> new SolarPanelBlockEntity(blockPos, blockState,
                     eSolarPanelConfigs.solar_panel_6)), ModBlocks.SOLAR_PANEL_6.get()));
+    //endregion
+
+    //region CABLE
 
     public static final Supplier<BlockEntityType<CableBlockEntity>> TIN_CABLE_ENTITY = BLOCK_ENTITIES.register("cable_tin",
             () -> new BlockEntityType<>(((blockPos, blockState) -> new CableBlockEntity(blockPos, blockState,
@@ -70,6 +84,9 @@ public class ModBlockEntities {
     public static final Supplier<BlockEntityType<CableBlockEntity>> GOLD_CABLE_ENTITY = BLOCK_ENTITIES.register("cable_gold",
             () -> new BlockEntityType<>(((blockPos, blockState) -> new CableBlockEntity(blockPos, blockState,
                     eCablesConfigs.GOLD)), ModBlocks.GOLD_CABLE.get()));
+    //endregion
+
+    //region CHEST
 
     public static final Supplier<BlockEntityType<IronChestBlockEntity>> CHEST_IRON_ENTITY = BLOCK_ENTITIES.register("chest_iron",
             () -> new BlockEntityType<>(IronChestBlockEntity::new, ModBlocks.CHEST_IRON.get()));
@@ -91,6 +108,7 @@ public class ModBlockEntities {
 
     public static final Supplier<BlockEntityType<CoalGeneratorBlockEntity>> COAL_GENERATOR_ENTITY = BLOCK_ENTITIES.register("generic_generator",
             () -> new BlockEntityType<>(CoalGeneratorBlockEntity::new, ModBlocks.COAL_GENERATOR.get()));
+    //endregion
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

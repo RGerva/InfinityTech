@@ -99,6 +99,7 @@
 
   "block.infinity_tech.battery_box": "Battery",
   "block.infinity_tech.creative_battery_box": "Creative Battery",
+  "block.infinity_tech.infinity_battery": "Infinity Battery",
 
   "block.infinity_tech.solar_panel_1": "Solar Panel (Power I)",
   "block.infinity_tech.solar_panel_2": "Solar Panel (Power II)",
@@ -125,6 +126,7 @@
 
   "machine.infinity_tech.battery_block": "Battery",
   "machine.infinity_tech.creative_battery": "Creative Battery",
+  "machine.infinity_tech.infinity_battery": "Infinity Battery",
 
   "machine.infinity_tech.solar_panel_1": "Solar Panel (Power I)",
   "machine.infinity_tech.solar_panel_2": "Solar Panel (Power II)",
@@ -136,6 +138,7 @@
   "tooltip.infinity_tech.shift_details": "Press [SHIFT] for details",
   "tooltip.infinity_tech.capacity": "Capacity: %s",
   "tooltip.infinity_tech.infinite": "Infinite",
+  "tooltip.infinity_tech.efficiency": "Efficiency: %s",
   "tooltip.infinity_tech.transfer_rate": "Transfer rate: %s/t",
   "tooltip.infinity_tech.energy_meter": "%s / %s",
   "tooltip.infinity_tech.solar_panel.produces": "This block produces up to %s/t.",
