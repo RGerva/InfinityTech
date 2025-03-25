@@ -62,6 +62,7 @@ public class ModBattery extends BaseEntityBlock {
     public static Block getBlockFromBatteryConfigs(eBatteryConfigs batteryConfigs){
         return switch (batteryConfigs){
           case INFINITY -> ModBlocks.INFINITY_BATTERY.get();
+            case DUMP -> ModBlocks.DUMP_BATTERY.get();
             case null, default -> null;
         };
     }
@@ -103,7 +104,7 @@ public class ModBattery extends BaseEntityBlock {
                             ModEnergyUtils.getEnergyWithPrefix(batteryConfigs.getCapacity())).
                     withStyle(ChatFormatting.GRAY));
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.transfer_rate",
-                            ModEnergyUtils.getEnergyWithPrefix(batteryConfigs.getMaxTransfer())).
+                            ModEnergyUtils.getEnergyWithPrefix(batteryConfigs.getMaxReceive())).
                     withStyle(ChatFormatting.GRAY));
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.efficiency",
                             ModEnergyUtils.getEnergyWithPrefix(batteryConfigs.getEnergyEfficiency())).

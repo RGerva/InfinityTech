@@ -39,9 +39,14 @@ public class ModBlockEntities {
     public static final Supplier<BlockEntityType<BatteryBlockEntity>> BATTERY_BOX_ENTITY = BLOCK_ENTITIES.register("battery_box",
             () -> new BlockEntityType<>(BatteryBlockEntity::new, ModBlocks.BATTERY_BLOCK.get()));
 
-    public static final Supplier<BlockEntityType<ModBatteryEntity>> INFINITY_BATTERY_ENTITY = BLOCK_ENTITIES.register("infinity_battery",
+    public static final Supplier<BlockEntityType<ModBatteryEntity>> INFINITY_BATTERY_ENTITY = BLOCK_ENTITIES.register("battery_infinity",
             () -> new BlockEntityType<>(((blockPos, blockState) -> new ModBatteryEntity(blockPos, blockState,
                     eBatteryConfigs.INFINITY)), ModBlocks.INFINITY_BATTERY.get()));
+
+    public static final Supplier<BlockEntityType<ModBatteryEntity>> DUMP_BATTERY_ENTITY = BLOCK_ENTITIES.register("battery_dump",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModBatteryEntity(blockPos, blockState,
+                    eBatteryConfigs.DUMP)), ModBlocks.DUMP_BATTERY.get()));
+
     //endregion
 
     //region SOLAR PANEL

@@ -491,9 +491,15 @@ public class ModBlocks {
                     .strength(5.0F, 6.0F)
                     .sound(SoundType.METAL)));
 
-    public static final DeferredBlock<Block> INFINITY_BATTERY = registerBlock("infinity_battery",
+    public static final DeferredBlock<Block> INFINITY_BATTERY = registerBlock("battery_infinity",
             () -> new ModBattery(eBatteryConfigs.INFINITY, BlockBehaviour.Properties.of()
-                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "infinity_battery")))
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "battery_infinity")))
+                    .strength(-1F, Integer.MAX_VALUE)
+                    .noLootTable()));
+
+    public static final DeferredBlock<Block> DUMP_BATTERY = registerBlock("battery_dump",
+            () -> new ModBattery(eBatteryConfigs.DUMP, BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "battery_dump")))
                     .strength(-1F, Integer.MAX_VALUE)
                     .noLootTable()));
 

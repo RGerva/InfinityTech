@@ -1,8 +1,14 @@
 package com.rgerva.infinitytech.datagen;
 
-import com.rgerva.infinitytech.InfinityTech;
+import com.google.gson.JsonElement;
 import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.block.custom.cables.CableBlock;
+import net.minecraft.client.data.models.BlockModelGenerators;
+import net.minecraft.client.data.models.ItemModelGenerators;
+import net.minecraft.client.data.models.ItemModelOutput;
+import net.minecraft.client.data.models.ModelProvider;
+import net.minecraft.client.data.models.blockstates.BlockStateGenerator;
+import net.minecraft.client.data.models.model.ModelInstance;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -10,21 +16,17 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
-import net.neoforged.neoforge.client.model.generators.ModelFile;
-import net.neoforged.neoforge.client.model.generators.ModelProvider;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
 import java.util.Objects;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
-public class ModBlockStateProvider extends BlockStateProvider {
-    public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
-        super(output, InfinityTech.MOD_ID, exFileHelper);
-    }
+public class ModBlockStateProvider {
 
-    @Override
-    protected void registerStatesAndModels() {
+    private ModBlockStateProvider(){};
+
+    protected static void registerModels(BlockModelGenerators blockModelGenerators) {
         blockWithItem(ModBlocks.TITANIUM_ORE);
         blockWithItem(ModBlocks.TITANIUM_DEEPSLATE_ORE);
         blockWithItem(ModBlocks.TITANIUM_NETHER_ORE);
@@ -93,6 +95,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         horizontalBlockWithItem(ModBlocks.CREATIVE_BATTERY, true);
         horizontalBlockWithItem(ModBlocks.BATTERY_BLOCK, true);
         blockWithItem(ModBlocks.INFINITY_BATTERY);
+        blockWithItem(ModBlocks.DUMP_BATTERY);
 
         solarPanelBlockWithItem(ModBlocks.SOLAR_PANEL_1);
         solarPanelBlockWithItem(ModBlocks.SOLAR_PANEL_2);
@@ -113,6 +116,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         chestBlockWithItem(ModBlocks.CHEST_NETHERITE);
 
         blockWithItem(ModBlocks.COAL_GENERATOR);
+
 
     }
 
@@ -370,4 +374,5 @@ public class ModBlockStateProvider extends BlockStateProvider {
         return ResourceLocation.fromNamespaceAndPath(blockId.getNamespace(),
                 ModelProvider.BLOCK_FOLDER + "/" + blockId.getPath() + pathSuffix);
     }
+
 }

@@ -9,16 +9,18 @@
 package com.rgerva.infinitytech.util.types;
 
 public enum eBatteryConfigs {
-    INFINITY(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE),
-    DUMP(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE);
+    INFINITY(Integer.MAX_VALUE, 0, Integer.MAX_VALUE, Integer.MAX_VALUE),
+    DUMP(Integer.MAX_VALUE, Integer.MAX_VALUE, 0, Integer.MAX_VALUE);
 
     private final int capacity;
-    private final int maxTransfer;
+    private final int maxReceive;
+    private final int maxExtract;
     private final int energyEfficiency;
 
-    eBatteryConfigs(int capacity, int maxTransfer, int energyEfficiency) {
+    eBatteryConfigs(int capacity, int maxReceive, int maxExtract, int energyEfficiency) {
         this.capacity = capacity;
-        this.maxTransfer = maxTransfer;
+        this.maxReceive = maxReceive;
+        this.maxExtract = maxExtract;
         this.energyEfficiency = energyEfficiency;
     }
 
@@ -26,8 +28,12 @@ public enum eBatteryConfigs {
         return capacity;
     }
 
-    public int getMaxTransfer(){
-        return maxTransfer;
+    public int getMaxExtract() {
+        return maxExtract;
+    }
+
+    public int getMaxReceive() {
+        return maxReceive;
     }
 
     public int getEnergyEfficiency() {

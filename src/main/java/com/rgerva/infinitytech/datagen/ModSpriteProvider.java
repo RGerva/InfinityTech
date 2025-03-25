@@ -2,14 +2,13 @@ package com.rgerva.infinitytech.datagen;
 
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.block.ModBlocks;
+import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.renderer.texture.atlas.sources.SingleFile;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.client.model.generators.ModelProvider;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.common.data.SpriteSourceProvider;
 
 import java.util.Objects;
@@ -17,8 +16,10 @@ import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class ModSpriteProvider extends SpriteSourceProvider {
-    public ModSpriteProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper existingFileHelper) {
-        super(output, lookupProvider, InfinityTech.MOD_ID, existingFileHelper);
+
+
+    public ModSpriteProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+        super(output, lookupProvider, InfinityTech.MOD_ID);
     }
 
     @Override
@@ -47,7 +48,7 @@ public class ModSpriteProvider extends SpriteSourceProvider {
         ResourceLocation blockId = Objects.requireNonNull(block.getKey()).location();
 
         return ResourceLocation.fromNamespaceAndPath(blockId.getNamespace(),
-                ModelProvider.BLOCK_FOLDER + "/" + blockId.getPath());
+                "block/" + blockId.getPath());
     }
 
 }

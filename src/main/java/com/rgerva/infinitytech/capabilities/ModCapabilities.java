@@ -26,6 +26,9 @@ public class ModCapabilities {
                 ModBlockEntities.INFINITY_BATTERY_ENTITY.get(), ModBatteryEntity::getEnergyStorageCapability);
 
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
+                ModBlockEntities.DUMP_BATTERY_ENTITY.get(), ModBatteryEntity::getEnergyStorageCapability);
+
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
                 ModBlockEntities.SOLAR_PANEL_ENTITY_1.get(), SolarPanelBlockEntity::getEnergyStorageCapability);
 
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,

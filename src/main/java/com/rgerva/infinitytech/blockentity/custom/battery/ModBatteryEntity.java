@@ -32,13 +32,15 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Objects;
+
 public class ModBatteryEntity extends BlockEntity implements MenuProvider, ModSyncPackages {
 
     private final eBatteryConfigs batteryConfigs;
     private final ModEnergyStorage ENERGY_STORAGE;
 
     private ModEnergyStorage createEnergyStorage(eBatteryConfigs batteryConfigs) {
-        return new ModEnergyStorage(batteryConfigs.getCapacity(), batteryConfigs.getMaxTransfer(), batteryConfigs.getMaxTransfer(), 0) {
+        return new ModEnergyStorage(batteryConfigs.getCapacity(), batteryConfigs.getMaxReceive(), batteryConfigs.getMaxExtract(), 0) {
             @Override
             public void onEnergyChanged() {
                 setChanged();
@@ -46,29 +48,19 @@ public class ModBatteryEntity extends BlockEntity implements MenuProvider, ModSy
             }
 
             @Override
-            public int getEnergyStored() {
-                return Integer.MAX_VALUE;
-            }
-
-            @Override
-            public int getMaxEnergyStored() {
-                return Integer.MAX_VALUE;
+            public boolean canReceive() {
+                return batteryConfigs.getMaxReceive() != 0;
             }
 
             @Override
             public boolean canExtract() {
-                return true;
-            }
-
-            @Override
-            public boolean canReceive() {
-                return false;
+                return batteryConfigs.getMaxExtract() != 0;
             }
         };
     }
 
     public ModBatteryEntity(BlockPos pos, BlockState blockState, eBatteryConfigs batteryConfigs) {
-        super(ModBlockEntities.INFINITY_BATTERY_ENTITY.get(), pos, blockState);
+        super(Objects.requireNonNull(getEntityType(batteryConfigs)), pos, blockState);
         this.batteryConfigs = batteryConfigs;
         ENERGY_STORAGE = createEnergyStorage(batteryConfigs);
     }
@@ -92,6 +84,7 @@ public class ModBatteryEntity extends BlockEntity implements MenuProvider, ModSy
     public static BlockEntityType<ModBatteryEntity> getEntityType(eBatteryConfigs batteryConfigs) {
         return switch (batteryConfigs){
             case INFINITY -> ModBlockEntities.INFINITY_BATTERY_ENTITY.get();
+            case DUMP -> ModBlockEntities.DUMP_BATTERY_ENTITY.get();
             case null, default -> null;
         };
     }
@@ -100,6 +93,7 @@ public class ModBatteryEntity extends BlockEntity implements MenuProvider, ModSy
         if(blockEntity.getBatteryConfigs() == eBatteryConfigs.INFINITY){
             blockEntity.ENERGY_STORAGE.setEnergy(blockEntity.ENERGY_STORAGE.getCapacity());
         }
+
 
     }
 

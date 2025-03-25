@@ -99,7 +99,8 @@
 
   "block.infinity_tech.battery_box": "Battery",
   "block.infinity_tech.creative_battery_box": "Creative Battery",
-  "block.infinity_tech.infinity_battery": "Infinity Battery",
+  "block.infinity_tech.battery_infinity": "Infinity Battery",
+  "block.infinity_tech.battery_dump": "Dump Battery",
 
   "block.infinity_tech.solar_panel_1": "Solar Panel (Power I)",
   "block.infinity_tech.solar_panel_2": "Solar Panel (Power II)",
