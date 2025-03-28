@@ -19,14 +19,51 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 @EventBusSubscriber(modid = InfinityTech.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
-public class DataGenerators {
+public class DataGenerators{
     @SubscribeEvent
     public static void gatherDataServer(GatherDataEvent.Client event) {
+        DataGenerator generator = event.getGenerator();
+        PackOutput packOutput = generator.getPackOutput();
+        CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
+        //region ModelProvider
 
-        //SuperMartijn642sCoreLib
-        //TrashCans
+        generator.addProvider(true, new ModBlockModelAndStateGeneratorProvider(packOutput));
+        //endregion
 
+        //region LootTable
+
+        generator.addProvider(true, new LootTableProvider(packOutput, Collections.emptySet(),
+                List.of(new LootTableProvider.SubProviderEntry(ModBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider));
+        //endregion
+
+        //region TagsProvider
+
+        BlockTagsProvider blockTagsProvider = new ModBlockTagProvider(packOutput, lookupProvider);
+        generator.addProvider(true, blockTagsProvider);
+        generator.addProvider(true, new ModItemTagProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter()));
+
+        //endregion
+
+        //region Recipe
+
+        generator.addProvider(true, new ModRecipeProvider.Runner(packOutput, lookupProvider));
+        //endregion
+
+        //region DataMap
+
+        generator.addProvider(true, new ModDataMapProvider(packOutput, lookupProvider));
+        //endregion
+
+        //region DataPack
+
+        generator.addProvider(true, new ModDatapackProvider(packOutput, lookupProvider));
+        //endregion
+
+        //region Sprite
+
+        generator.addProvider(true, new ModSpriteProvider(packOutput, lookupProvider));
+        //endregion
     }
 
 }

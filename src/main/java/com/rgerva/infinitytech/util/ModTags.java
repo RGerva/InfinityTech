@@ -12,9 +12,9 @@ public class ModTags {
     public static class Blocks {
         public static final TagKey<Block> NEEDS_TITANIUM_TOOL = createTag("needs_titanium_tool");
         public static final TagKey<Block> INCORRECT_FOR_TITANIUM_TOOL = createTag("incorrect_for_titanium_tool");
-        public static final TagKey<Block> MOD_CHESTS = createTag(InfinityTech.MOD_ID + "chest");
-        public static final TagKey<Block> MOD_ENERGY = createTag(InfinityTech.MOD_ID + "energy");
-        public static final TagKey<Block> MOD_ENERGY_CABLES = createTag(InfinityTech.MOD_ID + "energy_cables");
+        public static final TagKey<Block> MOD_CHESTS = createTag(InfinityTech.MOD_ID + "_chest");
+        public static final TagKey<Block> MOD_ENERGY = createTag(InfinityTech.MOD_ID + "_energy");
+        public static final TagKey<Block> MOD_ENERGY_CABLES = createTag(InfinityTech.MOD_ID + "_energy_cables");
 
         private static TagKey<Block> createTag(String name) {
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, name));
