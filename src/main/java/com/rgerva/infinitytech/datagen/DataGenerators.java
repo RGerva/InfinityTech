@@ -1,6 +1,7 @@
 package com.rgerva.infinitytech.datagen;
 
 import com.rgerva.infinitytech.InfinityTech;
+import net.minecraft.DetectedVersion;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
@@ -8,11 +9,16 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.data.metadata.PackMetadataGenerator;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.metadata.pack.PackMetadataSection;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 import java.util.List;
@@ -28,7 +34,14 @@ public class DataGenerators{
 
         //region ModelProvider
 
-        generator.addProvider(true, new ModBlockModelAndStateGeneratorProvider(packOutput));
+        event.createProvider(output -> new ModelProvider(packOutput, InfinityTech.MOD_ID){
+            @Override
+            protected void registerModels(@NotNull BlockModelGenerators blockModels, @NotNull ItemModelGenerators itemModels) {
+                ModBlockStateProvider.run(blockModels);
+                ModItemModelProvider.run(itemModels);
+                InfinityTech.LOGGER.info("Done");
+            }
+        });
         //endregion
 
         //region LootTable
@@ -64,6 +77,10 @@ public class DataGenerators{
 
         generator.addProvider(true, new ModSpriteProvider(packOutput, lookupProvider));
         //endregion
+
+        generator.addProvider(true, new PackMetadataGenerator(packOutput)
+                .add(PackMetadataSection.TYPE, new PackMetadataSection(Component.literal("Infinity Tech resources & data"),
+                        DetectedVersion.BUILT_IN.getPackVersion(PackType.CLIENT_RESOURCES))));
     }
 
 }
