@@ -9,17 +9,26 @@
 package com.rgerva.infinitytech.datagen;
 
 import com.ibm.icu.text.MessagePatternUtil;
+import com.mojang.serialization.MapCodec;
 import com.rgerva.infinitytech.block.ModBlocks;
+import com.rgerva.infinitytech.block.custom.cables.CableBlock;
+import com.rgerva.infinitytech.blockentity.custom.chest.renderer.special.ModChestSpecialRenderer;
+import com.rgerva.infinitytech.datagen.model.ModTexturedModel;
 import net.minecraft.client.data.models.BlockModelGenerators;
-import net.minecraft.client.data.models.blockstates.BlockStateGenerator;
-import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
-import net.minecraft.client.data.models.blockstates.Variant;
-import net.minecraft.client.data.models.blockstates.VariantProperties;
+import net.minecraft.client.data.models.ModelProvider;
+import net.minecraft.client.data.models.blockstates.*;
 import net.minecraft.client.data.models.model.*;
+import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.client.renderer.item.ItemModel;
+import net.minecraft.client.renderer.special.SpecialModelRenderer;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import org.jetbrains.annotations.Nullable;
+import org.w3c.dom.Text;
 
 import java.util.Objects;
 import java.util.function.BiConsumer;
@@ -102,30 +111,29 @@ public class ModBlockStateProvider {
         blockWithItem(ModBlocks.ZINC_BLOCK);
         blockWithItem(ModBlocks.ZINC_RAW_BLOCK);
 
-        //OK
 
-        blockWithItem(ModBlocks.CREATIVE_BATTERY);
-        blockWithItem(ModBlocks.BATTERY_BLOCK);
+        horizontalBlockWithItem(ModBlocks.CREATIVE_BATTERY);
+        horizontalBlockWithItem(ModBlocks.BATTERY_BLOCK);
         blockWithItem(ModBlocks.INFINITY_BATTERY);
         blockWithItem(ModBlocks.DUMP_BATTERY);
 
-        blockWithItem(ModBlocks.SOLAR_PANEL_1);
-        blockWithItem(ModBlocks.SOLAR_PANEL_2);
-        blockWithItem(ModBlocks.SOLAR_PANEL_3);
-        blockWithItem(ModBlocks.SOLAR_PANEL_4);
-        blockWithItem(ModBlocks.SOLAR_PANEL_5);
-        blockWithItem(ModBlocks.SOLAR_PANEL_6);
+        solarPanelBlockWithItem(ModBlocks.SOLAR_PANEL_1);
+        solarPanelBlockWithItem(ModBlocks.SOLAR_PANEL_2);
+        solarPanelBlockWithItem(ModBlocks.SOLAR_PANEL_3);
+        solarPanelBlockWithItem(ModBlocks.SOLAR_PANEL_4);
+        solarPanelBlockWithItem(ModBlocks.SOLAR_PANEL_5);
+        solarPanelBlockWithItem(ModBlocks.SOLAR_PANEL_6);
 
-        blockWithItem(ModBlocks.TIN_CABLE);
-        blockWithItem(ModBlocks.COPPER_CABLE);
-        blockWithItem(ModBlocks.GOLD_CABLE);
+        cableBlockWithItem(ModBlocks.TIN_CABLE);
+        cableBlockWithItem(ModBlocks.COPPER_CABLE);
+        cableBlockWithItem(ModBlocks.GOLD_CABLE);
 
-        blockWithItem(ModBlocks.CHEST_IRON);
-        blockWithItem(ModBlocks.CHEST_COPPER);
-        blockWithItem(ModBlocks.CHEST_GOLD);
-        blockWithItem(ModBlocks.CHEST_DIAMOND);
-        blockWithItem(ModBlocks.CHEST_OBSIDIAN);
-        blockWithItem(ModBlocks.CHEST_NETHERITE);
+        chestBlockWithItem(ModBlocks.CHEST_IRON);
+        chestBlockWithItem(ModBlocks.CHEST_COPPER);
+        chestBlockWithItem(ModBlocks.CHEST_GOLD);
+        chestBlockWithItem(ModBlocks.CHEST_DIAMOND);
+        chestBlockWithItem(ModBlocks.CHEST_OBSIDIAN);
+        chestBlockWithItem(ModBlocks.CHEST_NETHERITE);
 
         blockWithItem(ModBlocks.COAL_GENERATOR);
 
@@ -155,20 +163,95 @@ public class ModBlockStateProvider {
         BlockModelGenerators.createRotatedVariant(deferredBlock.get(), getBlockTexture(deferredBlock), resourcelocation);
     }
 
-    private static void horizontalBlockWithItem(Block block, boolean uniqueBottomTexture) {
-        ResourceLocation modelLocation = TexturedModel.ORIENTABLE_ONLY_TOP.get((Block) block)
-                .updateTextures(textureMapping -> {
-                    textureMapping.put(TextureSlot.TOP, TextureMapping.getBlockTexture((Block)block, "_top"));
-                    textureMapping.put(TextureSlot.SIDE, TextureMapping.getBlockTexture((Block)block, "_side"));
-                    textureMapping.put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture((Block)block, "_botton"));
-                })
-                .create((Block) block, modelOutput);
+    /**
+     * Create horizontal block with item
+     * @param deferredBlock is block to generate Model
+     */
+    private static void horizontalBlockWithItem(DeferredBlock<?> deferredBlock) {
+        Block block = deferredBlock.get();
 
-        blockStateOutput.accept(MultiVariantGenerator.multiVariant((Block) block, Variant.variant().with(VariantProperties.MODEL, modelLocation))
-                .with(BlockModelGenerators.createHorizontalFacingDispatch()));
+        ResourceLocation modelLocation = TexturedModel.ORIENTABLE.get(block)
+                .updateTextures(textureMapping -> {
+                    textureMapping.put(TextureSlot.TOP, TextureMapping.getBlockTexture(block, "_top"));
+                    textureMapping.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(block, "_side"));
+                    textureMapping.put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_side"));
+                    textureMapping.put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(block, "_bottom"));
+                })
+                .create(block, modelOutput);
+
+        blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block, modelLocation));
+        BlockModelGenerators.createSimpleBlock(block, modelLocation);
     }
 
-    private ResourceLocation getBlockParticleTexture(Holder<? extends Block> block) {
+    /**
+     * Create Solar Panel block with item
+     * @param block is block to generate Model
+     */
+    private static void solarPanelBlockWithItem(Holder<Block> block) {
+
+        ResourceLocation solarPanel = ModTexturedModel.SOLAR_PANEL.get(block.value()).create(block.value(), modelOutput);
+
+        blockStateOutput.accept(MultiVariantGenerator.multiVariant(block.value(),
+                Variant.variant().with(VariantProperties.MODEL, solarPanel)));
+
+        BlockModelGenerators.createSimpleBlock(block.value(), solarPanel);
+    }
+
+    /**
+     * Create Cable block with item
+     * @param block is block to generate Model
+     */
+    private static void cableBlockWithItem(Holder<Block> block) {
+        ResourceLocation cableCore = ModTexturedModel.CABLE_CORE.get(block.value()).create(block.value(), modelOutput);
+        ResourceLocation cableSide = ModTexturedModel.CABLE_SIDE.get(block.value()).createWithSuffix(block.value(), "_side", modelOutput);
+
+        blockStateOutput.accept(
+                MultiPartGenerator.multiPart(block.value()).
+                        with(Variant.variant().
+                                with(VariantProperties.MODEL, cableCore)).
+                        with(Condition.condition().term(CableBlock.UP, true), Variant.variant().
+                                with(VariantProperties.MODEL, cableSide).
+                                with(VariantProperties.X_ROT, VariantProperties.Rotation.R270)).
+                        with(Condition.condition().term(CableBlock.DOWN, true), Variant.variant().
+                                with(VariantProperties.MODEL, cableSide).
+                                with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)).
+                        with(Condition.condition().term(CableBlock.NORTH, true), Variant.variant().
+                                with(VariantProperties.MODEL, cableSide)).
+                        with(Condition.condition().term(CableBlock.SOUTH, true), Variant.variant().
+                                with(VariantProperties.MODEL, cableSide).
+                                with(VariantProperties.X_ROT, VariantProperties.Rotation.R180)).
+                        with(Condition.condition().term(CableBlock.EAST, true), Variant.variant().
+                                with(VariantProperties.MODEL, cableSide).
+                                with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)).
+                        with(Condition.condition().term(CableBlock.WEST, true), Variant.variant().
+                                with(VariantProperties.MODEL, cableSide).
+                                with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
+        );
+
+        BlockModelGenerators.createSimpleBlock(block.value(), cableCore);
+    }
+
+    /**
+     * Create Chest block with item
+     * @param deferredBlock is block to generate Model
+     */
+    public static void chestBlockWithItem(DeferredBlock<?> deferredBlock) {
+        ResourceLocation particleTexture = getBlockParticleTexture(deferredBlock);
+        blockStateOutput.accept(
+                MultiVariantGenerator.multiVariant(
+                        deferredBlock.get(),Variant.variant()
+                                .with(VariantProperties.MODEL,
+                                        ModelTemplates.PARTICLE_ONLY.create(deferredBlock.get(),
+                                                TextureMapping.particle(particleTexture),
+                                                modelOutput))));
+
+        Item chestItem = deferredBlock.asItem();
+        ResourceLocation resourceLocation = ModelTemplates.CHEST_INVENTORY.create(chestItem, TextureMapping.particle(particleTexture), modelOutput);
+        ItemModel.Unbaked unbaked = ItemModelUtils.specialModel(resourceLocation, new ModChestSpecialRenderer.Unbaked(getBlockTexture(deferredBlock)));
+        blockModelGenerator.itemModelOutput.accept(chestItem, unbaked);
+    }
+
+    private static ResourceLocation getBlockParticleTexture(Holder<? extends Block> block) {
         ResourceLocation blockId = Objects.requireNonNull(block.getKey()).location();
 
         return ResourceLocation.fromNamespaceAndPath(blockId.getNamespace(),

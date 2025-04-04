@@ -12,6 +12,7 @@ import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.blockentity.ModBlockEntities;
 import com.rgerva.infinitytech.blockentity.custom.chest.model.ModChestModel;
 import com.rgerva.infinitytech.blockentity.custom.chest.renderer.ModChestRenderer;
+import com.rgerva.infinitytech.blockentity.custom.chest.renderer.special.ModChestSpecialRenderer;
 import com.rgerva.infinitytech.gui.ModGUI;
 import com.rgerva.infinitytech.gui.screen.BatteryScreen;
 import com.rgerva.infinitytech.gui.screen.ChestScreen;
@@ -27,6 +28,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
+import net.neoforged.neoforge.client.event.RegisterSpecialModelRendererEvent;
 
 @EventBusSubscriber(modid = InfinityTech.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 public class ModBusEvents {
@@ -63,9 +65,16 @@ public class ModBusEvents {
         event.registerBlockEntityRenderer(ModBlockEntities.CHEST_NETHERITE_ENTITY.get(), ModChestRenderer::new);
     }
 
+    public static final ModelLayerLocation CHEST_LAYER_LOC = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "chest"), "main");
+
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
     public static void onRegisterLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "iron_chest"), "main"), ModChestModel::createLayerDefinition);
+        event.registerLayerDefinition(CHEST_LAYER_LOC, ModChestModel::createLayerDefinition);
+    }
+
+    @SubscribeEvent
+    public static void registerSpecialRenderers(RegisterSpecialModelRendererEvent event) {
+        event.register(ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "chest"), ModChestSpecialRenderer.Unbaked.MAP_CODEC);
     }
 }

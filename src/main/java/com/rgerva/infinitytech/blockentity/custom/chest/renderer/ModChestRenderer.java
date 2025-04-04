@@ -57,7 +57,7 @@ public class ModChestRenderer<T extends BlockEntity & LidBlockEntity> implements
 
     public ModChestRenderer(BlockEntityRendererProvider.Context context) {
         this.renderer = context.getBlockEntityRenderDispatcher();
-        this.model = new ModChestModel(context.bakeLayer(new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "iron_chest"), "main")));
+        this.model = new ModChestModel(context.bakeLayer(new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "chest"), "main")));
     }
 
     @Override
