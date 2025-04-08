@@ -1,4 +1,4 @@
-package com.rgerva.infinitytech.datagen;
+package com.rgerva.infinitytech.datagen.providers.block;
 
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.block.ModBlocks;
@@ -8,7 +8,6 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 

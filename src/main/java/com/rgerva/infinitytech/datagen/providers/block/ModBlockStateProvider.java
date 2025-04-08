@@ -6,29 +6,21 @@
  * Copyright (c) 2025 @RGerva. All Rights Reserved.
  */
 
-package com.rgerva.infinitytech.datagen;
+package com.rgerva.infinitytech.datagen.providers.block;
 
-import com.ibm.icu.text.MessagePatternUtil;
-import com.mojang.serialization.MapCodec;
 import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.block.custom.cables.CableBlock;
 import com.rgerva.infinitytech.blockentity.custom.chest.renderer.special.ModChestSpecialRenderer;
 import com.rgerva.infinitytech.datagen.model.ModTexturedModel;
 import net.minecraft.client.data.models.BlockModelGenerators;
-import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.blockstates.*;
 import net.minecraft.client.data.models.model.*;
-import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.item.ItemModel;
-import net.minecraft.client.renderer.special.SpecialModelRenderer;
-import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredBlock;
-import org.jetbrains.annotations.Nullable;
-import org.w3c.dom.Text;
 
 import java.util.Objects;
 import java.util.function.BiConsumer;
@@ -40,7 +32,7 @@ public class ModBlockStateProvider {
     static Consumer<BlockStateGenerator> blockStateOutput;
     static BiConsumer<ResourceLocation, ModelInstance> modelOutput;
 
-    protected static void run(BlockModelGenerators blockModelGenerators) {
+    public static void run(BlockModelGenerators blockModelGenerators) {
 
         blockModelGenerator = blockModelGenerators;
         blockStateOutput = blockModelGenerators.blockStateOutput;

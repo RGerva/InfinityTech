@@ -1,12 +1,21 @@
 package com.rgerva.infinitytech.datagen;
 
 import com.rgerva.infinitytech.InfinityTech;
+import com.rgerva.infinitytech.datagen.providers.ModDataMapProvider;
+import com.rgerva.infinitytech.datagen.providers.ModDatapackProvider;
+import com.rgerva.infinitytech.datagen.providers.ModRecipeProvider;
+import com.rgerva.infinitytech.datagen.providers.ModSpriteProvider;
+import com.rgerva.infinitytech.datagen.providers.block.ModBlockLootTableProvider;
+import com.rgerva.infinitytech.datagen.providers.block.ModBlockStateProvider;
+import com.rgerva.infinitytech.datagen.providers.block.ModBlockTagProvider;
+import com.rgerva.infinitytech.datagen.providers.item.ModEquipmentProvider;
+import com.rgerva.infinitytech.datagen.providers.item.ModItemModelProvider;
+import com.rgerva.infinitytech.datagen.providers.item.ModItemTagProvider;
 import net.minecraft.DetectedVersion;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.data.metadata.PackMetadataGenerator;
@@ -28,11 +37,9 @@ import java.util.concurrent.CompletableFuture;
 public class DataGenerators{
     @SubscribeEvent
     public static void gatherDataServer(GatherDataEvent.Client event) {
-        DataGenerator generator = event.getGenerator();
-        PackOutput packOutput = generator.getPackOutput();
+        PackOutput packOutput = event.getGenerator().getPackOutput();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-        //region ModelProvider
 
         event.createProvider(output -> new ModelProvider(packOutput, InfinityTech.MOD_ID){
             @Override
@@ -42,43 +49,25 @@ public class DataGenerators{
                 InfinityTech.LOGGER.info("Done");
             }
         });
-        //endregion
 
-        //region LootTable
+        event.addProvider(new ModEquipmentProvider(packOutput));
 
-        generator.addProvider(true, new LootTableProvider(packOutput, Collections.emptySet(),
+        event.addProvider(new LootTableProvider(packOutput, Collections.emptySet(),
                 List.of(new LootTableProvider.SubProviderEntry(ModBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider));
-        //endregion
-
-        //region TagsProvider
 
         BlockTagsProvider blockTagsProvider = new ModBlockTagProvider(packOutput, lookupProvider);
-        generator.addProvider(true, blockTagsProvider);
-        generator.addProvider(true, new ModItemTagProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter()));
+        event.addProvider(blockTagsProvider);
+        event.addProvider(new ModItemTagProvider(packOutput, lookupProvider, blockTagsProvider.contentsGetter()));
 
-        //endregion
+        event.addProvider(new ModRecipeProvider.Runner(packOutput, lookupProvider));
 
-        //region Recipe
+        event.addProvider(new ModDataMapProvider(packOutput,lookupProvider));
 
-        generator.addProvider(true, new ModRecipeProvider.Runner(packOutput, lookupProvider));
-        //endregion
+        event.addProvider(new ModDatapackProvider(packOutput, lookupProvider));
 
-        //region DataMap
+        event.addProvider(new ModSpriteProvider(packOutput, lookupProvider));
 
-        generator.addProvider(true, new ModDataMapProvider(packOutput, lookupProvider));
-        //endregion
-
-        //region DataPack
-
-        generator.addProvider(true, new ModDatapackProvider(packOutput, lookupProvider));
-        //endregion
-
-        //region Sprite
-
-        generator.addProvider(true, new ModSpriteProvider(packOutput, lookupProvider));
-        //endregion
-
-        generator.addProvider(true, new PackMetadataGenerator(packOutput)
+        event.addProvider(new PackMetadataGenerator(packOutput)
                 .add(PackMetadataSection.TYPE, new PackMetadataSection(Component.literal("Infinity Tech resources & data"),
                         DetectedVersion.BUILT_IN.getPackVersion(PackType.CLIENT_RESOURCES))));
     }

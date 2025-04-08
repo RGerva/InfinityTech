@@ -6,9 +6,10 @@
  * Copyright (c) 2025 @RGerva. All Rights Reserved.
  */
 
-package com.rgerva.infinitytech.datagen;
+package com.rgerva.infinitytech.datagen.providers.item;
 
 import com.rgerva.infinitytech.InfinityTech;
+import com.rgerva.infinitytech.item.ModArmorMaterials;
 import com.rgerva.infinitytech.item.ModItems;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ItemModelOutput;
@@ -16,16 +17,17 @@ import net.minecraft.client.data.models.model.ModelInstance;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.PackType;
+import net.minecraft.world.item.AnimalArmorItem;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.equipment.ArmorType;
+import net.minecraft.world.item.equipment.EquipmentAsset;
 import net.minecraft.world.item.equipment.EquipmentAssets;
 import net.minecraft.world.item.equipment.trim.TrimMaterial;
 import net.minecraft.world.item.equipment.trim.TrimMaterials;
 import net.neoforged.neoforge.registries.DeferredItem;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.function.BiConsumer;
 
 public class ModItemModelProvider {
@@ -49,8 +51,7 @@ public class ModItemModelProvider {
         trimMaterials.put(TrimMaterials.AMETHYST, 1.0F);
     }
 
-    protected static void run(ItemModelGenerators itemModels) {
-
+    public static void run(ItemModelGenerators itemModels) {
 
         itemModel = itemModels;
         modelOutput = itemModels.modelOutput;
@@ -68,10 +69,10 @@ public class ModItemModelProvider {
         handheldItem(ModItems.TITANIUM_AXE.get());
         handheldItem(ModItems.TITANIUM_HOE.get());
 
-        trimmedArmorItem(ModItems.TITANIUM_HELMET);
-        trimmedArmorItem(ModItems.TITANIUM_CHESTPLATE);
-        trimmedArmorItem(ModItems.TITANIUM_LEGGINGS);
-        trimmedArmorItem(ModItems.TITANIUM_BOOTS);
+        trimmedArmorItem(ModItems.TITANIUM_HELMET, ModArmorMaterials.TITANIUM);
+        trimmedArmorItem(ModItems.TITANIUM_CHESTPLATE, ModArmorMaterials.TITANIUM);
+        trimmedArmorItem(ModItems.TITANIUM_LEGGINGS, ModArmorMaterials.TITANIUM);
+        trimmedArmorItem(ModItems.TITANIUM_BOOTS, ModArmorMaterials.TITANIUM);
 
         basicItem(ModItems.TITANIUM_HORSE_ARMOR.get());
 
@@ -120,7 +121,7 @@ public class ModItemModelProvider {
         itemModel.generateFlatItem(item, ModelTemplates.FLAT_HANDHELD_ITEM);
     }
 
-    private static void trimmedArmorItem(DeferredItem<ArmorItem> itemDeferredItem){
+    private static void trimmedArmorItem(DeferredItem<ArmorItem> itemDeferredItem, ResourceKey<EquipmentAsset> equipmentKey){
 
         if (itemDeferredItem.get() instanceof ArmorItem armorItem) {
             String armorType = "";
@@ -133,8 +134,8 @@ public class ModItemModelProvider {
             } else if (armorItem.toString().contains("boots")) {
                 armorType = ItemModelGenerators.SLOT_BOOTS;
             }
-            itemModel.generateTrimmableItem(itemDeferredItem.get(), EquipmentAssets.NETHERITE, armorType, false);
+            itemModel.generateTrimmableItem(itemDeferredItem.get(), equipmentKey, armorType, false);
         }
-
     }
+
 }

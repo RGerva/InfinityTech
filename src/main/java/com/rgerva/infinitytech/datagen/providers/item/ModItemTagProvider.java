@@ -1,15 +1,12 @@
-package com.rgerva.infinitytech.datagen;
+package com.rgerva.infinitytech.datagen.providers.item;
 
-import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.item.ModItems;
 import com.rgerva.infinitytech.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -32,6 +29,18 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.TITANIUM_LEGGINGS.get())
                 .add(ModItems.TITANIUM_BOOTS.get())
                 .add(ModItems.TITANIUM_HORSE_ARMOR.get());
+
+        this.tag(ItemTags.HEAD_ARMOR)
+                .add(ModItems.TITANIUM_HELMET.get());
+
+        this.tag(ItemTags.CHEST_ARMOR)
+                .add(ModItems.TITANIUM_CHESTPLATE.get());
+
+        this.tag(ItemTags.LEG_ARMOR)
+                .add(ModItems.TITANIUM_LEGGINGS.get());
+
+        this.tag(ItemTags.FOOT_ARMOR)
+                .add(ModItems.TITANIUM_BOOTS.get());
 
         this.tag(ItemTags.SWORDS)
                 .add(ModItems.TITANIUM_SWORD.get());
@@ -57,5 +66,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
         this.tag(ModTags.Items.TITANIUM_REPAIR)
                 .add(ModItems.TITANIUM_INGOT.get());
+
+        this.tag(ItemTags.HORSE_TEMPT_ITEMS)
+                .add(ModItems.TITANIUM_HORSE_ARMOR.get());
     }
 }

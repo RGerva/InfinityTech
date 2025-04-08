@@ -1,8 +1,7 @@
-package com.rgerva.infinitytech.datagen;
+package com.rgerva.infinitytech.datagen.providers;
 
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.block.ModBlocks;
-import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.renderer.texture.atlas.sources.SingleFile;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;

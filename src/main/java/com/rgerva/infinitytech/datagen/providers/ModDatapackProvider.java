@@ -1,4 +1,4 @@
-package com.rgerva.infinitytech.datagen;
+package com.rgerva.infinitytech.datagen.providers;
 
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.worldgen.ModBiomeModifiers;

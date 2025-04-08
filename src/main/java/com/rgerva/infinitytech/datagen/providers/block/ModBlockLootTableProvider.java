@@ -1,4 +1,4 @@
-package com.rgerva.infinitytech.datagen;
+package com.rgerva.infinitytech.datagen.providers.block;
 
 import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.item.ModItems;
@@ -20,7 +20,7 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import java.util.Set;
 
 public class ModBlockLootTableProvider extends BlockLootSubProvider {
-    protected ModBlockLootTableProvider(HolderLookup.Provider registries) {
+    public ModBlockLootTableProvider(HolderLookup.Provider registries) {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
     }
 

@@ -192,7 +192,7 @@ public class ModItems {
             () -> new ArmorItem(ModArmorMaterials.TITANIUM_ARMOR_MATERIAL, ArmorType.BOOTS, new Item.Properties()
                     .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "titanium_boots")))));
 
-    public static final DeferredItem<Item> TITANIUM_HORSE_ARMOR = ITEMS.register("titanium_horse_armor",
+    public static final DeferredItem<AnimalArmorItem> TITANIUM_HORSE_ARMOR = ITEMS.register("titanium_horse_armor",
             () -> new AnimalArmorItem(ModArmorMaterials.TITANIUM_ARMOR_MATERIAL, AnimalArmorItem.BodyType.EQUESTRIAN, new Item.Properties()
                     .stacksTo(1)
                     .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "titanium_horse_armor")))));
