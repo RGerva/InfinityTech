@@ -8,7 +8,6 @@
 
 package com.rgerva.infinitytech.datagen.providers.item;
 
-import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.item.ModArmorMaterials;
 import com.rgerva.infinitytech.item.ModItems;
 import net.minecraft.client.data.models.ItemModelGenerators;
@@ -17,12 +16,9 @@ import net.minecraft.client.data.models.model.ModelInstance;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.AnimalArmorItem;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.equipment.ArmorType;
 import net.minecraft.world.item.equipment.EquipmentAsset;
-import net.minecraft.world.item.equipment.EquipmentAssets;
 import net.minecraft.world.item.equipment.trim.TrimMaterial;
 import net.minecraft.world.item.equipment.trim.TrimMaterials;
 import net.neoforged.neoforge.registries.DeferredItem;

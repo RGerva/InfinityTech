@@ -132,10 +132,9 @@ public class ModCreativeTab {
 
                         output.accept(ModItems.WRENCH.get());
 
-                        output.accept(ModBlocks.CREATIVE_BATTERY.get());
-                        output.accept(ModBlocks.BATTERY_BLOCK.get());
                         output.accept(ModBlocks.INFINITY_BATTERY.get());
                         output.accept(ModBlocks.DUMP_BATTERY.get());
+                        output.accept(ModBlocks.BATTERY_LVL_1.get());
 
                         output.accept(ModBlocks.SOLAR_PANEL_1.get());
                         output.accept(ModBlocks.SOLAR_PANEL_2.get());
@@ -294,7 +293,8 @@ public class ModCreativeTab {
             event.accept(ModBlocks.SOLAR_PANEL_4.get());
             event.accept(ModBlocks.SOLAR_PANEL_5.get());
             event.accept(ModBlocks.SOLAR_PANEL_6.get());
-            event.accept(ModBlocks.BATTERY_BLOCK.get());
+
+            event.accept(ModBlocks.BATTERY_LVL_1.get());
             event.accept(ModBlocks.TIN_CABLE.get());
             event.accept(ModBlocks.COPPER_CABLE.get());
             event.accept(ModBlocks.GOLD_CABLE.get());
@@ -316,7 +316,7 @@ public class ModCreativeTab {
         }
 
         if (event.getTabKey() == CreativeModeTabs.OP_BLOCKS) {
-            event.accept(ModBlocks.CREATIVE_BATTERY.get());
+            event.accept(ModBlocks.INFINITY_BATTERY.get());
         }
 
     }

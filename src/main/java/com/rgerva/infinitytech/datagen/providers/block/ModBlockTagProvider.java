@@ -132,8 +132,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.ZINC_BLOCK.get())
                 .add(ModBlocks.ZINC_RAW_BLOCK.get())
 
-                .add(ModBlocks.CREATIVE_BATTERY.get())
-                .add(ModBlocks.BATTERY_BLOCK.get())
+                .add(ModBlocks.BATTERY_LVL_1.get())
+
                 .add(ModBlocks.SOLAR_PANEL_1.get())
                 .add(ModBlocks.SOLAR_PANEL_2.get())
                 .add(ModBlocks.SOLAR_PANEL_3.get())
@@ -174,8 +174,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.URANIUM_RAW_BLOCK.get())
                 .add(ModBlocks.ZINC_RAW_BLOCK.get())
 
-                .add(ModBlocks.CREATIVE_BATTERY.get())
-                .add(ModBlocks.BATTERY_BLOCK.get())
+                .add(ModBlocks.BATTERY_LVL_1.get())
+
                 .add(ModBlocks.SOLAR_PANEL_1.get())
                 .add(ModBlocks.SOLAR_PANEL_2.get())
                 .add(ModBlocks.SOLAR_PANEL_3.get())
@@ -272,8 +272,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.CHEST_NETHERITE.get());
 
         tag(ModTags.Blocks.MOD_ENERGY)
-                .add(ModBlocks.CREATIVE_BATTERY.get())
-                .add(ModBlocks.BATTERY_BLOCK.get())
+
+                .add(ModBlocks.BATTERY_LVL_1.get())
                 .add(ModBlocks.SOLAR_PANEL_1.get())
                 .add(ModBlocks.SOLAR_PANEL_2.get())
                 .add(ModBlocks.SOLAR_PANEL_3.get())

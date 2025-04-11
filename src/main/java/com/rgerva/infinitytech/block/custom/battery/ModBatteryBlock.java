@@ -9,10 +9,8 @@
 package com.rgerva.infinitytech.block.custom.battery;
 
 import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.RecordBuilder;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.rgerva.infinitytech.block.ModBlocks;
-import com.rgerva.infinitytech.blockentity.custom.battery.BatteryBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.battery.ModBatteryEntity;
 import com.rgerva.infinitytech.energy.ModEnergyUtils;
 import com.rgerva.infinitytech.util.types.eBatteryConfigs;
@@ -39,18 +37,18 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ModBattery extends BaseEntityBlock {
-    public static final MapCodec<ModBattery> CODEC = RecordCodecBuilder.mapCodec(modBatteryInstance -> {
+public class ModBatteryBlock extends BaseEntityBlock {
+    public static final MapCodec<ModBatteryBlock> CODEC = RecordCodecBuilder.mapCodec(modBatteryInstance -> {
         return modBatteryInstance.group(ExtraCodecs.NON_EMPTY_STRING.xmap(eBatteryConfigs::valueOf, eBatteryConfigs::toString)
                         .fieldOf("BatteryConfigs")
-                        .forGetter(ModBattery::getBatteryConfigs), Properties.CODEC.fieldOf("properties")
+                        .forGetter(ModBatteryBlock::getBatteryConfigs), Properties.CODEC.fieldOf("properties")
                         .forGetter(Block::properties))
-                .apply(modBatteryInstance, ModBattery::new);
+                .apply(modBatteryInstance, ModBatteryBlock::new);
     });
 
     private final eBatteryConfigs batteryConfigs;
 
-    public ModBattery(eBatteryConfigs batteryConfigs, Properties properties) {
+    public ModBatteryBlock(eBatteryConfigs batteryConfigs, Properties properties) {
         super(properties);
         this.batteryConfigs = batteryConfigs;
     }
@@ -63,6 +61,7 @@ public class ModBattery extends BaseEntityBlock {
         return switch (batteryConfigs){
           case INFINITY -> ModBlocks.INFINITY_BATTERY.get();
             case DUMP -> ModBlocks.DUMP_BATTERY.get();
+            case BATTERY_LVL_1 -> ModBlocks.BATTERY_LVL_1.get();
             case null, default -> null;
         };
     }
@@ -89,7 +88,18 @@ public class ModBattery extends BaseEntityBlock {
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-        return super.useWithoutItem(state, level, pos, player, hitResult);
+        if(!level.isClientSide){
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if(!(blockEntity instanceof ModBatteryEntity)){
+                throw new IllegalStateException("Container is invalid");
+            }
+
+            Block block = getBlockFromBatteryConfigs(getBatteryConfigs());
+            if(!(block == ModBlocks.INFINITY_BATTERY.get() || block == ModBlocks.DUMP_BATTERY.get())){
+                player.openMenu((ModBatteryEntity) blockEntity, pos);
+            }
+        }
+        return InteractionResult.SUCCESS;
     }
 
     @Override

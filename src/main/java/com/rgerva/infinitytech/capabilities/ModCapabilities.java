@@ -2,8 +2,6 @@ package com.rgerva.infinitytech.capabilities;
 
 import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.blockentity.ModBlockEntities;
-import com.rgerva.infinitytech.blockentity.custom.battery.BatteryBlockEntity;
-import com.rgerva.infinitytech.blockentity.custom.battery.CreativeBatteryBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.battery.ModBatteryEntity;
 import com.rgerva.infinitytech.blockentity.custom.cables.CableBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.ModChestBlockEntity;
@@ -16,17 +14,15 @@ import net.neoforged.neoforge.items.wrapper.InvWrapper;
 public class ModCapabilities {
 
     public static void registerCapabilities(final RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                ModBlockEntities.CREATIVE_BATTERY_ENTITY.get(), CreativeBatteryBlockEntity::getEnergyStorageCapability);
-
-        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                ModBlockEntities.BATTERY_BOX_ENTITY.get(), BatteryBlockEntity::getEnergyStorageCapability);
 
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
                 ModBlockEntities.INFINITY_BATTERY_ENTITY.get(), ModBatteryEntity::getEnergyStorageCapability);
 
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
                 ModBlockEntities.DUMP_BATTERY_ENTITY.get(), ModBatteryEntity::getEnergyStorageCapability);
+
+        event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
+                ModBlockEntities.BATTERY_LVL_1_ENTITY.get(), ModBatteryEntity::getEnergyStorageCapability);
 
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
                 ModBlockEntities.SOLAR_PANEL_ENTITY_1.get(), SolarPanelBlockEntity::getEnergyStorageCapability);

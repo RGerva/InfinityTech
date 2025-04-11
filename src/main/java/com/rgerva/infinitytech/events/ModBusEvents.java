@@ -14,9 +14,9 @@ import com.rgerva.infinitytech.blockentity.custom.chest.model.ModChestModel;
 import com.rgerva.infinitytech.blockentity.custom.chest.renderer.ModChestRenderer;
 import com.rgerva.infinitytech.blockentity.custom.chest.renderer.special.ModChestSpecialRenderer;
 import com.rgerva.infinitytech.gui.ModGUI;
-import com.rgerva.infinitytech.gui.screen.BatteryScreen;
 import com.rgerva.infinitytech.gui.screen.ChestScreen;
 import com.rgerva.infinitytech.gui.screen.CoalGeneratorScreen;
+import com.rgerva.infinitytech.gui.screen.ModBatteryScreen;
 import com.rgerva.infinitytech.gui.screen.SolarPanelScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -43,8 +43,9 @@ public class ModBusEvents {
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
     public static void onRegisterMenuScreens(RegisterMenuScreensEvent event) {
-        event.register(ModGUI.BATTERY_BOX_MENU.get(), BatteryScreen::new);
-        event.register(ModGUI.SOLAR_PENEL_MENU.get(), SolarPanelScreen::new);
+        event.register(ModGUI.BATTERY_MENU.get(), ModBatteryScreen::new);
+
+        event.register(ModGUI.SOLAR_PANEL_MENU.get(), SolarPanelScreen::new);
         event.register(ModGUI.CHEST_IRON_MENU.get(), ChestScreen::new);
         event.register(ModGUI.CHEST_COPPER_MENU.get(), ChestScreen::new);
         event.register(ModGUI.CHEST_GOLD_MENU.get(), ChestScreen::new);

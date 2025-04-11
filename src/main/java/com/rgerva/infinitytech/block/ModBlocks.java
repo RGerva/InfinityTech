@@ -9,9 +9,7 @@
 package com.rgerva.infinitytech.block;
 
 import com.rgerva.infinitytech.InfinityTech;
-import com.rgerva.infinitytech.block.custom.battery.BatteryBlock;
-import com.rgerva.infinitytech.block.custom.battery.CreativeBatteryBlock;
-import com.rgerva.infinitytech.block.custom.battery.ModBattery;
+import com.rgerva.infinitytech.block.custom.battery.ModBatteryBlock;
 import com.rgerva.infinitytech.block.custom.cables.CableBlock;
 import com.rgerva.infinitytech.block.custom.chest.*;
 import com.rgerva.infinitytech.block.custom.generator.CoalGeneratorBlock;
@@ -479,29 +477,23 @@ public class ModBlocks {
 
     //region BATTERY
 
-    public static final DeferredBlock<Block> CREATIVE_BATTERY = registerBlock("creative_battery_box",
-            () -> new CreativeBatteryBlock(BlockBehaviour.Properties.of()
-                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "creative_battery_box_side")))
-                    .strength(-1f, 3600000.f)
-                    .noLootTable()));
-
-    public static final DeferredBlock<Block> BATTERY_BLOCK = registerBlock("battery_box",
-            () -> new BatteryBlock(BlockBehaviour.Properties.of()
-                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "battery_box")))
-                    .strength(5.0F, 6.0F)
-                    .sound(SoundType.METAL)));
-
     public static final DeferredBlock<Block> INFINITY_BATTERY = registerBlock("battery_infinity",
-            () -> new ModBattery(eBatteryConfigs.INFINITY, BlockBehaviour.Properties.of()
+            () -> new ModBatteryBlock(eBatteryConfigs.INFINITY, BlockBehaviour.Properties.of()
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "battery_infinity")))
                     .strength(-1F, Integer.MAX_VALUE)
                     .noLootTable()));
 
     public static final DeferredBlock<Block> DUMP_BATTERY = registerBlock("battery_dump",
-            () -> new ModBattery(eBatteryConfigs.DUMP, BlockBehaviour.Properties.of()
+            () -> new ModBatteryBlock(eBatteryConfigs.DUMP, BlockBehaviour.Properties.of()
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "battery_dump")))
                     .strength(-1F, Integer.MAX_VALUE)
                     .noLootTable()));
+
+    public static final DeferredBlock<Block> BATTERY_LVL_1 = registerBlock("battery_lvl_1",
+            () -> new ModBatteryBlock(eBatteryConfigs.BATTERY_LVL_1, BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "battery_lvl_1")))
+                    .strength(5.0F, 6.0F)
+                    .sound(SoundType.METAL)));
 
     //endregion
 

@@ -18,7 +18,7 @@ public class SolarPanelMenu extends EnergyStorageMenu<SolarPanelBlockEntity> {
     }
 
     public SolarPanelMenu(int id, Inventory inv, BlockEntity blockEntity) {
-        super(ModGUI.SOLAR_PENEL_MENU.get(), id, inv, blockEntity, SolarPanelBlock.getBlockFromPanelConfigs(((SolarPanelBlockEntity) blockEntity).geteSolarPanelConfigs()));
+        super(ModGUI.SOLAR_PANEL_MENU.get(), id, inv, blockEntity, SolarPanelBlock.getBlockFromPanelConfigs(((SolarPanelBlockEntity) blockEntity).geteSolarPanelConfigs()));
     }
 
     @Override

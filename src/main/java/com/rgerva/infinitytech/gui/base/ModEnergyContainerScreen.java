@@ -71,6 +71,13 @@ public class ModEnergyContainerScreen<T extends AbstractContainerMenu & ModEnerg
                 energyMeterV + energyMeterHeight - pos, energyMeterWidth, pos, 256, 256);
     }
 
+    protected void renderEnergyIndicatorBar(GuiGraphics guiGraphics, int x, int y) {
+        int pos = menu.getScaledEnergyIndicatorBarPos(energyMeterHeight);
+        if (pos > 0)
+            guiGraphics.blit(RenderType::guiTextured, TEXTURE, x + energyMeterX, y + energyMeterY + energyMeterHeight - pos, energyMeterU,
+                    energyMeterV + energyMeterHeight, energyMeterWidth, 1, 256, 256);
+    }
+
     @Override
     protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
         RenderSystem.setShader(CoreShaders.POSITION_TEX);
@@ -91,7 +98,7 @@ public class ModEnergyContainerScreen<T extends AbstractContainerMenu & ModEnerg
                 256);
 
         renderEnergyBar(guiGraphics, x, y);
-
+        renderEnergyIndicatorBar(guiGraphics, x, y);
     }
 
     @Override

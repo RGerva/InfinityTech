@@ -15,6 +15,8 @@ import net.minecraft.world.level.block.Block;
 
 public class ModTexturedModel {
 
+    public static final TextureSlot CABLE = TextureSlot.create("cable");
+
     public static final TexturedModel.Provider SOLAR_PANEL = TexturedModel.createDefault(ModTexturedModel::solarPanel,
             ModModelTemplates.SOLAR_PANEL_TEMPLATE);
 
@@ -24,14 +26,6 @@ public class ModTexturedModel {
     public static final TexturedModel.Provider CABLE_SIDE = TexturedModel.createDefault(ModTexturedModel::cableSide,
             ModModelTemplates.CABLE_SIDE_TEMPLATE);
 
-    public static final TexturedModel.Provider CHEST = TexturedModel.createDefault(ModTexturedModel::chest,
-            ModModelTemplates.CHEST_TEMPLATE);
-
-    public static TextureMapping chest(Block block){
-        return new TextureMapping()
-                .put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(block))
-                .put(ModTextureSlot.CHEST, TextureMapping.getBlockTexture(block));
-    }
 
     public static TextureMapping solarPanel(Block block) {
         return new TextureMapping().
@@ -43,12 +37,12 @@ public class ModTexturedModel {
     public static TextureMapping cableCore(Block block) {
         return new TextureMapping().
                 put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(block)).
-                put(ModTextureSlot.CABLE, TextureMapping.getBlockTexture(block));
+                put(CABLE, TextureMapping.getBlockTexture(block));
     }
 
     public static TextureMapping cableSide(Block block) {
         return new TextureMapping().
                 put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(block)).
-                put(ModTextureSlot.CABLE, TextureMapping.getBlockTexture(block));
+                put(CABLE, TextureMapping.getBlockTexture(block));
     }
 }

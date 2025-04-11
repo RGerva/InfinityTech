@@ -9,8 +9,8 @@
 package com.rgerva.infinitytech.blockentity.custom.battery;
 
 import com.rgerva.infinitytech.blockentity.ModBlockEntities;
-import com.rgerva.infinitytech.blockentity.custom.solar_panel.SolarPanelBlockEntity;
 import com.rgerva.infinitytech.energy.ModEnergyStorage;
+import com.rgerva.infinitytech.gui.menu.ModBatteryMenu;
 import com.rgerva.infinitytech.network.base.ModSyncPackages;
 import com.rgerva.infinitytech.util.types.eBatteryConfigs;
 import net.minecraft.core.BlockPos;
@@ -45,6 +45,7 @@ public class ModBatteryEntity extends BlockEntity implements MenuProvider, ModSy
             public void onEnergyChanged() {
                 setChanged();
                 syncEnergyToPlayers(32);
+                Objects.requireNonNull(getLevel()).sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
             }
 
             @Override
@@ -85,6 +86,7 @@ public class ModBatteryEntity extends BlockEntity implements MenuProvider, ModSy
         return switch (batteryConfigs){
             case INFINITY -> ModBlockEntities.INFINITY_BATTERY_ENTITY.get();
             case DUMP -> ModBlockEntities.DUMP_BATTERY_ENTITY.get();
+            case BATTERY_LVL_1 -> ModBlockEntities.BATTERY_LVL_1_ENTITY.get();
             case null, default -> null;
         };
     }
@@ -92,21 +94,23 @@ public class ModBatteryEntity extends BlockEntity implements MenuProvider, ModSy
     public static void tick(Level level, BlockPos blockPos, BlockState state, ModBatteryEntity blockEntity) {
         if(blockEntity.getBatteryConfigs() == eBatteryConfigs.INFINITY){
             blockEntity.ENERGY_STORAGE.setEnergy(blockEntity.ENERGY_STORAGE.getCapacity());
+        } else if (blockEntity.getBatteryConfigs() == eBatteryConfigs.DUMP) {
+            blockEntity.ENERGY_STORAGE.setEnergy(0);
         }
-
 
     }
 
+
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        tag.putInt("infinity_battery.energy", ENERGY_STORAGE.getEnergyStored());
+        tag.putInt("battery.energy", ENERGY_STORAGE.getEnergyStored());
         super.saveAdditional(tag, registries);
     }
 
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
-        ENERGY_STORAGE.setEnergy(tag.getInt("infinity_battery.energy"));
+        ENERGY_STORAGE.setEnergy(tag.getInt("battery.energy"));
     }
 
     @Override
@@ -126,12 +130,13 @@ public class ModBatteryEntity extends BlockEntity implements MenuProvider, ModSy
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("machine.infinity_tech.infinity_battery");
+        return Component.translatable("machine.infinity_tech." + getBatteryConfigs().name().toLowerCase());
     }
 
     @Override
     public @Nullable AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
-        return null;
+        syncEnergyToPlayer(player);
+        return new ModBatteryMenu(i, inventory, this);
     }
 
 

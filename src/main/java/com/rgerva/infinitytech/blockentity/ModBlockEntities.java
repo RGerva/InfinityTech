@@ -10,8 +10,6 @@ package com.rgerva.infinitytech.blockentity;
 
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.block.ModBlocks;
-import com.rgerva.infinitytech.blockentity.custom.battery.BatteryBlockEntity;
-import com.rgerva.infinitytech.blockentity.custom.battery.CreativeBatteryBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.battery.ModBatteryEntity;
 import com.rgerva.infinitytech.blockentity.custom.cables.CableBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.*;
@@ -33,12 +31,6 @@ public class ModBlockEntities {
 
     //region BATTERY
 
-    public static final Supplier<BlockEntityType<CreativeBatteryBlockEntity>> CREATIVE_BATTERY_ENTITY = BLOCK_ENTITIES.register("creative_battery_box",
-            () -> new BlockEntityType<>(CreativeBatteryBlockEntity::new, ModBlocks.CREATIVE_BATTERY.get()));
-
-    public static final Supplier<BlockEntityType<BatteryBlockEntity>> BATTERY_BOX_ENTITY = BLOCK_ENTITIES.register("battery_box",
-            () -> new BlockEntityType<>(BatteryBlockEntity::new, ModBlocks.BATTERY_BLOCK.get()));
-
     public static final Supplier<BlockEntityType<ModBatteryEntity>> INFINITY_BATTERY_ENTITY = BLOCK_ENTITIES.register("battery_infinity",
             () -> new BlockEntityType<>(((blockPos, blockState) -> new ModBatteryEntity(blockPos, blockState,
                     eBatteryConfigs.INFINITY)), ModBlocks.INFINITY_BATTERY.get()));
@@ -46,6 +38,10 @@ public class ModBlockEntities {
     public static final Supplier<BlockEntityType<ModBatteryEntity>> DUMP_BATTERY_ENTITY = BLOCK_ENTITIES.register("battery_dump",
             () -> new BlockEntityType<>(((blockPos, blockState) -> new ModBatteryEntity(blockPos, blockState,
                     eBatteryConfigs.DUMP)), ModBlocks.DUMP_BATTERY.get()));
+
+    public static final Supplier<BlockEntityType<ModBatteryEntity>> BATTERY_LVL_1_ENTITY = BLOCK_ENTITIES.register("battery_lvl_1",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModBatteryEntity(blockPos, blockState,
+                    eBatteryConfigs.BATTERY_LVL_1)), ModBlocks.BATTERY_LVL_1.get()));
 
     //endregion
 

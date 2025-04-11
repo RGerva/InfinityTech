@@ -40,7 +40,6 @@ public class ModChestMenu extends AbstractContainerMenu {
         return new ModChestMenu(ModGUI.CHEST_IRON_MENU.get(), containerId, playerInventory, new SimpleContainer(eChestConfigs.IRON.size), eChestConfigs.IRON);
     }
 
-
     public ModChestMenu(@Nullable MenuType<?> menuType, int containerId, Inventory playerInventory, Container container, eChestConfigs eChestConfigs) {
         super(menuType, containerId);
         this.container = container;

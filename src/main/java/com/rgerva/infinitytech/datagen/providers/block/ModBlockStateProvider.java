@@ -103,11 +103,9 @@ public class ModBlockStateProvider {
         blockWithItem(ModBlocks.ZINC_BLOCK);
         blockWithItem(ModBlocks.ZINC_RAW_BLOCK);
 
-
-        horizontalBlockWithItem(ModBlocks.CREATIVE_BATTERY);
-        horizontalBlockWithItem(ModBlocks.BATTERY_BLOCK);
         blockWithItem(ModBlocks.INFINITY_BATTERY);
         blockWithItem(ModBlocks.DUMP_BATTERY);
+        horizontalBlockWithItem(ModBlocks.BATTERY_LVL_1);
 
         solarPanelBlockWithItem(ModBlocks.SOLAR_PANEL_1);
         solarPanelBlockWithItem(ModBlocks.SOLAR_PANEL_2);

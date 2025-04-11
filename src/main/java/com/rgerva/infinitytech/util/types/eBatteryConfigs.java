@@ -10,7 +10,8 @@ package com.rgerva.infinitytech.util.types;
 
 public enum eBatteryConfigs {
     INFINITY(Integer.MAX_VALUE, 0, Integer.MAX_VALUE, Integer.MAX_VALUE),
-    DUMP(Integer.MAX_VALUE, Integer.MAX_VALUE, 0, Integer.MAX_VALUE);
+    DUMP(Integer.MAX_VALUE, Integer.MAX_VALUE, 0, Integer.MAX_VALUE),
+    BATTERY_LVL_1(4096, 128, 128, Integer.MAX_VALUE);
 
     private final int capacity;
     private final int maxReceive;

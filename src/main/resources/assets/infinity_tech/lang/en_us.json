@@ -98,7 +98,7 @@
   "block.infinity_tech.zinc_ore": "Zinc Ore",
 
   "block.infinity_tech.battery_box": "Battery",
-  "block.infinity_tech.creative_battery_box": "Creative Battery",
+  "block.infinity_tech.battery_lvl_1": "Battery Level 1",
   "block.infinity_tech.battery_infinity": "Infinity Battery",
   "block.infinity_tech.battery_dump": "Dump Battery",
 
@@ -126,8 +126,8 @@
   "item.infinity_tech.wrench": "Wrench",
 
   "machine.infinity_tech.battery_block": "Battery",
-  "machine.infinity_tech.creative_battery": "Creative Battery",
   "machine.infinity_tech.infinity_battery": "Infinity Battery",
+  "machine.infinity_tech.battery_lvl_1": "Battery (Level 1)",
 
   "machine.infinity_tech.solar_panel_1": "Solar Panel (Power I)",
   "machine.infinity_tech.solar_panel_2": "Solar Panel (Power II)",

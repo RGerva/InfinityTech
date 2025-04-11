@@ -17,18 +17,14 @@ import java.util.Optional;
 
 public class ModModelTemplates {
 
-
     public static final ModelTemplate SOLAR_PANEL_TEMPLATE = block("solar_panel_template",
             TextureSlot.PARTICLE, TextureSlot.TOP, TextureSlot.SIDE);
 
     public static final ModelTemplate CABLE_CORE_TEMPLATE = block("cable_core_template",
-            TextureSlot.PARTICLE, ModTextureSlot.CABLE);
+            TextureSlot.PARTICLE, ModTexturedModel.CABLE);
 
     public static final ModelTemplate CABLE_SIDE_TEMPLATE = block("cable_side_template",
-            TextureSlot.PARTICLE, ModTextureSlot.CABLE);
-
-    public static final ModelTemplate CHEST_TEMPLATE = block("chest_template",
-            TextureSlot.PARTICLE, ModTextureSlot.CHEST);
+            TextureSlot.PARTICLE, ModTexturedModel.CABLE);
 
     private static ModelTemplate block(String parent, TextureSlot... requiredTextureSlots) {
         return new ModelTemplate(Optional.of(ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "block/" + parent)),

@@ -100,7 +100,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.ZINC_BLOCK.get());
         dropSelf(ModBlocks.ZINC_RAW_BLOCK.get());
 
-        dropSelf(ModBlocks.BATTERY_BLOCK.get());
+        dropSelf(ModBlocks.BATTERY_LVL_1.get());
+
         dropSelf(ModBlocks.SOLAR_PANEL_1.get());
         dropSelf(ModBlocks.SOLAR_PANEL_2.get());
         dropSelf(ModBlocks.SOLAR_PANEL_3.get());
