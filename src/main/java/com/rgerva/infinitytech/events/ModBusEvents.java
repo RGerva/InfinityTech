@@ -17,7 +17,7 @@ import com.rgerva.infinitytech.gui.ModGUI;
 import com.rgerva.infinitytech.gui.screen.ChestScreen;
 import com.rgerva.infinitytech.gui.screen.CoalGeneratorScreen;
 import com.rgerva.infinitytech.gui.screen.ModBatteryScreen;
-import com.rgerva.infinitytech.gui.screen.SolarPanelScreen;
+import com.rgerva.infinitytech.gui.screen.ModSolarPanelScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.ResourceLocation;
@@ -45,7 +45,8 @@ public class ModBusEvents {
     public static void onRegisterMenuScreens(RegisterMenuScreensEvent event) {
         event.register(ModGUI.BATTERY_MENU.get(), ModBatteryScreen::new);
 
-        event.register(ModGUI.SOLAR_PANEL_MENU.get(), SolarPanelScreen::new);
+        event.register(ModGUI.SOLAR_MENU.get(), ModSolarPanelScreen::new);
+
         event.register(ModGUI.CHEST_IRON_MENU.get(), ChestScreen::new);
         event.register(ModGUI.CHEST_COPPER_MENU.get(), ChestScreen::new);
         event.register(ModGUI.CHEST_GOLD_MENU.get(), ChestScreen::new);

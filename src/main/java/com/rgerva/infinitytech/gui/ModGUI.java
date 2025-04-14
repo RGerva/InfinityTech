@@ -4,7 +4,7 @@ import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.gui.menu.CoalGeneratorMenu;
 import com.rgerva.infinitytech.gui.menu.ModBatteryMenu;
 import com.rgerva.infinitytech.gui.menu.ModChestMenu;
-import com.rgerva.infinitytech.gui.menu.SolarPanelMenu;
+import com.rgerva.infinitytech.gui.menu.ModSolarPanelMenu;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -24,8 +24,8 @@ public class ModGUI {
     public static final Supplier<MenuType<ModBatteryMenu>> BATTERY_MENU =
             registerMenuType("battery_menu", ModBatteryMenu::new);
 
-    public static final Supplier<MenuType<SolarPanelMenu>> SOLAR_PANEL_MENU =
-            registerMenuType("solar_penal", SolarPanelMenu::new);
+    public static final Supplier<MenuType<ModSolarPanelMenu>> SOLAR_MENU =
+            registerMenuType("solar_panel_menu", ModSolarPanelMenu::new);
 
     public static final DeferredHolder<MenuType<?>, MenuType<ModChestMenu>> CHEST_IRON_MENU =
             registerMenuTypeChest("chest_iron", ModChestMenu::createIronContainer);

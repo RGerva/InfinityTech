@@ -59,6 +59,14 @@ public abstract class ModEnergyStorage extends EnergyStorage implements IEnergyS
         return capacity;
     }
 
+    public int getMaxExtract(){
+        return maxExtract;
+    }
+
+    public int getMaxReceive(){
+        return maxReceive;
+    }
+
     public abstract void onEnergyChanged();
 
 }

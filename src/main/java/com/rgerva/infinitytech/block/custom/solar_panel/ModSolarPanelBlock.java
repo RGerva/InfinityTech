@@ -1,9 +1,17 @@
+/**
+ * Class: ModSolarPanelBlcok
+ * Created by: D56V1OK
+ * On: 2025/abr.
+ * GitHub: https://github.com/RGerva
+ * Copyright (c) 2025 @RGerva. All Rights Reserved.
+ */
+
 package com.rgerva.infinitytech.block.custom.solar_panel;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.rgerva.infinitytech.block.ModBlocks;
-import com.rgerva.infinitytech.blockentity.custom.solar_panel.SolarPanelBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.solar_panel.ModSolarPanelEntity;
 import com.rgerva.infinitytech.energy.ModEnergyUtils;
 import com.rgerva.infinitytech.util.types.eSolarPanelConfigs;
 import net.minecraft.ChatFormatting;
@@ -32,20 +40,34 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class SolarPanelBlock extends BaseEntityBlock {
-    public static final MapCodec<SolarPanelBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> {
+public class ModSolarPanelBlock extends BaseEntityBlock {
+    public static final MapCodec<ModSolarPanelBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(ExtraCodecs.NON_EMPTY_STRING.xmap(eSolarPanelConfigs::valueOf, eSolarPanelConfigs::toString).fieldOf("SolarPanelConfigs").
-                                forGetter(SolarPanelBlock::geteSolarPanelConfigs),
+                                forGetter(ModSolarPanelBlock::getSolarPanelConfig),
                         Properties.CODEC.fieldOf("properties").forGetter(Block::properties)).
-                apply(instance, SolarPanelBlock::new);
+                apply(instance, ModSolarPanelBlock::new);
     });
 
+    private final eSolarPanelConfigs solarPanelConfig;
     private static final VoxelShape SHAPE = Block.box(0.d, 0.d, 0.d, 16.d, 4.d, 16.d);
-    private final eSolarPanelConfigs solarPanelConfigs;
 
-    public SolarPanelBlock(eSolarPanelConfigs eSolarPanelConfigs, Properties properties) {
+    public ModSolarPanelBlock(eSolarPanelConfigs sSolarPanelConfig, Properties properties) {
         super(properties);
-        this.solarPanelConfigs = eSolarPanelConfigs;
+        this.solarPanelConfig = sSolarPanelConfig;
+    }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return CODEC;
+    }
+
+    @Override
+    public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+        return new ModSolarPanelEntity(blockPos, blockState, getSolarPanelConfig());
+    }
+
+    public eSolarPanelConfigs getSolarPanelConfig(){
+        return solarPanelConfig;
     }
 
     public static Block getBlockFromPanelConfigs(eSolarPanelConfigs geteSolarPanelConfigs) {
@@ -59,24 +81,9 @@ public class SolarPanelBlock extends BaseEntityBlock {
         };
     }
 
-    public eSolarPanelConfigs geteSolarPanelConfigs() {
-        return solarPanelConfigs;
-    }
-
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
-    }
-
     @Override
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return SHAPE;
-    }
-
-    @Override
-    public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new SolarPanelBlockEntity(blockPos, blockState, solarPanelConfigs);
-
     }
 
     @Override
@@ -85,30 +92,30 @@ public class SolarPanelBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos blockPos, Player player, BlockHitResult hitResult) {
-        if (level.isClientSide())
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        if (level.isClientSide()){
             return InteractionResult.SUCCESS;
+        }
 
-        BlockEntity blockEntity = level.getBlockEntity(blockPos);
-        if (!(blockEntity instanceof SolarPanelBlockEntity))
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+        if (!(blockEntity instanceof ModSolarPanelEntity)){
             throw new IllegalStateException("Container is invalid");
+        }
 
-        player.openMenu((SolarPanelBlockEntity) blockEntity, blockPos);
-
+        player.openMenu((ModSolarPanelEntity) blockEntity, pos);
         return InteractionResult.SUCCESS;
     }
 
     @Override
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, SolarPanelBlockEntity.getEntityType(solarPanelConfigs), SolarPanelBlockEntity::tick);
+        return createTickerHelper(blockEntityType, ModSolarPanelEntity.getEntityType(getSolarPanelConfig()), ModSolarPanelEntity::tick);
     }
-
 
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         if (Screen.hasShiftDown()) {
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.solar_panel.produces",
-                    ModEnergyUtils.getEnergyWithPrefix(solarPanelConfigs.getPeakFePerTick())).withStyle(ChatFormatting.GRAY));
+                    ModEnergyUtils.getEnergyWithPrefix(solarPanelConfig.getPeakFePerTick())).withStyle(ChatFormatting.GRAY));
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.solar_panel.info").withStyle(ChatFormatting.GRAY));
         } else {
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.shift_details").withStyle(ChatFormatting.YELLOW));

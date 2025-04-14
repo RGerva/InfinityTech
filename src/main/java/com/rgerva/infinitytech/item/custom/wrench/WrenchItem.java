@@ -2,7 +2,7 @@ package com.rgerva.infinitytech.item.custom.wrench;
 
 import com.rgerva.infinitytech.block.custom.battery.ModBatteryBlock;
 import com.rgerva.infinitytech.block.custom.cables.CableBlock;
-import com.rgerva.infinitytech.block.custom.solar_panel.SolarPanelBlock;
+import com.rgerva.infinitytech.block.custom.solar_panel.ModSolarPanelBlock;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
@@ -35,7 +35,7 @@ public class WrenchItem extends Item {
 
         if (!level.isClientSide && player != null) {
             Block block = blockState.getBlock();
-            if (block instanceof CableBlock || block instanceof SolarPanelBlock || block instanceof ModBatteryBlock) {
+            if (block instanceof CableBlock || block instanceof ModSolarPanelBlock || block instanceof ModBatteryBlock) {
                 if (player.isShiftKeyDown()) {
                     level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
                     ItemStack itemStack = new ItemStack(block.asItem());

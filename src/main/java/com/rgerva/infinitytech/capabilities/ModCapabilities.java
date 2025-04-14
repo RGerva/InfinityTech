@@ -6,7 +6,7 @@ import com.rgerva.infinitytech.blockentity.custom.battery.ModBatteryEntity;
 import com.rgerva.infinitytech.blockentity.custom.cables.CableBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.ModChestBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.generator.CoalGeneratorBlockEntity;
-import com.rgerva.infinitytech.blockentity.custom.solar_panel.SolarPanelBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.solar_panel.ModSolarPanelEntity;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
@@ -25,22 +25,22 @@ public class ModCapabilities {
                 ModBlockEntities.BATTERY_LVL_1_ENTITY.get(), ModBatteryEntity::getEnergyStorageCapability);
 
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                ModBlockEntities.SOLAR_PANEL_ENTITY_1.get(), SolarPanelBlockEntity::getEnergyStorageCapability);
+                ModBlockEntities.SOLAR_PANEL_ENTITY_1.get(), ModSolarPanelEntity::getEnergyStorageCapability);
 
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                ModBlockEntities.SOLAR_PANEL_ENTITY_2.get(), SolarPanelBlockEntity::getEnergyStorageCapability);
+                ModBlockEntities.SOLAR_PANEL_ENTITY_2.get(), ModSolarPanelEntity::getEnergyStorageCapability);
 
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                ModBlockEntities.SOLAR_PANEL_ENTITY_3.get(), SolarPanelBlockEntity::getEnergyStorageCapability);
+                ModBlockEntities.SOLAR_PANEL_ENTITY_3.get(), ModSolarPanelEntity::getEnergyStorageCapability);
 
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                ModBlockEntities.SOLAR_PANEL_ENTITY_4.get(), SolarPanelBlockEntity::getEnergyStorageCapability);
+                ModBlockEntities.SOLAR_PANEL_ENTITY_4.get(), ModSolarPanelEntity::getEnergyStorageCapability);
 
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                ModBlockEntities.SOLAR_PANEL_ENTITY_5.get(), SolarPanelBlockEntity::getEnergyStorageCapability);
+                ModBlockEntities.SOLAR_PANEL_ENTITY_5.get(), ModSolarPanelEntity::getEnergyStorageCapability);
 
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                ModBlockEntities.SOLAR_PANEL_ENTITY_6.get(), SolarPanelBlockEntity::getEnergyStorageCapability);
+                ModBlockEntities.SOLAR_PANEL_ENTITY_6.get(), ModSolarPanelEntity::getEnergyStorageCapability);
 
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
                 ModBlockEntities.TIN_CABLE_ENTITY.get(), CableBlockEntity::getEnergyStorageCapability);

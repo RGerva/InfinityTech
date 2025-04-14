@@ -14,7 +14,7 @@ import com.rgerva.infinitytech.blockentity.custom.battery.ModBatteryEntity;
 import com.rgerva.infinitytech.blockentity.custom.cables.CableBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.*;
 import com.rgerva.infinitytech.blockentity.custom.generator.CoalGeneratorBlockEntity;
-import com.rgerva.infinitytech.blockentity.custom.solar_panel.SolarPanelBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.solar_panel.ModSolarPanelEntity;
 import com.rgerva.infinitytech.util.types.eBatteryConfigs;
 import com.rgerva.infinitytech.util.types.eCablesConfigs;
 import com.rgerva.infinitytech.util.types.eSolarPanelConfigs;
@@ -47,28 +47,28 @@ public class ModBlockEntities {
 
     //region SOLAR PANEL
 
-    public static final Supplier<BlockEntityType<SolarPanelBlockEntity>> SOLAR_PANEL_ENTITY_1 = BLOCK_ENTITIES.register("solar_panel_1",
-            () -> new BlockEntityType<>(((blockPos, blockState) -> new SolarPanelBlockEntity(blockPos, blockState,
+    public static final Supplier<BlockEntityType<ModSolarPanelEntity>> SOLAR_PANEL_ENTITY_1 = BLOCK_ENTITIES.register("solar_panel_1",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModSolarPanelEntity(blockPos, blockState,
                     eSolarPanelConfigs.solar_panel_1)), ModBlocks.SOLAR_PANEL_1.get()));
 
-    public static final Supplier<BlockEntityType<SolarPanelBlockEntity>> SOLAR_PANEL_ENTITY_2 = BLOCK_ENTITIES.register("solar_panel_2",
-            () -> new BlockEntityType<>(((blockPos, blockState) -> new SolarPanelBlockEntity(blockPos, blockState,
+    public static final Supplier<BlockEntityType<ModSolarPanelEntity>> SOLAR_PANEL_ENTITY_2 = BLOCK_ENTITIES.register("solar_panel_2",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModSolarPanelEntity(blockPos, blockState,
                     eSolarPanelConfigs.solar_panel_2)), ModBlocks.SOLAR_PANEL_2.get()));
 
-    public static final Supplier<BlockEntityType<SolarPanelBlockEntity>> SOLAR_PANEL_ENTITY_3 = BLOCK_ENTITIES.register("solar_panel_3",
-            () -> new BlockEntityType<>(((blockPos, blockState) -> new SolarPanelBlockEntity(blockPos, blockState,
+    public static final Supplier<BlockEntityType<ModSolarPanelEntity>> SOLAR_PANEL_ENTITY_3 = BLOCK_ENTITIES.register("solar_panel_3",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModSolarPanelEntity(blockPos, blockState,
                     eSolarPanelConfigs.solar_panel_3)), ModBlocks.SOLAR_PANEL_3.get()));
 
-    public static final Supplier<BlockEntityType<SolarPanelBlockEntity>> SOLAR_PANEL_ENTITY_4 = BLOCK_ENTITIES.register("solar_panel_4",
-            () -> new BlockEntityType<>(((blockPos, blockState) -> new SolarPanelBlockEntity(blockPos, blockState,
+    public static final Supplier<BlockEntityType<ModSolarPanelEntity>> SOLAR_PANEL_ENTITY_4 = BLOCK_ENTITIES.register("solar_panel_4",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModSolarPanelEntity(blockPos, blockState,
                     eSolarPanelConfigs.solar_panel_4)), ModBlocks.SOLAR_PANEL_4.get()));
 
-    public static final Supplier<BlockEntityType<SolarPanelBlockEntity>> SOLAR_PANEL_ENTITY_5 = BLOCK_ENTITIES.register("solar_panel_5",
-            () -> new BlockEntityType<>(((blockPos, blockState) -> new SolarPanelBlockEntity(blockPos, blockState,
+    public static final Supplier<BlockEntityType<ModSolarPanelEntity>> SOLAR_PANEL_ENTITY_5 = BLOCK_ENTITIES.register("solar_panel_5",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModSolarPanelEntity(blockPos, blockState,
                     eSolarPanelConfigs.solar_panel_5)), ModBlocks.SOLAR_PANEL_5.get()));
 
-    public static final Supplier<BlockEntityType<SolarPanelBlockEntity>> SOLAR_PANEL_ENTITY_6 = BLOCK_ENTITIES.register("solar_panel_6",
-            () -> new BlockEntityType<>(((blockPos, blockState) -> new SolarPanelBlockEntity(blockPos, blockState,
+    public static final Supplier<BlockEntityType<ModSolarPanelEntity>> SOLAR_PANEL_ENTITY_6 = BLOCK_ENTITIES.register("solar_panel_6",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModSolarPanelEntity(blockPos, blockState,
                     eSolarPanelConfigs.solar_panel_6)), ModBlocks.SOLAR_PANEL_6.get()));
     //endregion
 
