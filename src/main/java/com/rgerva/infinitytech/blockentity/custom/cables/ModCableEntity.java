@@ -1,14 +1,25 @@
+/**
+ * Class: ModCableEntity
+ * Created by: D56V1OK
+ * On: 2025/abr.
+ * GitHub: https://github.com/RGerva
+ * Copyright (c) 2025 @RGerva. All Rights Reserved.
+ */
+
 package com.rgerva.infinitytech.blockentity.custom.cables;
 
 import com.mojang.datafixers.util.Pair;
-import com.rgerva.infinitytech.block.custom.cables.CableBlock;
-import com.rgerva.infinitytech.config.ModConfiguration;
-import com.rgerva.infinitytech.energy.ReceiveOnlyEnergyStorage;
+import com.rgerva.infinitytech.blockentity.ModBlockEntities;
+import com.rgerva.infinitytech.energy.ModEnergyStorage;
+import com.rgerva.infinitytech.network.base.ModSyncPackages;
 import com.rgerva.infinitytech.util.types.eCablesConfigs;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -17,78 +28,142 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-public class CableBlockEntity extends BlockEntity {
-    private static final CableBlock.EnergyExtractionMode ENERGY_EXTRACTION_MODE = ModConfiguration.CABLES_ENERGY_EXTRACTION_MODE.get();
+public class ModCableEntity extends BlockEntity implements ModSyncPackages {
+    private static final eCablesConfigs.ExtractionMode EXTRACTION_MODE = eCablesConfigs.ExtractionMode.BOTH;
 
     private final eCablesConfigs cablesConfigs;
-    private final ReceiveOnlyEnergyStorage energyStorage;
-    private boolean loaded;
+    private final ModEnergyStorage ENERGY_STORAGE;
+    //private final ReceiveOnlyEnergyStorage ENERGY_STORAGE;
 
     private final Map<Pair<BlockPos, Direction>, IEnergyStorage> producers = new HashMap<>();
     private final Map<Pair<BlockPos, Direction>, IEnergyStorage> consumers = new HashMap<>();
     private final List<BlockPos> cableBlocks = new LinkedList<>();
+    private boolean loaded;
 
-    public CableBlockEntity(BlockPos pos, BlockState blockState, eCablesConfigs eCablesConfigs) {
-        super(getEntityType(eCablesConfigs), pos, blockState);
-        this.cablesConfigs = eCablesConfigs;
+    public ModCableEntity(BlockPos pos, BlockState blockState, eCablesConfigs cablesConfigs) {
+        super(Objects.requireNonNull(getEntityType(cablesConfigs)), pos, blockState);
+        this.cablesConfigs = cablesConfigs;
+        ENERGY_STORAGE = createEnergyStorage(cablesConfigs);
 
-        if (ENERGY_EXTRACTION_MODE.isPush()) {
-            energyStorage = new ReceiveOnlyEnergyStorage(0, eCablesConfigs.getMaxTransfer(), eCablesConfigs.getMaxTransfer()) {
+//        if (EXTRACTION_MODE.isPush()) {
+//            ENERGY_STORAGE = new ReceiveOnlyEnergyStorage(0, cablesConfigs.getMaxTransfer(), cablesConfigs.getMaxTransfer()) {
+//                @Override
+//                protected void onChange() {
+//                    setChanged();
+//                }
+//            };
+//        } else {
+//            ENERGY_STORAGE = new ReceiveOnlyEnergyStorage() {
+//                @Override
+//                public int receiveEnergy(int maxReceive, boolean simulate) {
+//                    return 0;
+//                }
+//
+//                @Override
+//                public boolean canReceive() {
+//                    return false;
+//                }
+//            };
+//        }
+    }
+
+    private ModEnergyStorage createEnergyStorage(eCablesConfigs cablesConfigs) {
+        if(EXTRACTION_MODE.isPush()){
+            return new ModEnergyStorage(cablesConfigs.getMaxTransfer(), cablesConfigs.getMaxTransfer(), 0, 0) {
                 @Override
-                protected void onChange() {
+                public void onEnergyChanged() {
                     setChanged();
+                    syncEnergyToPlayers(32);
+                    Objects.requireNonNull(getLevel()).sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
                 }
             };
-        } else {
-            energyStorage = new ReceiveOnlyEnergyStorage() {
+        }else{
+            return new ModEnergyStorage(cablesConfigs.getMaxTransfer(), 0, cablesConfigs.getMaxTransfer(), 0) {
                 @Override
-                public int receiveEnergy(int maxReceive, boolean simulate) {
-                    return 0;
-                }
-
-                @Override
-                public boolean canReceive() {
-                    return false;
+                public void onEnergyChanged() {
+                    setChanged();
+                    syncEnergyToPlayers(32);
+                    Objects.requireNonNull(getLevel()).sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
                 }
             };
         }
     }
 
-    public eCablesConfigs getCableConfigs() {
+    public eCablesConfigs getCablesConfigs(){
         return cablesConfigs;
-    }
-
-    public static BlockEntityType<CableBlockEntity> getEntityType(eCablesConfigs eCablesConfigs) {
-        return switch (eCablesConfigs) {
-            case TIN -> null;
-            case COPPER -> null;
-            case GOLD -> null;
-        };
-    }
-
-    public Map<Pair<BlockPos, Direction>, IEnergyStorage> getProducers() {
-        return producers;
-    }
-
-    public Map<Pair<BlockPos, Direction>, IEnergyStorage> getConsumers() {
-        return consumers;
     }
 
     public List<BlockPos> getCableBlocks() {
         return cableBlocks;
     }
 
-    public @Nullable IEnergyStorage getEnergyStorageCapability(@Nullable Direction side) {
-        return energyStorage;
+    public static BlockEntityType<ModCableEntity> getEntityType(eCablesConfigs eCablesConfigs) {
+        return switch (eCablesConfigs) {
+            case TIN -> ModBlockEntities.TIN_CABLE_ENTITY.get();
+            case COPPER -> ModBlockEntities.COPPER_CABLE_ENTITY.get();
+            case GOLD -> ModBlockEntities.GOLD_CABLE_ENTITY.get();
+        };
     }
 
-    public static void updateConnections(Level level, BlockPos blockPos, BlockState state, CableBlockEntity blockEntity) {
-        if (level.isClientSide) {
+    public @Nullable IEnergyStorage getEnergyStorageCapability(@Nullable Direction side) {
+        return ENERGY_STORAGE;
+    }
+
+    public int getEnergy(){
+        return ENERGY_STORAGE.getEnergy();
+    }
+
+    public int getCapacity(){
+        return ENERGY_STORAGE.getCapacity();
+    }
+
+    @Override
+    public BlockEntity getInterfaceSyncBlockEntity() {
+        return this;
+    }
+
+    @Override
+    public int getInterfaceSyncEnergy() {
+        return getEnergy();
+    }
+
+    @Override
+    public int getInterfaceSyncCapacity() {
+        return getCapacity();
+    }
+
+    @Override
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        if(EXTRACTION_MODE.isPush()){
+            tag.putInt("cable.energy", ENERGY_STORAGE.getEnergyStored());
+        }
+
+        super.saveAdditional(tag, registries);
+    }
+
+    @Override
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        super.loadAdditional(tag, registries);
+
+        if(EXTRACTION_MODE.isPush()){
+            ENERGY_STORAGE.setEnergy(tag.getInt("cable.energy"));
+        }
+    }
+
+    @Override
+    public @Nullable Packet<ClientGamePacketListener> getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    @Override
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        return saveWithoutMetadata(registries);
+    }
+
+    public static void updateConnections(Level level, BlockPos blockPos, BlockState state, ModCableEntity blockEntity) {
+        if(level.isClientSide){
             return;
         }
 
@@ -96,29 +171,29 @@ public class CableBlockEntity extends BlockEntity {
         blockEntity.consumers.clear();
         blockEntity.cableBlocks.clear();
 
-        for (Direction direction : Direction.values()) {
+        for(Direction direction : Direction.values()){
             BlockPos testPos = blockPos.relative(direction);
             BlockEntity testBlockEntity = level.getBlockEntity(testPos);
 
-            if (testBlockEntity instanceof CableBlockEntity cableBlockEntity) {
-//                if(cableBlockEntity.getCableBlocks() != blockEntity.getCableBlocks()){
-//                    continue;
-//                }
+            if(testBlockEntity instanceof ModCableEntity cableEntity){
+                if(cableEntity.getCableBlocks() != blockEntity.getCableBlocks()){
+                    continue;
+                }
                 blockEntity.cableBlocks.add(testPos);
                 continue;
             }
 
             IEnergyStorage iEnergyStorage = level.getCapability(Capabilities.EnergyStorage.BLOCK, testPos, level.getBlockState(testPos), testBlockEntity, direction.getOpposite());
 
-            if (iEnergyStorage == null) {
+            if(iEnergyStorage == null){
                 continue;
             }
 
-            if (ENERGY_EXTRACTION_MODE.isPull() && iEnergyStorage.canExtract()) {
+            if(EXTRACTION_MODE.isPull() && iEnergyStorage.canExtract()){
                 blockEntity.producers.put(Pair.of(testPos, direction.getOpposite()), iEnergyStorage);
             }
 
-            if (iEnergyStorage.canReceive()) {
+            if(iEnergyStorage.canReceive()){
                 blockEntity.consumers.put(Pair.of(testPos, direction.getOpposite()), iEnergyStorage);
             }
         }
@@ -131,27 +206,25 @@ public class CableBlockEntity extends BlockEntity {
         cableBlocksLeft.add(blockPos);
         checkedCables.add(blockPos);
 
-        while (!cableBlocksLeft.isEmpty()) {
+        while(!cableBlocksLeft.isEmpty()){
             BlockPos checkPos = cableBlocksLeft.pop();
 
             BlockEntity blockEntity = level.getBlockEntity(checkPos);
-            if (!(blockEntity instanceof CableBlockEntity cableBlockEntity)) {
+            if(!(blockEntity instanceof ModCableEntity cableEntity)){
                 continue;
             }
 
-            cableBlockEntity.getCableBlocks().forEach(pos -> {
-                if (!checkedCables.contains(pos)) {
-                    checkedCables.add(pos);
-                    cableBlocksLeft.add(pos);
-                }
+            cableEntity.getCableBlocks().forEach(pos -> {
+               if(!checkedCables.contains(pos)) {
+                   checkedCables.add(pos);
+                   cableBlocksLeft.add(pos);
+               }
             });
-
-            consumers.addAll(cableBlockEntity.getConsumers().values());
         }
         return consumers;
     }
 
-    public static void tick(Level level, BlockPos blockPos, BlockState state, CableBlockEntity blockEntity) {
+    public static void tick(Level level, BlockPos blockPos, BlockState state, ModCableEntity blockEntity) {
         if (level.isClientSide) {
             return;
         }
@@ -165,7 +238,7 @@ public class CableBlockEntity extends BlockEntity {
         List<IEnergyStorage> energyProduction = new LinkedList<>();
         List<Integer> energyProductionValues = new LinkedList<>();
 
-        int productionSum = blockEntity.energyStorage.getEnergy();
+        int productionSum = blockEntity.ENERGY_STORAGE.getEnergy();
         for (IEnergyStorage iEnergyStorage : blockEntity.producers.values()) {
             int extracted = iEnergyStorage.extractEnergy(MAX_TRANSFER, true);
             if (extracted <= 0) {
@@ -203,9 +276,9 @@ public class CableBlockEntity extends BlockEntity {
 
         int transferLeft = Math.min(Math.min(MAX_TRANSFER, productionSum), consumptionSum);
         int extractInternally = 0;
-        if (ENERGY_EXTRACTION_MODE.isPush()) {
-            extractInternally = Math.min(blockEntity.energyStorage.getEnergy(), transferLeft);
-            blockEntity.energyStorage.setEnergy(blockEntity.energyStorage.getEnergy() - extractInternally);
+        if (EXTRACTION_MODE.isPush()) {
+            extractInternally = Math.min(blockEntity.ENERGY_STORAGE.getEnergy(), transferLeft);
+            blockEntity.ENERGY_STORAGE.setEnergy(blockEntity.ENERGY_STORAGE.getEnergy() - extractInternally);
         }
 
         List<Integer> energyProductionDistributed = new LinkedList<>();
@@ -214,7 +287,7 @@ public class CableBlockEntity extends BlockEntity {
         }
 
         //Set to 0 for PUSH only mode
-        int productionLeft = ENERGY_EXTRACTION_MODE.isPull() ? transferLeft - extractInternally : 0;
+        int productionLeft = EXTRACTION_MODE.isPull() ? transferLeft - extractInternally : 0;
         int divisor = energyProduction.size();
         outer:
         while (productionLeft > 0) {
@@ -280,23 +353,5 @@ public class CableBlockEntity extends BlockEntity {
             }
         }
 
-    }
-
-    @Override
-    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.saveAdditional(tag, registries);
-
-        if (ENERGY_EXTRACTION_MODE.isPush()) {
-            tag.put("energy", energyStorage.saveNBT());
-        }
-    }
-
-    @Override
-    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        super.loadAdditional(tag, registries);
-
-        if (ENERGY_EXTRACTION_MODE.isPush()) {
-            energyStorage.loadNBT(tag.get("energy"));
-        }
     }
 }

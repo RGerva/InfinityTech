@@ -11,6 +11,7 @@ package com.rgerva.infinitytech.block;
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.block.custom.battery.ModBatteryBlock;
 import com.rgerva.infinitytech.block.custom.cables.CableBlock;
+import com.rgerva.infinitytech.block.custom.cables.ModCableBlock;
 import com.rgerva.infinitytech.block.custom.chest.*;
 import com.rgerva.infinitytech.block.custom.generator.CoalGeneratorBlock;
 import com.rgerva.infinitytech.block.custom.solar_panel.ModSolarPanelBlock;
@@ -540,21 +541,21 @@ public class ModBlocks {
     //region CABLES
 
     public static final DeferredBlock<Block> TIN_CABLE = registerBlock("cable_tin",
-            () -> new CableBlock(eCablesConfigs.TIN, BlockBehaviour.Properties.of()
+            () -> new ModCableBlock(eCablesConfigs.TIN, BlockBehaviour.Properties.of()
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "cable_tin")))
                     .strength(5.0F)
                     .sound(SoundType.WOOL)
                     .mapColor(MapColor.COLOR_GRAY)));
 
     public static final DeferredBlock<Block> COPPER_CABLE = registerBlock("cable_copper",
-            () -> new CableBlock(eCablesConfigs.COPPER, BlockBehaviour.Properties.of()
+            () -> new ModCableBlock(eCablesConfigs.COPPER, BlockBehaviour.Properties.of()
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "cable_copper")))
                     .strength(5.0F)
                     .sound(SoundType.WOOL)
                     .mapColor(MapColor.COLOR_GRAY)));
 
     public static final DeferredBlock<Block> GOLD_CABLE = registerBlock("cable_gold",
-            () -> new CableBlock(eCablesConfigs.GOLD, BlockBehaviour.Properties.of()
+            () -> new ModCableBlock(eCablesConfigs.GOLD, BlockBehaviour.Properties.of()
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "cable_gold")))
                     .strength(5.0F)
                     .sound(SoundType.WOOL)

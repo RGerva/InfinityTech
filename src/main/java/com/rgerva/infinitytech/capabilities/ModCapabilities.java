@@ -3,7 +3,7 @@ package com.rgerva.infinitytech.capabilities;
 import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.blockentity.ModBlockEntities;
 import com.rgerva.infinitytech.blockentity.custom.battery.ModBatteryEntity;
-import com.rgerva.infinitytech.blockentity.custom.cables.CableBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.cables.ModCableEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.ModChestBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.generator.CoalGeneratorBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.solar_panel.ModSolarPanelEntity;
@@ -43,13 +43,13 @@ public class ModCapabilities {
                 ModBlockEntities.SOLAR_PANEL_ENTITY_6.get(), ModSolarPanelEntity::getEnergyStorageCapability);
 
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                ModBlockEntities.TIN_CABLE_ENTITY.get(), CableBlockEntity::getEnergyStorageCapability);
+                ModBlockEntities.TIN_CABLE_ENTITY.get(), ModCableEntity::getEnergyStorageCapability);
 
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                ModBlockEntities.COPPER_CABLE_ENTITY.get(), CableBlockEntity::getEnergyStorageCapability);
+                ModBlockEntities.COPPER_CABLE_ENTITY.get(), ModCableEntity::getEnergyStorageCapability);
 
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                ModBlockEntities.GOLD_CABLE_ENTITY.get(), CableBlockEntity::getEnergyStorageCapability);
+                ModBlockEntities.GOLD_CABLE_ENTITY.get(), ModCableEntity::getEnergyStorageCapability);
 
         event.registerBlock(Capabilities.ItemHandler.BLOCK, (level, blockPos, blockState, blockEntity, direction) ->
                         level.getBlockEntity(blockPos) instanceof ModChestBlockEntity chestBlockEntity ? new InvWrapper(chestBlockEntity) : null,

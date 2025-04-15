@@ -14,4 +14,16 @@ public enum eCablesConfigs {
     public int getMaxTransfer() {
         return maxTransfer;
     }
+
+    public enum ExtractionMode {
+        PUSH, PULL, BOTH;
+
+        public boolean isPush() {
+            return this == PUSH || this == BOTH;
+        }
+
+        public boolean isPull() {
+            return this == PULL || this == BOTH;
+        }
+    }
 }
