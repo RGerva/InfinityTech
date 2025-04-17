@@ -1,7 +1,7 @@
 package com.rgerva.infinitytech.network.packet;
 
 import com.rgerva.infinitytech.InfinityTech;
-import com.rgerva.infinitytech.network.base.IChestPackageUpdate;
+import com.rgerva.infinitytech.network.interfaces.IChestPackageUpdate;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;

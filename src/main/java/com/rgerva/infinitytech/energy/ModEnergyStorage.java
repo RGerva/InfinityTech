@@ -8,7 +8,7 @@
 
 package com.rgerva.infinitytech.energy;
 
-import com.rgerva.infinitytech.network.base.IEnergyStoragePacketUpdate;
+import com.rgerva.infinitytech.network.interfaces.IEnergyStoragePacketUpdate;
 import net.neoforged.neoforge.energy.EnergyStorage;
 
 public abstract class ModEnergyStorage extends EnergyStorage implements IEnergyStoragePacketUpdate {

@@ -10,12 +10,12 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class ChestScreen extends AbstractContainerScreen<ModChestMenu> implements MenuAccess<ModChestMenu> {
+public class ModChestScreen extends AbstractContainerScreen<ModChestMenu> implements MenuAccess<ModChestMenu> {
 
     private final int textureXSize;
     private final int textureYSize;
 
-    public ChestScreen(ModChestMenu menu, Inventory playerInventory, Component title) {
+    public ModChestScreen(ModChestMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
 
         this.imageWidth = ModChestMenu.getChestConfig().xSize;

@@ -10,10 +10,9 @@ package com.rgerva.infinitytech.block;
 
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.block.custom.battery.ModBatteryBlock;
-import com.rgerva.infinitytech.block.custom.cables.CableBlock;
 import com.rgerva.infinitytech.block.custom.cables.ModCableBlock;
 import com.rgerva.infinitytech.block.custom.chest.*;
-import com.rgerva.infinitytech.block.custom.generator.CoalGeneratorBlock;
+import com.rgerva.infinitytech.block.custom.generator.ModCoalGeneratorBlock;
 import com.rgerva.infinitytech.block.custom.solar_panel.ModSolarPanelBlock;
 import com.rgerva.infinitytech.item.ModItems;
 import com.rgerva.infinitytech.util.types.eBatteryConfigs;
@@ -613,7 +612,7 @@ public class ModBlocks {
     //region GENERATOR
 
     public static final DeferredBlock<Block> COAL_GENERATOR = registerBlock("generic_generator",
-            () -> new CoalGeneratorBlock(BlockBehaviour.Properties.of()
+            () -> new ModCoalGeneratorBlock(BlockBehaviour.Properties.of()
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "generic_generator")))
                     .strength(3F)
                     .requiresCorrectToolForDrops()));

@@ -1,4 +1,4 @@
-package com.rgerva.infinitytech.network.base;
+package com.rgerva.infinitytech.network.interfaces;
 
 /**
  * Used for EnergySyncS2CPacket

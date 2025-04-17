@@ -6,7 +6,7 @@
  * Copyright (c) 2025 @RGerva. All Rights Reserved.
  */
 
-package com.rgerva.infinitytech.gui.base;
+package com.rgerva.infinitytech.gui;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.rgerva.infinitytech.InfinityTech;

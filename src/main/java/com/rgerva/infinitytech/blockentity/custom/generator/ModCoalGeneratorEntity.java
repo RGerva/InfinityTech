@@ -11,8 +11,8 @@ package com.rgerva.infinitytech.blockentity.custom.generator;
 import com.rgerva.infinitytech.blockentity.ModBlockEntities;
 import com.rgerva.infinitytech.energy.ModEnergyStorage;
 import com.rgerva.infinitytech.energy.ModEnergyUtils;
-import com.rgerva.infinitytech.gui.menu.CoalGeneratorMenu;
-import com.rgerva.infinitytech.network.base.ModSyncPackages;
+import com.rgerva.infinitytech.gui.menu.ModCoalGeneratorMenu;
+import com.rgerva.infinitytech.network.interfaces.ModSyncPackages;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -39,7 +39,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
-public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvider, ModSyncPackages {
+public class ModCoalGeneratorEntity extends BlockEntity implements MenuProvider, ModSyncPackages {
 
     private static final int INPUT_SLOT = 0;
     private boolean isBurning = false;
@@ -70,14 +70,14 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
         };
     }
 
-    public CoalGeneratorBlockEntity(BlockPos pos, BlockState blockState) {
+    public ModCoalGeneratorEntity(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.COAL_GENERATOR_ENTITY.get(), pos, blockState);
         this.data = new ContainerData() {
             @Override
             public int get(int i) {
                 return switch (i) {
-                    case 0 -> CoalGeneratorBlockEntity.this.burnProgress;
-                    case 1 -> CoalGeneratorBlockEntity.this.maxBurnProgress;
+                    case 0 -> ModCoalGeneratorEntity.this.burnProgress;
+                    case 1 -> ModCoalGeneratorEntity.this.maxBurnProgress;
                     default -> 0;
                 };
             }
@@ -85,8 +85,8 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
             @Override
             public void set(int i, int i1) {
                 switch (i) {
-                    case 0 -> CoalGeneratorBlockEntity.this.burnProgress = i1;
-                    case 1 -> CoalGeneratorBlockEntity.this.maxBurnProgress = i1;
+                    case 0 -> ModCoalGeneratorEntity.this.burnProgress = i1;
+                    case 1 -> ModCoalGeneratorEntity.this.maxBurnProgress = i1;
                 }
             }
 
@@ -117,28 +117,28 @@ public class CoalGeneratorBlockEntity extends BlockEntity implements MenuProvide
     @Override
     public @Nullable AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
         syncEnergyToPlayer(player);
-        return new CoalGeneratorMenu(i, inventory, this, this.data);
+        return new ModCoalGeneratorMenu(i, inventory, this, this.data);
     }
 
-    public static void tick(Level level, BlockPos blockPos, BlockState blockState, CoalGeneratorBlockEntity coalGeneratorBlockEntity) {
-        if (coalGeneratorBlockEntity.itemHandler.getStackInSlot(INPUT_SLOT).is(Items.COAL)) {
-            if (!coalGeneratorBlockEntity.isBurning) {
-                coalGeneratorBlockEntity.itemHandler.extractItem(INPUT_SLOT, 1, false);
-                coalGeneratorBlockEntity.isBurning = true;
+    public static void tick(Level level, BlockPos blockPos, BlockState blockState, ModCoalGeneratorEntity modCoalGeneratorEntity) {
+        if (modCoalGeneratorEntity.itemHandler.getStackInSlot(INPUT_SLOT).is(Items.COAL)) {
+            if (!modCoalGeneratorEntity.isBurning) {
+                modCoalGeneratorEntity.itemHandler.extractItem(INPUT_SLOT, 1, false);
+                modCoalGeneratorEntity.isBurning = true;
             }
         }
 
-        if (coalGeneratorBlockEntity.isBurning) {
-            coalGeneratorBlockEntity.burnProgress--;
-            if (coalGeneratorBlockEntity.burnProgress < 0) {
-                coalGeneratorBlockEntity.isBurning = false;
-                coalGeneratorBlockEntity.burnProgress = coalGeneratorBlockEntity.maxBurnProgress;
+        if (modCoalGeneratorEntity.isBurning) {
+            modCoalGeneratorEntity.burnProgress--;
+            if (modCoalGeneratorEntity.burnProgress < 0) {
+                modCoalGeneratorEntity.isBurning = false;
+                modCoalGeneratorEntity.burnProgress = modCoalGeneratorEntity.maxBurnProgress;
             }
-            coalGeneratorBlockEntity.ENERGY_STORAGE.receiveEnergy(320, false);
+            modCoalGeneratorEntity.ENERGY_STORAGE.receiveEnergy(320, false);
         }
 
-        if (ModEnergyUtils.doesBlockHaveEnergyStorage(coalGeneratorBlockEntity.worldPosition.above(), level)) {
-            ModEnergyUtils.move(coalGeneratorBlockEntity.worldPosition, coalGeneratorBlockEntity.worldPosition.above(), 320, level);
+        if (ModEnergyUtils.doesBlockHaveEnergyStorage(modCoalGeneratorEntity.worldPosition.above(), level)) {
+            ModEnergyUtils.move(modCoalGeneratorEntity.worldPosition, modCoalGeneratorEntity.worldPosition.above(), 320, level);
         }
     }
 

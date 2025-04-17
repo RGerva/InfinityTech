@@ -13,7 +13,7 @@ import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.blockentity.custom.battery.ModBatteryEntity;
 import com.rgerva.infinitytech.blockentity.custom.cables.ModCableEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.*;
-import com.rgerva.infinitytech.blockentity.custom.generator.CoalGeneratorBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.generator.ModCoalGeneratorEntity;
 import com.rgerva.infinitytech.blockentity.custom.solar_panel.ModSolarPanelEntity;
 import com.rgerva.infinitytech.util.types.eBatteryConfigs;
 import com.rgerva.infinitytech.util.types.eCablesConfigs;
@@ -107,8 +107,8 @@ public class ModBlockEntities {
     public static final Supplier<BlockEntityType<NetheriteChestBlockEntity>> CHEST_NETHERITE_ENTITY = BLOCK_ENTITIES.register("chest_netherite",
             () -> new BlockEntityType<>(NetheriteChestBlockEntity::new, ModBlocks.CHEST_NETHERITE.get()));
 
-    public static final Supplier<BlockEntityType<CoalGeneratorBlockEntity>> COAL_GENERATOR_ENTITY = BLOCK_ENTITIES.register("generic_generator",
-            () -> new BlockEntityType<>(CoalGeneratorBlockEntity::new, ModBlocks.COAL_GENERATOR.get()));
+    public static final Supplier<BlockEntityType<ModCoalGeneratorEntity>> COAL_GENERATOR_ENTITY = BLOCK_ENTITIES.register("generic_generator",
+            () -> new BlockEntityType<>(ModCoalGeneratorEntity::new, ModBlocks.COAL_GENERATOR.get()));
     //endregion
 
     public static void register(IEventBus eventBus) {

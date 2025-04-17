@@ -9,8 +9,8 @@
 package com.rgerva.infinitytech.gui.screen;
 
 import com.rgerva.infinitytech.InfinityTech;
-import com.rgerva.infinitytech.gui.base.ModEnergyContainerScreen;
-import com.rgerva.infinitytech.gui.menu.CoalGeneratorMenu;
+import com.rgerva.infinitytech.gui.ModEnergyContainerScreen;
+import com.rgerva.infinitytech.gui.menu.ModCoalGeneratorMenu;
 import com.rgerva.infinitytech.util.types.eBarSideConfigs;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderType;
@@ -19,8 +19,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 
-public class CoalGeneratorScreen extends ModEnergyContainerScreen<CoalGeneratorMenu> {
-    public CoalGeneratorScreen(CoalGeneratorMenu menu, Inventory playerInventory, Component title) {
+public class ModCoalGeneratorScreen extends ModEnergyContainerScreen<ModCoalGeneratorMenu> {
+    public ModCoalGeneratorScreen(ModCoalGeneratorMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "textures/gui/container/generic_generator.png"), eBarSideConfigs.RIGHT);
     }
 

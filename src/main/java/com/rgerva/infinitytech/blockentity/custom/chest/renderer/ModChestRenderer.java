@@ -9,7 +9,7 @@ import com.rgerva.infinitytech.block.custom.chest.ModChestBlock;
 import com.rgerva.infinitytech.blockentity.custom.chest.ModChestBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.model.ModChestModel;
 import com.rgerva.infinitytech.blockentity.custom.chest.model.ModelItem;
-import com.rgerva.infinitytech.network.base.IChestPackageUpdate;
+import com.rgerva.infinitytech.network.interfaces.IChestPackageUpdate;
 import com.rgerva.infinitytech.util.types.eChestConfigs;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayerLocation;

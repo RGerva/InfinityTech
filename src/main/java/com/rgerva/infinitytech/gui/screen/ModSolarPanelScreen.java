@@ -8,7 +8,7 @@
 
 package com.rgerva.infinitytech.gui.screen;
 
-import com.rgerva.infinitytech.gui.base.ModEnergyContainerScreen;
+import com.rgerva.infinitytech.gui.ModEnergyContainerScreen;
 import com.rgerva.infinitytech.gui.menu.ModSolarPanelMenu;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;

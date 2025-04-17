@@ -9,9 +9,9 @@
 package com.rgerva.infinitytech.gui.menu;
 
 import com.rgerva.infinitytech.block.ModBlocks;
-import com.rgerva.infinitytech.blockentity.custom.generator.CoalGeneratorBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.generator.ModCoalGeneratorEntity;
 import com.rgerva.infinitytech.gui.ModGUI;
-import com.rgerva.infinitytech.gui.base.ModEnergyContainerScreen;
+import com.rgerva.infinitytech.gui.ModEnergyContainerScreen;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
@@ -22,20 +22,20 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.items.SlotItemHandler;
 
-public class CoalGeneratorMenu extends AbstractContainerMenu implements ModEnergyContainerScreen.IModMenu {
+public class ModCoalGeneratorMenu extends AbstractContainerMenu implements ModEnergyContainerScreen.IModMenu {
     private final ContainerData data;
     private final Level level;
-    public final CoalGeneratorBlockEntity blockEntity;
+    public final ModCoalGeneratorEntity blockEntity;
 
-    public CoalGeneratorMenu(int pContainerId, Inventory inv, FriendlyByteBuf buffer) {
+    public ModCoalGeneratorMenu(int pContainerId, Inventory inv, FriendlyByteBuf buffer) {
         this(pContainerId, inv, inv.player.level().getBlockEntity(buffer.readBlockPos()), new SimpleContainerData(2));
     }
 
-    public CoalGeneratorMenu(int containerId, Inventory inventory, BlockEntity blockEntity, ContainerData data) {
+    public ModCoalGeneratorMenu(int containerId, Inventory inventory, BlockEntity blockEntity, ContainerData data) {
         super(ModGUI.COAL_GENERATOR_MENU.get(), containerId);
         this.data = data;
         this.level = inventory.player.level();
-        this.blockEntity = ((CoalGeneratorBlockEntity) blockEntity);
+        this.blockEntity = ((ModCoalGeneratorEntity) blockEntity);
 
         this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 80, 35));
         addDataSlots(data);

@@ -1,7 +1,7 @@
 package com.rgerva.infinitytech.network.packet;
 
 import com.rgerva.infinitytech.InfinityTech;
-import com.rgerva.infinitytech.network.base.IEnergyStoragePacketUpdate;
+import com.rgerva.infinitytech.network.interfaces.IEnergyStoragePacketUpdate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;

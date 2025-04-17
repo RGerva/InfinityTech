@@ -10,7 +10,7 @@ package com.rgerva.infinitytech.block.custom.generator;
 
 import com.mojang.serialization.MapCodec;
 import com.rgerva.infinitytech.blockentity.ModBlockEntities;
-import com.rgerva.infinitytech.blockentity.custom.generator.CoalGeneratorBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.generator.ModCoalGeneratorEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -24,10 +24,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
-public class CoalGeneratorBlock extends BaseEntityBlock {
-    public static final MapCodec<CoalGeneratorBlock> CODEC = simpleCodec(CoalGeneratorBlock::new);
+public class ModCoalGeneratorBlock extends BaseEntityBlock {
+    public static final MapCodec<ModCoalGeneratorBlock> CODEC = simpleCodec(ModCoalGeneratorBlock::new);
 
-    public CoalGeneratorBlock(Properties properties) {
+    public ModCoalGeneratorBlock(Properties properties) {
         super(properties);
     }
 
@@ -38,7 +38,7 @@ public class CoalGeneratorBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new CoalGeneratorBlockEntity(blockPos, blockState);
+        return new ModCoalGeneratorEntity(blockPos, blockState);
     }
 
     @Override
@@ -48,15 +48,15 @@ public class CoalGeneratorBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level plevel, BlockState state, BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, ModBlockEntities.COAL_GENERATOR_ENTITY.get(), CoalGeneratorBlockEntity::tick);
+        return createTickerHelper(blockEntityType, ModBlockEntities.COAL_GENERATOR_ENTITY.get(), ModCoalGeneratorEntity::tick);
     }
 
     @Override
     protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof CoalGeneratorBlockEntity coalGeneratorBlockEntity) {
-                coalGeneratorBlockEntity.drops();
+            if (blockEntity instanceof ModCoalGeneratorEntity modCoalGeneratorEntity) {
+                modCoalGeneratorEntity.drops();
             }
         }
         super.onRemove(state, level, pos, newState, movedByPiston);
@@ -66,10 +66,10 @@ public class CoalGeneratorBlock extends BaseEntityBlock {
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         if (!level.isClientSide) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (!(blockEntity instanceof CoalGeneratorBlockEntity)) {
+            if (!(blockEntity instanceof ModCoalGeneratorEntity)) {
                 throw new IllegalStateException("Container is invalid");
             }
-            player.openMenu((CoalGeneratorBlockEntity) blockEntity, pos);
+            player.openMenu((ModCoalGeneratorEntity) blockEntity, pos);
         }
         return InteractionResult.SUCCESS;
     }

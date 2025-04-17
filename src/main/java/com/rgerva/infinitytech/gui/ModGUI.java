@@ -1,7 +1,7 @@
 package com.rgerva.infinitytech.gui;
 
 import com.rgerva.infinitytech.InfinityTech;
-import com.rgerva.infinitytech.gui.menu.CoalGeneratorMenu;
+import com.rgerva.infinitytech.gui.menu.ModCoalGeneratorMenu;
 import com.rgerva.infinitytech.gui.menu.ModBatteryMenu;
 import com.rgerva.infinitytech.gui.menu.ModChestMenu;
 import com.rgerva.infinitytech.gui.menu.ModSolarPanelMenu;
@@ -45,8 +45,8 @@ public class ModGUI {
     public static final DeferredHolder<MenuType<?>, MenuType<ModChestMenu>> CHEST_NETHERITE_MENU =
             registerMenuTypeChest("chest_netherite", ModChestMenu::createNetheriteContainer);
 
-    public static final Supplier<MenuType<CoalGeneratorMenu>> COAL_GENERATOR_MENU =
-            registerMenuType("coal_generator", CoalGeneratorMenu::new);
+    public static final Supplier<MenuType<ModCoalGeneratorMenu>> COAL_GENERATOR_MENU =
+            registerMenuType("coal_generator", ModCoalGeneratorMenu::new);
 
     private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));

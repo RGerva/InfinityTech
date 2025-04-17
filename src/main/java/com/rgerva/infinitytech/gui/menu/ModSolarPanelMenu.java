@@ -10,7 +10,7 @@ package com.rgerva.infinitytech.gui.menu;
 
 import com.rgerva.infinitytech.blockentity.custom.solar_panel.ModSolarPanelEntity;
 import com.rgerva.infinitytech.gui.ModGUI;
-import com.rgerva.infinitytech.gui.base.ModEnergyContainerScreen;
+import com.rgerva.infinitytech.gui.ModEnergyContainerScreen;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;

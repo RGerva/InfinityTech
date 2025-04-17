@@ -11,7 +11,7 @@ package com.rgerva.infinitytech.blockentity.custom.battery;
 import com.rgerva.infinitytech.blockentity.ModBlockEntities;
 import com.rgerva.infinitytech.energy.ModEnergyStorage;
 import com.rgerva.infinitytech.gui.menu.ModBatteryMenu;
-import com.rgerva.infinitytech.network.base.ModSyncPackages;
+import com.rgerva.infinitytech.network.interfaces.ModSyncPackages;
 import com.rgerva.infinitytech.util.types.eBatteryConfigs;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

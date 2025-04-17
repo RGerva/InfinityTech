@@ -5,7 +5,7 @@ import com.rgerva.infinitytech.blockentity.ModBlockEntities;
 import com.rgerva.infinitytech.blockentity.custom.battery.ModBatteryEntity;
 import com.rgerva.infinitytech.blockentity.custom.cables.ModCableEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.ModChestBlockEntity;
-import com.rgerva.infinitytech.blockentity.custom.generator.CoalGeneratorBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.generator.ModCoalGeneratorEntity;
 import com.rgerva.infinitytech.blockentity.custom.solar_panel.ModSolarPanelEntity;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
@@ -58,6 +58,6 @@ public class ModCapabilities {
                 ModBlocks.CHEST_OBSIDIAN.get(), ModBlocks.CHEST_NETHERITE.get());
 
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
-                ModBlockEntities.COAL_GENERATOR_ENTITY.get(), CoalGeneratorBlockEntity::getEnergyStorageCapability);
+                ModBlockEntities.COAL_GENERATOR_ENTITY.get(), ModCoalGeneratorEntity::getEnergyStorageCapability);
     }
 }

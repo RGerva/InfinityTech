@@ -1,4 +1,4 @@
-package com.rgerva.infinitytech.network.base;
+package com.rgerva.infinitytech.network.interfaces;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.ItemStack;

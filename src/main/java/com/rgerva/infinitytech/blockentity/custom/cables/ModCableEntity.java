@@ -11,7 +11,7 @@ package com.rgerva.infinitytech.blockentity.custom.cables;
 import com.mojang.datafixers.util.Pair;
 import com.rgerva.infinitytech.blockentity.ModBlockEntities;
 import com.rgerva.infinitytech.energy.ModEnergyStorage;
-import com.rgerva.infinitytech.network.base.ModSyncPackages;
+import com.rgerva.infinitytech.network.interfaces.ModSyncPackages;
 import com.rgerva.infinitytech.util.types.eCablesConfigs;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -35,7 +35,6 @@ public class ModCableEntity extends BlockEntity implements ModSyncPackages {
 
     private final eCablesConfigs cablesConfigs;
     private final ModEnergyStorage ENERGY_STORAGE;
-    //private final ReceiveOnlyEnergyStorage ENERGY_STORAGE;
 
     private final Map<Pair<BlockPos, Direction>, IEnergyStorage> producers = new HashMap<>();
     private final Map<Pair<BlockPos, Direction>, IEnergyStorage> consumers = new HashMap<>();
@@ -46,32 +45,11 @@ public class ModCableEntity extends BlockEntity implements ModSyncPackages {
         super(Objects.requireNonNull(getEntityType(cablesConfigs)), pos, blockState);
         this.cablesConfigs = cablesConfigs;
         ENERGY_STORAGE = createEnergyStorage(cablesConfigs);
-
-//        if (EXTRACTION_MODE.isPush()) {
-//            ENERGY_STORAGE = new ReceiveOnlyEnergyStorage(0, cablesConfigs.getMaxTransfer(), cablesConfigs.getMaxTransfer()) {
-//                @Override
-//                protected void onChange() {
-//                    setChanged();
-//                }
-//            };
-//        } else {
-//            ENERGY_STORAGE = new ReceiveOnlyEnergyStorage() {
-//                @Override
-//                public int receiveEnergy(int maxReceive, boolean simulate) {
-//                    return 0;
-//                }
-//
-//                @Override
-//                public boolean canReceive() {
-//                    return false;
-//                }
-//            };
-//        }
     }
 
     private ModEnergyStorage createEnergyStorage(eCablesConfigs cablesConfigs) {
         if(EXTRACTION_MODE.isPush()){
-            return new ModEnergyStorage(cablesConfigs.getMaxTransfer(), cablesConfigs.getMaxTransfer(), 0, 0) {
+            return new ModEnergyStorage(0, cablesConfigs.getMaxTransfer(), 0, 0) {
                 @Override
                 public void onEnergyChanged() {
                     setChanged();
@@ -80,7 +58,7 @@ public class ModCableEntity extends BlockEntity implements ModSyncPackages {
                 }
             };
         }else{
-            return new ModEnergyStorage(cablesConfigs.getMaxTransfer(), 0, cablesConfigs.getMaxTransfer(), 0) {
+            return new ModEnergyStorage(0, 0, cablesConfigs.getMaxTransfer(), 0) {
                 @Override
                 public void onEnergyChanged() {
                     setChanged();
@@ -97,6 +75,10 @@ public class ModCableEntity extends BlockEntity implements ModSyncPackages {
 
     public List<BlockPos> getCableBlocks() {
         return cableBlocks;
+    }
+
+    public Map<Pair<BlockPos, Direction>, IEnergyStorage> getConsumers() {
+        return consumers;
     }
 
     public static BlockEntityType<ModCableEntity> getEntityType(eCablesConfigs eCablesConfigs) {
@@ -176,9 +158,6 @@ public class ModCableEntity extends BlockEntity implements ModSyncPackages {
             BlockEntity testBlockEntity = level.getBlockEntity(testPos);
 
             if(testBlockEntity instanceof ModCableEntity cableEntity){
-                if(cableEntity.getCableBlocks() != blockEntity.getCableBlocks()){
-                    continue;
-                }
                 blockEntity.cableBlocks.add(testPos);
                 continue;
             }
@@ -220,6 +199,8 @@ public class ModCableEntity extends BlockEntity implements ModSyncPackages {
                    cableBlocksLeft.add(pos);
                }
             });
+
+            consumers.addAll(cableEntity.getConsumers().values());
         }
         return consumers;
     }
@@ -257,6 +238,7 @@ public class ModCableEntity extends BlockEntity implements ModSyncPackages {
         List<IEnergyStorage> energyConsumption = new LinkedList<>();
         List<Integer> energyConsumptionValues = new LinkedList<>();
         List<IEnergyStorage> consumers = getConnectedConsumers(level, blockPos, new LinkedList<>());
+
 
         int consumptionSum = 0;
         for (IEnergyStorage iEnergyStorage : consumers) {

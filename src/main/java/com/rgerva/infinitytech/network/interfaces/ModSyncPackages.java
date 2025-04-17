@@ -6,7 +6,7 @@
  * Copyright (c) 2025 @RGerva. All Rights Reserved.
  */
 
-package com.rgerva.infinitytech.network.base;
+package com.rgerva.infinitytech.network.interfaces;
 
 import com.rgerva.infinitytech.network.ModMessages;
 import com.rgerva.infinitytech.network.packet.EnergySyncS2CPacket;
