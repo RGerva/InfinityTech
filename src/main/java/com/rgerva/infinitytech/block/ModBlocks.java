@@ -611,9 +611,9 @@ public class ModBlocks {
 
     //region GENERATOR
 
-    public static final DeferredBlock<Block> COAL_GENERATOR = registerBlock("generic_generator",
+    public static final DeferredBlock<Block> COAL_GENERATOR = registerBlock("coal_generator",
             () -> new ModCoalGeneratorBlock(BlockBehaviour.Properties.of()
-                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "generic_generator")))
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "coal_generator")))
                     .strength(3F)
                     .requiresCorrectToolForDrops()));
     //endregion

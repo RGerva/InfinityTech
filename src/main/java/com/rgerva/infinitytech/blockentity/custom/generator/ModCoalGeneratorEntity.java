@@ -22,6 +22,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -29,7 +30,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -121,8 +121,8 @@ public class ModCoalGeneratorEntity extends BlockEntity implements MenuProvider,
     }
 
     public static void tick(Level level, BlockPos blockPos, BlockState blockState, ModCoalGeneratorEntity modCoalGeneratorEntity) {
-        if (modCoalGeneratorEntity.itemHandler.getStackInSlot(INPUT_SLOT).is(Items.COAL)) {
-            if (!modCoalGeneratorEntity.isBurning) {
+        if (modCoalGeneratorEntity.itemHandler.getStackInSlot(INPUT_SLOT).is(ItemTags.COALS)) {
+            if (!modCoalGeneratorEntity.isBurning && modCoalGeneratorEntity.ENERGY_STORAGE.getEnergy() != modCoalGeneratorEntity.getCapacity()) {
                 modCoalGeneratorEntity.itemHandler.extractItem(INPUT_SLOT, 1, false);
                 modCoalGeneratorEntity.isBurning = true;
             }

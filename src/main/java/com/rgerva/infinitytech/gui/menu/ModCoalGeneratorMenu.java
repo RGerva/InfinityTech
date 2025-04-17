@@ -51,37 +51,42 @@ public class ModCoalGeneratorMenu extends AbstractContainerMenu implements ModEn
         }
     }
 
-    private static final int TE_INVENTORY_SLOT_COUNT = 1;
-
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
-        Slot sourceSlot = slots.get(pIndex);
-        if (!sourceSlot.hasItem()) {
-            return ItemStack.EMPTY;
-        }
-        ItemStack sourceStack = sourceSlot.getItem();
-        ItemStack copyOfSourceStack = sourceStack.copy();
+        ItemStack slotStackCopy = ItemStack.EMPTY;
+        Slot slot = slots.get(pIndex);
 
-        if (pIndex < 36) {
-            if (!moveItemStackTo(sourceStack, 36, 36 + TE_INVENTORY_SLOT_COUNT, false)) {
+        if (slot.hasItem()) {
+            ItemStack slotStack = slot.getItem();
+            slotStackCopy = slotStack.copy();
+
+            if (pIndex < 1) {
+                if (!moveItemStackTo(slotStack, 1, 37, true)){
+                    return ItemStack.EMPTY;
+                }
+                slot.onQuickCraft(slotStack, slotStackCopy);
+            }
+            else if (!moveItemStackTo(slotStack, 0, 1, false)){
                 return ItemStack.EMPTY;
             }
-        } else if (pIndex < 36 + TE_INVENTORY_SLOT_COUNT) {
-            if (!moveItemStackTo(sourceStack, 0, 36, false)) {
+
+            if (slotStack.getCount() == 0){
+                slot.set(ItemStack.EMPTY);
+            }
+            else{
+                slot.setChanged();
+            }
+
+
+            if (slotStack.getCount() == slotStackCopy.getCount()) {
                 return ItemStack.EMPTY;
             }
-        } else {
-            return ItemStack.EMPTY;
+
+            slot.onTake(playerIn, slotStack);
+            broadcastChanges();
         }
 
-        if (sourceStack.getCount() == 0) {
-            sourceSlot.set(ItemStack.EMPTY);
-        } else {
-            sourceSlot.setChanged();
-        }
-
-        sourceSlot.onTake(playerIn, sourceStack);
-        return copyOfSourceStack;
+        return slotStackCopy;
     }
 
     @Override
