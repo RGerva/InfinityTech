@@ -1,6 +1,6 @@
 package com.rgerva.infinitytech;
 
-
+import jdk.jfr.Label;
 import org.junit.jupiter.api.*;
 
 import java.io.File;
@@ -15,13 +15,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestClassOrder(ClassOrderer.OrderAnnotation.class)
 public class ModTest {
 
+    public static final String MOD_ID = "mod_test";
+
     @Nested
-    @DisplayName("File Integrity")
+    @Label("File Integrity")
     @Order(0)
     public class FileIntegrity {
 
         @Test
-        @DisplayName("Texture Verify")
+        @Label("Texture Verify")
         public void testTexture() {
             List<String> listPath = List.of("/assets/infinity_tech/textures/block/",
                     "/assets/infinity_tech/textures/gui/container/",

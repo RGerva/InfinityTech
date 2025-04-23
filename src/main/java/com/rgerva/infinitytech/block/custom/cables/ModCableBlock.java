@@ -10,8 +10,10 @@ package com.rgerva.infinitytech.block.custom.cables;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.blockentity.custom.cables.ModCableEntity;
 import com.rgerva.infinitytech.energy.ModEnergyUtils;
+import com.rgerva.infinitytech.util.WrenchConfigurable;
 import com.rgerva.infinitytech.util.types.eCablesConfigs;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -20,10 +22,12 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -44,11 +48,12 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.IEnergyStorage;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ModCableBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
+public class ModCableBlock extends BaseEntityBlock implements SimpleWaterloggedBlock, WrenchConfigurable {
     public static final MapCodec<ModCableBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> {
         return instance.group(ExtraCodecs.NON_EMPTY_STRING.xmap(eCablesConfigs::valueOf, eCablesConfigs::toString).fieldOf("eCablesConfigs").
                                 forGetter(ModCableBlock::geteCablesConfigs),
@@ -265,5 +270,19 @@ public class ModCableBlock extends BaseEntityBlock implements SimpleWaterloggedB
         } else {
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.shift_details").withStyle(ChatFormatting.YELLOW));
         }
+    }
+
+    @Override
+    public @NotNull InteractionResult onUseWrench(UseOnContext context, Direction selectedFace, boolean nextPreviousValue) {
+
+        BlockEntity blockEntity = context.getLevel().getBlockEntity(context.getClickedPos());
+        if(blockEntity instanceof ModCableEntity){
+            String extractionMode = ((ModCableEntity) blockEntity).getExtractionMode().name();
+            InfinityTech.LOGGER.info("ExtractionMode {}", extractionMode);
+            ((ModCableEntity) blockEntity).setExtractionMode(eCablesConfigs.ExtractionMode.PUSH);
+            String extractionMode1 = ((ModCableEntity) blockEntity).getExtractionMode().name();
+            InfinityTech.LOGGER.info("ExtractionMode1 {}", extractionMode1);
+        }
+        return InteractionResult.SUCCESS;
     }
 }

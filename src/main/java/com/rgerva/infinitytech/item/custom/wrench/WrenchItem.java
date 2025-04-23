@@ -1,14 +1,14 @@
 package com.rgerva.infinitytech.item.custom.wrench;
 
-import com.rgerva.infinitytech.block.custom.battery.ModBatteryBlock;
-import com.rgerva.infinitytech.block.custom.cables.ModCableBlock;
-import com.rgerva.infinitytech.block.custom.solar_panel.ModSolarPanelBlock;
+import com.rgerva.infinitytech.util.WrenchConfigurable;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -16,7 +16,6 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.List;
@@ -29,24 +28,28 @@ public class WrenchItem extends Item {
     @Override
     public InteractionResult useOn(UseOnContext context) {
         Level level = context.getLevel();
-        BlockPos pos = context.getClickedPos();
-        Player player = context.getPlayer();
-        BlockState blockState = level.getBlockState(pos);
-
-        if (!level.isClientSide && player != null) {
-            Block block = blockState.getBlock();
-            if (block instanceof ModCableBlock || block instanceof ModSolarPanelBlock || block instanceof ModBatteryBlock) {
-                if (player.isShiftKeyDown()) {
-                    level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
-                    ItemStack itemStack = new ItemStack(block.asItem());
-                    ItemEntity itemEntity = new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), itemStack);
-                    level.addFreshEntity(itemEntity);
-                    return InteractionResult.SUCCESS;
-                }
-            }
+        if(level.isClientSide){
+            return InteractionResult.SUCCESS;
         }
 
-        return InteractionResult.FAIL;
+        Player player = context.getPlayer();
+        BlockPos blockPos = context.getClickedPos();
+        BlockState state = level.getBlockState(blockPos);
+        Block block = state.getBlock();
+
+        if(!(block instanceof WrenchConfigurable wrenchConfigurableBlock)) {
+            if(player instanceof ServerPlayer serverPlayer){
+                serverPlayer.connection.send(new ClientboundSetActionBarTextPacket(
+                        Component.literal("Can't be configured").withStyle(ChatFormatting.RED)
+                ));
+            }
+            return InteractionResult.SUCCESS;
+        }
+
+        ItemStack itemStack = context.getItemInHand();
+        Direction currentFace = Direction.DOWN;
+
+        return wrenchConfigurableBlock.onUseWrench(context, currentFace, player != null && player.isShiftKeyDown());
     }
 
     @Override

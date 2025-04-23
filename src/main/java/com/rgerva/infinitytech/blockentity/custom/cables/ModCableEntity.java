@@ -31,7 +31,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 public class ModCableEntity extends BlockEntity implements ModSyncPackages {
-    private static final eCablesConfigs.ExtractionMode EXTRACTION_MODE = eCablesConfigs.ExtractionMode.BOTH;
+    private static eCablesConfigs.ExtractionMode EXTRACTION_MODE = eCablesConfigs.ExtractionMode.BOTH;
 
     private final eCablesConfigs cablesConfigs;
     private final ModEnergyStorage ENERGY_STORAGE;
@@ -79,6 +79,14 @@ public class ModCableEntity extends BlockEntity implements ModSyncPackages {
 
     public Map<Pair<BlockPos, Direction>, IEnergyStorage> getConsumers() {
         return consumers;
+    }
+
+    public eCablesConfigs.ExtractionMode getExtractionMode(){
+        return EXTRACTION_MODE;
+    }
+
+    public void setExtractionMode(eCablesConfigs.ExtractionMode extractionMode){
+        EXTRACTION_MODE = extractionMode.setPush();
     }
 
     public static BlockEntityType<ModCableEntity> getEntityType(eCablesConfigs eCablesConfigs) {

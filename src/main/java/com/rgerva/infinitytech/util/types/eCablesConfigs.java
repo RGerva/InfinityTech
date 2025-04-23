@@ -25,5 +25,9 @@ public enum eCablesConfigs {
         public boolean isPull() {
             return this == PULL || this == BOTH;
         }
+
+        public ExtractionMode setPush(){
+            return PUSH;
+        }
     }
 }
