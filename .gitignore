@@ -119,4 +119,5 @@ runs/
 
 src/generated
 
+# Jqwik test database
 .jqwik-database
