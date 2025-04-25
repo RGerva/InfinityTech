@@ -1,28 +1,18 @@
-/**
- * Class: ModChestBlock
- * Created by: D56V1OK
- * On: 2025/abr.
- * GitHub: https://github.com/RGerva
- * Copyright (c) 2025 @RGerva. All Rights Reserved.
- */
-
 package com.rgerva.infinitytech.block.custom.chest;
 
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.rgerva.infinitytech.blockentity.custom.chest._ModChestBlockEntity;
-import com.rgerva.infinitytech.util.types.eChestConfigs;
+import com.rgerva.infinitytech.util.types._eChestConfigs;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stat;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.ExtraCodecs;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.animal.Cat;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -37,70 +27,47 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ModChestBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
+import java.util.List;
 
-    public static final MapCodec<ModChestBlock> CODEC = RecordCodecBuilder.mapCodec(modChestBlockInstance -> {
-        return modChestBlockInstance.group(ExtraCodecs.NON_EMPTY_STRING.xmap(eChestConfigs::valueOf, eChestConfigs::toString).fieldOf("ChestConfigs")
-                .forGetter(ModChestBlock::getChestConfigs),
-                Properties.CODEC.fieldOf("properties").forGetter(Block::properties))
-                .apply(modChestBlockInstance, ModChestBlock::new);
-    });
-
-    private final eChestConfigs chestConfigs;
+public abstract class _ModChestBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
     public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    protected static final VoxelShape SHAPE = Block.box(1.0, 0.0, 1.0, 15.0, 14.0, 15.0);
+    protected static final VoxelShape AABB = Block.box(1.0, 0.0, 1.0, 15.0, 14.0, 15.0);
+    private final _eChestConfigs type;
 
-    public ModChestBlock(eChestConfigs eChestConfigs, Properties properties) {
-        super(properties);
-        this.chestConfigs = eChestConfigs;
+    protected _ModChestBlock(Properties properties, _eChestConfigs type) {
+        super(properties.requiresCorrectToolForDrops());
+        this.type = type;
 
-        this.registerDefaultState(this.stateDefinition.any()
-                .setValue(FACING, Direction.NORTH)
-                .setValue(WATERLOGGED, Boolean.FALSE));
-    }
-
-    public static eChestConfigs getTypeFromBlock(Block block){
-        return block instanceof ModChestBlock ? ((ModChestBlock) block).getChestConfigs() : null;
-    }
-
-    public eChestConfigs getChestConfigs(){
-        return chestConfigs;
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, Boolean.FALSE));
     }
 
     @Override
-    protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
-    }
-
-    @Override
-    public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return null;
-    }
-
-    @Override
-    protected @NotNull BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess scheduledTickAccess, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
+    protected @NotNull BlockState updateShape(BlockState state, @NotNull LevelReader level, @NotNull ScheduledTickAccess scheduledTickAccess, @NotNull BlockPos pos, @NotNull Direction direction, @NotNull BlockPos neighborPos, @NotNull BlockState neighborState, @NotNull RandomSource random) {
         if (state.getValue(WATERLOGGED)) {
             scheduledTickAccess.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
         }
+
         return super.updateShape(state, level, scheduledTickAccess, pos, direction, neighborPos, neighborState, random);
     }
 
     @Override
-    protected @NotNull VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return SHAPE;
+    protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+        return AABB;
     }
 
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
         Direction direction = context.getHorizontalDirection().getOpposite();
         FluidState fluidState = context.getLevel().getFluidState(context.getClickedPos());
+
         return this.defaultBlockState().setValue(FACING, direction).setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER);
     }
 
@@ -110,7 +77,7 @@ public class ModChestBlock extends BaseEntityBlock implements SimpleWaterloggedB
     }
 
     @Override
-    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
+    protected void onRemove(BlockState state, @NotNull Level level, @NotNull BlockPos pos, BlockState newState, boolean movedByPiston) {
         if (!state.is(newState.getBlock())) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof _ModChestBlockEntity) {
@@ -125,7 +92,7 @@ public class ModChestBlock extends BaseEntityBlock implements SimpleWaterloggedB
     }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+    protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
         if (level.isClientSide) {
             return InteractionResult.SUCCESS;
         } else {
@@ -145,15 +112,19 @@ public class ModChestBlock extends BaseEntityBlock implements SimpleWaterloggedB
     }
 
     @Override
-    protected @Nullable MenuProvider getMenuProvider(BlockState state, Level level, BlockPos pos) {
-        if(isBlockedChestByBlock(level, pos)){
+    protected @Nullable MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
+        if (isChestBlockedAt(level, pos)) {
             return null;
         }
 
-//        if (level.getBlockEntity(pos) instanceof ModChestBlockEntity chestBlockEntity) {
-//            return chestBlockEntity;
-//        }
+        if (level.getBlockEntity(pos) instanceof _ModChestBlockEntity chestBlockEntity) {
+            return chestBlockEntity;
+        }
         return null;
+    }
+
+    public static boolean isChestBlockedAt(LevelAccessor level, BlockPos pos) {
+        return isBlockedChestByBlock(level, pos) || isCatSittingOnChest(level, pos);
     }
 
     private static boolean isBlockedChestByBlock(LevelAccessor level, BlockPos pos) {
@@ -161,21 +132,49 @@ public class ModChestBlock extends BaseEntityBlock implements SimpleWaterloggedB
         return level.getBlockState(above).isRedstoneConductor(level, above);
     }
 
+    private static boolean isCatSittingOnChest(LevelAccessor level, BlockPos pos) {
+        List<Cat> list = level.getEntitiesOfClass(
+                Cat.class,
+                new AABB(
+                        pos.getX(),
+                        pos.getY() + 1,
+                        pos.getZ(),
+                        pos.getX() + 1,
+                        pos.getY() + 2,
+                        pos.getZ() + 1
+                )
+        );
+
+        if (!list.isEmpty()) {
+            for (Cat cat : list) {
+                if (cat.isInSittingPose()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     @Override
-    protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
-//        if (!isBlockedChestByBlock(level, pos) && level.getBlockEntity(pos) instanceof ModChestBlockEntity chestBlockEntity) {
-//            return AbstractContainerMenu.getRedstoneSignalFromContainer(chestBlockEntity);
-//        }
+    protected boolean hasAnalogOutputSignal(@NotNull BlockState state) {
+        return true;
+    }
+
+    @Override
+    protected int getAnalogOutputSignal(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
+        if (!isChestBlockedAt(level, pos) && level.getBlockEntity(pos) instanceof _ModChestBlockEntity chestBlockEntity) {
+            return AbstractContainerMenu.getRedstoneSignalFromContainer(chestBlockEntity);
+        }
         return AbstractContainerMenu.getRedstoneSignalFromContainer(null);
     }
 
     @Override
-    protected BlockState rotate(BlockState state, Rotation rotation) {
+    protected @NotNull BlockState rotate(BlockState state, Rotation rotation) {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
     @Override
-    protected BlockState mirror(BlockState state, Mirror mirror) {
+    protected @NotNull BlockState mirror(BlockState state, @NotNull Mirror mirror) {
         return state.setValue(FACING, state.getValue(FACING));
     }
 
@@ -185,16 +184,25 @@ public class ModChestBlock extends BaseEntityBlock implements SimpleWaterloggedB
     }
 
     @Override
-    protected boolean isPathfindable(BlockState state, PathComputationType pathComputationType) {
+    protected boolean isPathfindable(@NotNull BlockState state, @NotNull PathComputationType pathComputationType) {
         return false;
     }
 
     @Override
-    protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    protected void tick(@NotNull BlockState state, ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         BlockEntity blockEntity = level.getBlockEntity(pos);
 
-//        if (blockEntity instanceof ModChestBlockEntity) {
-//            ((ModChestBlockEntity) blockEntity).recheckOpen();
-//        }
+        if (blockEntity instanceof _ModChestBlockEntity) {
+            ((_ModChestBlockEntity) blockEntity).recheckOpen();
+        }
+    }
+
+    @Nullable
+    public static _eChestConfigs getTypeFromBlock(Block block) {
+        return block instanceof _ModChestBlock ? ((_ModChestBlock) block).getType() : null;
+    }
+
+    private _eChestConfigs getType() {
+        return this.type;
     }
 }

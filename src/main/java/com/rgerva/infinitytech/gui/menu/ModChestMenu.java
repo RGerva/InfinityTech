@@ -1,7 +1,7 @@
 package com.rgerva.infinitytech.gui.menu;
 
 import com.rgerva.infinitytech.gui.ModGUI;
-import com.rgerva.infinitytech.util.types.eChestConfigs;
+import com.rgerva.infinitytech.util.types._eChestConfigs;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -14,33 +14,33 @@ import org.jetbrains.annotations.Nullable;
 
 public class ModChestMenu extends AbstractContainerMenu {
     private final Container container;
-    private static eChestConfigs eChestConf;
+    private static _eChestConfigs eChestConf;
 
     public static ModChestMenu createNetheriteContainer(int containerId, Inventory plaInventory) {
-        return new ModChestMenu(ModGUI.CHEST_NETHERITE_MENU.get(), containerId, plaInventory, new SimpleContainer(eChestConfigs.NETHERITE.size), eChestConfigs.NETHERITE);
+        return new ModChestMenu(ModGUI.CHEST_NETHERITE_MENU.get(), containerId, plaInventory, new SimpleContainer(_eChestConfigs.NETHERITE.size), _eChestConfigs.NETHERITE);
     }
 
     public static ModChestMenu createObsidianContainer(int containerId, Inventory plaInventory) {
-        return new ModChestMenu(ModGUI.CHEST_OBSIDIAN_MENU.get(), containerId, plaInventory, new SimpleContainer(eChestConfigs.OBSIDIAN.size), eChestConfigs.OBSIDIAN);
+        return new ModChestMenu(ModGUI.CHEST_OBSIDIAN_MENU.get(), containerId, plaInventory, new SimpleContainer(_eChestConfigs.OBSIDIAN.size), _eChestConfigs.OBSIDIAN);
     }
 
     public static ModChestMenu createDiamondContainer(int containerId, Inventory plaInventory) {
-        return new ModChestMenu(ModGUI.CHEST_DIAMOND_MENU.get(), containerId, plaInventory, new SimpleContainer(eChestConfigs.DIAMOND.size), eChestConfigs.DIAMOND);
+        return new ModChestMenu(ModGUI.CHEST_DIAMOND_MENU.get(), containerId, plaInventory, new SimpleContainer(_eChestConfigs.DIAMOND.size), _eChestConfigs.DIAMOND);
     }
 
     public static ModChestMenu createGoldContainer(int containerId, Inventory plaInventory) {
-        return new ModChestMenu(ModGUI.CHEST_GOLD_MENU.get(), containerId, plaInventory, new SimpleContainer(eChestConfigs.GOLD.size), eChestConfigs.GOLD);
+        return new ModChestMenu(ModGUI.CHEST_GOLD_MENU.get(), containerId, plaInventory, new SimpleContainer(_eChestConfigs.GOLD.size), _eChestConfigs.GOLD);
     }
 
     public static ModChestMenu createCopperContainer(int containerId, Inventory plaInventory) {
-        return new ModChestMenu(ModGUI.CHEST_COPPER_MENU.get(), containerId, plaInventory, new SimpleContainer(eChestConfigs.COPPER.size), eChestConfigs.COPPER);
+        return new ModChestMenu(ModGUI.CHEST_COPPER_MENU.get(), containerId, plaInventory, new SimpleContainer(_eChestConfigs.COPPER.size), _eChestConfigs.COPPER);
     }
 
     public static ModChestMenu createIronContainer(int containerId, Inventory playerInventory) {
-        return new ModChestMenu(ModGUI.CHEST_IRON_MENU.get(), containerId, playerInventory, new SimpleContainer(eChestConfigs.IRON.size), eChestConfigs.IRON);
+        return new ModChestMenu(ModGUI.CHEST_IRON_MENU.get(), containerId, playerInventory, new SimpleContainer(_eChestConfigs.IRON.size), _eChestConfigs.IRON);
     }
 
-    public ModChestMenu(@Nullable MenuType<?> menuType, int containerId, Inventory playerInventory, Container container, eChestConfigs eChestConfigs) {
+    public ModChestMenu(@Nullable MenuType<?> menuType, int containerId, Inventory playerInventory, Container container, _eChestConfigs eChestConfigs) {
         super(menuType, containerId);
         this.container = container;
         eChestConf = eChestConfigs;
@@ -107,7 +107,7 @@ public class ModChestMenu extends AbstractContainerMenu {
         this.container.stopOpen(player);
     }
 
-    public static eChestConfigs getChestConfig() {
+    public static _eChestConfigs getChestConfig() {
         return eChestConf;
     }
 }

@@ -5,12 +5,12 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.block.ModBlocks;
-import com.rgerva.infinitytech.block.custom.chest.ModChestBlock;
-import com.rgerva.infinitytech.blockentity.custom.chest.ModChestBlockEntity;
+import com.rgerva.infinitytech.block.custom.chest._ModChestBlock;
+import com.rgerva.infinitytech.blockentity.custom.chest._ModChestBlockEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.model.ModChestModel;
 import com.rgerva.infinitytech.blockentity.custom.chest.model.ModelItem;
 import com.rgerva.infinitytech.network.interfaces.IChestPackageUpdate;
-import com.rgerva.infinitytech.util.types.eChestConfigs;
+import com.rgerva.infinitytech.util.types._eChestConfigs;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -62,20 +62,20 @@ public class ModChestRenderer<T extends BlockEntity & LidBlockEntity> implements
 
     @Override
     public void render(T blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
-        ModChestBlockEntity chestBlockEntity = (ModChestBlockEntity) blockEntity;
+        _ModChestBlockEntity chestBlockEntity = (_ModChestBlockEntity) blockEntity;
 
         Level level = chestBlockEntity.getLevel();
         boolean useTileEntityBlockState = level != null;
 
-        BlockState blockState = useTileEntityBlockState ? chestBlockEntity.getBlockState() : ModBlocks.CHEST_IRON.get().defaultBlockState().setValue(ModChestBlock.FACING, Direction.SOUTH);
+        BlockState blockState = useTileEntityBlockState ? chestBlockEntity.getBlockState() : ModBlocks.CHEST_IRON.get().defaultBlockState().setValue(_ModChestBlock.FACING, Direction.SOUTH);
         Block block = blockState.getBlock();
 
-        eChestConfigs configs = Objects.requireNonNull(ModChestBlock.getTypeFromBlock(block));
+        _eChestConfigs configs = Objects.requireNonNull(_ModChestBlock.getTypeFromBlock(block));
 
-        if (block instanceof ModChestBlock) {
+        if (block instanceof _ModChestBlock) {
             poseStack.pushPose();
 
-            float f = blockState.getValue(ModChestBlock.FACING).toYRot();
+            float f = blockState.getValue(_ModChestBlock.FACING).toYRot();
 
             poseStack.translate(0.5D, 0.5D, 0.5D);
             poseStack.mulPose(Axis.YP.rotationDegrees(-f));

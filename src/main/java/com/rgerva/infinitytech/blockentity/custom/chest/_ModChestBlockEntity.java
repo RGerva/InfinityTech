@@ -1,8 +1,8 @@
 package com.rgerva.infinitytech.blockentity.custom.chest;
 
-import com.rgerva.infinitytech.block.custom.chest.ModChestBlock;
+import com.rgerva.infinitytech.block.custom.chest._ModChestBlock;
 import com.rgerva.infinitytech.gui.menu.ModChestMenu;
-import com.rgerva.infinitytech.util.types.eChestConfigs;
+import com.rgerva.infinitytech.util.types._eChestConfigs;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
@@ -22,25 +22,25 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.BlockState;
 
-public abstract class ModChestBlockEntity extends RandomizableContainerBlockEntity implements LidBlockEntity {
-    private final eChestConfigs eChestConfigs;
+public abstract class _ModChestBlockEntity extends RandomizableContainerBlockEntity implements LidBlockEntity {
+    private final _eChestConfigs eChestConfigs;
     private NonNullList<ItemStack> itemStacks;
     private final ChestLidController chestLidController = new ChestLidController();
     private final ContainerOpenersCounter openersCounter = new ContainerOpenersCounter() {
 
         @Override
         protected void onOpen(Level level, BlockPos blockPos, BlockState blockState) {
-            ModChestBlockEntity.playSound(level, blockPos, blockState, SoundEvents.CHEST_OPEN);
+            _ModChestBlockEntity.playSound(level, blockPos, blockState, SoundEvents.CHEST_OPEN);
         }
 
         @Override
         protected void onClose(Level level, BlockPos blockPos, BlockState blockState) {
-            ModChestBlockEntity.playSound(level, blockPos, blockState, SoundEvents.CHEST_CLOSE);
+            _ModChestBlockEntity.playSound(level, blockPos, blockState, SoundEvents.CHEST_CLOSE);
         }
 
         @Override
         protected void openerCountChanged(Level level, BlockPos blockPos, BlockState blockState, int i, int i1) {
-            ModChestBlockEntity.this.signalOpenCount(level, blockPos, blockState, i, i1);
+            _ModChestBlockEntity.this.signalOpenCount(level, blockPos, blockState, i, i1);
         }
 
         @Override
@@ -49,13 +49,13 @@ public abstract class ModChestBlockEntity extends RandomizableContainerBlockEnti
                 return false;
             } else {
                 Container container = ((ModChestMenu) player.containerMenu).getContainer();
-                return container instanceof ModChestBlockEntity || container instanceof CompoundContainer && ((CompoundContainer) container).contains(ModChestBlockEntity.this);
+                return container instanceof _ModChestBlockEntity || container instanceof CompoundContainer && ((CompoundContainer) container).contains(_ModChestBlockEntity.this);
             }
         }
     };
 
 
-    protected ModChestBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState, eChestConfigs eChestConfigs) {
+    protected _ModChestBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState, _eChestConfigs eChestConfigs) {
         super(type, pos, blockState);
         this.itemStacks = NonNullList.withSize(eChestConfigs.size, ItemStack.EMPTY);
         this.eChestConfigs = eChestConfigs;
@@ -89,7 +89,7 @@ public abstract class ModChestBlockEntity extends RandomizableContainerBlockEnti
         }
     }
 
-    public static void lidAnimateTick(Level level, BlockPos blockPos, BlockState blockState, ModChestBlockEntity chestBlockEntity) {
+    public static void lidAnimateTick(Level level, BlockPos blockPos, BlockState blockState, _ModChestBlockEntity chestBlockEntity) {
         chestBlockEntity.chestLidController.tickLid();
     }
 
@@ -150,8 +150,8 @@ public abstract class ModChestBlockEntity extends RandomizableContainerBlockEnti
         BlockState blockstate = blockGetter.getBlockState(blockPos);
         if (blockstate.hasBlockEntity()) {
             BlockEntity blockentity = blockGetter.getBlockEntity(blockPos);
-            if (blockentity instanceof ModChestBlockEntity) {
-                return ((ModChestBlockEntity) blockentity).openersCounter.getOpenerCount();
+            if (blockentity instanceof _ModChestBlockEntity) {
+                return ((_ModChestBlockEntity) blockentity).openersCounter.getOpenerCount();
             }
         }
         return 0;
@@ -172,11 +172,11 @@ public abstract class ModChestBlockEntity extends RandomizableContainerBlockEnti
 
     }
 
-    public eChestConfigs geteChestConfigs() {
-        eChestConfigs type = com.rgerva.infinitytech.util.types.eChestConfigs.IRON;
+    public _eChestConfigs geteChestConfigs() {
+        _eChestConfigs type = _eChestConfigs.IRON;
 
         if (this.hasLevel()) {
-            eChestConfigs typeFromBlock = ModChestBlock.getTypeFromBlock(this.getBlockState().getBlock());
+            _eChestConfigs typeFromBlock = _ModChestBlock.getTypeFromBlock(this.getBlockState().getBlock());
             if (typeFromBlock != null) {
                 type = typeFromBlock;
             }
