@@ -14,10 +14,7 @@ import com.rgerva.infinitytech.blockentity.custom.chest.model.ModChestModel;
 import com.rgerva.infinitytech.blockentity.custom.chest.renderer.ModChestRenderer;
 import com.rgerva.infinitytech.blockentity.custom.chest.renderer.special.ModChestSpecialRenderer;
 import com.rgerva.infinitytech.gui.ModGUI;
-import com.rgerva.infinitytech.gui.screen.ModChestScreen;
-import com.rgerva.infinitytech.gui.screen.ModCoalGeneratorScreen;
-import com.rgerva.infinitytech.gui.screen.ModBatteryScreen;
-import com.rgerva.infinitytech.gui.screen.ModSolarPanelScreen;
+import com.rgerva.infinitytech.gui.screen.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.ResourceLocation;
@@ -53,6 +50,7 @@ public class ModBusEvents {
         event.register(ModGUI.CHEST_DIAMOND_MENU.get(), ModChestScreen::new);
         event.register(ModGUI.CHEST_OBSIDIAN_MENU.get(), ModChestScreen::new);
         event.register(ModGUI.CHEST_NETHERITE_MENU.get(), ModChestScreen::new);
+
         event.register(ModGUI.COAL_GENERATOR_MENU.get(), ModCoalGeneratorScreen::new);
     }
 

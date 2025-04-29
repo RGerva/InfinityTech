@@ -116,9 +116,11 @@ public class ModBlockEntities {
 
     //endregion
 
+    //region GENERATOR
     public static final Supplier<BlockEntityType<ModCoalGeneratorEntity>> COAL_GENERATOR_ENTITY = BLOCK_ENTITIES.register("generic_generator",
             () -> new BlockEntityType<>(ModCoalGeneratorEntity::new, ModBlocks.COAL_GENERATOR.get()));
 
+    //endregion
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

@@ -84,6 +84,11 @@ public class ModChestEntity extends RandomizableContainerBlockEntity implements 
         };
     }
 
+    public BlockEntity getBlockEntity(Inventory inventory){
+        BlockEntity blockEntity = inventory.player.level().getBlockEntity(this.getBlockPos());
+        return blockEntity;
+    }
+
     public eChestConfigs getChestConfigs(){
         eChestConfigs type = chestConfigs;
         if(this.hasLevel()){

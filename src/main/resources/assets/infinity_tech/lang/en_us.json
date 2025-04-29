@@ -1,5 +1,7 @@
 {
   "name.infinity_tech.name": "Infinity Tech",
+  "name.infinity_tech.name.ore": "Infinity Tech Ores",
+  "name.infinity_tech.name.chest": "Infinity Tech Chest",
 
   "item.infinity_tech.steel_ingot": "Steel Ingot",
   "item.infinity_tech.steel_nugget": "Steel Nugget",

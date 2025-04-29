@@ -18,9 +18,9 @@ public class ModCreativeTab {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_TAB =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, InfinityTech.MOD_ID);
 
-    public static final Supplier<CreativeModeTab> INFINITY_TECH_ITEM_TAB = CREATIVE_TAB.register("infinity_tech_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.TITANIUM_INGOT.get()))
-                    .title(Component.translatable("name.infinity_tech.name"))
+    public static final Supplier<CreativeModeTab> INFINITY_TECH_ITEM_TAB_ORE = CREATIVE_TAB.register("infinity_tech_tab_ore",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.TITANIUM_ORE.get()))
+                    .title(Component.translatable("name.infinity_tech.name.ore"))
                     .displayItems((itemDisplayParameters, output) -> {
 
                         output.accept(ModBlocks.TITANIUM_ORE.get());
@@ -112,6 +112,27 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.ZINC_BLOCK.get());
                         output.accept(ModItems.ZINC_INGOT.get());
                         output.accept(ModItems.ZINC_NUGGET.get());
+                    })
+                    .build());
+
+    public static final Supplier<CreativeModeTab> INFINITY_TECH_ITEM_TAB_CHEST = CREATIVE_TAB.register("infinity_tech_tab_chest",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.CHEST_IRON.get()))
+                    .title(Component.translatable("name.infinity_tech.name.chest"))
+                    .displayItems((itemDisplayParameters, output) -> {
+
+                        output.accept(ModBlocks.CHEST_COPPER.get());
+                        output.accept(ModBlocks.CHEST_IRON.get());
+                        output.accept(ModBlocks.CHEST_GOLD.get());
+                        output.accept(ModBlocks.CHEST_DIAMOND.get());
+                        output.accept(ModBlocks.CHEST_OBSIDIAN.get());
+                        output.accept(ModBlocks.CHEST_NETHERITE.get());
+
+                    }).build());
+
+    public static final Supplier<CreativeModeTab> INFINITY_TECH_ITEM_TAB = CREATIVE_TAB.register("infinity_tech_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.TITANIUM_INGOT.get()))
+                    .title(Component.translatable("name.infinity_tech.name"))
+                    .displayItems((itemDisplayParameters, output) -> {
 
                         output.accept(ModItems.TITANIUM_SWORD.get());
                         output.accept(ModItems.TITANIUM_PICKAXE.get());
@@ -146,13 +167,6 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.TIN_CABLE.get());
                         output.accept(ModBlocks.COPPER_CABLE.get());
                         output.accept(ModBlocks.GOLD_CABLE.get());
-
-                        output.accept(ModBlocks.CHEST_COPPER.get());
-                        output.accept(ModBlocks.CHEST_IRON.get());
-                        output.accept(ModBlocks.CHEST_GOLD.get());
-                        output.accept(ModBlocks.CHEST_DIAMOND.get());
-                        output.accept(ModBlocks.CHEST_OBSIDIAN.get());
-                        output.accept(ModBlocks.CHEST_NETHERITE.get());
 
                         output.accept(ModBlocks.COAL_GENERATOR.get());
 

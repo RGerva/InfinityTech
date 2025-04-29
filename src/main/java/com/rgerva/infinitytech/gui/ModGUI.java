@@ -1,10 +1,7 @@
 package com.rgerva.infinitytech.gui;
 
 import com.rgerva.infinitytech.InfinityTech;
-import com.rgerva.infinitytech.gui.menu.ModCoalGeneratorMenu;
-import com.rgerva.infinitytech.gui.menu.ModBatteryMenu;
-import com.rgerva.infinitytech.gui.menu.ModChestMenu;
-import com.rgerva.infinitytech.gui.menu.ModSolarPanelMenu;
+import com.rgerva.infinitytech.gui.menu.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.AbstractContainerMenu;
