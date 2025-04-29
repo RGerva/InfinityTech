@@ -126,6 +126,12 @@
   "block.infinity_tech.coal_generator": "Coal Generator",
 
   "item.infinity_tech.wrench": "Wrench",
+  "item.infinity_tech.chest_copper_to_iron": "Upgrade Copper Chest to Iron Chest",
+  "item.infinity_tech.chest_diamond_to_obsidian": "Upgrade Diamond Chest to Obsidian Chest",
+  "item.infinity_tech.chest_gold_to_diamond": "Upgrade Gold Chest to Diamond Chest",
+  "item.infinity_tech.chest_iron_to_gold": "Upgrade Iron Chest to Gold Chest",
+  "item.infinity_tech.chest_obsidian_to_netherite": "Upgrade Obsidian Chest to Netherite Chest",
+  "item.infinity_tech.chest_vanilla_to_copper": "Upgrade Vanilla Chest to Copper Chest",
 
   "machine.infinity_tech.battery_block": "Battery",
   "machine.infinity_tech.infinity_battery": "Infinity Battery",

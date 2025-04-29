@@ -69,5 +69,13 @@ public class ModItemTagProvider extends ItemTagsProvider {
 
         this.tag(ItemTags.HORSE_TEMPT_ITEMS)
                 .add(ModItems.TITANIUM_HORSE_ARMOR.get());
+
+        this.tag(ModTags.Items.MOD_UPGRADES)
+                .add(ModItems.CHEST_VANILLA_TO_COPPER.get())
+                .add(ModItems.CHEST_COPPER_TO_IRON.get())
+                .add(ModItems.CHEST_IRON_TO_GOLD.get())
+                .add(ModItems.CHEST_GOLD_TO_DIAMOND.get())
+                .add(ModItems.CHEST_DIAMOND_TO_OBSIDIAN.get())
+                .add(ModItems.CHEST_OBSIDIAN_TO_NETHERITE.get());
     }
 }

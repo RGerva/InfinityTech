@@ -127,6 +127,13 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.CHEST_OBSIDIAN.get());
                         output.accept(ModBlocks.CHEST_NETHERITE.get());
 
+                        output.accept(ModItems.CHEST_VANILLA_TO_COPPER.get());
+                        output.accept(ModItems.CHEST_COPPER_TO_IRON.get());
+                        output.accept(ModItems.CHEST_IRON_TO_GOLD.get());
+                        output.accept(ModItems.CHEST_GOLD_TO_DIAMOND.get());
+                        output.accept(ModItems.CHEST_DIAMOND_TO_OBSIDIAN.get());
+                        output.accept(ModItems.CHEST_OBSIDIAN_TO_NETHERITE.get());
+
                     }).build());
 
     public static final Supplier<CreativeModeTab> INFINITY_TECH_ITEM_TAB = CREATIVE_TAB.register("infinity_tech_tab",

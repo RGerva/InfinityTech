@@ -28,6 +28,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.*;
@@ -81,6 +82,7 @@ public class ModChestEntity extends RandomizableContainerBlockEntity implements 
             case DIAMOND -> ModBlockEntities.CHEST_DIAMOND_ENTITY.get();
             case OBSIDIAN -> ModBlockEntities.CHEST_OBSIDIAN_ENTITY.get();
             case NETHERITE -> ModBlockEntities.CHEST_NETHERITE_ENTITY.get();
+            case WOOD -> null;
         };
     }
 
@@ -101,17 +103,17 @@ public class ModChestEntity extends RandomizableContainerBlockEntity implements 
     }
 
     @Override
-    protected Component getDefaultName() {
+    public Component getDefaultName() {
         return Component.translatable("block.infinity_tech.chest_" + getChestConfigs().name().toLowerCase());
     }
 
     @Override
-    protected NonNullList<ItemStack> getItems() {
+    public NonNullList<ItemStack> getItems() {
         return itemStacks;
     }
 
     @Override
-    protected void setItems(NonNullList<ItemStack> nonNullList) {
+    public void setItems(NonNullList<ItemStack> nonNullList) {
         itemStacks = NonNullList.withSize(getChestConfigs().size, ItemStack.EMPTY);
 
         for(int i = 0; i < nonNullList.size(); i++){
@@ -130,6 +132,7 @@ public class ModChestEntity extends RandomizableContainerBlockEntity implements 
             case DIAMOND -> new ModChestMenu(ModGUI.CHEST_DIAMOND_MENU.get(), i, inventory, this, eChestConfigs.DIAMOND);
             case OBSIDIAN -> new ModChestMenu(ModGUI.CHEST_OBSIDIAN_MENU.get(), i, inventory, this, eChestConfigs.OBSIDIAN);
             case NETHERITE -> new ModChestMenu(ModGUI.CHEST_NETHERITE_MENU.get(), i, inventory, this, eChestConfigs.NETHERITE);
+            case WOOD -> null;
         };
     }
 
@@ -203,6 +206,18 @@ public class ModChestEntity extends RandomizableContainerBlockEntity implements 
         if (!this.remove) {
             this.openersCounter.recheckOpeners(Objects.requireNonNull(this.getLevel()), this.getBlockPos(), this.getBlockState());
         }
+    }
+
+    public static int getOpenCount(BlockGetter blockGetter, BlockPos blockPos) {
+        BlockState blockState = blockGetter.getBlockState(blockPos);
+
+        if(blockState.hasBlockEntity()){
+            BlockEntity blockEntity = blockGetter.getBlockEntity(blockPos);
+            if(blockEntity instanceof ModChestEntity){
+                return ((ModChestEntity) blockEntity).openersCounter.getOpenerCount();
+            }
+        }
+        return 0;
     }
 
     public static void tick(Level level, BlockPos blockPos, BlockState blockState, ModChestEntity chestEntity){

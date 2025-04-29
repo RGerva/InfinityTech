@@ -10,6 +10,7 @@ package com.rgerva.infinitytech.block.custom.chest;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.blockentity.custom.chest.ModChestEntity;
 import com.rgerva.infinitytech.util.types.eChestConfigs;
 import net.minecraft.core.BlockPos;
@@ -74,6 +75,18 @@ public class ModChestBlock extends BaseEntityBlock implements SimpleWaterloggedB
 
     public eChestConfigs getChestConfigs(){
         return chestConfigs;
+    }
+
+    public static Block getBlockFromConfig(eChestConfigs eChestConfigs){
+        return switch (eChestConfigs){
+            case WOOD -> null;
+            case IRON -> ModBlocks.CHEST_IRON.get();
+            case COPPER -> ModBlocks.CHEST_COPPER.get();
+            case GOLD -> ModBlocks.CHEST_GOLD.get();
+            case DIAMOND -> ModBlocks.CHEST_DIAMOND.get();
+            case OBSIDIAN -> ModBlocks.CHEST_OBSIDIAN.get();
+            case NETHERITE -> ModBlocks.CHEST_NETHERITE.get();
+        };
     }
 
     @Override

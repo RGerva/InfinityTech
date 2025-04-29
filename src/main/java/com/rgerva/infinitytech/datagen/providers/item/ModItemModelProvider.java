@@ -106,6 +106,12 @@ public class ModItemModelProvider {
 
         basicItem(ModItems.WRENCH.get());
 
+        basicItem(ModItems.CHEST_VANILLA_TO_COPPER.get());
+        basicItem(ModItems.CHEST_COPPER_TO_IRON.get());
+        basicItem(ModItems.CHEST_IRON_TO_GOLD.get());
+        basicItem(ModItems.CHEST_GOLD_TO_DIAMOND.get());
+        basicItem(ModItems.CHEST_DIAMOND_TO_OBSIDIAN.get());
+        basicItem(ModItems.CHEST_OBSIDIAN_TO_NETHERITE.get());
 
     }
 

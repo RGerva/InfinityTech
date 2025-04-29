@@ -1,7 +1,9 @@
 package com.rgerva.infinitytech.item;
 
 import com.rgerva.infinitytech.InfinityTech;
+import com.rgerva.infinitytech.item.custom.chest.ChestUpgradeItem;
 import com.rgerva.infinitytech.item.custom.wrench.WrenchItem;
+import com.rgerva.infinitytech.util.types.eChestConfigs;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -14,9 +16,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(InfinityTech.MOD_ID);
 
-    //=====
-    //INGOT
-    //=====
+    //region INGOT
 
     public static final DeferredItem<Item> TITANIUM_INGOT = ITEMS.register("titanium_ingot",
             () -> new Item(new Item.Properties()
@@ -58,9 +58,9 @@ public class ModItems {
             () -> new Item(new Item.Properties()
                     .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "zinc_ingot")))));
 
-    //======
-    //NUGGET
-    //======
+    //endregion
+
+    //region NUGGET
 
     public static final DeferredItem<Item> TITANIUM_NUGGET = ITEMS.register("titanium_nugget",
             () -> new Item(new Item.Properties()
@@ -102,9 +102,9 @@ public class ModItems {
             () -> new Item(new Item.Properties()
                     .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "zinc_nugget")))));
 
-    //===
-    //RAW
-    //===
+    //endregion
+
+    //region RAW
 
     public static final DeferredItem<Item> TITANIUM_RAW = ITEMS.register("titanium_raw",
             () -> new Item(new Item.Properties()
@@ -142,9 +142,9 @@ public class ModItems {
             () -> new Item(new Item.Properties()
                     .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "zinc_raw")))));
 
-    //=====
-    //TOOLS
-    //=====
+    //endregion
+
+    //region TOOLS
 
     public static final DeferredItem<Item> WRENCH = ITEMS.register("wrench",
             () -> new WrenchItem(new Item.Properties()
@@ -171,10 +171,9 @@ public class ModItems {
     public static final DeferredItem<HoeItem> TITANIUM_HOE = ITEMS.register("titanium_hoe",
             () -> new HoeItem(ModToolTiers.TITANIUM, -3.5F, -0.5F, new Item.Properties()
                     .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "titanium_hoe")))));
+    //endregion
 
-    //=====
-    //ARMOR
-    //=====
+    //region ARMOR
 
     public static final DeferredItem<ArmorItem> TITANIUM_HELMET = ITEMS.register("titanium_helmet",
             () -> new ArmorItem(ModArmorMaterials.TITANIUM_ARMOR_MATERIAL, ArmorType.HELMET, new Item.Properties()
@@ -197,6 +196,41 @@ public class ModItems {
                     .stacksTo(1)
                     .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "titanium_horse_armor")))));
 
+    //endregion
+
+    //region CHEST UPGRADE
+
+    public static final DeferredItem<ChestUpgradeItem> CHEST_COPPER_TO_IRON = ITEMS.register("chest_copper_to_iron",
+            () -> new ChestUpgradeItem(eChestConfigs.eChestUpgrade.COPPER_TO_IRON, new Item.Properties()
+                    .stacksTo(1)
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "chest_copper_to_iron")))));
+
+    public static final DeferredItem<ChestUpgradeItem> CHEST_DIAMOND_TO_OBSIDIAN = ITEMS.register("chest_diamond_to_obsidian",
+            () -> new ChestUpgradeItem(eChestConfigs.eChestUpgrade.DIAMOND_TO_OBSIDIAN, new Item.Properties()
+                    .stacksTo(1)
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "chest_diamond_to_obsidian")))));
+
+    public static final DeferredItem<ChestUpgradeItem> CHEST_GOLD_TO_DIAMOND = ITEMS.register("chest_gold_to_diamond",
+            () -> new ChestUpgradeItem(eChestConfigs.eChestUpgrade.GOLD_TO_DIAMOND, new Item.Properties()
+                    .stacksTo(1)
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "chest_gold_to_diamond")))));
+
+    public static final DeferredItem<ChestUpgradeItem> CHEST_IRON_TO_GOLD = ITEMS.register("chest_iron_to_gold",
+            () -> new ChestUpgradeItem(eChestConfigs.eChestUpgrade.IRON_TO_GOLD, new Item.Properties()
+                    .stacksTo(1)
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "chest_iron_to_gold")))));
+
+    public static final DeferredItem<ChestUpgradeItem> CHEST_OBSIDIAN_TO_NETHERITE = ITEMS.register("chest_obsidian_to_netherite",
+            () -> new ChestUpgradeItem(eChestConfigs.eChestUpgrade.OBSIDIAN_TO_NETHERITE, new Item.Properties()
+                    .stacksTo(1)
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "chest_obsidian_to_netherite")))));
+
+    public static final DeferredItem<ChestUpgradeItem> CHEST_VANILLA_TO_COPPER = ITEMS.register("chest_vanilla_to_copper",
+            () -> new ChestUpgradeItem(eChestConfigs.eChestUpgrade.VANILLA_TO_COPPER, new Item.Properties()
+                    .stacksTo(1)
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "chest_vanilla_to_copper")))));
+
+    //endregion
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

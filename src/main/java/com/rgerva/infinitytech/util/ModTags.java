@@ -24,6 +24,7 @@ public class ModTags {
     public static class Items {
         public static final TagKey<Item> TRANSFORMABLE_ITEMS = createTag("transformable_items");
         public static final TagKey<Item> TITANIUM_REPAIR = createTag("titanium_repair");
+        public static final TagKey<Item> MOD_UPGRADES = createTag(InfinityTech.MOD_ID + "_upgrade");
 
         private static TagKey<Item> createTag(String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, name));
