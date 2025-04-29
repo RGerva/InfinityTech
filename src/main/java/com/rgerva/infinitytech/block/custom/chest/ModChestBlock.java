@@ -10,7 +10,7 @@ package com.rgerva.infinitytech.block.custom.chest;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import com.rgerva.infinitytech.blockentity.custom.chest._ModChestBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.chest.ModChestEntity;
 import com.rgerva.infinitytech.util.types.eChestConfigs;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -29,6 +29,8 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -81,7 +83,12 @@ public class ModChestBlock extends BaseEntityBlock implements SimpleWaterloggedB
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return null;
+        return new ModChestEntity(blockPos, blockState, getChestConfigs());
+    }
+
+    @Override
+    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
+        return createTickerHelper(blockEntityType, ModChestEntity.getEntityType(getChestConfigs()), ModChestEntity::tick);
     }
 
     @Override
@@ -113,10 +120,10 @@ public class ModChestBlock extends BaseEntityBlock implements SimpleWaterloggedB
     protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
         if (!state.is(newState.getBlock())) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof _ModChestBlockEntity) {
-                ((_ModChestBlockEntity) blockEntity).removeAdornments();
+            if (blockEntity instanceof ModChestEntity) {
+                //((ModChestEntity) blockEntity).removeAdornments();
 
-                Containers.dropContents(level, pos, (_ModChestBlockEntity) blockEntity);
+                Containers.dropContents(level, pos, (ModChestEntity) blockEntity);
                 level.updateNeighbourForOutputSignal(pos, this);
             }
 
@@ -150,9 +157,9 @@ public class ModChestBlock extends BaseEntityBlock implements SimpleWaterloggedB
             return null;
         }
 
-//        if (level.getBlockEntity(pos) instanceof ModChestBlockEntity chestBlockEntity) {
-//            return chestBlockEntity;
-//        }
+        if (level.getBlockEntity(pos) instanceof ModChestEntity chestBlockEntity) {
+            return chestBlockEntity;
+        }
         return null;
     }
 
@@ -163,9 +170,9 @@ public class ModChestBlock extends BaseEntityBlock implements SimpleWaterloggedB
 
     @Override
     protected int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
-//        if (!isBlockedChestByBlock(level, pos) && level.getBlockEntity(pos) instanceof ModChestBlockEntity chestBlockEntity) {
-//            return AbstractContainerMenu.getRedstoneSignalFromContainer(chestBlockEntity);
-//        }
+        if (!isBlockedChestByBlock(level, pos) && level.getBlockEntity(pos) instanceof ModChestEntity chestBlockEntity) {
+            return AbstractContainerMenu.getRedstoneSignalFromContainer(chestBlockEntity);
+        }
         return AbstractContainerMenu.getRedstoneSignalFromContainer(null);
     }
 
@@ -193,8 +200,8 @@ public class ModChestBlock extends BaseEntityBlock implements SimpleWaterloggedB
     protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         BlockEntity blockEntity = level.getBlockEntity(pos);
 
-//        if (blockEntity instanceof ModChestBlockEntity) {
-//            ((ModChestBlockEntity) blockEntity).recheckOpen();
-//        }
+        if (blockEntity instanceof ModChestEntity) {
+            ((ModChestEntity) blockEntity).recheckOpen();
+        }
     }
 }

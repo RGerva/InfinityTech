@@ -17,6 +17,7 @@ import com.rgerva.infinitytech.block.custom.solar_panel.ModSolarPanelBlock;
 import com.rgerva.infinitytech.item.ModItems;
 import com.rgerva.infinitytech.util.types.eBatteryConfigs;
 import com.rgerva.infinitytech.util.types.eCablesConfigs;
+import com.rgerva.infinitytech.util.types.eChestConfigs;
 import com.rgerva.infinitytech.util.types.eSolarPanelConfigs;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -564,14 +565,14 @@ public class ModBlocks {
     //region CHEST
 
     public static final DeferredBlock<Block> CHEST_COPPER = registerBlock("chest_copper",
-            () -> new CopperChestBlock(BlockBehaviour.Properties.of()
+            () -> new ModChestBlock(eChestConfigs.COPPER, BlockBehaviour.Properties.of()
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "chest_copper")))
                     .strength(3.0F, 6.0F)
                     .sound(SoundType.COPPER)
                     .mapColor(MapColor.METAL)));
 
     public static final DeferredBlock<Block> CHEST_IRON = registerBlock("chest_iron",
-            () -> new IronChestBlock(BlockBehaviour.Properties.of()
+            () -> new ModChestBlock(eChestConfigs.IRON, BlockBehaviour.Properties.of()
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "chest_iron")))
                     .strength(5.0F, 6.0F)
                     .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
@@ -579,7 +580,7 @@ public class ModBlocks {
                     .mapColor(MapColor.METAL)));
 
     public static final DeferredBlock<Block> CHEST_GOLD = registerBlock("chest_gold",
-            () -> new GoldChestBlock(BlockBehaviour.Properties.of()
+            () -> new ModChestBlock(eChestConfigs.GOLD, BlockBehaviour.Properties.of()
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "chest_gold")))
                     .strength(3.0F, 6.0F)
                     .instrument(NoteBlockInstrument.BELL)
@@ -587,14 +588,14 @@ public class ModBlocks {
                     .mapColor(MapColor.GOLD)));
 
     public static final DeferredBlock<Block> CHEST_DIAMOND = registerBlock("chest_diamond",
-            () -> new DiamondChestBlock(BlockBehaviour.Properties.of()
+            () -> new ModChestBlock(eChestConfigs.DIAMOND, BlockBehaviour.Properties.of()
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "chest_diamond")))
                     .strength(5.0F, 6.0F)
                     .sound(SoundType.METAL)
                     .mapColor(MapColor.DIAMOND)));
 
     public static final DeferredBlock<Block> CHEST_OBSIDIAN = registerBlock("chest_obsidian",
-            () -> new ObsidianChestBlock(BlockBehaviour.Properties.of()
+            () -> new ModChestBlock(eChestConfigs.OBSIDIAN, BlockBehaviour.Properties.of()
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "chest_obsidian")))
                     .strength(22.5F, 1200.0F)
                     .instrument(NoteBlockInstrument.BASEDRUM)
@@ -602,7 +603,7 @@ public class ModBlocks {
                     .mapColor(MapColor.COLOR_BLACK)));
 
     public static final DeferredBlock<Block> CHEST_NETHERITE = registerBlock("chest_netherite",
-            () -> new NetheriteChestBlock(BlockBehaviour.Properties.of()
+            () -> new ModChestBlock(eChestConfigs.NETHERITE, BlockBehaviour.Properties.of()
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "chest_netherite")))
                     .sound(SoundType.ANCIENT_DEBRIS)
                     .strength(22.5F, 1200.0F)

@@ -17,6 +17,7 @@ import com.rgerva.infinitytech.blockentity.custom.generator.ModCoalGeneratorEnti
 import com.rgerva.infinitytech.blockentity.custom.solar_panel.ModSolarPanelEntity;
 import com.rgerva.infinitytech.util.types.eBatteryConfigs;
 import com.rgerva.infinitytech.util.types.eCablesConfigs;
+import com.rgerva.infinitytech.util.types.eChestConfigs;
 import com.rgerva.infinitytech.util.types.eSolarPanelConfigs;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -89,27 +90,35 @@ public class ModBlockEntities {
 
     //region CHEST
 
-    public static final Supplier<BlockEntityType<IronChestBlockEntity>> CHEST_IRON_ENTITY = BLOCK_ENTITIES.register("chest_iron",
-            () -> new BlockEntityType<>(IronChestBlockEntity::new, ModBlocks.CHEST_IRON.get()));
+    public static final Supplier<BlockEntityType<ModChestEntity>> CHEST_IRON_ENTITY = BLOCK_ENTITIES.register("chest_iron",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModChestEntity(blockPos, blockState,
+                    eChestConfigs.IRON)), ModBlocks.CHEST_IRON.get()));
 
-    public static final Supplier<BlockEntityType<CopperChestBlockEntity>> CHEST_COPPER_ENTITY = BLOCK_ENTITIES.register("chest_copper",
-            () -> new BlockEntityType<>(CopperChestBlockEntity::new, ModBlocks.CHEST_COPPER.get()));
+    public static final Supplier<BlockEntityType<ModChestEntity>> CHEST_COPPER_ENTITY = BLOCK_ENTITIES.register("chest_copper",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModChestEntity(blockPos, blockState,
+                    eChestConfigs.COPPER)), ModBlocks.CHEST_COPPER.get()));
 
-    public static final Supplier<BlockEntityType<GoldChestBlockEntity>> CHEST_GOLD_ENTITY = BLOCK_ENTITIES.register("chest_gold",
-            () -> new BlockEntityType<>(GoldChestBlockEntity::new, ModBlocks.CHEST_GOLD.get()));
+    public static final Supplier<BlockEntityType<ModChestEntity>> CHEST_GOLD_ENTITY = BLOCK_ENTITIES.register("chest_gold",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModChestEntity(blockPos, blockState,
+                    eChestConfigs.GOLD)), ModBlocks.CHEST_GOLD.get()));
 
-    public static final Supplier<BlockEntityType<DiamondChestBlockEntity>> CHEST_DIAMOND_ENTITY = BLOCK_ENTITIES.register("chest_diamond",
-            () -> new BlockEntityType<>(DiamondChestBlockEntity::new, ModBlocks.CHEST_DIAMOND.get()));
+    public static final Supplier<BlockEntityType<ModChestEntity>> CHEST_DIAMOND_ENTITY = BLOCK_ENTITIES.register("chest_diamond",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModChestEntity(blockPos, blockState,
+                    eChestConfigs.DIAMOND)), ModBlocks.CHEST_DIAMOND.get()));
 
-    public static final Supplier<BlockEntityType<ObsidianChestBlockEntity>> CHEST_OBSIDIAN_ENTITY = BLOCK_ENTITIES.register("chest_obsidian",
-            () -> new BlockEntityType<>(ObsidianChestBlockEntity::new, ModBlocks.CHEST_OBSIDIAN.get()));
+    public static final Supplier<BlockEntityType<ModChestEntity>> CHEST_OBSIDIAN_ENTITY = BLOCK_ENTITIES.register("chest_obsidian",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModChestEntity(blockPos, blockState,
+                    eChestConfigs.OBSIDIAN)), ModBlocks.CHEST_OBSIDIAN.get()));
 
-    public static final Supplier<BlockEntityType<NetheriteChestBlockEntity>> CHEST_NETHERITE_ENTITY = BLOCK_ENTITIES.register("chest_netherite",
-            () -> new BlockEntityType<>(NetheriteChestBlockEntity::new, ModBlocks.CHEST_NETHERITE.get()));
+    public static final Supplier<BlockEntityType<ModChestEntity>> CHEST_NETHERITE_ENTITY = BLOCK_ENTITIES.register("chest_netherite",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModChestEntity(blockPos, blockState,
+                    eChestConfigs.NETHERITE)), ModBlocks.CHEST_NETHERITE.get()));
+
+    //endregion
 
     public static final Supplier<BlockEntityType<ModCoalGeneratorEntity>> COAL_GENERATOR_ENTITY = BLOCK_ENTITIES.register("generic_generator",
             () -> new BlockEntityType<>(ModCoalGeneratorEntity::new, ModBlocks.COAL_GENERATOR.get()));
-    //endregion
+
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

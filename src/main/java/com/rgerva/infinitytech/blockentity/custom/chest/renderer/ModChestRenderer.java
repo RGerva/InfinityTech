@@ -5,12 +5,11 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.block.ModBlocks;
-import com.rgerva.infinitytech.block.custom.chest._ModChestBlock;
-import com.rgerva.infinitytech.blockentity.custom.chest._ModChestBlockEntity;
+import com.rgerva.infinitytech.block.custom.chest.ModChestBlock;
 import com.rgerva.infinitytech.blockentity.custom.chest.model.ModChestModel;
 import com.rgerva.infinitytech.blockentity.custom.chest.model.ModelItem;
 import com.rgerva.infinitytech.network.interfaces.IChestPackageUpdate;
-import com.rgerva.infinitytech.util.types._eChestConfigs;
+import com.rgerva.infinitytech.util.types.eChestConfigs;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -62,37 +61,36 @@ public class ModChestRenderer<T extends BlockEntity & LidBlockEntity> implements
 
     @Override
     public void render(T blockEntity, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
-        _ModChestBlockEntity chestBlockEntity = (_ModChestBlockEntity) blockEntity;
 
-        Level level = chestBlockEntity.getLevel();
+        Level level = blockEntity.getLevel();
         boolean useTileEntityBlockState = level != null;
 
-        BlockState blockState = useTileEntityBlockState ? chestBlockEntity.getBlockState() : ModBlocks.CHEST_IRON.get().defaultBlockState().setValue(_ModChestBlock.FACING, Direction.SOUTH);
+        BlockState blockState = useTileEntityBlockState ? blockEntity.getBlockState() : ModBlocks.CHEST_IRON.get().defaultBlockState().setValue(ModChestBlock.FACING, Direction.SOUTH);
         Block block = blockState.getBlock();
 
-        _eChestConfigs configs = Objects.requireNonNull(_ModChestBlock.getTypeFromBlock(block));
+        eChestConfigs configs = Objects.requireNonNull(ModChestBlock.getTypeFromBlock(block));
 
-        if (block instanceof _ModChestBlock) {
+        if (block instanceof ModChestBlock) {
             poseStack.pushPose();
 
-            float f = blockState.getValue(_ModChestBlock.FACING).toYRot();
+            float f = blockState.getValue(ModChestBlock.FACING).toYRot();
 
             poseStack.translate(0.5D, 0.5D, 0.5D);
             poseStack.mulPose(Axis.YP.rotationDegrees(-f));
             poseStack.translate(-0.5D, -0.5D, -0.5D);
 
-            float openness = chestBlockEntity.getOpenNess(partialTick);
+            float openness = blockEntity.getOpenNess(partialTick);
             openness = 1.0F - openness;
             openness = 1.0F - openness * openness * openness;
 
 
-            Material material = new Material(Sheets.CHEST_SHEET, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "block/chest_" + configs.getEnumName().toLowerCase()));
+            Material material = new Material(Sheets.CHEST_SHEET, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "block/chest_" + configs.name().toLowerCase()));
             VertexConsumer vertexConsumer = material.buffer(bufferSource, RenderType::entityCutout);
             this.render(poseStack, vertexConsumer, this.model, openness, packedLight, packedOverlay);
 
             poseStack.popPose();
 
-            if (chestBlockEntity instanceof IChestPackageUpdate iChest && Vec3.atCenterOf(blockEntity.getBlockPos()).closerThan(this.renderer.camera.getPosition(), 128d)) {
+            if (blockEntity instanceof IChestPackageUpdate iChest && Vec3.atCenterOf(blockEntity.getBlockPos()).closerThan(this.renderer.camera.getPosition(), 128d)) {
                 float rotation = (float) (360D * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL) - partialTick;
 
                 for (int j = 0; j < MODEL_ITEMS.size() - 1; j++) {

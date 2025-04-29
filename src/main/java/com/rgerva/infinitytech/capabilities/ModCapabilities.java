@@ -4,7 +4,7 @@ import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.blockentity.ModBlockEntities;
 import com.rgerva.infinitytech.blockentity.custom.battery.ModBatteryEntity;
 import com.rgerva.infinitytech.blockentity.custom.cables.ModCableEntity;
-import com.rgerva.infinitytech.blockentity.custom.chest._ModChestBlockEntity;
+import com.rgerva.infinitytech.blockentity.custom.chest.ModChestEntity;
 import com.rgerva.infinitytech.blockentity.custom.generator.ModCoalGeneratorEntity;
 import com.rgerva.infinitytech.blockentity.custom.solar_panel.ModSolarPanelEntity;
 import net.neoforged.neoforge.capabilities.Capabilities;
@@ -52,7 +52,7 @@ public class ModCapabilities {
                 ModBlockEntities.GOLD_CABLE_ENTITY.get(), ModCableEntity::getEnergyStorageCapability);
 
         event.registerBlock(Capabilities.ItemHandler.BLOCK, (level, blockPos, blockState, blockEntity, direction) ->
-                        level.getBlockEntity(blockPos) instanceof _ModChestBlockEntity chestBlockEntity ? new InvWrapper(chestBlockEntity) : null,
+                        level.getBlockEntity(blockPos) instanceof ModChestEntity chestBlockEntity ? new InvWrapper(chestBlockEntity) : null,
                 ModBlocks.CHEST_IRON.get(), ModBlocks.CHEST_COPPER.get(),
                 ModBlocks.CHEST_GOLD.get(), ModBlocks.CHEST_DIAMOND.get(),
                 ModBlocks.CHEST_OBSIDIAN.get(), ModBlocks.CHEST_NETHERITE.get());

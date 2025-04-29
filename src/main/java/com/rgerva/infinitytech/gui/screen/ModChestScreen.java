@@ -44,7 +44,7 @@ public class ModChestScreen extends AbstractContainerScreen<ModChestMenu> implem
         int y = (this.height - this.imageHeight) / 2;
 
         guiGraphics.blit(RenderType::guiTextured,
-                ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "textures/gui/container/chest/chest_" + ModChestMenu.getChestConfig().getEnumName().toLowerCase() + ".png"),
+                ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "textures/gui/container/chest/chest_" + ModChestMenu.getChestConfig().name().toLowerCase() + ".png"),
                 x,
                 y,
                 0,
