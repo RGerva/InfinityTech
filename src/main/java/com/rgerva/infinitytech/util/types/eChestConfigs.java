@@ -8,14 +8,9 @@
 
 package com.rgerva.infinitytech.util.types;
 
-import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.blockentity.custom.chest.ModChestEntity;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-
-import java.util.List;
 
 public enum eChestConfigs {
     WOOD(0,0,0,0,0,0),
@@ -44,18 +39,6 @@ public enum eChestConfigs {
 
     public int getRowCount() {
         return this.size / this.rowLength;
-    }
-
-    public static List<Block> getChestBlocks(eChestConfigs type) {
-        return switch (type) {
-            case IRON -> List.of(ModBlocks.CHEST_IRON.get());
-            case GOLD -> List.of(ModBlocks.CHEST_GOLD.get());
-            case DIAMOND -> List.of(ModBlocks.CHEST_DIAMOND.get());
-            case COPPER -> List.of(ModBlocks.CHEST_COPPER.get());
-            case OBSIDIAN -> List.of(ModBlocks.CHEST_OBSIDIAN.get());
-            case NETHERITE -> List.of(ModBlocks.CHEST_NETHERITE.get());
-            case WOOD -> List.of(Blocks.CHEST);
-        };
     }
 
     public ModChestEntity makeEntity(BlockPos blockPos, BlockState blockState){

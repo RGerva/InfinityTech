@@ -154,5 +154,6 @@
   "tooltip.infinity_tech.solar_panel.info": "The efficiency depends on the current time",
   "tooltip.infinity_tech.cable.transfer_rate": "This cable can transfer %s/t.",
   "tooltip.infinity_tech.cable.info": "Wrench can be used to break cables instantly.",
-  "tooltip.infinity_tech.wrench.info": "Wrench can be used to drop blocks instantly."
+  "tooltip.infinity_tech.wrench.info": "Wrench can be used to drop blocks instantly.",
+  "tooltip.infinity_tech.chest_upgrade.info": "Can upgrade chest tiers"
 }
