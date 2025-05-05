@@ -11,14 +11,12 @@ package com.rgerva.infinitytech.block;
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.block.custom.battery.ModBatteryBlock;
 import com.rgerva.infinitytech.block.custom.cables.ModCableBlock;
-import com.rgerva.infinitytech.block.custom.chest.*;
+import com.rgerva.infinitytech.block.custom.chest.ModChestBlock;
+import com.rgerva.infinitytech.block.custom.furnace.ModFurnaceBlock;
 import com.rgerva.infinitytech.block.custom.generator.ModCoalGeneratorBlock;
 import com.rgerva.infinitytech.block.custom.solar_panel.ModSolarPanelBlock;
 import com.rgerva.infinitytech.item.ModItems;
-import com.rgerva.infinitytech.util.types.eBatteryConfigs;
-import com.rgerva.infinitytech.util.types.eCablesConfigs;
-import com.rgerva.infinitytech.util.types.eChestConfigs;
-import com.rgerva.infinitytech.util.types.eSolarPanelConfigs;
+import com.rgerva.infinitytech.util.types.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -617,6 +615,17 @@ public class ModBlocks {
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "coal_generator")))
                     .strength(3F)
                     .requiresCorrectToolForDrops()));
+    //endregion
+
+    //region FURNACES
+
+    public static final DeferredBlock<Block> COPPER_FURNACE = registerBlock("furnace_copper",
+            () -> new ModFurnaceBlock(eFurnaceConfigs.COPPER, BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "furnace_copper")))
+                    .strength(3.0F, 6.0F)
+                    .sound(SoundType.COPPER)
+                    .requiresCorrectToolForDrops()));
+
     //endregion
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

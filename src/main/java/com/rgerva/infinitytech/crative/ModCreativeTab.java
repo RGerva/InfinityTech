@@ -177,6 +177,8 @@ public class ModCreativeTab {
 
                         output.accept(ModBlocks.COAL_GENERATOR.get());
 
+                        output.accept(ModBlocks.COPPER_FURNACE.get());
+
                     }).build());
 
     public static void addCreative(BuildCreativeModeTabContentsEvent event) {

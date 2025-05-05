@@ -122,6 +122,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         dropSelf(ModBlocks.COAL_GENERATOR.get());
 
+        dropSelf(ModBlocks.COPPER_FURNACE.get());
+
     }
 
     protected void LootTableOre(Block pInput, Item pOutput, float minDrops, float maxDrops) {

@@ -150,7 +150,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.CHEST_GOLD.get())
                 .add(ModBlocks.CHEST_DIAMOND.get())
                 .add(ModBlocks.CHEST_OBSIDIAN.get())
-                .add(ModBlocks.CHEST_NETHERITE.get());
+                .add(ModBlocks.CHEST_NETHERITE.get())
+
+                .add(ModBlocks.COPPER_FURNACE.get());
 
         tag(BlockTags.MINEABLE_WITH_SHOVEL)
                 .add(ModBlocks.TITANIUM_RAW_BLOCK.get())
@@ -230,7 +232,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.CHEST_GOLD.get())
                 .add(ModBlocks.CHEST_DIAMOND.get())
                 .add(ModBlocks.CHEST_OBSIDIAN.get())
-                .add(ModBlocks.CHEST_NETHERITE.get());
+                .add(ModBlocks.CHEST_NETHERITE.get())
+
+                .add(ModBlocks.COPPER_FURNACE.get());
 
         tag(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(ModBlocks.LEAD_NETHER_ORE.get())
@@ -259,6 +263,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
                 .add(ModBlocks.ZINC_NETHER_ORE.get())
                 .add(ModBlocks.ZINC_END_ORE.get());
+
+        tag(Tags.Blocks.PLAYER_WORKSTATIONS_FURNACES)
+                .add(ModBlocks.COPPER_FURNACE.get());
 
         tag(ModTags.Blocks.NEEDS_TITANIUM_TOOL)
                 .add(ModBlocks.STEEL_BLOCK.get());

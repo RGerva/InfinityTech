@@ -20,11 +20,15 @@ import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
 import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+
+import static net.minecraft.client.data.models.BlockModelGenerators.createBooleanModelDispatch;
+import static net.minecraft.client.data.models.BlockModelGenerators.createHorizontalFacingDispatch;
 
 public class ModBlockStateProvider {
 
@@ -127,6 +131,7 @@ public class ModBlockStateProvider {
 
         blockWithItem(ModBlocks.COAL_GENERATOR);
 
+        furnaceBlockWithItem(ModBlocks.COPPER_FURNACE);
     }
 
 
@@ -151,6 +156,33 @@ public class ModBlockStateProvider {
                         modelOutput);
 
         BlockModelGenerators.createRotatedVariant(deferredBlock.get(), getBlockTexture(deferredBlock), resourcelocation);
+    }
+
+    private static void furnaceBlockWithItem(DeferredBlock<?> deferredBlock){
+        Block block = deferredBlock.get();
+
+        ResourceLocation modelLocation = TexturedModel.ORIENTABLE.get(block)
+                .updateTextures(textureMapping -> {
+                    textureMapping.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(block, "_side"));
+                    textureMapping.put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_front"));
+                    textureMapping.put(TextureSlot.UP, TextureMapping.getBlockTexture(block, "_side"));
+                    textureMapping.put(TextureSlot.DOWN, TextureMapping.getBlockTexture(block, "_side"));
+                })
+                .create(block, modelOutput);
+
+        ResourceLocation modelLocationOn = TexturedModel.ORIENTABLE.get(block)
+                .updateTextures(textureMapping -> {
+                    textureMapping.put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_front_on"));
+                })
+                .createWithSuffix(block, "_on", modelOutput);
+
+        blockStateOutput.accept(
+                        MultiVariantGenerator.multiVariant(block)
+                                .with(createBooleanModelDispatch(BlockStateProperties.LIT, modelLocationOn, modelLocation))
+                                .with(createHorizontalFacingDispatch())
+                );
+
+        BlockModelGenerators.createSimpleBlock(block, modelLocation);
     }
 
     /**
