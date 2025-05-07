@@ -13,12 +13,10 @@ import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.blockentity.custom.battery.ModBatteryEntity;
 import com.rgerva.infinitytech.blockentity.custom.cables.ModCableEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.*;
+import com.rgerva.infinitytech.blockentity.custom.furnace.ModFurnaceEntity;
 import com.rgerva.infinitytech.blockentity.custom.generator.ModCoalGeneratorEntity;
 import com.rgerva.infinitytech.blockentity.custom.solar_panel.ModSolarPanelEntity;
-import com.rgerva.infinitytech.util.types.eBatteryConfigs;
-import com.rgerva.infinitytech.util.types.eCablesConfigs;
-import com.rgerva.infinitytech.util.types.eChestConfigs;
-import com.rgerva.infinitytech.util.types.eSolarPanelConfigs;
+import com.rgerva.infinitytech.util.types.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
@@ -119,6 +117,14 @@ public class ModBlockEntities {
     //region GENERATOR
     public static final Supplier<BlockEntityType<ModCoalGeneratorEntity>> COAL_GENERATOR_ENTITY = BLOCK_ENTITIES.register("generic_generator",
             () -> new BlockEntityType<>(ModCoalGeneratorEntity::new, ModBlocks.COAL_GENERATOR.get()));
+
+    //endregion
+
+    //region FURNACE
+
+    public static final Supplier<BlockEntityType<ModFurnaceEntity>> COPPER_FURNACE_ENTITY = BLOCK_ENTITIES.register("copper_furnace",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModFurnaceEntity(blockPos, blockState,
+                    eFurnaceConfigs.COPPER)), ModBlocks.COPPER_FURNACE.get()));
 
     //endregion
 

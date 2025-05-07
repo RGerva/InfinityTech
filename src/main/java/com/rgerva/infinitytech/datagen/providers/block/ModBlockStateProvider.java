@@ -163,16 +163,19 @@ public class ModBlockStateProvider {
 
         ResourceLocation modelLocation = TexturedModel.ORIENTABLE.get(block)
                 .updateTextures(textureMapping -> {
-                    textureMapping.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(block, "_side"));
                     textureMapping.put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_front"));
-                    textureMapping.put(TextureSlot.UP, TextureMapping.getBlockTexture(block, "_side"));
-                    textureMapping.put(TextureSlot.DOWN, TextureMapping.getBlockTexture(block, "_side"));
+                    textureMapping.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(block, "_side"));
+                    textureMapping.put(TextureSlot.TOP, TextureMapping.getBlockTexture(block, "_side"));
+                    textureMapping.put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(block, "_side"));
                 })
                 .create(block, modelOutput);
 
         ResourceLocation modelLocationOn = TexturedModel.ORIENTABLE.get(block)
                 .updateTextures(textureMapping -> {
                     textureMapping.put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_front_on"));
+                    textureMapping.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(block, "_side"));
+                    textureMapping.put(TextureSlot.TOP, TextureMapping.getBlockTexture(block, "_side"));
+                    textureMapping.put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(block, "_side"));
                 })
                 .createWithSuffix(block, "_on", modelOutput);
 

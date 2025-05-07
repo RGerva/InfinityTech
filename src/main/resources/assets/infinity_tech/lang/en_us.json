@@ -125,6 +125,8 @@
 
   "block.infinity_tech.coal_generator": "Coal Generator",
 
+  "block.infinity_tech.furnace_copper": "Copper Furnace",
+
   "item.infinity_tech.wrench": "Wrench",
   "item.infinity_tech.chest_copper_to_iron": "Upgrade Copper Chest to Iron Chest",
   "item.infinity_tech.chest_diamond_to_obsidian": "Upgrade Diamond Chest to Obsidian Chest",
@@ -155,5 +157,8 @@
   "tooltip.infinity_tech.cable.transfer_rate": "This cable can transfer %s/t.",
   "tooltip.infinity_tech.cable.info": "Wrench can be used to break cables instantly.",
   "tooltip.infinity_tech.wrench.info": "Wrench can be used to drop blocks instantly.",
-  "tooltip.infinity_tech.chest_upgrade.info": "Can upgrade chest tiers"
+  "tooltip.infinity_tech.chest_upgrade.info": "Can upgrade chest tiers",
+  "tooltip.infinity_tech.furnace_fuel.info" : "Fuel Input",
+  "tooltip.infinity_tech.furnace_input.info" : "Input Item",
+  "tooltip.infinity_tech.furnace_output.info" : "Output Item"
 }

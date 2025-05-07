@@ -52,6 +52,7 @@ public class ModBusEvents {
         event.register(ModGUI.CHEST_NETHERITE_MENU.get(), ModChestScreen::new);
 
         event.register(ModGUI.COAL_GENERATOR_MENU.get(), ModCoalGeneratorScreen::new);
+        event.register(ModGUI.FURNACE_MENU.get(), ModFurnaceScreen::new);
     }
 
     @SubscribeEvent

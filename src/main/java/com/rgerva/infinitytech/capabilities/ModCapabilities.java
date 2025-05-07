@@ -59,5 +59,6 @@ public class ModCapabilities {
 
         event.registerBlockEntity(Capabilities.EnergyStorage.BLOCK,
                 ModBlockEntities.COAL_GENERATOR_ENTITY.get(), ModCoalGeneratorEntity::getEnergyStorageCapability);
+
     }
 }

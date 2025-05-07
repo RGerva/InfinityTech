@@ -45,6 +45,9 @@ public class ModGUI {
     public static final Supplier<MenuType<ModCoalGeneratorMenu>> COAL_GENERATOR_MENU =
             registerMenuType("coal_generator", ModCoalGeneratorMenu::new);
 
+    public static final Supplier<MenuType<ModFurnaceMenu>> FURNACE_MENU =
+            registerMenuType("furnace_menu", ModFurnaceMenu::new);
+
     private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));
     }
