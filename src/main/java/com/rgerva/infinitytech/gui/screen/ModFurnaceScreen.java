@@ -57,9 +57,9 @@ public class ModFurnaceScreen extends AbstractContainerScreen<ModFurnaceMenu> {
         super.renderTooltip(guiGraphics, mouseX, mouseY);
 
         List<Component> components = new ArrayList<>(3);
-        components.add(Component.translatable("tooltip.infinity_tech.furnace_input.info"));
-        components.add(Component.translatable("tooltip.infinity_tech.furnace_fuel.info"));
-        components.add(Component.translatable("tooltip.infinity_tech.furnace_output.info"));
+//        components.add(Component.translatable("tooltip.infinity_tech.furnace_input.info"));
+//        components.add(Component.translatable("tooltip.infinity_tech.furnace_fuel.info"));
+//        components.add(Component.translatable("tooltip.infinity_tech.furnace_output.info"));
 
         guiGraphics.renderTooltip(font, components, Optional.empty(), mouseX, mouseY);
     }

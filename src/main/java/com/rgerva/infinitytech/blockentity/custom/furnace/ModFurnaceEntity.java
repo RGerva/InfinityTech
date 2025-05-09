@@ -44,14 +44,11 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
-
-import static java.lang.Math.clamp;
 
 public class ModFurnaceEntity extends BlockEntity implements MenuProvider, ModSyncPackages, RecipeCraftingHolder {
     private final eFurnaceConfigs furnaceConfig;
@@ -71,7 +68,7 @@ public class ModFurnaceEntity extends BlockEntity implements MenuProvider, ModSy
     public int cookTime;
     public int totalCookTime;
 
-    public final ItemStackHandler itemHandler = new ItemStackHandler(2){
+    public final ItemStackHandler itemHandler = new ItemStackHandler(3){
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
@@ -96,6 +93,7 @@ public class ModFurnaceEntity extends BlockEntity implements MenuProvider, ModSy
                 return switch (i) {
                     case 0 -> ModFurnaceEntity.this.cookTime;
                     case 1 -> ModFurnaceEntity.this.totalCookTime;
+                    case 2 -> ModFurnaceEntity.this.furnaceBurnTime;
                     default -> 0;
                 };
             }
@@ -105,6 +103,7 @@ public class ModFurnaceEntity extends BlockEntity implements MenuProvider, ModSy
                 switch (i){
                     case 0 -> ModFurnaceEntity.this.cookTime = i1;
                     case 1 -> ModFurnaceEntity.this.totalCookTime = i1;
+                    case 2 -> ModFurnaceEntity.this.furnaceBurnTime = i1;
                 }
             }
 
@@ -202,43 +201,43 @@ public class ModFurnaceEntity extends BlockEntity implements MenuProvider, ModSy
     }
 
     public static void tick(Level level, BlockPos blockPos, BlockState blockState, ModFurnaceEntity furnaceEntity){
-        if(level.isClientSide()){
-            if(furnaceEntity.totalCookTime != furnaceEntity.getCookTime()){
-                furnaceEntity.totalCookTime = furnaceEntity.getCookTime();
-            }
-            if(furnaceEntity.isBurning()){
-                --furnaceEntity.furnaceBurnTime;
-            }
-            furnaceEntity.checkRecipeType();
-
-            ItemStack itemStack = furnaceEntity.itemHandler.getStackInSlot(FUEL);
-            if(furnaceEntity.isBurning() || !itemStack.isEmpty() && !furnaceEntity.itemHandler.getStackInSlot(INPUT).isEmpty()){
-                RecipeHolder<? extends AbstractCookingRecipe> iRecipe = null;
-                if(!furnaceEntity.itemHandler.getStackInSlot(INPUT).isEmpty()){
-                    iRecipe = furnaceEntity.getRecipeNonCached(furnaceEntity.itemHandler.getStackInSlot(INPUT));
-                }
-
-                boolean isValid = furnaceEntity.canSmelt(iRecipe);
-                if(furnaceEntity.isBurning() && isValid){
-                    furnaceEntity.cookTime++;
-                    if(furnaceEntity.cookTime >= furnaceEntity.totalCookTime){
-                        furnaceEntity.cookTime = 0;
-                        furnaceEntity.totalCookTime = furnaceEntity.getCookTime();
-                        furnaceEntity.smelt(iRecipe);
-                    }
-                }else {
-                    furnaceEntity.cookTime = 0;
-                }
-            } else if (!furnaceEntity.isBurning() && furnaceEntity.cookTime > 0) {
-                furnaceEntity.cookTime = clamp(furnaceEntity.cookTime - 2, 0, furnaceEntity.totalCookTime);
-            }
-        }
-
-        if(furnaceEntity.isBurning()){
-            level.setBlock(blockPos, level.getBlockState(furnaceEntity.worldPosition).setValue(BlockStateProperties.LIT, furnaceEntity.isBurning()), 3);
-        }
-
-        furnaceEntity.setChanged();
+//        if(level.isClientSide()){
+//            if(furnaceEntity.totalCookTime != furnaceEntity.getCookTime()){
+//                furnaceEntity.totalCookTime = furnaceEntity.getCookTime();
+//            }
+//            if(furnaceEntity.isBurning()){
+//                --furnaceEntity.furnaceBurnTime;
+//            }
+//            furnaceEntity.checkRecipeType();
+//
+//            ItemStack itemStack = furnaceEntity.itemHandler.getStackInSlot(FUEL);
+//            if(furnaceEntity.isBurning() || !itemStack.isEmpty() && !furnaceEntity.itemHandler.getStackInSlot(INPUT).isEmpty()){
+//                RecipeHolder<? extends AbstractCookingRecipe> iRecipe = null;
+//                if(!furnaceEntity.itemHandler.getStackInSlot(INPUT).isEmpty()){
+//                    iRecipe = furnaceEntity.getRecipeNonCached(furnaceEntity.itemHandler.getStackInSlot(INPUT));
+//                }
+//
+//                boolean isValid = furnaceEntity.canSmelt(iRecipe);
+//                if(furnaceEntity.isBurning() && isValid){
+//                    furnaceEntity.cookTime++;
+//                    if(furnaceEntity.cookTime >= furnaceEntity.totalCookTime){
+//                        furnaceEntity.cookTime = 0;
+//                        furnaceEntity.totalCookTime = furnaceEntity.getCookTime();
+//                        furnaceEntity.smelt(iRecipe);
+//                    }
+//                }else {
+//                    furnaceEntity.cookTime = 0;
+//                }
+//            } else if (!furnaceEntity.isBurning() && furnaceEntity.cookTime > 0) {
+//                furnaceEntity.cookTime = clamp(furnaceEntity.cookTime - 2, 0, furnaceEntity.totalCookTime);
+//            }
+//        }
+//
+//        if(furnaceEntity.isBurning()){
+//            level.setBlock(blockPos, level.getBlockState(furnaceEntity.worldPosition).setValue(BlockStateProperties.LIT, furnaceEntity.isBurning()), 3);
+//        }
+//
+//        furnaceEntity.setChanged();
     }
 
     public void drops(){
