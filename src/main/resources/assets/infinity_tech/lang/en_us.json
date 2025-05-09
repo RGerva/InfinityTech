@@ -158,6 +158,7 @@
   "tooltip.infinity_tech.cable.info": "Wrench can be used to break cables instantly.",
   "tooltip.infinity_tech.wrench.info": "Wrench can be used to drop blocks instantly.",
   "tooltip.infinity_tech.chest_upgrade.info": "Can upgrade chest tiers",
+  "tooltip.infinity_tech.furnace_time" : "Cook Time: ",
   "tooltip.infinity_tech.furnace_fuel.info" : "Fuel Input",
   "tooltip.infinity_tech.furnace_input.info" : "Input Item",
   "tooltip.infinity_tech.furnace_output.info" : "Output Item"
