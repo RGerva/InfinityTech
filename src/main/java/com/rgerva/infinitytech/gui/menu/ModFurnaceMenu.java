@@ -12,19 +12,26 @@ import com.rgerva.infinitytech.block.custom.furnace.ModFurnaceBlock;
 import com.rgerva.infinitytech.blockentity.custom.furnace.ModFurnaceEntity;
 import com.rgerva.infinitytech.gui.ModGUI;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.Mth;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.StackedItemContents;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipePropertySet;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.items.SlotItemHandler;
+import org.jetbrains.annotations.NotNull;
 
 public class ModFurnaceMenu extends AbstractContainerMenu {
     private final ContainerData data;
     private final Level level;
     private final ModFurnaceEntity blockEntity;
+    private final SimpleContainer container;
+    private final ResourceKey<RecipePropertySet> resourceKey;
 
     public ModFurnaceMenu(int pContainerId, Inventory inv, FriendlyByteBuf buffer) {
         this(pContainerId, inv, inv.player.level().getBlockEntity(buffer.readBlockPos()), new SimpleContainerData(5));
@@ -35,10 +42,23 @@ public class ModFurnaceMenu extends AbstractContainerMenu {
         this.data = data;
         this.level = inventory.player.level();
         this.blockEntity = (ModFurnaceEntity) blockEntity;
+        this.container = new SimpleContainer(this.blockEntity.itemHandler.getSlots());
+        this.resourceKey = RecipePropertySet.SMITHING_BASE;
 
         this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 56, 17));
-        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 1, 56, 53));
-        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 2, 116, 35));
+        //this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 1, 56, 53));
+        this.addSlot(new FurnaceFuelSlot(new AbstractFurnaceMenu(ModGUI.FURNACE_MENU.get(), this.blockEntity.recipeType, resourceKey, RecipeBookType.FURNACE, containerId, inventory) {
+            @Override
+            public void fillCraftSlotsStackedContents(@NotNull StackedItemContents stackedItemContents) {
+                SimpleContainer simpleContainer = new SimpleContainer(((ModFurnaceEntity) blockEntity).itemHandler.getSlots());
+                for(int i = 0; i < ((ModFurnaceEntity) blockEntity).itemHandler.getSlots(); i++){
+                    stackedItemContents.accountStack(simpleContainer.getItem(i));
+                }
+            }
+        }, this.container, 1, 56, 53));
+
+        this.addSlot(new FurnaceResultSlot(inventory.player, container, 2, 116, 35));
+
         addDataSlots(data);
 
         for (int playerInvRow = 0; playerInvRow < 3; playerInvRow++) {
@@ -52,51 +72,52 @@ public class ModFurnaceMenu extends AbstractContainerMenu {
         }
     }
 
+
+
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = slots.get(pIndex);
 
+        if(slot.hasItem()){
+            ItemStack stack = slot.getItem();
+            itemStack = stack.copy();
+            int inventorySize = this.container.getContainerSize();
+            if(pIndex < inventorySize){
+                if (!this.moveItemStackTo(stack, inventorySize, inventorySize + 36, true)) {
+                    return ItemStack.EMPTY;
+                }
+                slot.onQuickCraft(stack, itemStack);
+                if(this.blockEntity instanceof ModFurnaceEntity entity && !this.level.isClientSide){
+                    entity.unlockRecipes((ServerPlayer) playerIn);
+                }
+
+            } else if (!this.moveItemStackTo(stack, 0, inventorySize, false)) {
+                if (pIndex < inventorySize + 27) {
+                    if (!this.moveItemStackTo(stack, inventorySize + 27, inventorySize + 36, true)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (pIndex < inventorySize + 36) {
+                    if (!this.moveItemStackTo(stack, inventorySize, inventorySize + 27, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                }
+                return ItemStack.EMPTY;
+            }
+
+            if(stack.isEmpty()){
+                slot.set(ItemStack.EMPTY);
+            }else {
+                slot.setChanged();
+            }
+
+            if(stack.getCount() == itemStack.getCount()){
+                return ItemStack.EMPTY;
+            }
+
+            slot.onTake(playerIn, stack);
+        }
         return itemStack;
-//        if(slot.hasItem()){
-//           ItemStack itemStack1 = slot.getItem();
-//           itemStack = itemStack1.copy();
-//
-//           if(pIndex == 2){
-//               if(!this.moveItemStackTo(itemStack1, 19,55,true)){
-//                   return ItemStack.EMPTY;
-//               }
-//               slot.onQuickCraft(itemStack1, itemStack);
-//           } else if (pIndex != 1 && pIndex != 0 && pIndex != 3 && pIndex != 4 && pIndex != 5) {
-//               if(this.blockEntity.hasRecipe(itemStack1)){
-//                   if(!this.moveItemStackTo(itemStack1, 0,1, false)){
-//                       return ItemStack.EMPTY;
-//                   }
-//               } else if (pIndex >= 19 && pIndex <= 45) {
-//                   if(!this.moveItemStackTo(itemStack1, 46,55, false)){
-//                       return ItemStack.EMPTY;
-//                   }
-//               } else if (pIndex >= 45 && pIndex < 55 && !this.moveItemStackTo(itemStack1, 19, 46, false)) {
-//                   return ItemStack.EMPTY;
-//               }
-//           } else if (!this.moveItemStackTo(itemStack1, 19,55, false)) {
-//               return ItemStack.EMPTY;
-//           }
-//
-//           if(itemStack1.isEmpty()){
-//               slot.set(ItemStack.EMPTY);
-//           }else {
-//               slot.setChanged();
-//           }
-//
-//           if(itemStack1.getCount() == itemStack.getCount()){
-//               return ItemStack.EMPTY;
-//           }
-//
-//           slot.onTake(playerIn, itemStack1);
-//        }
-//
-//        return itemStack;
     }
 
     @Override
@@ -105,15 +126,4 @@ public class ModFurnaceMenu extends AbstractContainerMenu {
                 player, ModFurnaceBlock.getBlockType(blockEntity.getFurnaceConfig()));
     }
 
-    public boolean isBurning() {
-        return data.get(0) < 160;
-    }
-
-    public float getFuelProgress() {
-        int i = this.data.get(1);
-        if (i == 0) {
-            i = 160;
-        }
-        return Mth.clamp((float) this.data.get(0) / (float) i, 0.0F, 1.0F);
-    }
 }
