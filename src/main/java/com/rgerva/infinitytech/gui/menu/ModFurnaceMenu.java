@@ -19,6 +19,7 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.neoforged.neoforge.items.SlotItemHandler;
 
 public class ModFurnaceMenu extends AbstractContainerMenu {
     private final ContainerData data;
@@ -35,9 +36,9 @@ public class ModFurnaceMenu extends AbstractContainerMenu {
         this.level = inventory.player.level();
         this.blockEntity = (ModFurnaceEntity) blockEntity;
 
-//        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 56, 17));
-//        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 1, 56, 53));
-        //this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 2, 116, 35));
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 0, 56, 17));
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 1, 56, 53));
+        this.addSlot(new SlotItemHandler(this.blockEntity.itemHandler, 2, 116, 35));
         addDataSlots(data);
 
         for (int playerInvRow = 0; playerInvRow < 3; playerInvRow++) {

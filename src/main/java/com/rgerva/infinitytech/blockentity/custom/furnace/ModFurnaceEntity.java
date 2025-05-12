@@ -36,6 +36,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -54,6 +56,16 @@ public class ModFurnaceEntity extends BlockEntity implements MenuProvider, Recip
 
     private final Object2IntOpenHashMap<ResourceLocation> recipes = new Object2IntOpenHashMap<>();
     public RecipeType<? extends AbstractCookingRecipe> recipeType;
+
+    public IItemHandler itemHandler = new ItemStackHandler(3){
+        @Override
+        protected void onContentsChanged(int slot) {
+            setChanged();
+            if(Objects.requireNonNull(level).isClientSide){
+                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+            }
+        }
+    };
 
     public ModFurnaceEntity(BlockPos pos, BlockState blockState, eFurnaceConfigs eFurnaceConfigs) {
         super(Objects.requireNonNull(getEntityType(eFurnaceConfigs)), pos, blockState);
