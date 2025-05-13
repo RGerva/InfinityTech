@@ -294,5 +294,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.TIN_CABLE.get())
                 .add(ModBlocks.COPPER_CABLE.get())
                 .add(ModBlocks.GOLD_CABLE.get());
+
+        tag(ModTags.Blocks.MOD_FURNACES)
+                .add(ModBlocks.COPPER_FURNACE.get())
+                .add(ModBlocks.IRON_FURNACE.get())
+                .add(ModBlocks.GOLD_FURNACE.get());
     }
 }

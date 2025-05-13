@@ -123,6 +123,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.COAL_GENERATOR.get());
 
         dropSelf(ModBlocks.COPPER_FURNACE.get());
+        dropSelf(ModBlocks.IRON_FURNACE.get());
+        dropSelf(ModBlocks.GOLD_FURNACE.get());
 
     }
 

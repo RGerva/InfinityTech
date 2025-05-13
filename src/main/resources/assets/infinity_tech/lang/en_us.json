@@ -2,6 +2,7 @@
   "name.infinity_tech.name": "Infinity Tech",
   "name.infinity_tech.name.ore": "Infinity Tech Ores",
   "name.infinity_tech.name.chest": "Infinity Tech Chest",
+  "name.infinity_tech.name.furnace": "Infinity Tech Furnaces",
 
   "item.infinity_tech.steel_ingot": "Steel Ingot",
   "item.infinity_tech.steel_nugget": "Steel Nugget",
@@ -126,6 +127,8 @@
   "block.infinity_tech.coal_generator": "Coal Generator",
 
   "block.infinity_tech.furnace_copper": "Copper Furnace",
+  "block.infinity_tech.furnace_iron": "Iron Furnace",
+  "block.infinity_tech.furnace_gold": "Gold Furnace",
 
   "item.infinity_tech.wrench": "Wrench",
   "item.infinity_tech.chest_copper_to_iron": "Upgrade Copper Chest to Iron Chest",

@@ -132,6 +132,8 @@ public class ModBlockStateProvider {
         blockWithItem(ModBlocks.COAL_GENERATOR);
 
         furnaceBlockWithItem(ModBlocks.COPPER_FURNACE);
+        furnaceBlockWithItem(ModBlocks.IRON_FURNACE);
+        furnaceBlockWithItem(ModBlocks.GOLD_FURNACE);
     }
 
 
@@ -165,8 +167,8 @@ public class ModBlockStateProvider {
                 .updateTextures(textureMapping -> {
                     textureMapping.put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_front"));
                     textureMapping.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(block, "_side"));
-                    textureMapping.put(TextureSlot.TOP, TextureMapping.getBlockTexture(block, "_side"));
-                    textureMapping.put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(block, "_side"));
+                    textureMapping.put(TextureSlot.TOP, TextureMapping.getBlockTexture(block, "_top"));
+                    textureMapping.put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(block, "_top"));
                 })
                 .create(block, modelOutput);
 
@@ -174,8 +176,8 @@ public class ModBlockStateProvider {
                 .updateTextures(textureMapping -> {
                     textureMapping.put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_front_on"));
                     textureMapping.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(block, "_side"));
-                    textureMapping.put(TextureSlot.TOP, TextureMapping.getBlockTexture(block, "_side"));
-                    textureMapping.put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(block, "_side"));
+                    textureMapping.put(TextureSlot.TOP, TextureMapping.getBlockTexture(block, "_top"));
+                    textureMapping.put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(block, "_top"));
                 })
                 .createWithSuffix(block, "_on", modelOutput);
 

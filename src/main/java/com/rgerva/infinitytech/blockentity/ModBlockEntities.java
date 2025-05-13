@@ -126,6 +126,14 @@ public class ModBlockEntities {
             () -> new BlockEntityType<>(((blockPos, blockState) -> new ModFurnaceEntity(blockPos, blockState,
                     eFurnaceConfigs.COPPER)), ModBlocks.COPPER_FURNACE.get()));
 
+    public static final Supplier<BlockEntityType<ModFurnaceEntity>> IRON_FURNACE_ENTITY = BLOCK_ENTITIES.register("iron_furnace",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModFurnaceEntity(blockPos, blockState,
+                    eFurnaceConfigs.IRON)), ModBlocks.IRON_FURNACE.get()));
+
+    public static final Supplier<BlockEntityType<ModFurnaceEntity>> GOLD_FURNACE_ENTITY = BLOCK_ENTITIES.register("gold_furnace",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModFurnaceEntity(blockPos, blockState,
+                    eFurnaceConfigs.GOLD)), ModBlocks.GOLD_FURNACE.get()));
+
     //endregion
 
     public static void register(IEventBus eventBus) {

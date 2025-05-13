@@ -13,17 +13,21 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.blockentity.custom.furnace.ModFurnaceEntity;
 import com.rgerva.infinitytech.util.types.eFurnaceConfigs;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.ExtraCodecs;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.Container;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -43,6 +47,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -81,6 +86,8 @@ public class ModFurnaceBlock extends BaseEntityBlock {
     public static Block getBlockType(eFurnaceConfigs eFurnaceConfigs){
         return switch (eFurnaceConfigs){
             case COPPER -> ModBlocks.COPPER_FURNACE.get();
+            case IRON -> ModBlocks.IRON_FURNACE.get();
+            case GOLD -> ModBlocks.GOLD_FURNACE.get();
         };
     }
 
@@ -123,11 +130,6 @@ public class ModFurnaceBlock extends BaseEntityBlock {
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
         if(placer != null){
             ModFurnaceEntity entity = (ModFurnaceEntity) level.getBlockEntity(pos);
-            Component component = stack.get(DataComponents.CUSTOM_NAME);
-            if(component != null){
-                return;
-            }
-
             Objects.requireNonNull(entity).totalCookTime = entity.getFurnaceConfig().getBurnSpeed();
         }
     }
@@ -173,7 +175,7 @@ public class ModFurnaceBlock extends BaseEntityBlock {
 
     @Override
     protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
-        if(state.getBlock() == newState.getBlock()){
+        if(state.getBlock() != newState.getBlock()){
             BlockEntity entity = level.getBlockEntity(pos);
             if(entity instanceof ModFurnaceEntity){
                 ((ModFurnaceEntity) entity).drops();
@@ -186,7 +188,7 @@ public class ModFurnaceBlock extends BaseEntityBlock {
 
     @Override
     protected boolean isSignalSource(BlockState state) {
-        return false;
+        return true;
     }
 
     @Override
@@ -196,11 +198,51 @@ public class ModFurnaceBlock extends BaseEntityBlock {
 
     @Override
     protected int getDirectSignal(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-        return super.getDirectSignal(state, level, pos, direction);
+        ModFurnaceEntity entity = (ModFurnaceEntity) level.getBlockEntity(pos);
+        if(entity != null){
+            return getComparatorInputOverride(state, Objects.requireNonNull(entity.getLevel()), pos);
+        }
+        return 0;
+    }
+
+    public int getComparatorInputOverride(BlockState state, Level level, BlockPos pos) {
+        List<Integer> slots = new ArrayList<>();
+        if(level.getBlockEntity(pos) instanceof ModFurnaceEntity){
+            slots.add(0);
+            slots.add(1);
+            slots.add(2);
+            return getRedStoneSignalFromContainer((WorldlyContainer) level.getBlockEntity(pos), slots);
+        }
+        return 0;
+    }
+
+    public static int getRedStoneSignalFromContainer(@Nullable Container container, List<Integer> slots) {
+        if(container != null){
+            int i = 0;
+            float f = 0.0F;
+
+            for(int slot : slots){
+                ItemStack itemstack = container.getItem(slot);
+                if (!itemstack.isEmpty()) {
+                    f += (float)itemstack.getCount() / (float)Math.min(container.getMaxStackSize(), itemstack.getMaxStackSize());
+                    i++;
+                }
+            }
+            f /= (float)slots.size();
+            return Mth.floor(f * 14.0F) + (i > 0 ? 1 : 0);
+        }
+        return 0;
     }
 
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         tooltipComponents.add(Component.translatable("tooltip.infinity_tech.furnace_time").append(String.valueOf(getFurnaceConfig().getBurnSpeed())));
+
+        if (Screen.hasShiftDown()) {
+            tooltipComponents.add(Component.translatable("tooltip.infinity_tech.furnace_time")
+                    .append(String.valueOf(getFurnaceConfig().getBurnSpeed())).withStyle(ChatFormatting.GRAY));
+        } else {
+            tooltipComponents.add(Component.translatable("tooltip.infinity_tech.shift_details").withStyle(ChatFormatting.YELLOW));
+        }
     }
 }

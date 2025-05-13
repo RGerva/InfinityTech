@@ -626,6 +626,20 @@ public class ModBlocks {
                     .sound(SoundType.COPPER)
                     .requiresCorrectToolForDrops()));
 
+    public static final DeferredBlock<Block> IRON_FURNACE = registerBlock("furnace_iron",
+            () -> new ModFurnaceBlock(eFurnaceConfigs.IRON, BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "furnace_iron")))
+                    .strength(3.0F, 6.0F)
+                    .sound(SoundType.METAL)
+                    .requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> GOLD_FURNACE = registerBlock("furnace_gold",
+            () -> new ModFurnaceBlock(eFurnaceConfigs.GOLD, BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "furnace_gold")))
+                    .strength(3.0F, 6.0F)
+                    .sound(SoundType.METAL)
+                    .requiresCorrectToolForDrops()));
+
     //endregion
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

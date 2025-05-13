@@ -9,7 +9,9 @@
 package com.rgerva.infinitytech.util.types;
 
 public enum eFurnaceConfigs {
-    COPPER(180, 80000);
+    COPPER(180, 40),
+    IRON(160, 40),
+    GOLD(120, 160);
 
     private final int burnSpeed;
     private final int energyCapacity;

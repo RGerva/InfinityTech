@@ -17,12 +17,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 public class ModFurnaceScreen extends AbstractContainerScreen<ModFurnaceMenu> {
-    protected final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "textures/gui/container/generic_furnace.png");
+    private final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "textures/gui/container/generic_furnace.png");
 
     public ModFurnaceScreen(ModFurnaceMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
@@ -50,17 +46,33 @@ public class ModFurnaceScreen extends AbstractContainerScreen<ModFurnaceMenu> {
                 this.imageHeight,
                 256,
                 256);
+
+        renderFurnaceBg(guiGraphics);
     }
 
-    @Override
-    protected void renderTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        super.renderTooltip(guiGraphics, mouseX, mouseY);
+    protected void renderFurnaceBg(GuiGraphics guiGraphics){
 
-        List<Component> components = new ArrayList<>(3);
-//        components.add(Component.translatable("tooltip.infinity_tech.furnace_input.info"));
-//        components.add(Component.translatable("tooltip.infinity_tech.furnace_fuel.info"));
-//        components.add(Component.translatable("tooltip.infinity_tech.furnace_output.info"));
-
-        guiGraphics.renderTooltip(font, components, Optional.empty(), mouseX, mouseY);
+        if(this.getMenu().isBurning()){
+            guiGraphics.blit(RenderType::guiTextured,
+                    TEXTURE,
+                    getGuiLeft() + 56,
+                    getGuiTop() + 36 + 12 - this.getMenu().getBurnLeftScaled(13),
+                    176,
+                    12 - this.getMenu().getBurnLeftScaled(13),
+                    14,
+                    this.getMenu().getBurnLeftScaled(13) + 1,
+                    256,
+                    256);
+        }
+        guiGraphics.blit(RenderType::guiTextured,
+                TEXTURE,
+                getGuiLeft() + 79,
+                getGuiTop() + 34,
+                176,
+                14,
+                this.getMenu().getCookScaled(24) + 1,
+                16,
+                256,
+                256);
     }
 }

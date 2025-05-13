@@ -15,6 +15,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
@@ -32,9 +33,11 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.StackedItemContents;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.RecipeCraftingHolder;
+import net.minecraft.world.inventory.StackedContentsCompatible;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -48,15 +51,15 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.EventHooks;
-import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
 import static java.lang.Math.clamp;
 
-public class ModFurnaceEntity extends BlockEntity implements MenuProvider, RecipeCraftingHolder {
+public class ModFurnaceEntity extends BlockEntity implements MenuProvider, RecipeCraftingHolder, StackedContentsCompatible {
     private final eFurnaceConfigs furnaceConfig;
 
     public final ContainerData data;
@@ -65,8 +68,8 @@ public class ModFurnaceEntity extends BlockEntity implements MenuProvider, Recip
     public static final int FUEL = 1;
     public static final int OUTPUT = 2;
 
-    private int furnaceBurnTime;
-    private int recipesUsed;
+    public int furnaceBurnTime;
+    public int recipesUsed;
     public int cookTime;
     public int totalCookTime;
 
@@ -80,7 +83,10 @@ public class ModFurnaceEntity extends BlockEntity implements MenuProvider, Recip
     public static final Map<Item, Boolean> HAS_RECIPE_SMOKING = new HashMap<>();
     public static final Map<Item, Boolean> HAS_RECIPE_BLASTING = new HashMap<>();
 
-    public IItemHandler itemHandler = new ItemStackHandler(3){
+    public final int[] provides = new int[Direction.values().length];
+    protected final int[] lastProvides = new int[this.provides.length];
+
+    public ItemStackHandler itemHandler = new ItemStackHandler(3){
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
@@ -136,33 +142,39 @@ public class ModFurnaceEntity extends BlockEntity implements MenuProvider, Recip
     public static BlockEntityType<ModFurnaceEntity> getEntityType(eFurnaceConfigs configs){
         return switch (configs){
             case COPPER -> ModBlockEntities.COPPER_FURNACE_ENTITY.get();
+            case IRON -> ModBlockEntities.IRON_FURNACE_ENTITY.get();
+            case GOLD -> ModBlockEntities.GOLD_FURNACE_ENTITY.get();
             case null -> null;
         };
     }
 
     @Override
-    public Component getDisplayName() {
+    public @NotNull Component getDisplayName() {
         return Component.translatable("block.infinity_tech.furnace_" + getFurnaceConfig().name().toLowerCase());
     }
 
     @Override
-    public @Nullable AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
+    public @Nullable AbstractContainerMenu createMenu(int i, @NotNull Inventory inventory, @NotNull Player player) {
         return new ModFurnaceMenu(i, inventory, this, this.data);
     }
 
     @Override
-    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+    protected void loadAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
         super.loadAdditional(tag, registries);
-        this.furnaceBurnTime = tag.getInt("BurnTime");
-        this.cookTime = tag.getInt("CookTime");
-        this.totalCookTime = tag.getInt("CookTimeTotal");
+
+        itemHandler.deserializeNBT(registries, tag.getCompound(getFurnaceConfig().name().toLowerCase() + ".inventory"));
+        this.furnaceBurnTime = tag.getInt(getFurnaceConfig().name().toLowerCase() + ".burn_time");
+        this.cookTime = tag.getInt(getFurnaceConfig().name().toLowerCase() + ".cook_time");
+        this.totalCookTime = tag.getInt(getFurnaceConfig().name().toLowerCase() + ".cook_time_total");
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-        tag.putInt("BurnTime", this.furnaceBurnTime);
-        tag.putInt("CookTime", this.cookTime);
-        tag.putInt("CookTimeTotal", this.totalCookTime);
+    protected void saveAdditional(CompoundTag tag, HolderLookup.@NotNull Provider registries) {
+
+        tag.put(getFurnaceConfig().name().toLowerCase() + ".inventory", itemHandler.serializeNBT(registries));
+        tag.putInt(getFurnaceConfig().name().toLowerCase() + ".burn_time", this.furnaceBurnTime);
+        tag.putInt(getFurnaceConfig().name().toLowerCase() + ".cook_time", this.cookTime);
+        tag.putInt(getFurnaceConfig().name().toLowerCase() + ".cook_time_total", this.totalCookTime);
         super.saveAdditional(tag, registries);
     }
 
@@ -173,12 +185,12 @@ public class ModFurnaceEntity extends BlockEntity implements MenuProvider, Recip
     }
 
     @Override
-    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+    public @NotNull CompoundTag getUpdateTag(HolderLookup.@NotNull Provider registries) {
         return saveWithoutMetadata(registries);
     }
 
     @Override
-    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt, HolderLookup.Provider lookupProvider) {
+    public void onDataPacket(@NotNull Connection net, @NotNull ClientboundBlockEntityDataPacket pkt, HolderLookup.@NotNull Provider lookupProvider) {
         super.onDataPacket(net, pkt, lookupProvider);
     }
 
@@ -203,78 +215,98 @@ public class ModFurnaceEntity extends BlockEntity implements MenuProvider, Recip
         boolean iFlag = false;
         boolean wasBurning = furnaceEntity.isBurning();
 
-        if(!Objects.requireNonNull(furnaceEntity.level).isClientSide){
-            if(furnaceEntity.isBurning()){
-                furnaceEntity.furnaceBurnTime--;
+        if (!Objects.requireNonNull(furnaceEntity.level).isClientSide) {
+
+            if (furnaceEntity.totalCookTime != furnaceEntity.getCookTime()) {
+                furnaceEntity.totalCookTime = furnaceEntity.getCookTime();
+            }
+            if (furnaceEntity.doesNeedUpdateSend()) {
+                furnaceEntity.onUpdateSent();
+            }
+        }
+
+        if (!furnaceEntity.level.isClientSide) {
+            if (furnaceEntity.isBurning()) {
+                --furnaceEntity.furnaceBurnTime;
             }
 
-            ItemStack itemStack = furnaceEntity.itemHandler.getStackInSlot(FUEL);
-            if(furnaceEntity.isBurning() || !itemStack.isEmpty() && !furnaceEntity.itemHandler.getStackInSlot(INPUT).isEmpty()){
-                RecipeHolder<? extends AbstractCookingRecipe> iRecipe = null;
-                if(!furnaceEntity.itemHandler.getStackInSlot(INPUT).isEmpty()){
-                    iRecipe = furnaceEntity.getRecipeNonCached(furnaceEntity.itemHandler.getStackInSlot(INPUT));
+            ItemStack itemstack = furnaceEntity.itemHandler.getStackInSlot(FUEL);
+            if (furnaceEntity.isBurning() || !itemstack.isEmpty() && !furnaceEntity.itemHandler.getStackInSlot(INPUT).isEmpty()) {
+                RecipeHolder<? extends AbstractCookingRecipe> irecipe = null;
+                if (!furnaceEntity.itemHandler.getStackInSlot(INPUT).isEmpty()) {
+                    irecipe = furnaceEntity.getRecipeNonCached(furnaceEntity.itemHandler.getStackInSlot(INPUT));
                 }
 
-                boolean valid = furnaceEntity.canSmelt(iRecipe);
-                if(!furnaceEntity.isBurning() && valid){
+                boolean valid = furnaceEntity.canSmelt(irecipe);
+                if (!furnaceEntity.isBurning() && valid) {
 
-                }else{
-                    furnaceEntity.furnaceBurnTime = getBurnTime(itemStack, furnaceEntity.recipeType) * furnaceEntity.getCookTime() / 200;
+                    furnaceEntity.furnaceBurnTime = getBurnTime(itemstack, furnaceEntity.recipeType) * furnaceEntity.getCookTime() / 200;
                     furnaceEntity.recipesUsed = furnaceEntity.furnaceBurnTime;
-                }
 
-                if(furnaceEntity.isBurning()){
-                    iFlag = true;
-                    if (!itemStack.isEmpty()) {
-                        itemStack.shrink(1);
-                        if(itemStack.isEmpty()){
-                            furnaceEntity.itemHandler.insertItem(FUEL, itemStack, true);
+                    if (furnaceEntity.isBurning()) {
+                        iFlag = true;
+                        if (!itemstack.isEmpty() && isFuel(itemstack)){
+                            itemstack.shrink(1);
+                            furnaceEntity.itemHandler.insertItem(FUEL, itemstack.getCraftingRemainder(), false);
                         }
                     }
                 }
-
-                if(furnaceEntity.isBurning() && valid){
-                    furnaceEntity.cookTime++;
-                    if(furnaceEntity.cookTime >= furnaceEntity.totalCookTime){
+                if (furnaceEntity.isBurning() && valid) {
+                    ++furnaceEntity.cookTime;
+                    if (furnaceEntity.cookTime >= furnaceEntity.totalCookTime) {
                         furnaceEntity.cookTime = 0;
                         furnaceEntity.totalCookTime = furnaceEntity.getCookTime();
-                        furnaceEntity.smeltItem(iRecipe);
+                        furnaceEntity.smeltItem(irecipe);
                         iFlag = true;
                     }
-                }else {
+                } else {
                     furnaceEntity.cookTime = 0;
                 }
             } else if (!furnaceEntity.isBurning() && furnaceEntity.cookTime > 0) {
-                furnaceEntity.cookTime = clamp(furnaceEntity.cookTime -2, 0, furnaceEntity.totalCookTime);
+                furnaceEntity.cookTime = clamp(furnaceEntity.cookTime - 2, 0, furnaceEntity.totalCookTime);
             }
+            if (furnaceEntity.level.getGameTime() % 24 == 0) {
 
-            if(furnaceEntity.level.getGameTime() % 24 == 0){
-                if(furnaceEntity.cookTime <= 0){
-                    if(furnaceEntity.itemHandler.getStackInSlot(INPUT).isEmpty()){
+                if (furnaceEntity.cookTime <= 0) {
+
+                    if (furnaceEntity.itemHandler.getStackInSlot(INPUT).isEmpty()) {
+
                         iFlag = true;
                     } else if (furnaceEntity.itemHandler.getStackInSlot(INPUT).getCount() < furnaceEntity.itemHandler.getStackInSlot(INPUT).getMaxStackSize()) {
+
                         iFlag = true;
                     }
+                    if (furnaceEntity.itemHandler.getStackInSlot(FUEL).isEmpty()) {
 
-                    if(furnaceEntity.itemHandler.getStackInSlot(FUEL).isEmpty()){
                         iFlag = true;
                     } else if (furnaceEntity.itemHandler.getStackInSlot(FUEL).getCount() < furnaceEntity.itemHandler.getStackInSlot(FUEL).getMaxStackSize()) {
+
                         iFlag = true;
                     }
                 }
             }
         }
 
-        if(wasBurning != furnaceEntity.isBurning()){
+        if (wasBurning != furnaceEntity.isBurning()) {
             level.setBlock(blockPos, level.getBlockState(furnaceEntity.worldPosition).setValue(BlockStateProperties.LIT, furnaceEntity.isBurning()), 3);
         }
 
-        if(iFlag){
+        if (iFlag) {
             furnaceEntity.setChanged();
         }
+
     }
 
-    protected boolean isFuel(ItemStack stack){
+    protected boolean doesNeedUpdateSend() {
+        return !Arrays.equals(this.provides, this.lastProvides);
+    }
+
+    public void onUpdateSent() {
+        System.arraycopy(this.provides, 0, this.lastProvides, 0, this.provides.length);
+        Objects.requireNonNull(this.level).updateNeighborsAt(this.worldPosition, getBlockState().getBlock());
+    }
+
+    private static boolean isFuel(ItemStack stack){
         if(!stack.isEmpty()){
             Item item = stack.getItem();
             return item.getDefaultInstance().getBurnTime(null, getFuelValues()) > 0;
@@ -284,11 +316,15 @@ public class ModFurnaceEntity extends BlockEntity implements MenuProvider, Recip
     }
 
     public static FuelValues getFuelValues(){
-        return Minecraft.getInstance().level.fuelValues();
+        return Objects.requireNonNull(Minecraft.getInstance().level).fuelValues();
     }
 
-    public static int getBurnTime(ItemStack stack, RecipeType recipeType) {
+    public static int getBurnTime(ItemStack stack, RecipeType<?> recipeType) {
         return EventHooks.getItemBurnTime(stack, stack.getBurnTime(recipeType, getFuelValues()), recipeType, getFuelValues());
+    }
+
+    public static boolean isItemFuel(ItemStack stack, RecipeType<?> recipeType) {
+        return getBurnTime(stack, recipeType) > 0;
     }
 
     public int getCookTime(){
@@ -312,7 +348,7 @@ public class ModFurnaceEntity extends BlockEntity implements MenuProvider, Recip
     }
 
     private ItemStack getResult(AbstractCookingRecipe iRecipe, ItemStack input){
-        ItemStack out = iRecipe.assemble(new SingleRecipeInput(input), level.registryAccess());
+        ItemStack out = iRecipe.assemble(new SingleRecipeInput(input), Objects.requireNonNull(level).registryAccess());
         out.setCount(out.getCount());
         return out;
     }
@@ -336,25 +372,25 @@ public class ModFurnaceEntity extends BlockEntity implements MenuProvider, Recip
     }
 
     protected void smeltItem(@Nullable RecipeHolder<?> iRecipe){
-        if(iRecipe != null && this.canSmelt(iRecipe)){
-            ItemStack itemstack = this.itemHandler.getStackInSlot(INPUT);
-            ItemStack itemstack1 = getResult((AbstractCookingRecipe) iRecipe.value(), itemstack);
-            ItemStack itemstack2 = this.itemHandler.getStackInSlot(OUTPUT);
+        if(iRecipe != null){
+            ItemStack input = this.itemHandler.getStackInSlot(INPUT);
+            ItemStack itemRecipe = getResult((AbstractCookingRecipe) iRecipe.value(), input);
+            ItemStack output = this.itemHandler.getStackInSlot(OUTPUT);
 
-            if (itemstack2.isEmpty()) {
-                this.itemHandler.insertItem(OUTPUT, itemstack1.copy(), true);
-            } else if (itemstack2.getItem() == itemstack1.getItem()) {
-                itemstack2.grow(itemstack1.getCount());
+            if(output.isEmpty()){
+                this.itemHandler.insertItem(OUTPUT, itemRecipe.copy(), false);
+            } else if (output.is(this.itemHandler.getStackInSlot(OUTPUT).getItem())) {
+                this.itemHandler.insertItem(OUTPUT, itemRecipe.copy(), false).grow(1);
             }
 
-            if (!Objects.requireNonNull(this.level).isClientSide) {
+            if(!Objects.requireNonNull(level).isClientSide){
                 this.setRecipeUsed(iRecipe);
             }
 
-            if (itemstack.getItem() == Blocks.WET_SPONGE.asItem() && !this.itemHandler.getStackInSlot(FUEL).isEmpty() && this.itemHandler.getStackInSlot(FUEL).getItem() == Items.BUCKET) {
-                this.itemHandler.insertItem(FUEL, new ItemStack(Items.WATER_BUCKET), true);
+            if (input.getItem() == Blocks.WET_SPONGE.asItem() && !this.itemHandler.getStackInSlot(FUEL).isEmpty() && this.itemHandler.getStackInSlot(FUEL).getItem() == Items.BUCKET) {
+                this.itemHandler.insertItem(FUEL, new ItemStack(Items.WATER_BUCKET), false);
             }
-            itemstack.shrink(1);
+            input.shrink(1);
         }
     }
 
@@ -415,4 +451,13 @@ public class ModFurnaceEntity extends BlockEntity implements MenuProvider, Recip
         }
         return HAS_RECIPE.computeIfAbsent(item, (value) -> this.recipeCheckSmelting.getRecipeFor(new SingleRecipeInput(stack), (ServerLevel) this.level).isPresent());
     }
+
+    @Override
+    public void fillStackedContents(@NotNull StackedItemContents stackedItemContents) {
+        SimpleContainer simpleContainer = new SimpleContainer(this.itemHandler.getSlots());
+        for(int i = 0; i < this.itemHandler.getSlots(); i++){
+            stackedItemContents.accountStack(simpleContainer.getItem(i));
+        }
+    }
+
 }

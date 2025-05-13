@@ -15,6 +15,7 @@ public class ModTags {
         public static final TagKey<Block> MOD_CHESTS = createTag(InfinityTech.MOD_ID + "_chest");
         public static final TagKey<Block> MOD_ENERGY = createTag(InfinityTech.MOD_ID + "_energy");
         public static final TagKey<Block> MOD_ENERGY_CABLES = createTag(InfinityTech.MOD_ID + "_energy_cables");
+        public static final TagKey<Block> MOD_FURNACES = createTag(InfinityTech.MOD_ID + "_furnace");
 
         private static TagKey<Block> createTag(String name) {
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, name));

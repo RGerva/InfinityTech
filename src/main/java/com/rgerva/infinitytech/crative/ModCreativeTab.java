@@ -136,6 +136,17 @@ public class ModCreativeTab {
 
                     }).build());
 
+    public static final Supplier<CreativeModeTab> INFINITY_TECH_ITEM_FURNACES = CREATIVE_TAB.register("infinity_tech_furnaces",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.IRON_FURNACE.get()))
+                    .title(Component.translatable("name.infinity_tech.name.furnace"))
+                    .displayItems((itemDisplayParameters, output) -> {
+
+                        output.accept(ModBlocks.COPPER_FURNACE.get());
+                        output.accept(ModBlocks.IRON_FURNACE.get());
+                        output.accept(ModBlocks.GOLD_FURNACE.get());
+                    })
+                    .build());
+
     public static final Supplier<CreativeModeTab> INFINITY_TECH_ITEM_TAB = CREATIVE_TAB.register("infinity_tech_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.TITANIUM_INGOT.get()))
                     .title(Component.translatable("name.infinity_tech.name"))
@@ -176,8 +187,6 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.GOLD_CABLE.get());
 
                         output.accept(ModBlocks.COAL_GENERATOR.get());
-
-                        output.accept(ModBlocks.COPPER_FURNACE.get());
 
                     }).build());
 
