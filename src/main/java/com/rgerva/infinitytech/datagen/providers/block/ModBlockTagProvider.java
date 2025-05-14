@@ -298,6 +298,11 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(ModTags.Blocks.MOD_FURNACES)
                 .add(ModBlocks.COPPER_FURNACE.get())
                 .add(ModBlocks.IRON_FURNACE.get())
-                .add(ModBlocks.GOLD_FURNACE.get());
+                .add(ModBlocks.SILVER_FURNACE.get())
+                .add(ModBlocks.GOLD_FURNACE.get())
+                .add(ModBlocks.DIAMOND_FURNACE.get())
+                .add(ModBlocks.EMERALD_FURNACE.get())
+                .add(ModBlocks.OBSIDIAN_FURNACE.get())
+                .add(ModBlocks.NETHERITE_FURNACE.get());
     }
 }

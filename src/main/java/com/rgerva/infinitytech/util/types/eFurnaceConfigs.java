@@ -9,9 +9,15 @@
 package com.rgerva.infinitytech.util.types;
 
 public enum eFurnaceConfigs {
+    VANILLA(0,0),
     COPPER(180, 40),
     IRON(160, 40),
-    GOLD(120, 160);
+    SILVER(140,100),
+    GOLD(120, 160),
+    DIAMOND(80,240),
+    EMERALD(40,320),
+    OBSIDIAN(20, 300),
+    NETHERITE(5,1000);
 
     private final int burnSpeed;
     private final int energyCapacity;
@@ -27,5 +33,28 @@ public enum eFurnaceConfigs {
 
     public int getEnergyCapacity() {
         return energyCapacity;
+    }
+
+    public enum eFurnaceUpgrade {
+        VANILLA_TO_COPPER(VANILLA, COPPER),
+        COPPER_TO_IRON(COPPER, IRON),
+        IRON_TO_SILVER(IRON, SILVER),
+        SILVER_TO_GOLD(SILVER, GOLD),
+        GOLD_TO_DIAMOND(GOLD, DIAMOND),
+        DIAMOND_TO_EMERALD(DIAMOND, EMERALD),
+        EMERALD_TO_OBSIDIAN(EMERALD, OBSIDIAN),
+        OBSIDIAN_TO_NETHERITE(OBSIDIAN, NETHERITE);
+
+        public final eFurnaceConfigs source;
+        public final eFurnaceConfigs target;
+
+        eFurnaceUpgrade(eFurnaceConfigs source, eFurnaceConfigs target) {
+            this.source = source;
+            this.target = target;
+        }
+
+        public boolean canUpgrade(eFurnaceConfigs from){
+            return from.name().equals(this.source.name());
+        }
     }
 }

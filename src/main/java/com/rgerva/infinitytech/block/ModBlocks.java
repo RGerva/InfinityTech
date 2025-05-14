@@ -624,13 +624,24 @@ public class ModBlocks {
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "furnace_copper")))
                     .strength(3.0F, 6.0F)
                     .sound(SoundType.COPPER)
+                    .mapColor(MapColor.COLOR_ORANGE)
                     .requiresCorrectToolForDrops()));
 
     public static final DeferredBlock<Block> IRON_FURNACE = registerBlock("furnace_iron",
             () -> new ModFurnaceBlock(eFurnaceConfigs.IRON, BlockBehaviour.Properties.of()
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "furnace_iron")))
+                    .strength(5.0F, 6.0F)
+                    .sound(SoundType.METAL)
+                    .mapColor(MapColor.METAL)
+                    .instrument(NoteBlockInstrument.IRON_XYLOPHONE)
+                    .requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> SILVER_FURNACE = registerBlock("furnace_silver",
+            () -> new ModFurnaceBlock(eFurnaceConfigs.SILVER, BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "furnace_silver")))
                     .strength(3.0F, 6.0F)
                     .sound(SoundType.METAL)
+                    .mapColor(MapColor.COLOR_ORANGE)
                     .requiresCorrectToolForDrops()));
 
     public static final DeferredBlock<Block> GOLD_FURNACE = registerBlock("furnace_gold",
@@ -638,6 +649,41 @@ public class ModBlocks {
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "furnace_gold")))
                     .strength(3.0F, 6.0F)
                     .sound(SoundType.METAL)
+                    .mapColor(MapColor.GOLD)
+                    .instrument(NoteBlockInstrument.BELL)
+                    .requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> DIAMOND_FURNACE = registerBlock("furnace_diamond",
+            () -> new ModFurnaceBlock(eFurnaceConfigs.DIAMOND, BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "furnace_diamond")))
+                    .strength(5.0F, 6.0F)
+                    .sound(SoundType.METAL)
+                    .mapColor(MapColor.DIAMOND)
+                    .requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> EMERALD_FURNACE = registerBlock("furnace_emerald",
+            () -> new ModFurnaceBlock(eFurnaceConfigs.EMERALD, BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "furnace_emerald")))
+                    .strength(5.0F, 6.0F)
+                    .sound(SoundType.METAL)
+                    .mapColor(MapColor.EMERALD)
+                    .instrument(NoteBlockInstrument.BIT)
+                    .requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> OBSIDIAN_FURNACE = registerBlock("furnace_obsidian",
+            () -> new ModFurnaceBlock(eFurnaceConfigs.OBSIDIAN, BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "furnace_obsidian")))
+                    .strength(50.0F, 1200.0F)
+                    .mapColor(MapColor.COLOR_BLACK)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .requiresCorrectToolForDrops()));
+
+    public static final DeferredBlock<Block> NETHERITE_FURNACE = registerBlock("furnace_netherite",
+            () -> new ModFurnaceBlock(eFurnaceConfigs.NETHERITE, BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "furnace_netherite")))
+                    .strength(50.0F, 1200.0F)
+                    .sound(SoundType.NETHERITE_BLOCK)
+                    .mapColor(MapColor.COLOR_BLACK)
                     .requiresCorrectToolForDrops()));
 
     //endregion

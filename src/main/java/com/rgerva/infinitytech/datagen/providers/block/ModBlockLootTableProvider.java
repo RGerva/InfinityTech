@@ -124,7 +124,12 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         dropSelf(ModBlocks.COPPER_FURNACE.get());
         dropSelf(ModBlocks.IRON_FURNACE.get());
+        dropSelf(ModBlocks.SILVER_FURNACE.get());
         dropSelf(ModBlocks.GOLD_FURNACE.get());
+        dropSelf(ModBlocks.DIAMOND_FURNACE.get());
+        dropSelf(ModBlocks.EMERALD_FURNACE.get());
+        dropSelf(ModBlocks.OBSIDIAN_FURNACE.get());
+        dropSelf(ModBlocks.NETHERITE_FURNACE.get());
 
     }
 

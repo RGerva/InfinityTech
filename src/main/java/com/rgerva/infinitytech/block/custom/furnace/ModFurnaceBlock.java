@@ -85,9 +85,15 @@ public class ModFurnaceBlock extends BaseEntityBlock {
     
     public static Block getBlockType(eFurnaceConfigs eFurnaceConfigs){
         return switch (eFurnaceConfigs){
+            case VANILLA -> null;
             case COPPER -> ModBlocks.COPPER_FURNACE.get();
             case IRON -> ModBlocks.IRON_FURNACE.get();
+            case SILVER -> ModBlocks.SILVER_FURNACE.get();
             case GOLD -> ModBlocks.GOLD_FURNACE.get();
+            case DIAMOND -> ModBlocks.DIAMOND_FURNACE.get();
+            case EMERALD -> ModBlocks.EMERALD_FURNACE.get();
+            case OBSIDIAN -> ModBlocks.OBSIDIAN_FURNACE.get();
+            case NETHERITE -> ModBlocks.NETHERITE_FURNACE.get();
         };
     }
 
@@ -236,8 +242,6 @@ public class ModFurnaceBlock extends BaseEntityBlock {
 
     @Override
     public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        tooltipComponents.add(Component.translatable("tooltip.infinity_tech.furnace_time").append(String.valueOf(getFurnaceConfig().getBurnSpeed())));
-
         if (Screen.hasShiftDown()) {
             tooltipComponents.add(Component.translatable("tooltip.infinity_tech.furnace_time")
                     .append(String.valueOf(getFurnaceConfig().getBurnSpeed())).withStyle(ChatFormatting.GRAY));

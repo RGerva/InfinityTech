@@ -133,7 +133,12 @@ public class ModBlockStateProvider {
 
         furnaceBlockWithItem(ModBlocks.COPPER_FURNACE);
         furnaceBlockWithItem(ModBlocks.IRON_FURNACE);
+        furnaceBlockWithItem(ModBlocks.SILVER_FURNACE);
         furnaceBlockWithItem(ModBlocks.GOLD_FURNACE);
+        furnaceBlockWithItem(ModBlocks.DIAMOND_FURNACE);
+        furnaceBlockWithItem(ModBlocks.EMERALD_FURNACE);
+        furnaceBlockWithItem(ModBlocks.OBSIDIAN_FURNACE);
+        furnaceBlockWithItem(ModBlocks.NETHERITE_FURNACE);
     }
 
 
@@ -167,8 +172,8 @@ public class ModBlockStateProvider {
                 .updateTextures(textureMapping -> {
                     textureMapping.put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_front"));
                     textureMapping.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(block, "_side"));
-                    textureMapping.put(TextureSlot.TOP, TextureMapping.getBlockTexture(block, "_top"));
-                    textureMapping.put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(block, "_top"));
+                    textureMapping.put(TextureSlot.TOP, TextureMapping.getBlockTexture(block, "_side"));
+                    textureMapping.put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(block, "_side"));
                 })
                 .create(block, modelOutput);
 
@@ -176,8 +181,8 @@ public class ModBlockStateProvider {
                 .updateTextures(textureMapping -> {
                     textureMapping.put(TextureSlot.FRONT, TextureMapping.getBlockTexture(block, "_front_on"));
                     textureMapping.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(block, "_side"));
-                    textureMapping.put(TextureSlot.TOP, TextureMapping.getBlockTexture(block, "_top"));
-                    textureMapping.put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(block, "_top"));
+                    textureMapping.put(TextureSlot.TOP, TextureMapping.getBlockTexture(block, "_side"));
+                    textureMapping.put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(block, "_side"));
                 })
                 .createWithSuffix(block, "_on", modelOutput);
 

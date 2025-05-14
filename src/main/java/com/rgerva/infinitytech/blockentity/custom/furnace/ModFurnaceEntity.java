@@ -141,10 +141,15 @@ public class ModFurnaceEntity extends BlockEntity implements MenuProvider, Recip
 
     public static BlockEntityType<ModFurnaceEntity> getEntityType(eFurnaceConfigs configs){
         return switch (configs){
+            case VANILLA -> null;
             case COPPER -> ModBlockEntities.COPPER_FURNACE_ENTITY.get();
             case IRON -> ModBlockEntities.IRON_FURNACE_ENTITY.get();
+            case SILVER -> ModBlockEntities.SILVER_FURNACE_ENTITY.get();
             case GOLD -> ModBlockEntities.GOLD_FURNACE_ENTITY.get();
-            case null -> null;
+            case DIAMOND -> ModBlockEntities.DIAMOND_FURNACE_ENTITY.get();
+            case EMERALD -> ModBlockEntities.EMERALD_FURNACE_ENTITY.get();
+            case OBSIDIAN -> ModBlockEntities.OBSIDIAN_FURNACE_ENTITY.get();
+            case NETHERITE -> ModBlockEntities.NETHERITE_FURNACE_ENTITY.get();
         };
     }
 

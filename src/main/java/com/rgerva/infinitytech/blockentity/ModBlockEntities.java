@@ -130,9 +130,29 @@ public class ModBlockEntities {
             () -> new BlockEntityType<>(((blockPos, blockState) -> new ModFurnaceEntity(blockPos, blockState,
                     eFurnaceConfigs.IRON)), ModBlocks.IRON_FURNACE.get()));
 
+    public static final Supplier<BlockEntityType<ModFurnaceEntity>> SILVER_FURNACE_ENTITY = BLOCK_ENTITIES.register("silver_furnace",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModFurnaceEntity(blockPos, blockState,
+                    eFurnaceConfigs.SILVER)), ModBlocks.SILVER_FURNACE.get()));
+
     public static final Supplier<BlockEntityType<ModFurnaceEntity>> GOLD_FURNACE_ENTITY = BLOCK_ENTITIES.register("gold_furnace",
             () -> new BlockEntityType<>(((blockPos, blockState) -> new ModFurnaceEntity(blockPos, blockState,
                     eFurnaceConfigs.GOLD)), ModBlocks.GOLD_FURNACE.get()));
+
+    public static final Supplier<BlockEntityType<ModFurnaceEntity>> DIAMOND_FURNACE_ENTITY = BLOCK_ENTITIES.register("diamond_furnace",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModFurnaceEntity(blockPos, blockState,
+                    eFurnaceConfigs.DIAMOND)), ModBlocks.DIAMOND_FURNACE.get()));
+
+    public static final Supplier<BlockEntityType<ModFurnaceEntity>> EMERALD_FURNACE_ENTITY = BLOCK_ENTITIES.register("emerald_furnace",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModFurnaceEntity(blockPos, blockState,
+                    eFurnaceConfigs.EMERALD)), ModBlocks.EMERALD_FURNACE.get()));
+
+    public static final Supplier<BlockEntityType<ModFurnaceEntity>> OBSIDIAN_FURNACE_ENTITY = BLOCK_ENTITIES.register("obsidian_furnace",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModFurnaceEntity(blockPos, blockState,
+                    eFurnaceConfigs.OBSIDIAN)), ModBlocks.OBSIDIAN_FURNACE.get()));
+
+    public static final Supplier<BlockEntityType<ModFurnaceEntity>> NETHERITE_FURNACE_ENTITY = BLOCK_ENTITIES.register("netherite_furnace",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModFurnaceEntity(blockPos, blockState,
+                    eFurnaceConfigs.NETHERITE)), ModBlocks.NETHERITE_FURNACE.get()));
 
     //endregion
 

@@ -128,7 +128,12 @@
 
   "block.infinity_tech.furnace_copper": "Copper Furnace",
   "block.infinity_tech.furnace_iron": "Iron Furnace",
+  "block.infinity_tech.furnace_silver": "Silver Furnace",
   "block.infinity_tech.furnace_gold": "Gold Furnace",
+  "block.infinity_tech.furnace_diamond": "Diamond Furnace",
+  "block.infinity_tech.furnace_emerald": "Emerald Furnace",
+  "block.infinity_tech.furnace_obsidian": "Obsidian Furnace",
+  "block.infinity_tech.furnace_netherite": "Netherite Furnace",
 
   "item.infinity_tech.wrench": "Wrench",
   "item.infinity_tech.chest_copper_to_iron": "Upgrade Copper Chest to Iron Chest",
