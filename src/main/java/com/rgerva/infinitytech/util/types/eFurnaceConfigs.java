@@ -8,6 +8,10 @@
 
 package com.rgerva.infinitytech.util.types;
 
+import com.rgerva.infinitytech.blockentity.custom.furnace.ModFurnaceEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.state.BlockState;
+
 public enum eFurnaceConfigs {
     VANILLA(0,0),
     COPPER(180, 40),
@@ -33,6 +37,20 @@ public enum eFurnaceConfigs {
 
     public int getEnergyCapacity() {
         return energyCapacity;
+    }
+
+    public ModFurnaceEntity makeEntity(BlockPos blockPos, BlockState blockState){
+        return switch (this){
+            case VANILLA -> null;
+            case COPPER -> new ModFurnaceEntity(blockPos, blockState, COPPER);
+            case IRON -> new ModFurnaceEntity(blockPos, blockState, IRON);
+            case SILVER -> new ModFurnaceEntity(blockPos, blockState, SILVER);
+            case GOLD -> new ModFurnaceEntity(blockPos, blockState, GOLD);
+            case DIAMOND -> new ModFurnaceEntity(blockPos, blockState, DIAMOND);
+            case EMERALD -> new ModFurnaceEntity(blockPos, blockState, EMERALD);
+            case OBSIDIAN -> new ModFurnaceEntity(blockPos, blockState, OBSIDIAN);
+            case NETHERITE -> new ModFurnaceEntity(blockPos, blockState, NETHERITE);
+        };
     }
 
     public enum eFurnaceUpgrade {

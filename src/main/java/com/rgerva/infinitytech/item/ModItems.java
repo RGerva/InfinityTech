@@ -2,8 +2,10 @@ package com.rgerva.infinitytech.item;
 
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.item.custom.chest.ChestUpgradeItem;
+import com.rgerva.infinitytech.item.custom.furnace.FurnaceUpgradeItem;
 import com.rgerva.infinitytech.item.custom.wrench.WrenchItem;
 import com.rgerva.infinitytech.util.types.eChestConfigs;
+import com.rgerva.infinitytech.util.types.eFurnaceConfigs;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -229,6 +231,50 @@ public class ModItems {
             () -> new ChestUpgradeItem(eChestConfigs.eChestUpgrade.VANILLA_TO_COPPER, new Item.Properties()
                     .stacksTo(1)
                     .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "chest_vanilla_to_copper")))));
+
+    //endregion
+
+    //region FURNACE UPGRADE
+
+    public static final DeferredItem<FurnaceUpgradeItem> FURNACE_VANILLA_TO_COPPER = ITEMS.register("furnace_vanilla_to_copper",
+            () -> new FurnaceUpgradeItem(eFurnaceConfigs.eFurnaceUpgrade.VANILLA_TO_COPPER, new Item.Properties()
+                    .stacksTo(1)
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "furnace_vanilla_to_copper")))));
+
+    public static final DeferredItem<FurnaceUpgradeItem> FURNACE_COPPER_TO_IRON = ITEMS.register("furnace_copper_to_iron",
+            () -> new FurnaceUpgradeItem(eFurnaceConfigs.eFurnaceUpgrade.COPPER_TO_IRON, new Item.Properties()
+                    .stacksTo(1)
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "furnace_copper_to_iron")))));
+
+    public static final DeferredItem<FurnaceUpgradeItem> FURNACE_IRON_TO_SILVER = ITEMS.register("furnace_iron_to_silver",
+            () -> new FurnaceUpgradeItem(eFurnaceConfigs.eFurnaceUpgrade.IRON_TO_SILVER, new Item.Properties()
+                    .stacksTo(1)
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "furnace_iron_to_silver")))));
+
+    public static final DeferredItem<FurnaceUpgradeItem> FURNACE_SILVER_TO_GOLD = ITEMS.register("furnace_silver_to_gold",
+            () -> new FurnaceUpgradeItem(eFurnaceConfigs.eFurnaceUpgrade.SILVER_TO_GOLD, new Item.Properties()
+                    .stacksTo(1)
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "furnace_silver_to_gold")))));
+
+    public static final DeferredItem<FurnaceUpgradeItem> FURNACE_GOLD_TO_DIAMOND = ITEMS.register("furnace_gold_to_diamond",
+            () -> new FurnaceUpgradeItem(eFurnaceConfigs.eFurnaceUpgrade.GOLD_TO_DIAMOND, new Item.Properties()
+                    .stacksTo(1)
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "furnace_gold_to_diamond")))));
+
+    public static final DeferredItem<FurnaceUpgradeItem> FURNACE_DIAMOND_TO_EMERALD = ITEMS.register("furnace_diamond_to_emerald",
+            () -> new FurnaceUpgradeItem(eFurnaceConfigs.eFurnaceUpgrade.DIAMOND_TO_EMERALD, new Item.Properties()
+                    .stacksTo(1)
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "furnace_diamond_to_emerald")))));
+
+    public static final DeferredItem<FurnaceUpgradeItem> FURNACE_EMERALD_TO_OBSIDIAN = ITEMS.register("furnace_emerald_to_obsidian",
+            () -> new FurnaceUpgradeItem(eFurnaceConfigs.eFurnaceUpgrade.EMERALD_TO_OBSIDIAN, new Item.Properties()
+                    .stacksTo(1)
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "furnace_emerald_to_obsidian")))));
+
+    public static final DeferredItem<FurnaceUpgradeItem> FURNACE_OBSIDIAN_TO_NETHERITE = ITEMS.register("furnace_obsidian_to_netherite",
+            () -> new FurnaceUpgradeItem(eFurnaceConfigs.eFurnaceUpgrade.OBSIDIAN_TO_NETHERITE, new Item.Properties()
+                    .stacksTo(1)
+                    .setId(ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "furnace_obsidian_to_netherite")))));
 
     //endregion
 

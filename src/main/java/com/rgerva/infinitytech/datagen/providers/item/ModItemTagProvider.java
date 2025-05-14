@@ -76,6 +76,15 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.CHEST_IRON_TO_GOLD.get())
                 .add(ModItems.CHEST_GOLD_TO_DIAMOND.get())
                 .add(ModItems.CHEST_DIAMOND_TO_OBSIDIAN.get())
-                .add(ModItems.CHEST_OBSIDIAN_TO_NETHERITE.get());
+                .add(ModItems.CHEST_OBSIDIAN_TO_NETHERITE.get())
+
+                .add(ModItems.FURNACE_VANILLA_TO_COPPER.get())
+                .add(ModItems.FURNACE_COPPER_TO_IRON.get())
+                .add(ModItems.FURNACE_IRON_TO_SILVER.get())
+                .add(ModItems.FURNACE_SILVER_TO_GOLD.get())
+                .add(ModItems.FURNACE_GOLD_TO_DIAMOND.get())
+                .add(ModItems.FURNACE_DIAMOND_TO_EMERALD.get())
+                .add(ModItems.FURNACE_EMERALD_TO_OBSIDIAN.get())
+                .add(ModItems.FURNACE_OBSIDIAN_TO_NETHERITE.get());
     }
 }

@@ -149,6 +149,15 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.EMERALD_FURNACE.get());
                         output.accept(ModBlocks.OBSIDIAN_FURNACE.get());
                         output.accept(ModBlocks.NETHERITE_FURNACE.get());
+
+                        output.accept(ModItems.FURNACE_VANILLA_TO_COPPER.get());
+                        output.accept(ModItems.FURNACE_COPPER_TO_IRON.get());
+                        output.accept(ModItems.FURNACE_IRON_TO_SILVER.get());
+                        output.accept(ModItems.FURNACE_SILVER_TO_GOLD.get());
+                        output.accept(ModItems.FURNACE_GOLD_TO_DIAMOND.get());
+                        output.accept(ModItems.FURNACE_DIAMOND_TO_EMERALD.get());
+                        output.accept(ModItems.FURNACE_EMERALD_TO_OBSIDIAN.get());
+                        output.accept(ModItems.FURNACE_OBSIDIAN_TO_NETHERITE.get());
                     })
                     .build());
 

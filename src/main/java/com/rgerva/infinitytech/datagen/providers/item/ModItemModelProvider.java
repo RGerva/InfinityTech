@@ -113,6 +113,15 @@ public class ModItemModelProvider {
         basicItem(ModItems.CHEST_DIAMOND_TO_OBSIDIAN.get());
         basicItem(ModItems.CHEST_OBSIDIAN_TO_NETHERITE.get());
 
+        basicItem(ModItems.FURNACE_VANILLA_TO_COPPER.get());
+        basicItem(ModItems.FURNACE_COPPER_TO_IRON.get());
+        basicItem(ModItems.FURNACE_IRON_TO_SILVER.get());
+        basicItem(ModItems.FURNACE_SILVER_TO_GOLD.get());
+        basicItem(ModItems.FURNACE_GOLD_TO_DIAMOND.get());
+        basicItem(ModItems.FURNACE_DIAMOND_TO_EMERALD.get());
+        basicItem(ModItems.FURNACE_EMERALD_TO_OBSIDIAN.get());
+        basicItem(ModItems.FURNACE_OBSIDIAN_TO_NETHERITE.get());
+
     }
 
     private static void basicItem(Item item){
