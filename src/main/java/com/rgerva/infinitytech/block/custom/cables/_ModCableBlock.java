@@ -11,10 +11,10 @@ package com.rgerva.infinitytech.block.custom.cables;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.rgerva.infinitytech.InfinityTech;
-import com.rgerva.infinitytech.blockentity.custom.cables.ModCableEntity;
+import com.rgerva.infinitytech.blockentity.custom.cables._ModCableEntity;
 import com.rgerva.infinitytech.energy.ModEnergyUtils;
 import com.rgerva.infinitytech.util.WrenchConfigurable;
-import com.rgerva.infinitytech.util.types.eCablesConfigs;
+import com.rgerva.infinitytech.util.types._eCablesConfigs;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
@@ -53,15 +53,15 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ModCableBlock extends BaseEntityBlock implements SimpleWaterloggedBlock, WrenchConfigurable {
-    public static final MapCodec<ModCableBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> {
-        return instance.group(ExtraCodecs.NON_EMPTY_STRING.xmap(eCablesConfigs::valueOf, eCablesConfigs::toString).fieldOf("eCablesConfigs").
-                                forGetter(ModCableBlock::geteCablesConfigs),
+public class _ModCableBlock extends BaseEntityBlock implements SimpleWaterloggedBlock, WrenchConfigurable {
+    public static final MapCodec<_ModCableBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> {
+        return instance.group(ExtraCodecs.NON_EMPTY_STRING.xmap(_eCablesConfigs::valueOf, _eCablesConfigs::toString).fieldOf("eCablesConfigs").
+                                forGetter(_ModCableBlock::geteCablesConfigs),
                         Properties.CODEC.fieldOf("properties").forGetter(Block::properties)).
-                apply(instance, ModCableBlock::new);
+                apply(instance, _ModCableBlock::new);
     });
 
-    private final eCablesConfigs cablesConfigs;
+    private final _eCablesConfigs cablesConfigs;
 
     public static final BooleanProperty UP = BlockStateProperties.UP;
     public static final BooleanProperty DOWN = BlockStateProperties.DOWN;
@@ -79,7 +79,7 @@ public class ModCableBlock extends BaseEntityBlock implements SimpleWaterloggedB
     private static final VoxelShape SHAPE_EAST = Block.box(10.d, 6.d, 6.d, 16.d, 10.d, 10.d);
     private static final VoxelShape SHAPE_WEST = Block.box(0.d, 6.d, 6.d, 6.d, 10.d, 10.d);
 
-    public ModCableBlock(eCablesConfigs cablesConfigs, Properties properties) {
+    public _ModCableBlock(_eCablesConfigs cablesConfigs, Properties properties) {
         super(properties);
 
         this.registerDefaultState(this.stateDefinition.any()
@@ -94,7 +94,7 @@ public class ModCableBlock extends BaseEntityBlock implements SimpleWaterloggedB
         this.cablesConfigs = cablesConfigs;
     }
 
-    public eCablesConfigs geteCablesConfigs() {
+    public _eCablesConfigs geteCablesConfigs() {
         return cablesConfigs;
     }
 
@@ -105,7 +105,7 @@ public class ModCableBlock extends BaseEntityBlock implements SimpleWaterloggedB
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new ModCableEntity(blockPos, blockState, cablesConfigs);
+        return new _ModCableEntity(blockPos, blockState, cablesConfigs);
     }
 
     @Override
@@ -128,7 +128,7 @@ public class ModCableBlock extends BaseEntityBlock implements SimpleWaterloggedB
         BlockPos toPos = selfPos.relative(direction);
         BlockEntity blockEntity = level.getBlockEntity(toPos);
 
-        if (blockEntity instanceof ModCableEntity cableBlockEntity && cableBlockEntity.getCablesConfigs() != this.geteCablesConfigs()){
+        if (blockEntity instanceof _ModCableEntity cableBlockEntity && cableBlockEntity.getCablesConfigs() != this.geteCablesConfigs()){
             return false;
         }
 
@@ -243,11 +243,11 @@ public class ModCableBlock extends BaseEntityBlock implements SimpleWaterloggedB
         level.setBlockAndUpdate(pos, newState);
 
         BlockEntity blockEntity = level.getBlockEntity(pos);
-        if(!(blockEntity instanceof ModCableEntity)){
+        if(!(blockEntity instanceof _ModCableEntity)){
             return;
         }
 
-        ModCableEntity.updateConnections(level, pos, newState, (ModCableEntity) blockEntity);
+        _ModCableEntity.updateConnections(level, pos, newState, (_ModCableEntity) blockEntity);
     }
 
     @Override
@@ -257,7 +257,7 @@ public class ModCableBlock extends BaseEntityBlock implements SimpleWaterloggedB
 
     @Override
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, ModCableEntity.getEntityType(cablesConfigs), ModCableEntity::tick);
+        return createTickerHelper(blockEntityType, _ModCableEntity.getEntityType(cablesConfigs), _ModCableEntity::tick);
     }
 
     @Override
@@ -276,11 +276,11 @@ public class ModCableBlock extends BaseEntityBlock implements SimpleWaterloggedB
     public @NotNull InteractionResult onUseWrench(UseOnContext context, Direction selectedFace, boolean nextPreviousValue) {
 
         BlockEntity blockEntity = context.getLevel().getBlockEntity(context.getClickedPos());
-        if(blockEntity instanceof ModCableEntity){
-            String extractionMode = ((ModCableEntity) blockEntity).getExtractionMode().name();
+        if(blockEntity instanceof _ModCableEntity){
+            String extractionMode = ((_ModCableEntity) blockEntity).getExtractionMode().name();
             InfinityTech.LOGGER.info("ExtractionMode {}", extractionMode);
-            ((ModCableEntity) blockEntity).setExtractionMode(eCablesConfigs.ExtractionMode.PUSH);
-            String extractionMode1 = ((ModCableEntity) blockEntity).getExtractionMode().name();
+            ((_ModCableEntity) blockEntity).setExtractionMode(_eCablesConfigs.ExtractionMode.PUSH);
+            String extractionMode1 = ((_ModCableEntity) blockEntity).getExtractionMode().name();
             InfinityTech.LOGGER.info("ExtractionMode1 {}", extractionMode1);
         }
         return InteractionResult.SUCCESS;

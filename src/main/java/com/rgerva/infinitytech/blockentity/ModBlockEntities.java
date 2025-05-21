@@ -11,7 +11,7 @@ package com.rgerva.infinitytech.blockentity;
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.blockentity.custom.battery.ModBatteryEntity;
-import com.rgerva.infinitytech.blockentity.custom.cables.ModCableEntity;
+import com.rgerva.infinitytech.blockentity.custom.cables._ModCableEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.*;
 import com.rgerva.infinitytech.blockentity.custom.furnace.ModFurnaceEntity;
 import com.rgerva.infinitytech.blockentity.custom.generator.ModCoalGeneratorEntity;
@@ -73,17 +73,17 @@ public class ModBlockEntities {
 
     //region CABLE
 
-    public static final Supplier<BlockEntityType<ModCableEntity>> TIN_CABLE_ENTITY = BLOCK_ENTITIES.register("cable_tin",
-            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModCableEntity(blockPos, blockState,
-                    eCablesConfigs.TIN)), ModBlocks.TIN_CABLE.get()));
+    public static final Supplier<BlockEntityType<_ModCableEntity>> TIN_CABLE_ENTITY = BLOCK_ENTITIES.register("cable_tin",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new _ModCableEntity(blockPos, blockState,
+                    _eCablesConfigs.TIN)), ModBlocks.TIN_CABLE.get()));
 
-    public static final Supplier<BlockEntityType<ModCableEntity>> COPPER_CABLE_ENTITY = BLOCK_ENTITIES.register("cable_copper",
-            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModCableEntity(blockPos, blockState,
-                    eCablesConfigs.COPPER)), ModBlocks.COPPER_CABLE.get()));
+    public static final Supplier<BlockEntityType<_ModCableEntity>> COPPER_CABLE_ENTITY = BLOCK_ENTITIES.register("cable_copper",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new _ModCableEntity(blockPos, blockState,
+                    _eCablesConfigs.COPPER)), ModBlocks.COPPER_CABLE.get()));
 
-    public static final Supplier<BlockEntityType<ModCableEntity>> GOLD_CABLE_ENTITY = BLOCK_ENTITIES.register("cable_gold",
-            () -> new BlockEntityType<>(((blockPos, blockState) -> new ModCableEntity(blockPos, blockState,
-                    eCablesConfigs.GOLD)), ModBlocks.GOLD_CABLE.get()));
+    public static final Supplier<BlockEntityType<_ModCableEntity>> GOLD_CABLE_ENTITY = BLOCK_ENTITIES.register("cable_gold",
+            () -> new BlockEntityType<>(((blockPos, blockState) -> new _ModCableEntity(blockPos, blockState,
+                    _eCablesConfigs.GOLD)), ModBlocks.GOLD_CABLE.get()));
     //endregion
 
     //region CHEST

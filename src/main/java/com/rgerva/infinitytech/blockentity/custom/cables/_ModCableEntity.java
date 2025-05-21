@@ -12,7 +12,7 @@ import com.mojang.datafixers.util.Pair;
 import com.rgerva.infinitytech.blockentity.ModBlockEntities;
 import com.rgerva.infinitytech.energy.ModEnergyStorage;
 import com.rgerva.infinitytech.network.interfaces.ModSyncPackages;
-import com.rgerva.infinitytech.util.types.eCablesConfigs;
+import com.rgerva.infinitytech.util.types._eCablesConfigs;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -30,10 +30,10 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
-public class ModCableEntity extends BlockEntity implements ModSyncPackages {
-    private static eCablesConfigs.ExtractionMode EXTRACTION_MODE = eCablesConfigs.ExtractionMode.BOTH;
+public class _ModCableEntity extends BlockEntity implements ModSyncPackages {
+    private static _eCablesConfigs.ExtractionMode EXTRACTION_MODE = _eCablesConfigs.ExtractionMode.BOTH;
 
-    private final eCablesConfigs cablesConfigs;
+    private final _eCablesConfigs cablesConfigs;
     private final ModEnergyStorage ENERGY_STORAGE;
 
     private final Map<Pair<BlockPos, Direction>, IEnergyStorage> producers = new HashMap<>();
@@ -41,13 +41,13 @@ public class ModCableEntity extends BlockEntity implements ModSyncPackages {
     private final List<BlockPos> cableBlocks = new LinkedList<>();
     private boolean loaded;
 
-    public ModCableEntity(BlockPos pos, BlockState blockState, eCablesConfigs cablesConfigs) {
+    public _ModCableEntity(BlockPos pos, BlockState blockState, _eCablesConfigs cablesConfigs) {
         super(Objects.requireNonNull(getEntityType(cablesConfigs)), pos, blockState);
         this.cablesConfigs = cablesConfigs;
         ENERGY_STORAGE = createEnergyStorage(cablesConfigs);
     }
 
-    private ModEnergyStorage createEnergyStorage(eCablesConfigs cablesConfigs) {
+    private ModEnergyStorage createEnergyStorage(_eCablesConfigs cablesConfigs) {
         if(EXTRACTION_MODE.isPush()){
             return new ModEnergyStorage(0, cablesConfigs.getMaxTransfer(), 0, 0) {
                 @Override
@@ -69,7 +69,7 @@ public class ModCableEntity extends BlockEntity implements ModSyncPackages {
         }
     }
 
-    public eCablesConfigs getCablesConfigs(){
+    public _eCablesConfigs getCablesConfigs(){
         return cablesConfigs;
     }
 
@@ -81,15 +81,15 @@ public class ModCableEntity extends BlockEntity implements ModSyncPackages {
         return consumers;
     }
 
-    public eCablesConfigs.ExtractionMode getExtractionMode(){
+    public _eCablesConfigs.ExtractionMode getExtractionMode(){
         return EXTRACTION_MODE;
     }
 
-    public void setExtractionMode(eCablesConfigs.ExtractionMode extractionMode){
+    public void setExtractionMode(_eCablesConfigs.ExtractionMode extractionMode){
         EXTRACTION_MODE = extractionMode.setPush();
     }
 
-    public static BlockEntityType<ModCableEntity> getEntityType(eCablesConfigs eCablesConfigs) {
+    public static BlockEntityType<_ModCableEntity> getEntityType(_eCablesConfigs eCablesConfigs) {
         return switch (eCablesConfigs) {
             case TIN -> ModBlockEntities.TIN_CABLE_ENTITY.get();
             case COPPER -> ModBlockEntities.COPPER_CABLE_ENTITY.get();
@@ -152,7 +152,7 @@ public class ModCableEntity extends BlockEntity implements ModSyncPackages {
         return saveWithoutMetadata(registries);
     }
 
-    public static void updateConnections(Level level, BlockPos blockPos, BlockState state, ModCableEntity blockEntity) {
+    public static void updateConnections(Level level, BlockPos blockPos, BlockState state, _ModCableEntity blockEntity) {
         if(level.isClientSide){
             return;
         }
@@ -165,7 +165,7 @@ public class ModCableEntity extends BlockEntity implements ModSyncPackages {
             BlockPos testPos = blockPos.relative(direction);
             BlockEntity testBlockEntity = level.getBlockEntity(testPos);
 
-            if(testBlockEntity instanceof ModCableEntity cableEntity){
+            if(testBlockEntity instanceof _ModCableEntity cableEntity){
                 blockEntity.cableBlocks.add(testPos);
                 continue;
             }
@@ -197,7 +197,7 @@ public class ModCableEntity extends BlockEntity implements ModSyncPackages {
             BlockPos checkPos = cableBlocksLeft.pop();
 
             BlockEntity blockEntity = level.getBlockEntity(checkPos);
-            if(!(blockEntity instanceof ModCableEntity cableEntity)){
+            if(!(blockEntity instanceof _ModCableEntity cableEntity)){
                 continue;
             }
 
@@ -213,7 +213,7 @@ public class ModCableEntity extends BlockEntity implements ModSyncPackages {
         return consumers;
     }
 
-    public static void tick(Level level, BlockPos blockPos, BlockState state, ModCableEntity blockEntity) {
+    public static void tick(Level level, BlockPos blockPos, BlockState state, _ModCableEntity blockEntity) {
         if (level.isClientSide) {
             return;
         }

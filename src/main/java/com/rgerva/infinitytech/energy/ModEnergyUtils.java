@@ -13,7 +13,7 @@ public class ModEnergyUtils {
             "", "k", "M", "G", "T", "P"
     };
 
-    public static String getEnergyWithPrefix(int energy) {
+    public static String getEnergyWithPrefix(long energy) {
         if (energy < 1000)
             return String.format(Locale.ENGLISH, "%d FE", energy);
 
@@ -26,7 +26,9 @@ public class ModEnergyUtils {
             prefixIndex++;
         }
 
-        return String.format(Locale.ENGLISH, "%.2f%s FE", energyWithPrefix, ENERGY_PREFIXES[prefixIndex]);
+        return String.format(Locale.ENGLISH, "%s%s FE",
+                String.format(Locale.ENGLISH, "%.2f", Math.floor(energyWithPrefix * 100) / 100),
+                ENERGY_PREFIXES[prefixIndex]);
     }
 
     public static int getRedstoneSignalFromEnergyStorage(IEnergyStorage energyStorage) {

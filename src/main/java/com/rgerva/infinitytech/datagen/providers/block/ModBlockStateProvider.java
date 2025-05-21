@@ -9,7 +9,7 @@
 package com.rgerva.infinitytech.datagen.providers.block;
 
 import com.rgerva.infinitytech.block.ModBlocks;
-import com.rgerva.infinitytech.block.custom.cables.ModCableBlock;
+import com.rgerva.infinitytech.block.custom.cables._ModCableBlock;
 import com.rgerva.infinitytech.blockentity.custom.chest.renderer.special.ModChestSpecialRenderer;
 import com.rgerva.infinitytech.datagen.model.ModTexturedModel;
 import net.minecraft.client.data.models.BlockModelGenerators;
@@ -241,21 +241,21 @@ public class ModBlockStateProvider {
                 MultiPartGenerator.multiPart(block.value()).
                         with(Variant.variant().
                                 with(VariantProperties.MODEL, cableCore)).
-                        with(Condition.condition().term(ModCableBlock.UP, true), Variant.variant().
+                        with(Condition.condition().term(_ModCableBlock.UP, true), Variant.variant().
                                 with(VariantProperties.MODEL, cableSide).
                                 with(VariantProperties.X_ROT, VariantProperties.Rotation.R270)).
-                        with(Condition.condition().term(ModCableBlock.DOWN, true), Variant.variant().
+                        with(Condition.condition().term(_ModCableBlock.DOWN, true), Variant.variant().
                                 with(VariantProperties.MODEL, cableSide).
                                 with(VariantProperties.X_ROT, VariantProperties.Rotation.R90)).
-                        with(Condition.condition().term(ModCableBlock.NORTH, true), Variant.variant().
+                        with(Condition.condition().term(_ModCableBlock.NORTH, true), Variant.variant().
                                 with(VariantProperties.MODEL, cableSide)).
-                        with(Condition.condition().term(ModCableBlock.SOUTH, true), Variant.variant().
+                        with(Condition.condition().term(_ModCableBlock.SOUTH, true), Variant.variant().
                                 with(VariantProperties.MODEL, cableSide).
                                 with(VariantProperties.X_ROT, VariantProperties.Rotation.R180)).
-                        with(Condition.condition().term(ModCableBlock.EAST, true), Variant.variant().
+                        with(Condition.condition().term(_ModCableBlock.EAST, true), Variant.variant().
                                 with(VariantProperties.MODEL, cableSide).
                                 with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)).
-                        with(Condition.condition().term(ModCableBlock.WEST, true), Variant.variant().
+                        with(Condition.condition().term(_ModCableBlock.WEST, true), Variant.variant().
                                 with(VariantProperties.MODEL, cableSide).
                                 with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
         );

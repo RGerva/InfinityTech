@@ -45,7 +45,7 @@ public class FileIntegrity {
             }
             textureTotal = textureCount;
         }
-        System.out.printf("Total of Textures: %s\n", textureTotal);;
+        System.out.printf("Total of Textures: %s\n", textureTotal);
         return List.of(textureTotal, textureCount);
     }
 }
