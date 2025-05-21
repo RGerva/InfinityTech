@@ -8,6 +8,8 @@
 
 package com.rgerva.infinitytech.integrity;
 
+import com.rgerva.infinitytech.util.ModUtilsTests;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,7 +47,7 @@ public class FileIntegrity {
             }
             textureTotal = textureCount;
         }
-        System.out.printf("Total of Textures: %s\n", textureTotal);
+        ModUtilsTests.log.info("Total of Textures: %s\n", textureTotal);
         return List.of(textureTotal, textureCount);
     }
 }
