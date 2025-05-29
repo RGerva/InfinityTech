@@ -121,6 +121,7 @@ public class ModBlockStateProvider {
         cableBlockWithItem(ModBlocks.TIN_CABLE);
         cableBlockWithItem(ModBlocks.COPPER_CABLE);
         cableBlockWithItem(ModBlocks.GOLD_CABLE);
+        cableBlockWithItem(ModBlocks.TEST_CABLE);
 
         chestBlockWithItem(ModBlocks.CHEST_IRON);
         chestBlockWithItem(ModBlocks.CHEST_COPPER);

@@ -199,6 +199,7 @@ public class ModCreativeTab {
                         output.accept(ModBlocks.TIN_CABLE.get());
                         output.accept(ModBlocks.COPPER_CABLE.get());
                         output.accept(ModBlocks.GOLD_CABLE.get());
+                        output.accept(ModBlocks.TEST_CABLE.get());
 
                         output.accept(ModBlocks.COAL_GENERATOR.get());
 

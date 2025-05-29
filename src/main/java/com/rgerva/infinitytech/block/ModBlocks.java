@@ -10,6 +10,7 @@ package com.rgerva.infinitytech.block;
 
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.block.custom.battery.ModBatteryBlock;
+import com.rgerva.infinitytech.block.custom.cables.ModCableBlock;
 import com.rgerva.infinitytech.block.custom.cables._ModCableBlock;
 import com.rgerva.infinitytech.block.custom.chest.ModChestBlock;
 import com.rgerva.infinitytech.block.custom.furnace.ModFurnaceBlock;
@@ -558,6 +559,15 @@ public class ModBlocks {
                     .strength(5.0F)
                     .sound(SoundType.WOOL)
                     .mapColor(MapColor.COLOR_GRAY)));
+
+    public static final DeferredBlock<Block> TEST_CABLE = registerBlock("cable_test",
+            () -> new ModCableBlock(eCablesConfigs.COPPER, BlockBehaviour.Properties.of()
+                    .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "cable_test")))
+                    .strength(5.0F)
+                    .sound(SoundType.WOOL)
+                    .mapColor(MapColor.COLOR_GRAY)));
+
+
     //endregion
 
     //region CHEST
