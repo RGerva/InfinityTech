@@ -86,5 +86,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.FURNACE_DIAMOND_TO_EMERALD.get())
                 .add(ModItems.FURNACE_EMERALD_TO_OBSIDIAN.get())
                 .add(ModItems.FURNACE_OBSIDIAN_TO_NETHERITE.get());
+
+        this.tag(ModTags.Items.WRENCH_TAG)
+                .add(ModItems.WRENCH.get());
     }
 }

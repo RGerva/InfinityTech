@@ -561,7 +561,7 @@ public class ModBlocks {
                     .mapColor(MapColor.COLOR_GRAY)));
 
     public static final DeferredBlock<Block> TEST_CABLE = registerBlock("cable_test",
-            () -> new ModCableBlock(eCablesConfigs.COPPER, BlockBehaviour.Properties.of()
+            () -> new ModCableBlock(BlockBehaviour.Properties.of()
                     .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(InfinityTech.MOD_ID, "cable_test")))
                     .strength(5.0F)
                     .sound(SoundType.WOOL)

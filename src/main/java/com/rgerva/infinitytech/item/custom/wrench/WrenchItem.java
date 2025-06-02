@@ -1,5 +1,6 @@
 package com.rgerva.infinitytech.item.custom.wrench;
 
+import com.rgerva.infinitytech.util.ModTags;
 import com.rgerva.infinitytech.util.WrenchConfigurable;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -23,6 +24,19 @@ import java.util.List;
 public class WrenchItem extends Item {
     public WrenchItem(Properties properties) {
         super(properties);
+    }
+
+    public static boolean isHoldingWrench(Player player){
+        for (ItemStack stack : player.getHandSlots()){
+            if(isWrench(stack)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean isWrench(ItemStack stack) {
+        return stack.is(ModTags.Items.WRENCH_TAG);
     }
 
     @Override
