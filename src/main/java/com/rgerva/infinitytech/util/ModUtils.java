@@ -1,6 +1,8 @@
 package com.rgerva.infinitytech.util;
 
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.HashMap;
 import java.util.List;
@@ -93,4 +95,22 @@ public class ModUtils {
                 URANIUM_END_ORE.get(),
                 ZINC_END_ORE.get());
     }
+
+    public static VoxelShape combine(VoxelShape... shapes){
+        if (shapes.length <= 0) {
+            return Shapes.empty();
+        }
+
+        VoxelShape combined = shapes[0];
+
+        for (int i = 1; i < shapes.length; i++) {
+            combined = Shapes.or(combined, shapes[i]);
+        }
+
+        return combined;
+    }
+
+    public record Pair<K, V>(K key, V value) {}
+
+    public record Triple<V1, V2, V3>(V1 value1, V2 value2, V3 value3) {}
 }

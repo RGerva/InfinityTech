@@ -11,6 +11,7 @@ package com.rgerva.infinitytech.blockentity;
 import com.rgerva.infinitytech.InfinityTech;
 import com.rgerva.infinitytech.block.ModBlocks;
 import com.rgerva.infinitytech.blockentity.custom.battery.ModBatteryEntity;
+import com.rgerva.infinitytech.blockentity.custom.cables.ModEnergyCableEntity;
 import com.rgerva.infinitytech.blockentity.custom.cables._ModCableEntity;
 import com.rgerva.infinitytech.blockentity.custom.chest.*;
 import com.rgerva.infinitytech.blockentity.custom.furnace.ModFurnaceEntity;
@@ -84,6 +85,9 @@ public class ModBlockEntities {
     public static final Supplier<BlockEntityType<_ModCableEntity>> GOLD_CABLE_ENTITY = BLOCK_ENTITIES.register("cable_gold",
             () -> new BlockEntityType<>(((blockPos, blockState) -> new _ModCableEntity(blockPos, blockState,
                     _eCablesConfigs.GOLD)), ModBlocks.GOLD_CABLE.get()));
+
+    public static final Supplier<BlockEntityType<ModEnergyCableEntity>> TEST_CABLE = BLOCK_ENTITIES.register("cable_test",
+            () -> new BlockEntityType<>(ModEnergyCableEntity::new, ModBlocks.TEST_CABLE.get()));
     //endregion
 
     //region CHEST
